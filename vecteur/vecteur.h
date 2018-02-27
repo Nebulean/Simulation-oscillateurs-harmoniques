@@ -12,6 +12,7 @@ public:
   bool compare(Vecteur const&) const; // compare deux vecteurs.
 
   Vecteur addition(Vecteur) const; // additionne deux vecteurs
+  Vecteur soustraction(Vecteur const&) const; // soustrait deux vecteurs
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
