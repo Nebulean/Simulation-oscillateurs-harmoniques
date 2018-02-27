@@ -44,5 +44,11 @@ int main(){
   }
   cout << " vecteur 3." << endl;
 
+  // test d'addition.
+  vect3 = vect1.addition(vect2); // vect1 + vect2
+  cout << "L'addition de vect1 et vect2 donne: ";
+  vect3.affiche();
+  cout << endl;
+
   return 0;
 }
