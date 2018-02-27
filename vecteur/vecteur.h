@@ -11,6 +11,7 @@ public:
   void affiche() const; // affiche le vecteur courant.
   bool compare(Vecteur const&) const; // compare deux vecteurs.
 
+  Vecteur addition(Vecteur) const; // additionne deux vecteurs
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs

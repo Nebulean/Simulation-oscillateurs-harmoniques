@@ -32,3 +32,28 @@ bool Vecteur::compare(Vecteur const& v) const
   }
   return true;
 }
+
+
+/*---* Utilisation *---*
+  Soient trois instances de Vecteur: v1, v2 et v3 (qu'importe leur valeurs)
+  Pour les additionner, on utilise: v3 = v1.addition(v) pour obtenir le résultat de v1 + v2.
+*/
+Vecteur Vecteur::addition(Vecteur v) const
+{
+  try{
+    // on test si les vecteurs ont la même dimension.
+    if (v._coord.size() != _coord.size()) {
+      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
+    }
+
+    // si les deux dimensions sont pareil, alors on procède à l'addition.
+    for (size_t i = 0; i < v._coord.size(); i++) {
+      v._coord[i] += _coord[i]; // on ajoute la valeur de a
+    }
+  }
+  catch(int const& err){
+    cerr << "Erreur " << err << ": la dimension des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+  }
+
+  return v; // si il y a une erreur, alors on retourne v, sans modification. Sinon, ça fait l'addition.
+}
