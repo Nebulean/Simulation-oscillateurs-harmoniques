@@ -53,7 +53,33 @@ Vecteur Vecteur::addition(Vecteur v) const
   }
   catch(int const& err){
     cerr << "Erreur " << err << ": la dimension des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+    return *this;
   }
 
   return v; // si il y a une erreur, alors on retourne v, sans modification. Sinon, ça fait l'addition.
+}
+
+
+// comme l'addition, mais pour la soustraction.
+Vecteur Vecteur::soustraction(Vecteur const& v) const
+{
+  Vecteur result; // la variable de retour
+  result = *this; // on y applique les valeurs de l'instance courante.
+
+  try{
+    // on test si les vecteurs ont la même dimension.
+    if (v._coord.size() != _coord.size()) {
+      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
+    }
+
+    // si les deux dimensions sont pareil, alors on procède à la soustraction.
+    for (size_t i = 0; i < v._coord.size(); i++) {
+      result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
+    }
+  }
+  catch(int const& err){
+    cerr << "Erreur " << err << ": la dimension des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+  }
+
+  return result; // si il y a une erreur, alors on retourne l'instance courante. Sinon, ça fait la soustraction.
 }
