@@ -81,5 +81,10 @@ int main(){
 
   vect1.set_coord(5,0);
 
+  Vecteur vect7(vect1.mult(2));
+  cout << "La multiplication de vect1 par 2 donne: ";
+  vect7.affiche();
+  cout << endl;
+
   return 0;
 }
