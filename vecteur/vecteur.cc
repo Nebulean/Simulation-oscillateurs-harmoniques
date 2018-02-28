@@ -102,3 +102,14 @@ Vecteur Vecteur::oppose() const
   }
   return result;
 }
+
+
+// multiplie un vecteur par un scalaire
+Vecteur Vecteur::mult(double const& a) const
+{
+  Vecteur result(*this); // on copie l'instance courante
+  for (size_t i = 0; i < _coord.size(); ++i) {
+    result._coord[i] = a*result._coord[i]; // on multiplie chaque coordonnée par a
+  }
+  return result;
+}
