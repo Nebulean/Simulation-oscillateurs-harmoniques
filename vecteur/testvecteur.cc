@@ -79,6 +79,7 @@ int main(){
   vect6.affiche();
   cout << endl;
 
+  // test exception set_coord
   vect1.set_coord(5,0);
 
   // test multiplication

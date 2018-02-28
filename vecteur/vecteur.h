@@ -15,7 +15,7 @@ public:
   Vecteur soustraction(Vecteur const&) const; // soustrait deux vecteurs
   Vecteur oppose() const; // inverse un vecteur (-coordonnées)
   Vecteur mult(double const&) const; // multiplie un vecteur par un scalaire
-  double prod_scal(Vecteur const&) const;
+  double prod_scal(Vecteur const&) const; // produit scalaire entre deux vecteurs.
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs

@@ -114,6 +114,8 @@ Vecteur Vecteur::mult(double const& a) const
   return result;
 }
 
+
+// applique un produit scalaire entre deux vecteurs.
 double Vecteur::prod_scal(Vecteur const& v) const
 {
   try {
