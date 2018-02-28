@@ -139,7 +139,7 @@ double Vecteur::prod_scal(Vecteur const& v) const
 }
 
 
-// Calcul la norme au carré (sans la racine)
+// calcule la norme au carré (sans la racine)
 double Vecteur::norme2() const
 {
   double result(0);
@@ -149,8 +149,27 @@ double Vecteur::norme2() const
   return result;
 }
 
-// Calcul la norme 
+// Calcul la norme
 double Vecteur::norme() const
 {
   return sqrt(norme2());
+}
+
+// calcule le produit vectoriel
+Vecteur Vecteur::prod_vect(Vecteur const& v) const
+{
+  try {
+    if (_coord.size() != 3 or v._coord.size() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
+      throw 4;
+    }
+    Vecteur result;
+    result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
+    result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
+    result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
+    return result;
+  }
+  catch (int const& err){
+    cerr << "Erreur " << err << ": au moins un des vecteurs n'est pas de dimension 3." << endl;
+    return v; // s'il y a une erreur, on retourne v sans modification
+  }
 }
