@@ -20,6 +20,8 @@ public:
   double norme() const; // calcule la norme
   Vecteur prod_vect(Vecteur const&) const; // produit vectoriel entre deux vecteurs
 
+  size_t taille() const; // Méthode renvoyant la taille de _coord, c'est un raccourci qui rend le code plus lisible.
+
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
 };
