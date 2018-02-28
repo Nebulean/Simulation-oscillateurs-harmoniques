@@ -103,6 +103,8 @@ Vecteur Vecteur::oppose() const
   return result;
 }
 
+
+// multiplie un vecteur par un scalaire
 Vecteur Vecteur::mult(double const& a) const
 {
   Vecteur result(*this); // on copie l'instance courante
