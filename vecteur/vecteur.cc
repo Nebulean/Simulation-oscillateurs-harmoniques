@@ -113,3 +113,26 @@ Vecteur Vecteur::mult(double const& a) const
   }
   return result;
 }
+
+
+// applique un produit scalaire entre deux vecteurs.
+double Vecteur::prod_scal(Vecteur const& v) const
+{
+  try {
+    // on teste si les vecteurs ont la même dimension.
+    if (v._coord.size() != _coord.size()) {
+      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
+    }
+
+    double result(0.0); // on initialise la variable du résultat
+
+    for (size_t i = 0; i < _coord.size(); ++i) {
+      result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
+    }
+    return result;
+  }
+  catch(int const& err){
+    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl;
+    return 2.0; // retourne 2 arbitrairement en cas d'erreur
+  }
+}
