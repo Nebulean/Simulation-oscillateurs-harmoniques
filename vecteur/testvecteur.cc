@@ -94,5 +94,13 @@ int main(){
   cout << "Produit scalaire erronné entre vect1 et vect4: " << scalaire << endl;
   cout << "Le produit scalaire de vect4 et vect5 donne: " << vect4.prod_scal(vect5) << endl;
 
+
+  // test norme et norme2.
+  double scal2;
+  scal2 = vect1.norme2();
+  cout << "La norme au carré de vect1 est " << scal2 << " unités." << endl;
+  scal2 = vect1.norme();
+  cout << "La norme de vect1 est " << scal2 << " unités." << endl;
+
   return 0;
 }

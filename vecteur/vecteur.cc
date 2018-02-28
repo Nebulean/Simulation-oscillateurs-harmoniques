@@ -1,4 +1,5 @@
 #include "vecteur.h"
+#include <cmath>
 // #include <vector> // Faut-il le noter ?
 using namespace std;
 
@@ -135,4 +136,21 @@ double Vecteur::prod_scal(Vecteur const& v) const
     cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl;
     return 2.0; // retourne 2 arbitrairement en cas d'erreur
   }
+}
+
+
+// Calcul la norme au carré (sans la racine)
+double Vecteur::norme2() const
+{
+  double result(0);
+  for (size_t i = 0; i < _coord.size(); i++) {
+    result += _coord[i]*_coord[i];
+  }
+  return result;
+}
+
+// Calcul la norme 
+double Vecteur::norme() const
+{
+  return sqrt(norme2());
 }
