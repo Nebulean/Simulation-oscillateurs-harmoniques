@@ -79,5 +79,7 @@ int main(){
   vect6.affiche();
   cout << endl;
 
+  vect1.set_coord(5,0);
+
   return 0;
 }
