@@ -13,6 +13,7 @@ public:
 
   Vecteur addition(Vecteur) const; // additionne deux vecteurs
   Vecteur soustraction(Vecteur const&) const; // soustrait deux vecteurs
+  Vecteur oppose() const; // inverse un vecteur (-coordonnées)
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs

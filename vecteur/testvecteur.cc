@@ -56,9 +56,10 @@ int main(){
   vect3 = vect1.addition(vect4); // vect1 + vect2
   cout << "L'addition de vect1 et vect4 donne: ";
   vect3.affiche();
+  cout << endl;
 
   // test soustraction
-  vect3 = vect1.soustraction(vect2); // vect1 + vect2
+  vect3 = vect1.soustraction(vect2);
   cout << "La soustraction de vect1 et vect2 donne: ";
   vect3.affiche();
   cout << endl;
@@ -66,10 +67,17 @@ int main(){
   Vecteur vect5;
   vect5.augmente(1.0);
   vect5.augmente(4.1);
-  vect3 = vect1.soustraction(vect5); // vect1 + vect2
+  vect3 = vect1.soustraction(vect5);
   cout << "La soustraction de vect1 et vect5 donne: ";
   vect3.affiche();
+  cout << endl;
 
+  // test oppose
+  Vecteur vect6;
+  vect6 = vect1.oppose();
+  cout << "L'opposée de vect1 donne: ";
+  vect6.affiche();
+  cout << endl;
 
   return 0;
 }
