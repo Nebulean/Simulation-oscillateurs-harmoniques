@@ -1,5 +1,5 @@
 #include "vecteur.h"
-// #include <vector> // Faut-il le notter ?
+// #include <vector> // Faut-il le noter ?
 using namespace std;
 
 void Vecteur::augmente(double x)
@@ -9,7 +9,16 @@ void Vecteur::augmente(double x)
 
 void Vecteur::set_coord(size_t i, double x)
 {
-  _coord[i] = x;
+  try {
+    //on teste si la coordonnée qu'on veut modifier existe bien
+    if (i > _coord.size()) {
+      throw 3;
+    }
+    _coord[i] = x;
+  }
+  catch (int const& err) {
+    cerr << "Erreur " << err << ": le vecteur est de dimension inférieure à la coordonnée spécifiée." << endl;
+  }
 }
 
 void Vecteur::affiche() const
@@ -41,18 +50,18 @@ bool Vecteur::compare(Vecteur const& v) const
 Vecteur Vecteur::addition(Vecteur v) const
 {
   try{
-    // on test si les vecteurs ont la même dimension.
+    // on teste si les vecteurs ont la même dimension.
     if (v._coord.size() != _coord.size()) {
       throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
     }
 
-    // si les deux dimensions sont pareil, alors on procède à l'addition.
+    // si les deux dimensions sont pareilles, alors on procède à l'addition.
     for (size_t i = 0; i < v._coord.size(); i++) {
       v._coord[i] += _coord[i]; // on ajoute la valeur de a
     }
   }
   catch(int const& err){
-    cerr << "Erreur " << err << ": la dimension des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
     return *this;
   }
 
@@ -67,18 +76,18 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
   result = *this; // on y applique les valeurs de l'instance courante.
 
   try{
-    // on test si les vecteurs ont la même dimension.
+    // on teste si les vecteurs ont la même dimension.
     if (v._coord.size() != _coord.size()) {
       throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
     }
 
-    // si les deux dimensions sont pareil, alors on procède à la soustraction.
+    // si les deux dimensions sont pareilles, alors on procède à la soustraction.
     for (size_t i = 0; i < v._coord.size(); i++) {
       result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
     }
   }
   catch(int const& err){
-    cerr << "Erreur " << err << ": la dimension des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
   }
 
   return result; // si il y a une erreur, alors on retourne l'instance courante. Sinon, ça fait la soustraction.
@@ -89,7 +98,7 @@ Vecteur Vecteur::oppose() const
 {
   Vecteur result(*this); // on copie l'instance courante
   for (size_t i = 0; i < _coord.size(); i++) {
-    result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnées par -1
+    result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnée par -1
   }
   return result;
 }
