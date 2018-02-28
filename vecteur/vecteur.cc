@@ -83,3 +83,13 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
 
   return result; // si il y a une erreur, alors on retourne l'instance courante. Sinon, ça fait la soustraction.
 }
+
+// inverse un vecteur.
+Vecteur Vecteur::oppose() const
+{
+  Vecteur result(*this); // on copie l'instance courante
+  for (size_t i = 0; i < _coord.size(); i++) {
+    result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnées par -1
+  }
+  return result;
+}
