@@ -12,7 +12,7 @@ void Vecteur::set_coord(size_t i, double x)
 {
   try {
     //on teste si la coordonnée qu'on veut modifier existe bien
-    if (i > taille()) {
+    if (i > dim()) {
       throw 3;
     }
     _coord[i] = x;
@@ -24,7 +24,7 @@ void Vecteur::set_coord(size_t i, double x)
 
 void Vecteur::affiche() const
 {
-  for (size_t i = 0; i < taille(); i++) {
+  for (size_t i = 0; i < dim(); i++) {
     cout << _coord[i] << " ";
   }
   cout << endl;
@@ -32,10 +32,10 @@ void Vecteur::affiche() const
 
 bool Vecteur::compare(Vecteur const& v) const
 {
-  if (v.taille() != taille()) {
+  if (v.dim() != dim()) {
     return false;
   }
-  for (size_t i = 0; i < taille(); i++) {
+  for (size_t i = 0; i < dim(); i++) {
     if (_coord[i] != v._coord[i]) {
       return false;
     }
@@ -52,12 +52,12 @@ Vecteur Vecteur::addition(Vecteur v) const
 {
   try{
     // on teste si les vecteurs ont la même dimension.
-    if (v.taille() != taille()) {
+    if (v.dim() != dim()) {
       throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
     }
 
     // si les deux dimensions sont pareilles, alors on procède à l'addition.
-    for (size_t i = 0; i < v.taille(); i++) {
+    for (size_t i = 0; i < v.dim(); i++) {
       v._coord[i] += _coord[i]; // on ajoute la valeur de a
     }
   }
@@ -78,12 +78,12 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
 
   try{
     // on teste si les vecteurs ont la même dimension.
-    if (v.taille() != taille()) {
+    if (v.dim() != dim()) {
       throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
     }
 
     // si les deux dimensions sont pareilles, alors on procède à la soustraction.
-    for (size_t i = 0; i < v.taille(); i++) {
+    for (size_t i = 0; i < v.dim(); i++) {
       result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
     }
   }
@@ -98,7 +98,7 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
 Vecteur Vecteur::oppose() const
 {
   Vecteur result(*this); // on copie l'instance courante
-  for (size_t i = 0; i < taille(); i++) {
+  for (size_t i = 0; i < dim(); i++) {
     result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnée par -1
   }
   return result;
@@ -109,7 +109,7 @@ Vecteur Vecteur::oppose() const
 Vecteur Vecteur::mult(double const& a) const
 {
   Vecteur result(*this); // on copie l'instance courante
-  for (size_t i = 0; i < taille(); ++i) {
+  for (size_t i = 0; i < dim(); ++i) {
     result._coord[i] = a*result._coord[i]; // on multiplie chaque coordonnée par a
   }
   return result;
@@ -121,13 +121,13 @@ double Vecteur::prod_scal(Vecteur const& v) const
 {
   try {
     // on teste si les vecteurs ont la même dimension.
-    if (v.taille() != taille()) {
+    if (v.dim() != dim()) {
       throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
     }
 
     double result(0.0); // on initialise la variable du résultat
 
-    for (size_t i = 0; i < taille(); ++i) {
+    for (size_t i = 0; i < dim(); ++i) {
       result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
     }
     return result;
@@ -143,7 +143,7 @@ double Vecteur::prod_scal(Vecteur const& v) const
 double Vecteur::norme2() const
 {
   double result(0);
-  for (size_t i = 0; i < taille(); i++) {
+  for (size_t i = 0; i < dim(); i++) {
     result += _coord[i]*_coord[i];
   }
   return result;
@@ -159,7 +159,7 @@ double Vecteur::norme() const
 Vecteur Vecteur::prod_vect(Vecteur const& v) const
 {
   try {
-    if (taille() != 3 or v.taille() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
+    if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
       throw 4;
     }
     Vecteur result;
@@ -175,8 +175,8 @@ Vecteur Vecteur::prod_vect(Vecteur const& v) const
 }
 
 
-// Renvoie la taille de _coord
-size_t Vecteur::taille() const
+// Renvoie la dim de _coord
+size_t Vecteur::dim() const
 {
   return _coord.size();
 }
