@@ -24,4 +24,25 @@ L'organisation du projet suit une certaine structure, que voici.
 
 ## Conventions <a name="conventions"/>
 Quelques conventions sont respectée dans ce projet.
-A REMPLIR
+### Les commentaires.
+Pour garder le code lisible, il est utile d'avoir certaines conventions, et comme un exemple est plus parlant qu'un long texte, voici ce qui devrait être pratiqué.
+
+```c++
+// ======================================================================
+void Classe::Methode()
+{
+   /* Brève explication de son intéret.
+    * Un exemple de son fonctionnement si besoin
+    *
+    * Problème(s) liés à cette fonction si besoin
+    *
+    * Il est fortement conseillé d'écrire sur plusieurs lignes, afin de garder
+    * un semblant de lisibilité. De plus, il est préférable de mettre les commentaires
+    * globaux de cette méthode dans ce commentaire plutôt que le long du code.
+    * Préférer les commentaire en une ligne pour le reste du code.
+    */
+    // on commentaire d'une ligne avant la fonction (si besoin).
+    double attribut(42); // un commentaire d'une ligne après la fonction (si besoin)
+    // le reste de la méthode
+}
+```
