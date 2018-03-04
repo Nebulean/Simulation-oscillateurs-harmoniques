@@ -21,16 +21,10 @@ void Vecteur::set_coord(size_t i, double x)
    *
    * Probleme: Si la case i de _coord n'existe pas, alors on obtient un segmentation fault.
    */
-  try {
-    //on teste si la coordonnée qu'on veut modifier existe bien
-    if (i > dim()) {
-      throw 3;
-    }
-    _coord[i] = x;
+  if (i >= dim()) { // on teste si la coordonnée qu'on veut modifier existe bien
+    throw 3;
   }
-  catch (int const& err) {
-    cerr << "Erreur " << err << ": le vecteur est de dimension inférieure à la coordonnée spécifiée." << endl;
-  }
+  _coord[i] = x;
 }
 
 
@@ -75,23 +69,16 @@ Vecteur Vecteur::addition(Vecteur v) const
    * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
    *           En effet, additionner deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
    */
-  try{
-    // on teste si les vecteurs ont la même dimension.
-    if (v.dim() != dim()) {
-      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-    }
 
-    // si les deux dimensions sont pareilles, alors on procède à l'addition.
-    for (size_t i = 0; i < v.dim(); i++) {
-      v._coord[i] += _coord[i]; // on ajoute la valeur de a
-    }
-  }
-  catch(int const& err){
-    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
-    return *this;
+  if (v.dim() != dim()) { // on teste si les vecteurs ont la même dimension.
+    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
   }
 
-  return v; // si il y a une erreur, alors on retourne v, sans modification. Sinon, ça fait l'addition.
+    // si les deux dimensions sont identiques, alors on procède à l'addition.
+  for (size_t i = 0; i < v.dim(); i++) {
+    v._coord[i] += _coord[i]; // on ajoute la valeur de a
+  }
+  return v;
 }
 
 
@@ -108,22 +95,16 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
   Vecteur result; // la variable de retour
   result = *this; // on y applique les valeurs de l'instance courante.
 
-  try{
     // on teste si les vecteurs ont la même dimension.
-    if (v.dim() != dim()) {
-      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-    }
-
-    // si les deux dimensions sont pareilles, alors on procède à la soustraction.
-    for (size_t i = 0; i < v.dim(); i++) {
-      result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
-    }
-  }
-  catch(int const& err){
-    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl; // il y a qu'une erreur ici, donc on peut se contenter de ça.
+  if (v.dim() != dim()) {
+    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
   }
 
-  return result; // si il y a une erreur, alors on retourne l'instance courante. Sinon, ça fait la soustraction.
+  // si les deux dimensions sont identiques, alors on procède à la soustraction.
+  for (size_t i = 0; i < v.dim(); i++) {
+    result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
+  }
+  return result;
 }
 
 
@@ -166,23 +147,16 @@ double Vecteur::prod_scal(Vecteur const& v) const
    *           En effet, faire un produit scalaire entre deux vecteurs de dimensions différentes
    *           n'a aucun sens mathématiquement.
    */
-  try {
-    // on teste si les vecteurs ont la même dimension.
-    if (v.dim() != dim()) {
-      throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-    }
-
-    double result(0.0); // on initialise la variable du résultat
-
-    for (size_t i = 0; i < dim(); ++i) {
-      result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
-    }
-    return result;
+  if (v.dim() != dim()) { // on teste si les vecteurs ont la même dimension.
+    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
   }
-  catch(int const& err){
-    cerr << "Erreur " << err << ": les dimensions des deux vecteurs sont différentes." << endl;
-    return 2.0; // retourne 2 arbitrairement en cas d'erreur
+
+  double result(0.0); // on initialise la variable du résultat
+
+  for (size_t i = 0; i < dim(); ++i) {
+    result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
   }
+  return result;
 }
 
 
@@ -224,22 +198,16 @@ Vecteur Vecteur::prod_vect(Vecteur const& v) const
    *      - Si les vecteurs ne sont pas de dimension 3, alors le produit vectoriel
    *        n'est pas défini. Il faut ainsi signaler une erreur.
    *      - Cette opération est une opération qui requiert des conditions très
-   *        particulières. Il faudrait peut-être la dissociée de la classe Vecteur.
+   *        particulières. Il faudrait peut-être la dissocier de la classe Vecteur.
    */
-  try {
-    if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
-      throw 4;
-    }
-    Vecteur result;
-    result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
-    result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
-    result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
-    return result;
+  if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
+    throw 4;
   }
-  catch (int const& err){
-    cerr << "Erreur " << err << ": au moins un des vecteurs n'est pas de dimension 3." << endl;
-    return v; // s'il y a une erreur, on retourne v sans modification
-  }
+  Vecteur result;
+  result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
+  result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
+  result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
+  return result;
 }
 
 // ======================================================================
