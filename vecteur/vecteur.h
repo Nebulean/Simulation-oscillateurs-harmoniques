@@ -6,6 +6,11 @@
 
 class Vecteur{
 public:
+  //=================== CONSTRUCTEURS
+  Vecteur() = default; // constructeur par défaut, utile si on veux créer un vecteur complétement vide. Ne contient aucun code.
+  Vecteur(size_t); // constructeur de vecteur vide, de dimension donnée en paramètre
+
+
   void augmente(double); // augmente la dimension du vecteur courant
   void set_coord(size_t, double); // applique une valeur à une coordonnée
   void affiche() const; // affiche le vecteur courant
