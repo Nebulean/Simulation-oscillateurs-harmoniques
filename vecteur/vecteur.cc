@@ -9,7 +9,7 @@ Vecteur::Vecteur(size_t dim){
    * et est un vecteur nul.
    */
   for (size_t i = 0; i < dim; i++) {
-    _coord.push_back(0);
+    augmente(0);
   }
 }
 
