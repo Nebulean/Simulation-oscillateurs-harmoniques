@@ -1,7 +1,19 @@
 #include "vecteur.h"
 #include <cmath>
-// #include <vector> // Faut-il le noter ?
+#include <vector> // Faut-il le noter ?
 using namespace std;
+
+// ======================================================================
+Vecteur::Vecteur(size_t dim){
+  /* Constructeur simple qui crée un vecteur de dimension donnée en paramètre,
+   * et est un vecteur nul.
+   */
+  for (size_t i = 0; i < dim; i++) {
+    _coord.push_back(0);
+  }
+}
+
+
 
 // ======================================================================
 void Vecteur::augmente(double x)

@@ -139,5 +139,17 @@ int main(){
   // vect9.affiche();
   // cout << endl;
 
+
+  // test constructeur nul.
+  cout << "=== TEST CONSTRUCTEURS ===" << endl;
+  Vecteur vec1(0);
+  Vecteur vec2(12);
+  cout << "vec1: ";
+  vec1.affiche();
+  cout << endl << "vec2: ";
+  vec2.affiche();
+  cout << endl;
+
+
   return 0;
 }
