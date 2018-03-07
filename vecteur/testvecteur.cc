@@ -150,6 +150,12 @@ int main(){
   vec2.affiche();
   cout << endl;
 
+  // test constructeur 3D
+  Vecteur  vec3(1,2,3);
+  cout << "vec3: ";
+  vec3.affiche();
+  cout << endl;
+
 
   return 0;
 }

@@ -9,6 +9,7 @@ public:
   //=================== CONSTRUCTEURS
   Vecteur() = default; // constructeur par défaut, utile si on veux créer un vecteur complétement vide. Ne contient aucun code.
   Vecteur(size_t); // constructeur de vecteur vide, de dimension donnée en paramètre
+  Vecteur(double, double, double); // consteur de vecteur en 3 dimensions
 
 
   void augmente(double); // augmente la dimension du vecteur courant
