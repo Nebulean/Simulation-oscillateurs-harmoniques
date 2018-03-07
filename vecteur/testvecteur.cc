@@ -156,6 +156,17 @@ int main(){
   vec3.affiche();
   cout << endl;
 
+  // test constructeur liste d'initialisation
+  vector<double> v({1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+  Vecteur vec4(v);
+  cout << "vec4: ";
+  vec4.affiche();
+  cout << endl;
+  vector<double> v2;
+  Vecteur vec5(v2);
+  cout << "vec5: ";
+  vec5.affiche();
+  cout << endl;
 
   return 0;
 }
