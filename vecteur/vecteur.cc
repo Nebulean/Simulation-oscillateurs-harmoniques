@@ -24,6 +24,10 @@ Vecteur::Vecteur(double x, double y, double z){
    augmente(z);
 }
 
+// ======================================================================
+Vecteur::Vecteur(vector<double> const& v)
+: _coord(v)
+{}
 
 
 // ======================================================================
