@@ -14,6 +14,17 @@ Vecteur::Vecteur(size_t dim){
 }
 
 
+// ======================================================================
+Vecteur::Vecteur(double x, double y, double z){
+  /* Constructeur d'un vecteur de dimension 3. On affecte les paramètres
+   * à ce vecteur.
+   */
+   augmente(x);
+   augmente(y);
+   augmente(z);
+}
+
+
 
 // ======================================================================
 void Vecteur::augmente(double x)
