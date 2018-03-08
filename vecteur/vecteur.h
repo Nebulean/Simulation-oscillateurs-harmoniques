@@ -15,6 +15,7 @@ public:
 
   //=================== SURCHARGES D'OPERATEUR INTERNES
   // Vecteur& operator+=(Vecteur const&);
+  bool operator==(Vecteur const&) const;
 
   void augmente(double); // augmente la dimension du vecteur courant
   void set_coord(size_t, double); // applique une valeur à une coordonnée

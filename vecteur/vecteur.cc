@@ -64,23 +64,6 @@ void Vecteur::set_coord(size_t i, double x)
 }
 
 
-// ======================================================================
-bool Vecteur::compare(Vecteur const& v) const
-{
-  /* Compare deux vecteur.
-   * Si ils sont pareils, alors la méthode retourne true, sinon, elle retourne false.
-   */
-  if (v.dim() != dim()) {
-    return false;
-  }
-  for (size_t i = 0; i < dim(); i++) {
-    if (_coord[i] != v._coord[i]) {
-      return false;
-    }
-  }
-  return true;
-}
-
 
 // ======================================================================
 Vecteur Vecteur::addition(Vecteur v) const
@@ -291,3 +274,35 @@ void Vecteur::affiche() const
 
 
 // ======================================================================
+bool Vecteur::operator==(Vecteur const& v) const
+{
+  /* Compare deux vecteur.
+   * Si ils sont pareils, alors la méthode retourne true, sinon, elle retourne false.
+   */
+  if (v.dim() != dim()) {
+    return false;
+  }
+  for (size_t i = 0; i < dim(); i++) {
+    if (_coord[i] != v._coord[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// old
+bool Vecteur::compare(Vecteur const& v) const
+{
+  /* Compare deux vecteur.
+   * Si ils sont pareils, alors la méthode retourne true, sinon, elle retourne false.
+   */
+  if (v.dim() != dim()) {
+    return false;
+  }
+  for (size_t i = 0; i < dim(); i++) {
+    if (_coord[i] != v._coord[i]) {
+      return false;
+    }
+  }
+  return true;
+}
