@@ -157,8 +157,8 @@ int main(){
   cout << endl;
 
   // test constructeur liste d'initialisation
-  vector<double> v({1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-  Vecteur vec4(v);
+  vector<double> v1({1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+  Vecteur vec4(v1);
   cout << "vec4: ";
   vec4.affiche();
   cout << endl;
@@ -167,6 +167,13 @@ int main(){
   cout << "vec5: ";
   vec5.affiche();
   cout << endl;
+
+  cout << "=== TEST SURCHARGES ===" << endl;
+
+  // test de operator<<
+  vector<double> v3({1, 2, 3, 4, 5});
+  Vecteur ve1(v3);
+  cout << "ve1: " << ve1 << endl;
 
   return 0;
 }

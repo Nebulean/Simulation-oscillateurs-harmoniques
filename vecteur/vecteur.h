@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 class Vecteur{
 public:
@@ -12,9 +13,12 @@ public:
   Vecteur(double, double, double); // constructeur de vecteur en 3 dimensions
   Vecteur(std::vector<double> const&); // constructeur de vecteur à partir de la liste donnée en paramètre
 
+  //=================== SURCHARGES D'OPERATEUR INTERNES
+  // Vecteur& operator+=(Vecteur const&);
 
   void augmente(double); // augmente la dimension du vecteur courant
   void set_coord(size_t, double); // applique une valeur à une coordonnée
+  double get_coord(size_t) const;
   void affiche() const; // affiche le vecteur courant
   bool compare(Vecteur const&) const; // compare deux vecteurs
 
@@ -27,9 +31,14 @@ public:
   double norme() const; // calcule la norme
   Vecteur prod_vect(Vecteur const&) const; // produit vectoriel entre deux vecteurs
 
+  size_t dim() const; // Méthode renvoyant la taille de _coord, c'est un raccourci qui rend le code plus lisible.
+
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
-  size_t dim() const; // Méthode renvoyant la taille de _coord, c'est un raccourci qui rend le code plus lisible.
 };
+
+
+//===================SURCHARGES D'OPERATEUR EXTERNES
+std::ostream& operator<<(std::ostream&, Vecteur const&);
 
 #endif // VECTEUR_H

@@ -1,7 +1,12 @@
 #include "vecteur.h"
 #include <cmath>
 #include <vector> // Faut-il le noter ?
+#include <fstream>
 using namespace std;
+
+// ======================================================================
+// ========================== CONSTRUCTEURS =============================
+// ======================================================================
 
 // ======================================================================
 Vecteur::Vecteur(size_t dim){
@@ -30,6 +35,10 @@ Vecteur::Vecteur(vector<double> const& v)
 {}
 
 
+
+
+
+
 // ======================================================================
 void Vecteur::augmente(double x)
 {
@@ -52,19 +61,6 @@ void Vecteur::set_coord(size_t i, double x)
     throw 3;
   }
   _coord[i] = x;
-}
-
-
-// ======================================================================
-void Vecteur::affiche() const
-{
-  /* Affiche le vecteur courant.
-   * Un vecteur (1,2,3) sera simplement affiché 1 2 3.
-   */
-  for (size_t i = 0; i < dim(); i++) {
-    cout << _coord[i] << " ";
-  }
-  cout << endl;
 }
 
 
@@ -245,6 +241,53 @@ size_t Vecteur::dim() const
    * Il s'agit d'une méthode que l'on utilise pour rendre plus lisible certaines
    * parties du code. En effet, _coord.size() est assez lourd, et peu visible,
    * alors que dim() est assez clair. D'où sa définition.
+   *
+   * Méthode publique, car on en a besoin pour la surcharge externe.
    */
   return _coord.size();
 }
+
+
+double Vecteur::get_coord(size_t i) const
+{
+  /* Accesseur retournant la valeur contenue dans la case i de _coord.
+   * Cet accesseur est requit pour le(s) surcharge(s) externe(s)
+   */
+  return _coord[i];
+}
+
+
+
+
+// ======================================================================
+// ====================== SURCHARGE D'OPERATEURS ========================
+// =========================== DANGER ZONE ==============================
+// ======================================================================
+
+// ======================================================================
+ostream& operator<<(ostream& output, Vecteur const& v)
+{
+  /* Affiche le vecteur courant.
+   * Un vecteur (1,2,3) sera simplement affiché 1 2 3.
+   */
+  for (size_t i = 0; i < v.dim(); i++) {
+    output << v.get_coord(i) << " ";
+  }
+
+  return output;
+}
+
+// old
+void Vecteur::affiche() const
+{
+  /* Affiche le vecteur courant.
+   * Un vecteur (1,2,3) sera simplement affiché 1 2 3.
+   */
+  for (size_t i = 0; i < dim(); i++) {
+    cout << _coord[i] << " ";
+  }
+  cout << endl;
+}
+
+
+// ======================================================================
