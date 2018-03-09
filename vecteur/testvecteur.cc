@@ -175,5 +175,23 @@ int main(){
   Vecteur ve1(v3);
   cout << "ve1: " << ve1 << endl;
 
+  // test de operator==
+  vector<double> v4({1, 2, 3, 4});
+  vector<double> v5(v4);
+  Vecteur ve2(v4);
+  Vecteur ve3(v5);
+  cout << "ve2 et ve3 sont ";
+  if (ve2 == ve3) {
+    cout << "égaux" << endl;
+  } else {
+    cout << "différents" << endl;
+  }
+  cout << "ve1 et ve2 sont ";
+  if (ve1 == ve2) {
+    cout << "égaux" << endl;
+  } else {
+    cout << "différents" << endl;
+  }
+
   return 0;
 }
