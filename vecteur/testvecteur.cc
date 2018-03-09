@@ -211,6 +211,9 @@ int main(){
   cout << "v8 * 4 = " << v8*4 << endl;
   v8 *= 5;
   cout << "v8 final = " << v8 << endl;
+  Vecteur v9({1,2,3,4,5,6});
+  cout << "Produit scalaire v8*v9 = " << v8*v9 << endl;
+  // v8*v7; // test de lancement d'exception
 
 
   return 0;
