@@ -17,6 +17,8 @@ public:
   //=================== SURCHARGES D'OPERATEUR INTERNES
   Vecteur& operator+=(Vecteur const&);
   bool operator==(Vecteur const&) const;
+  Vecteur& operator*=(double const&); // v*=a <=> v.operator*(a)
+
 
   void augmente(double); // augmente la dimension du vecteur courant
   void set_coord(size_t, double); // applique une valeur à une coordonnée
@@ -44,5 +46,10 @@ private:
 //===================SURCHARGES D'OPERATEUR EXTERNES
 std::ostream& operator<<(std::ostream&, Vecteur const&);
 const Vecteur operator+(Vecteur, Vecteur const&);
+const Vecteur operator*(double const&, Vecteur); // a*v <=> operator*(a,v)
+const Vecteur operator*(Vecteur const&, double const&); // v*a <=> operator*(v,a)
+// Vecteur& operator*=()
+// a*v = operator(a, v)
+// v*a = v.operator(a)
 
 #endif // VECTEUR_H

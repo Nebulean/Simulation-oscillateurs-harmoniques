@@ -197,6 +197,20 @@ int main(){
     cout << "différents" << endl;
   }
 
+  // test de operator+
+  Vecteur v6({1,2,3,4});
+  Vecteur v7({1,1,1,1});
+  cout << "v6 + v7 = " << v6 + v7 << endl;
+  v6 += v7;
+  cout << "v6 += v7: " << v6 << endl;
+
+  // test des operator*
+  // double a(5);
+  Vecteur v8({1,1,1,1,1,1});
+  cout << "3 * v8 = " << 3*v8 << endl;
+  cout << "v8 * 4 = " << v8*4 << endl;
+  v8 *= 5;
+  cout << "v8 final = " << v8 << endl;
 
 
   return 0;

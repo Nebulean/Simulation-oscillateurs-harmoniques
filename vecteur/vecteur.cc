@@ -122,20 +122,6 @@ Vecteur Vecteur::oppose() const
 
 
 // ======================================================================
-Vecteur Vecteur::mult(double const& a) const
-{
-  /* Multiplication d'un vecteur par un scalaire.
-   * Ainsi, pour v1=(1,2,3), on obtient: a*v1=(a*1,a*2,a*3).
-   */
-  Vecteur result(*this); // on copie l'instance courante
-  for (size_t i = 0; i < dim(); ++i) {
-    result._coord[i] = a*result._coord[i]; // on multiplie chaque coordonnée par a
-  }
-  return result;
-}
-
-
-// ======================================================================
 double Vecteur::prod_scal(Vecteur const& v) const
 {
   /* Applique un produit scalaire entre deux vecteurs.
@@ -238,6 +224,57 @@ double Vecteur::get_coord(size_t i) const
 // ====================== SURCHARGE D'OPERATEURS ========================
 // =========================== DANGER ZONE ==============================
 // ======================================================================
+
+
+// ======================================================================
+Vecteur& Vecteur::operator*=(double const& a)
+{
+  /* Opérateur d'auto-affectation pour la multiplication par un scalaire d'un vecteur.
+   *
+   * Attention: il est utilisé que dans le sens: v *= a avec v un vecteur et a un double.
+   */
+   for(auto& val : _coord){
+     val *= a;
+   }
+
+   return *this;
+}
+
+const Vecteur operator*(double const& a, Vecteur v)
+{
+  /* Opérateur de multiplication pour la multiplication par un scalaire d'un vecteur.
+   *
+   * Attention: il est utilisé dans le cas: a*v où v est un vecteur et a un double.
+   */
+   // for (size_t i = 0; i < v.dim(); i++) {
+   //   v.set_coord(i, a*v.get_coord(i));
+   // }
+   return v *= a;
+}
+
+const Vecteur operator*(Vecteur const& v, double const& a)
+{
+  /* Opérateur de multiplication pour la multiplication par un scalaire d'un vecteur.
+   *
+   * Attention: il est utilisé dans le cas: v*a où v est un vecteur et a un double.
+   */
+   return a * v;
+}
+
+// old
+Vecteur Vecteur::mult(double const& a) const
+{
+  /* Multiplication d'un vecteur par un scalaire.
+   * Ainsi, pour v1=(1,2,3), on obtient: a*v1=(a*1,a*2,a*3).
+   */
+  Vecteur result(*this); // on copie l'instance courante
+  for (size_t i = 0; i < dim(); ++i) {
+    result._coord[i] = a*result._coord[i]; // on multiplie chaque coordonnée par a
+  }
+  return result;
+}
+
+
 
 // ======================================================================
 Vecteur& Vecteur::operator+=(Vecteur const& v)
