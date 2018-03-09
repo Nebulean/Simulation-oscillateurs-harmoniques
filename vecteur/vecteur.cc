@@ -1,7 +1,9 @@
 #include "vecteur.h"
 #include <cmath>
-#include <vector> // Faut-il le noter ?
-#include <fstream>
+#include <vector>
+#include <iostream>
+#include <initializer_list>
+
 using namespace std;
 
 // ======================================================================
@@ -32,11 +34,28 @@ Vecteur::Vecteur(double x, double y, double z){
 // ======================================================================
 Vecteur::Vecteur(vector<double> const& v)
 : _coord(v)
-{}
+{ }
+
+// ======================================================================
+Vecteur::Vecteur(initializer_list<double> const& list) : _coord(list)
+{ }
 
 
 
 
+
+// ======================================================================
+// ============================= OUTILS =================================
+// ======================================================================
+void Vecteur::dimCheck(Vecteur const& v) const
+{
+  /* Méthode outil qui permet de vérifier que la dimension des deux vecteur est
+   * bien égale. En cas de problèmes, un exception est lancée, et arrête donc le programme.
+   */
+  if(dim() != v.dim()){
+    throw 2; // erreur 2: problème de dimension
+  }
+}
 
 
 // ======================================================================
@@ -64,30 +83,6 @@ void Vecteur::set_coord(size_t i, double x)
 }
 
 
-
-// ======================================================================
-Vecteur Vecteur::addition(Vecteur v) const
-{
-  /* Additionne deux vecteurs.
-   * Soient trois instances de Vecteur: v1, v2 et v3 (qu'importe leur valeurs)
-   * Pour les additionner, on utilise: v3 = v1.addition(v) pour obtenir le résultat de v1 + v2.
-   *
-   * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
-   *           En effet, additionner deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
-   */
-
-  if (v.dim() != dim()) { // on teste si les vecteurs ont la même dimension.
-    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-  }
-
-    // si les deux dimensions sont identiques, alors on procède à l'addition.
-  for (size_t i = 0; i < v.dim(); i++) {
-    v._coord[i] += _coord[i]; // on ajoute la valeur de a
-  }
-  return v;
-}
-
-
 // ======================================================================
 Vecteur Vecteur::soustraction(Vecteur const& v) const
 {
@@ -102,9 +97,7 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
   result = *this; // on y applique les valeurs de l'instance courante.
 
     // on teste si les vecteurs ont la même dimension.
-  if (v.dim() != dim()) {
-    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-  }
+  dimCheck(v);
 
   // si les deux dimensions sont identiques, alors on procède à la soustraction.
   for (size_t i = 0; i < v.dim(); i++) {
@@ -153,9 +146,8 @@ double Vecteur::prod_scal(Vecteur const& v) const
    *           En effet, faire un produit scalaire entre deux vecteurs de dimensions différentes
    *           n'a aucun sens mathématiquement.
    */
-  if (v.dim() != dim()) { // on teste si les vecteurs ont la même dimension.
-    throw 2; // erreur 2: les dimensions des deux vecteurs ne sont pas égales.
-  }
+  // on teste si les vecteurs ont la même dimension.
+  dimCheck(v);
 
   double result(0.0); // on initialise la variable du résultat
 
@@ -246,6 +238,45 @@ double Vecteur::get_coord(size_t i) const
 // ====================== SURCHARGE D'OPERATEURS ========================
 // =========================== DANGER ZONE ==============================
 // ======================================================================
+
+// ======================================================================
+Vecteur& Vecteur::operator+=(Vecteur const& v)
+{
+  dimCheck(v);
+  for (size_t i = 0; i < dim(); ++i) {
+    _coord[i] += v._coord[i];
+  };
+  return *this;
+}
+
+// ======================================================================
+const Vecteur operator+(Vecteur v1, Vecteur const& v2)
+{
+  return v1 += v2;
+}
+
+// old
+Vecteur Vecteur::addition(Vecteur v) const
+{
+  /* Additionne deux vecteurs.
+   * Soient trois instances de Vecteur: v1, v2 et v3 (qu'importe leur valeurs)
+   * Pour les additionner, on utilise: v3 = v1.addition(v) pour obtenir le résultat de v1 + v2.
+   *
+   * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
+   *           En effet, additionner deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
+   */
+
+  // on teste si les vecteurs ont la même dimension.
+  dimCheck(v);
+
+    // si les deux dimensions sont identiques, alors on procède à l'addition.
+  for (size_t i = 0; i < v.dim(); i++) {
+    v._coord[i] += _coord[i]; // on ajoute la valeur de a
+  }
+  return v;
+}
+
+
 
 // ======================================================================
 ostream& operator<<(ostream& output, Vecteur const& v)

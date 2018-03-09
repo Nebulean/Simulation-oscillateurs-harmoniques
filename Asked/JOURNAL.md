@@ -16,7 +16,7 @@ Aucun, tout se passe bien pour le moment, et nous sommes enthousiastes.
 
 ## Semaine 2
 ### Travail accompli
-Nous avons réalisés la première version de la classe Vecteur, avec toutes les méthodes demandées.
+Nous avons réalisé la première version de la classe Vecteur, avec toutes les méthodes demandées.
 Au niveau des méthodes réalisées, nous avons donc:
 * Toutes les opérations mathématiques classiques.
 * Quelques méthodes-outil.
@@ -30,7 +30,10 @@ Nous avons également eu un problème avec les exceptions en c++. Nos souvenirs 
 
 ## Semaine 3
 ### Travail accompli
+Cette semaine, nous avons avancé les constructeurs demandés et fait la surcharge de certains des opérateurs. Nous avons aussi ajouté quelques méthodes-outils.
+
 ### Problèmes rencontrés
+Comme la semaine précédente, nous avons eu quelques questions de conception, qui étaient facilement résolubles.
 
 
 ## Semaine 4

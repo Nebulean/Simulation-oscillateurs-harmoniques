@@ -168,6 +168,10 @@ int main(){
   vec5.affiche();
   cout << endl;
 
+  // test constructeur initializer_list
+  Vecteur vec6({1,2,3,4,5,6,7,8,9,9,8,7,6,5,4,3,2,1});
+  cout << "vec6: " << vec6 << endl;
+
   cout << "=== TEST SURCHARGES ===" << endl;
 
   // test de operator<<
@@ -192,6 +196,8 @@ int main(){
   } else {
     cout << "différents" << endl;
   }
+
+
 
   return 0;
 }

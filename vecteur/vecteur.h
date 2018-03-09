@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <iostream>
-#include <fstream>
+#include <initializer_list>
 
 class Vecteur{
 public:
@@ -12,9 +12,10 @@ public:
   Vecteur(size_t); // constructeur de vecteur vide, de dimension donnée en paramètre
   Vecteur(double, double, double); // constructeur de vecteur en 3 dimensions
   Vecteur(std::vector<double> const&); // constructeur de vecteur à partir de la liste donnée en paramètre
+  Vecteur(std::initializer_list<double> const&);
 
   //=================== SURCHARGES D'OPERATEUR INTERNES
-  // Vecteur& operator+=(Vecteur const&);
+  Vecteur& operator+=(Vecteur const&);
   bool operator==(Vecteur const&) const;
 
   void augmente(double); // augmente la dimension du vecteur courant
@@ -36,10 +37,12 @@ public:
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
+  void dimCheck(Vecteur const&) const; // méthode qui lance une exception en cas de dimension différentes.
 };
 
 
 //===================SURCHARGES D'OPERATEUR EXTERNES
 std::ostream& operator<<(std::ostream&, Vecteur const&);
+const Vecteur operator+(Vecteur, Vecteur const&);
 
 #endif // VECTEUR_H
