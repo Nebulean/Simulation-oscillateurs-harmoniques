@@ -28,17 +28,26 @@ Nous n'avons pas définit d'assesseur *getVec()*, car nous pouvions nous en pass
 # Question P1.2
 > Quel choix avez vous fait pour les opérations entre vecteurs de dimensions différentes ?
 
-Nous avons choisi de lancer une exception dans chaque méthode sensible à la dimension des vecteurs. De plus, nous retournons l'instance courante. (pour le moment)
+Nous avons choisi de lancer une exception dans chaque méthode sensible à la dimension des vecteurs.
 
 
 # Question P4.1
 > Avez-vous ajouté un constructeur de copie ? Pourquoi (justifiez votre choix) ?
-REPONDRE
+
+Non. En effet, la copie de surface nous est suffisante, car nous n'avons pas de pointeur. Ainsi, lors de la copie (par défaut), la valeur des attributs est simplement copiée, ce qui nous est amplement suffisant.
 
 # Question P4.2
 > Si l'on souhaitait ajouter un constructeur par coordonnées sphériques (deux angles et une longueur) pour les vecteurs de dimension 3
 > a) que cela impliquerait-il au niveau des attributs de la classe ?
-REPONDRE
+
+Cela n'impliquerait rien pour les attributs de la classe puisqu'il suffit de faire une méthode de conversion pour trouver les coordonnées cartésiennes. De plus, l'encapsulation implique que changer les attributs ne devrait en aucun cas changer l'effet des méthodes et des constructeurs.
+
 
 > b) quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
-REPONDRE
+
+Premièrement, un tel constructeur prendrait en argument trois *double*, exactement comme le constructeur de dimension 3 en coordonnées cartésiennes. Il serait donc impossible en C++ de différencier l'appel à l'un ou l'autre de ces constructeurs, à moins d'ajouter à l'un des constructeurs un argument inutile comme *bool inutile* pour le différencier de l'autre.
+
+Deuxièmement, la conversion des coordonnées sphériques en coordonnées cartésiennes implique d'utiliser sin et cos, qui donneront inévitablement lieu à des arrondis, ce qui pourrait générer une marge d'erreur conséquente.
+
+# Question P4.3
+> Quels opérateurs avez vous introduits ?
