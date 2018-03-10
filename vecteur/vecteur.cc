@@ -84,45 +84,6 @@ void Vecteur::set_coord(size_t i, double x)
 
 
 // ======================================================================
-Vecteur Vecteur::soustraction(Vecteur const& v) const
-{
-  /* Soustrait deux vecteurs.
-   * Soit trois instances quelconques de Vecteur: v1, v2, v3.
-   * Alors v1 - v2 sera donné par v3 = v1.soustraction(v2)
-   *
-   * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
-   *           En effet, soustraire deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
-   */
-  Vecteur result; // la variable de retour
-  result = *this; // on y applique les valeurs de l'instance courante.
-
-    // on teste si les vecteurs ont la même dimension.
-  dimCheck(v);
-
-  // si les deux dimensions sont identiques, alors on procède à la soustraction.
-  for (size_t i = 0; i < v.dim(); i++) {
-    result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
-  }
-  return result;
-}
-
-
-// ======================================================================
-Vecteur Vecteur::oppose() const
-{
-  /* Inverse le vecteur, en inversant son sens.
-   * Ainsi, l'inverse d'un vecteur v1=(1,2,3) est -v1=(-1,-2,-3).
-   */
-  Vecteur result(*this); // on copie l'instance courante
-  for (size_t i = 0; i < dim(); i++) {
-    result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnée par -1
-  }
-  return result;
-}
-
-
-
-// ======================================================================
 double Vecteur::norme2() const
 {
   /* Retourne la norme au carré du vecteur courant.
@@ -291,6 +252,8 @@ Vecteur Vecteur::mult(double const& a) const
 // ======================================================================
 Vecteur& Vecteur::operator+=(Vecteur const& v)
 {
+  /* Opérateur d'auto-affectation pour l'addition de deux vecteurs.
+   */
   dimCheck(v);
   for (size_t i = 0; i < dim(); ++i) {
     _coord[i] += v._coord[i];
@@ -301,6 +264,8 @@ Vecteur& Vecteur::operator+=(Vecteur const& v)
 // ======================================================================
 const Vecteur operator+(Vecteur v1, Vecteur const& v2)
 {
+  /* Opérateur d'addition entre deux vecteurs.
+   */
   return v1 += v2;
 }
 
@@ -325,7 +290,69 @@ Vecteur Vecteur::addition(Vecteur v) const
   return v;
 }
 
+// ======================================================================
+Vecteur& Vecteur::operator-=(Vecteur const& v)
+{
+  /* Opérateur d'auto-affectation pour la soustraction de deux vecteurs.
+   *
+   * On soustrait l'instance courante avec l'argument.
+   */
+  dimCheck(v); // on teste si les vecteurs ont la même dimension
+  for (size_t i =0; i < dim(); i++) {
+    _coord[i] -= v._coord[i];
+  };
+  return *this;
+}
 
+// ======================================================================
+const Vecteur operator-(Vecteur v1, Vecteur const& v2)
+{
+  return v1 -= v2;
+}
+
+// old
+Vecteur Vecteur::soustraction(Vecteur const& v) const
+{
+  /* Soustrait deux vecteurs.
+   * Soit trois instances quelconques de Vecteur: v1, v2, v3.
+   * Alors v1 - v2 sera donné par v3 = v1.soustraction(v2)
+   *
+   * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
+   *           En effet, soustraire deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
+   */
+  Vecteur result; // la variable de retour
+  result = *this; // on y applique les valeurs de l'instance courante.
+
+    // on teste si les vecteurs ont la même dimension.
+  dimCheck(v);
+
+  // si les deux dimensions sont identiques, alors on procède à la soustraction.
+  for (size_t i = 0; i < v.dim(); i++) {
+    result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
+  }
+  return result;
+}
+
+const Vecteur operator-(Vecteur v)
+{
+  /* Calcule l'pposé du vecteur
+   */
+  return v -= 2*v; //On soustrait le vecteur par lui-même deux fois pour trouver l'opposé.
+}
+
+
+// old
+Vecteur Vecteur::oppose() const
+{
+  /* Inverse le vecteur, en inversant son sens.
+   * Ainsi, l'inverse d'un vecteur v1=(1,2,3) est -v1=(-1,-2,-3).
+   */
+  Vecteur result(*this); // on copie l'instance courante
+  for (size_t i = 0; i < dim(); i++) {
+    result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnée par -1
+  }
+  return result;
+}
 
 // ======================================================================
 ostream& operator<<(ostream& output, Vecteur const& v)

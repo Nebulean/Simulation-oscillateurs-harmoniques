@@ -215,6 +215,14 @@ int main(){
   cout << "Produit scalaire v8*v9 = " << v8*v9 << endl;
   // v8*v7; // test de lancement d'exception
 
+  // test de operator-
+  Vecteur v10({1,2,3,4});
+  Vecteur v11({0,1,1,1});
+  cout << "v10 - v11 = " << v10 - v11 << endl;
+  v10 -= v11;
+  cout << "v10 -= v11: " << v10 << endl;
+  cout << "-v11 = " << -v11 << endl;
+
 
   return 0;
 }
