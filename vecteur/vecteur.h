@@ -48,7 +48,7 @@ private:
 std::ostream& operator<<(std::ostream&, Vecteur const&);
 const Vecteur operator+(Vecteur, Vecteur const&);
 const Vecteur operator-(Vecteur, Vecteur const&);
-const Vecteur operator-(Vecteur);
+const Vecteur operator-(Vecteur const&);
 const Vecteur operator*(double const&, Vecteur); // a*v <=> operator*(a,v)
 const Vecteur operator*(Vecteur const&, double const&); // v*a <=> operator*(v,a)
 double operator*(Vecteur const&, Vecteur const&);

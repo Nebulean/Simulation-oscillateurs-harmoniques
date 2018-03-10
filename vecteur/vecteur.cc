@@ -333,11 +333,11 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
   return result;
 }
 
-const Vecteur operator-(Vecteur v)
+const Vecteur operator-(Vecteur const& v)
 {
   /* Calcule l'pposé du vecteur
    */
-  return v -= 2*v; //On soustrait le vecteur par lui-même deux fois pour trouver l'opposé.
+  return -1*v;
 }
 
 
