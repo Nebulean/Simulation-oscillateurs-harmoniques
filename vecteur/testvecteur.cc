@@ -221,6 +221,7 @@ int main(){
   cout << "v10 - v11 = " << v10 - v11 << endl;
   v10 -= v11;
   cout << "v10 -= v11: " << v10 << endl;
+  cout << "-v11 = " << -v11 << endl;
 
 
   return 0;
