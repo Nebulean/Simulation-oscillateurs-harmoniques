@@ -121,28 +121,6 @@ Vecteur Vecteur::oppose() const
 }
 
 
-// ======================================================================
-double Vecteur::prod_scal(Vecteur const& v) const
-{
-  /* Applique un produit scalaire entre deux vecteurs.
-   * Ainsi, le produit scalaire de deux vecteurs v1=(1,2,3) et v2=(3,2,1) donne:
-   * v1*v2 = 1*3 + 2*2 + 3*1 = 10
-   *
-   * Probleme: Si la dimension des deux vecteurs est différente, alors on lance une exception.
-   *           En effet, faire un produit scalaire entre deux vecteurs de dimensions différentes
-   *           n'a aucun sens mathématiquement.
-   */
-  // on teste si les vecteurs ont la même dimension.
-  dimCheck(v);
-
-  double result(0.0); // on initialise la variable du résultat
-
-  for (size_t i = 0; i < dim(); ++i) {
-    result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
-  }
-  return result;
-}
-
 
 // ======================================================================
 double Vecteur::norme2() const
@@ -224,6 +202,40 @@ double Vecteur::get_coord(size_t i) const
 // ====================== SURCHARGE D'OPERATEURS ========================
 // =========================== DANGER ZONE ==============================
 // ======================================================================
+
+// ======================================================================
+double operator*(Vecteur const& v1, Vecteur const& v2)
+{
+  /* Operateur du produit scalaire entre deux vecteurs.
+   *
+   * Nous utilisons prod_scal, car l'écriture utilisant le getter des coordonnées
+   * est assez lourd au niveau écriture. Cette version simplifie donc le tout.
+   */
+  return v1.prod_scal(v2);
+}
+
+double Vecteur::prod_scal(Vecteur const& v) const
+{
+  /* Applique un produit scalaire entre deux vecteurs.
+   * Ainsi, le produit scalaire de deux vecteurs v1=(1,2,3) et v2=(3,2,1) donne:
+   * v1*v2 = 1*3 + 2*2 + 3*1 = 10
+   *
+   * Probleme: Si la dimension des deux vecteurs est différente, alors on lance une exception.
+   *           En effet, faire un produit scalaire entre deux vecteurs de dimensions différentes
+   *           n'a aucun sens mathématiquement.
+   */
+  // on teste si les vecteurs ont la même dimension.
+  dimCheck(v);
+
+  double result(0.0); // on initialise la variable du résultat
+
+  for (size_t i = 0; i < dim(); ++i) {
+    result += v._coord[i]*_coord[i]; // on ajoute le produit de chaque couple de coordonnées
+  }
+  return result;
+}
+
+
 
 
 // ======================================================================
