@@ -291,6 +291,8 @@ Vecteur Vecteur::mult(double const& a) const
 // ======================================================================
 Vecteur& Vecteur::operator+=(Vecteur const& v)
 {
+  /* Opérateur d'auto-affectation pour l'addition de deux vecteurs.
+   */
   dimCheck(v);
   for (size_t i = 0; i < dim(); ++i) {
     _coord[i] += v._coord[i];
@@ -301,6 +303,8 @@ Vecteur& Vecteur::operator+=(Vecteur const& v)
 // ======================================================================
 const Vecteur operator+(Vecteur v1, Vecteur const& v2)
 {
+  /* Opérateur d'addition entre deux vecteurs.
+   */
   return v1 += v2;
 }
 
@@ -325,6 +329,25 @@ Vecteur Vecteur::addition(Vecteur v) const
   return v;
 }
 
+// ======================================================================
+Vecteur& Vecteur::operator-=(Vecteur const& v)
+{
+  /* Opérateur d'auto-affectation pour la soustraction de deux vecteurs.
+   *
+   * On soustrait l'instance courante avec l'argument.
+   */
+  dimCheck(v); // on teste si les vecteurs ont la même dimension
+  for (size_t i =0; i < dim(); i++) {
+    _coord[i] -= v._coord[i];
+  };
+  return *this;
+}
+
+// ======================================================================
+const Vecteur operator-(Vecteur v1, Vecteur const& v2)
+{
+  return v1 -= v2;
+}
 
 
 // ======================================================================
