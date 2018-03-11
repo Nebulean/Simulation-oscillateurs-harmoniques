@@ -181,9 +181,9 @@ int main(){
 
   // test de operator==
   vector<double> v4({1, 2, 3, 4});
-  vector<double> v5(v4);
+  // vector<double> v5(v4);
   Vecteur ve2(v4);
-  Vecteur ve3(v5);
+  Vecteur ve3(ve2); // test du constructeur de copie par défaut
   cout << "ve2 et ve3 sont ";
   if (ve2 == ve3) {
     cout << "égaux" << endl;
@@ -195,6 +195,14 @@ int main(){
     cout << "égaux" << endl;
   } else {
     cout << "différents" << endl;
+  }
+
+  // test de operator!=
+  cout << "ve2 et ve3 sont ";
+  if (ve2 != ve3) {
+    cout << "différents" << endl;
+  } else {
+    cout << "égaux" << endl;
   }
 
   // test de operator+
