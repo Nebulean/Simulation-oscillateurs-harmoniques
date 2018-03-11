@@ -335,7 +335,7 @@ Vecteur Vecteur::soustraction(Vecteur const& v) const
 
 const Vecteur operator-(Vecteur const& v)
 {
-  /* Calcule l'pposé du vecteur
+  /* Calcule l'opposé du vecteur
    */
   return -1*v;
 }
@@ -412,4 +412,10 @@ bool Vecteur::compare(Vecteur const& v) const
     }
   }
   return true;
+}
+
+// ======================================================================
+bool operator!=(Vecteur const& v1, Vecteur const& v2)
+{
+  return !(v1 == v2);
 }
