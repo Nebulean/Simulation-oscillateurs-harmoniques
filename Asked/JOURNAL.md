@@ -38,8 +38,10 @@ Comme la semaine précédente, nous avons eu quelques questions de conception, q
 
 ## Semaine 4
 ### Travail accompli
-### Problèmes rencontrés
+Nous avons créé les constructeurs restants et modifié le fichier test comme demandé. Nous avons tous deux opté de nous concentrer sur les autres branches cette semaine donc nous n'avons pas beaucoup avancé le projet. Néanmoins notre avance nous a permis d'éviter de prendre du retard.
 
+### Problèmes rencontrés
+De simples questions de conception et quelques questions organisationnelles.
 
 ## Semaine 5
 ### Travail accompli
