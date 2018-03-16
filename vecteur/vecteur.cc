@@ -112,28 +112,6 @@ double Vecteur::norme() const
 
 
 // ======================================================================
-// calcule le produit vectoriel
-Vecteur Vecteur::prod_vect(Vecteur const& v) const
-{
-  /* Calcul le produit vectoriel de deux vecteurs dans R3.
-   *
-   * Problèmes:
-   *      - Si les vecteurs ne sont pas de dimension 3, alors le produit vectoriel
-   *        n'est pas défini. Il faut ainsi signaler une erreur.
-   *      - Cette opération est une opération qui requiert des conditions très
-   *        particulières. Il faudrait peut-être la dissocier de la classe Vecteur.
-   */
-  if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
-    throw 4;
-  }
-  Vecteur result;
-  result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
-  result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
-  result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
-  return result;
-}
-
-// ======================================================================
 size_t Vecteur::dim() const
 {
   /* Retourne la dimension du vecteur courant.
@@ -418,4 +396,32 @@ bool Vecteur::compare(Vecteur const& v) const
 bool operator!=(Vecteur const& v1, Vecteur const& v2)
 {
   return !(v1 == v2);
+}
+
+// ======================================================================
+const Vecteur operator^(Vecteur const& v1, Vecteur const& v2)
+{
+  return v1.prod_vect(v2);
+}
+
+// old
+// calcule le produit vectoriel
+Vecteur Vecteur::prod_vect(Vecteur const& v) const
+{
+  /* Calcul le produit vectoriel de deux vecteurs dans R3.
+   *
+   * Problèmes:
+   *      - Si les vecteurs ne sont pas de dimension 3, alors le produit vectoriel
+   *        n'est pas défini. Il faut ainsi signaler une erreur.
+   *      - Cette opération est une opération qui requiert des conditions très
+   *        particulières. Il faudrait peut-être la dissocier de la classe Vecteur.
+   */
+  if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
+    throw 4;
+  }
+  Vecteur result;
+  result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
+  result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
+  result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
+  return result;
 }
