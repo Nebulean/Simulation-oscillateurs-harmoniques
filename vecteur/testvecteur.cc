@@ -111,16 +111,16 @@ int main(){
 
 
   // test norme et norme2.
-  cout << "=== TEST DES NORMES ===" << endl;
+  // cout << "=== TEST DES NO1RMES ===" << endl;
   // double scal1;
   // scal1 = vect1.norme2();
   // cout << "La norme au carré de vect1 est " << vect1.norme2() << " unités." << endl;
   // scal1 = vect1.norme();
-  cout << "La norme de vect1 est " << vect1.norme() << " unités." << endl;
+  // cout << "La norme de vect1 est " << vect1.norme() << " unités." << endl;
   // double scal2(vect2.norme2());
   // cout << "La norme au carré de vect2 est " << vect2.norme2() << " unités." << endl;
   // scal2 = vect2.norme();
-  cout << "La norme de vect2 est " << vect2.norme2() << " unités." << endl << endl;
+  // cout << "La norme de vect2 est " << vect2.norme2() << " unités." << endl << endl;
   // cout << endl;
 
   //test produit vectoriel
