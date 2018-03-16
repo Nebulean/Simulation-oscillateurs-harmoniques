@@ -51,3 +51,21 @@ Deuxièmement, la conversion des coordonnées sphériques en coordonnées carté
 
 # Question P4.3
 > Quels opérateurs avez vous introduits ?
+
+Nous avons introduit la plupart des opérateurs "classiques" des vecteurs mathématiques, avec quelques compléments:
+
+| prototype | type de surcharge | fonction |
+| --- | --- | --- |
+| `const Vecteur operator+(Vecteur, Vecteur const&)` | externe | Addition vectorielle. Dépendante d'operator+=. |
+| `Vecteur& operator+=(Vecteur const&)` | interne | Opérateur d'auto-affectation de l'addition vectorielle. |
+| `const Vecteur operator-(Vecteur, Vecteur const&)` | externe | Soustraction vectorielle. Dépendante d'operator-=. |
+| `const Vecteur operator-(Vecteur const&)` | externe | Opérateur de négation. Dépendante d'operator*. |
+| `Vecteur& operator-=(Vecteur const&)` | interne | Opérateur d'auto-affection de la soustraction vectorielle. |
+| `bool operator==(Vecteur const&) const` | interne | Opérateur testant l'égalité de deux vecteurs. |
+| `bool operator!=(Vecteur const&, Vecteur const&)` | externe | Opérateur testant l'inégalité de deux vecteurs. |
+| `const Vecteur operator*(double const&, Vecteur);` | externe | Opérateur de multiplication d'un vecteur par un scalaire, avec le scalaire à gauche (Pour v un vecteur et a un scalaire: a*v). Dépend d'operator*=. |
+| `double operator*(Vecteur const&, Vecteur const&)` | externe | Opérateur du produit scalaire entre deux vecteurs. |
+| `const Vecteur operator*(Vecteur const&, double const&)` | externe | Opérateur de multiplication par un scalaire, avec le scalaire à droite. (Pour v un vecteur et a un scalaire: v*a) |
+| `Vecteur& operator*=(double const&)` | interne | Opérateur d'auto-affectation pour la multiplication d'un vecteur par un scalaire. |
+| `std::ostream& operator<<(std::ostream&, Vecteur const&)` | externe | Opérateur affichant les coordonnées du vecteur. |
+| `const Vecteur operator^(Vecteur const&, Vecteur const&)` | externe | Produit vectoriel. Ne fonctionne que pour les vecteurs de dimension 3. Utilise la méthode prod_scal.|
