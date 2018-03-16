@@ -12,7 +12,7 @@ public:
   explicit Vecteur(size_t); // constructeur de vecteur vide, de dimension donnée en paramètre. Explicite est utilisé pour éviter les écriture du type 5 * v.
   Vecteur(double, double, double); // constructeur de vecteur en 3 dimensions
   // Vecteur(std::vector<double> const&); // constructeur de vecteur à partir de la liste donnée en paramètre
-  explicit Vecteur(std::initializer_list<double> const&); // utilisation de explicit pour éviter les écritures du type 5.5 * v.
+  Vecteur(std::initializer_list<double> const&); // constructeur à partir d'une initializer_list
 
   //=================== SURCHARGES D'OPERATEUR INTERNES
   Vecteur& operator+=(Vecteur const&);
