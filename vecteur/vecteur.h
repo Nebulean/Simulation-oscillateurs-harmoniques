@@ -53,6 +53,7 @@ const Vecteur operator*(double const&, Vecteur); // a*v <=> operator*(a,v)
 const Vecteur operator*(Vecteur const&, double const&); // v*a <=> operator*(v,a)
 double operator*(Vecteur const&, Vecteur const&);
 bool operator!=(Vecteur const&, Vecteur const&);
+const Vecteur operator^(Vecteur const&, Vecteur const&);
 // Vecteur& operator*=()
 // a*v = operator(a, v)
 // v*a = v.operator(a)

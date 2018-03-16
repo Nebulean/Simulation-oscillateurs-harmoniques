@@ -231,6 +231,12 @@ int main(){
   cout << "v10 -= v11: " << v10 << endl;
   cout << "-v11 = " << -v11 << endl;
 
+  // test de operator^
+  Vecteur v12({1,0,0});
+  Vecteur v13({0,1,0});
+  // cout << "v10 ^ v13 = " << (v10 ^ v13) << endl; // test de l'erreur
+  cout << "v12 ^ v13 = " << (v12 ^ v13) << endl;
+
 
   return 0;
 }
