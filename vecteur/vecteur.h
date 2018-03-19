@@ -19,10 +19,10 @@ public:
   Vecteur& operator-=(Vecteur const&);
   bool operator==(Vecteur const&) const;
   Vecteur& operator*=(double const&); // v*=a <=> v.operator*(a)
+  Vecteur& operator^=(Vecteur const&);
 
 
   void augmente(double); // augmente la dimension du vecteur courant
-  void set_coord(size_t, double); // applique une valeur à une coordonnée
   double get_coord(size_t) const;
   // void affiche() const; // affiche le vecteur courant
   // bool compare(Vecteur const&) const; // compare deux vecteurs
@@ -34,13 +34,14 @@ public:
   double prod_scal(Vecteur const&) const; // produit scalaire entre deux vecteurs
   double norme2() const; // calcule le carré de la norme
   double norme() const; // calcule la norme
-  Vecteur prod_vect(Vecteur const&) const; // produit vectoriel entre deux vecteurs
+  // Vecteur prod_vect(Vecteur const&) const; // produit vectoriel entre deux vecteurs
 
   size_t dim() const; // Méthode renvoyant la taille de _coord, c'est un raccourci qui rend le code plus lisible.
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
   void dimCheck(Vecteur const&) const; // méthode qui lance une exception en cas de dimension différentes.
+  void set_coord(size_t, double); // applique une valeur à une coordonnée
 };
 
 
@@ -53,7 +54,7 @@ const Vecteur operator*(double const&, Vecteur); // a*v <=> operator*(a,v)
 const Vecteur operator*(Vecteur const&, double const&); // v*a <=> operator*(v,a)
 double operator*(Vecteur const&, Vecteur const&);
 bool operator!=(Vecteur const&, Vecteur const&);
-const Vecteur operator^(Vecteur const&, Vecteur const&);
+const Vecteur operator^(Vecteur, Vecteur const&);
 // Vecteur& operator*=()
 // a*v = operator(a, v)
 // v*a = v.operator(a)
