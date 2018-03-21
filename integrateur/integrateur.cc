@@ -6,5 +6,5 @@ using namespace std;
 
 void Integrateur::evolue(Oscillateur& o, double const& dt)
 {
-  o.evolution(dt);
+  // o.evolution(dt);
 }

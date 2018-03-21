@@ -1,3 +1,11 @@
+# la documentation
 docs/
-*.o
-vecteur/testvecteur
+
+# tous les executables de tests.
+test*
+
+# des trucs de Qt.
+*.qmake.stash
+
+# tous les fichiers utiles à la compilation
+build/*
