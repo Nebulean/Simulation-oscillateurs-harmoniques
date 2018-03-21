@@ -9,7 +9,7 @@ class Oscillateur{
 public:
   // constructeurs
   Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&);
-  void evolution();
+  void evolution(Vecteur& p, Vecteur& q, double const& t); // A REDEFINIR
 
   // accesseurs
   Vecteur P() const {return _P;}; // pas très optimisé, non ?

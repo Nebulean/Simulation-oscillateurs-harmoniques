@@ -14,9 +14,9 @@ Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<dou
 // ========== SURCHARGES D'OPERATEURS =========
 ostream& operator<<(ostream& out, Oscillateur const& osci)
 {
-  out << "--- Oscillateur" << endl;
-  out << "- P: " << osci.P() << endl;
-  out << "- Q: " << osci.Q() << endl;
+  out << "*** Oscillateur ***" << endl;
+  out << "-> P( " << osci.P() << ")" << endl;
+  out << "-> Q( " << osci.Q() << ")" << endl;
 
   return out;
 }
