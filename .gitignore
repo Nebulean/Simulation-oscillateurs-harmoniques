@@ -16,3 +16,8 @@ vecteur/testvecteur
 # tous les fichiers utiles à la compilation
 build/*
 
+# Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
+*/Makefile
+
+# Quelques documents non importants.
+eulercromer/tests/test*
