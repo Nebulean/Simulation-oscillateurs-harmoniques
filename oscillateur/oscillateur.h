@@ -9,7 +9,7 @@ class Oscillateur{
 public:
   // constructeurs
   Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&);
-  Vecteur f(double t); // A REDEFINIR (virtual ... = 0)
+  virtual Vecteur f(double t) = 0; // marquer toute les fonctions substituées à celle-ci en utilisant override.
 
   // getters
   Vecteur P() const {return _P;}; // pas très optimisé, non ?
