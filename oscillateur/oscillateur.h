@@ -8,17 +8,22 @@
 class Oscillateur{
 public:
   // constructeurs
-  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&);
-  void evolution(double const&); // A REDEFINIR
+  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&);
+  Vecteur f(double t); // A REDEFINIR (virtual ... = 0)
 
-  // accesseurs
+  // getters
   Vecteur P() const {return _P;}; // pas très optimisé, non ?
   Vecteur Q() const {return _Q;}; // pas très optimisé, non ?
+
+  // manipulateurs
+  void setP(Vecteur const&); // utilisé pour l'évolution
+  void setQ(Vecteur const&); // utilisé pour l'évolution
 
 
 private:
   Vecteur _P;
   Vecteur _Q; // dérivée de _P
+  Vecteur _O; // origine de l'oscillateur
 };
 
 // surcharge externe

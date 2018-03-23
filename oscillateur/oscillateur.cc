@@ -6,8 +6,8 @@
 using namespace std;
 
 // ============== CONSTRUCTEURS ===============
-Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<double> const& q)
- : _P(p), _Q(q)
+Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<double> const& q, initializer_list<double> o)
+ : _P(p), _Q(q), _O(o)
 {}
 
 
@@ -19,4 +19,15 @@ ostream& operator<<(ostream& out, Oscillateur const& osci)
   out << "-> Q( " << osci.Q() << ")" << endl;
 
   return out;
+}
+
+
+// ============== MANIPULATEURS ===============
+void Oscillateur::setP(Vecteur const& p) // utilisé pour l'évolution
+{
+  _P = p;
+}
+void Oscillateur::setQ(Vecteur const& q) // utilisé pour l'évolution
+{
+  _Q = q;
 }

@@ -5,10 +5,8 @@
 
 class Integrateur{
 public:
-  void evolue(Oscillateur&, double const&);
-
-private:
-
+  // Integrateur() {}; // l'intégrateur n'a pas d'argument "pas de temps" et "temps courant". C'est la méthode evolue qui les prend en paramètres.
+  void evolue(Oscillateur&, double, double);
 };
 
 #endif // H_INTEGRATEUR
