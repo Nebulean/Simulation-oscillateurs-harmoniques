@@ -69,3 +69,18 @@ Nous avons introduit la plupart des opérateurs "classiques" des vecteurs mathé
 | `Vecteur& operator*=(double const&)` | interne | Opérateur d'auto-affectation pour la multiplication d'un vecteur par un scalaire. |
 | `std::ostream& operator<<(std::ostream&, Vecteur const&)` | externe | Opérateur affichant les coordonnées du vecteur. |
 | `const Vecteur operator^(Vecteur const&, Vecteur const&)` | externe | Produit vectoriel. Ne fonctionne que pour les vecteurs de dimension 3. Utilise la méthode prod_scal.|
+
+
+# Question P6.1
+> Comment avez vous conçu votre classe Integrateur ?
+
+La classe Intégrateur ne possède qu'une méthode _evolue_. Elle ne retourne rien, et prend en paramètres une référence sur un oscillateur, le pas de temps (double) et le temps courant (double).
+Cette méthode sera substituée dans toutes les sous-classes héritant de celle-ci.
+
+# Question P6.2
+> Quelle est la relation entre les classes Integrateur et IntegrateurEulerCromer ?
+
+IntegrateurEulerCromer (notée Eulercromer dans notre projet) **hérite** d'Integrateur. En effet, l'intégrateur de Euler-Cromer **est** un intégrateur. Alors la relation d'héritage s'applique.
+
+# Question P7.1
+> Comment se situent ces classes par rapport à la classe Oscillateur définie la semaine passée ?

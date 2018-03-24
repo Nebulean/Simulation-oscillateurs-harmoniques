@@ -1,7 +1,7 @@
-<!-- | jour | commentaire |
-| --- | --- |
-| 26.02.18 | Création de la classe Vecteur avec les méthodes *augmente*, *set_coord*, *affiche* et *compare*. | -->
-#
+A MODIFIER AVANT DE RENDRE:
+* Semaine 5, vérifier que Oscillateur est bien une classe abstraite et que la méthode d'évolution est une méthode virtuelle pure.
+
+
 ## Semaine 1
 ### Travail accompli
 Cette première semaine, nous avons surtout organisé le projet.
@@ -45,7 +45,14 @@ De simples questions de conception et quelques questions organisationnelles.
 
 ## Semaine 5
 ### Travail accompli
+Cette semaine, nous avons bien avancé dans le projet. Nous avons séparé le travail en plusieurs parties, ce qui nous a permis d'avancer chacun à notre vitesse.
+D'une part, nous avons crée et implémenté les classes Integrateur et Eulercromer. Les deux sont, pour le moment, fonctionnels. Néanmoins, pour réaliser le test de Eulercromer (chute libre) sans devoir faire du "travail à double", il a fallu déjà intégrer quelques éléments du chapitre sur le polymorphisme.
+Ainsi, Oscillateur est devenu une classe abstraite, et ne peut donc plus être instanciée seule. Cela est dû au fait que la méthode d'évolution est devenu une méthode virtuelle pure.
+Nous avons également du modifier pas mal de détails dans oscillateur et dans les différentes méthodes que nous avions établies auparavent, car nous avions mal jugé comment elles agissaient. Mais le tir est corrigé, et nous avons réussi à réaliser la première simulation, la chute libre, qui semble être similaire à la théorie ! Ouf !
+
 ### Problèmes rencontrés
+Les principales problèmes sont survenu avec les classes Integrateur et Eulercromer.
+Déjà, la classe Integrateur a posé quelques problèmes de compréhension, qu'il nous a fallu attendre Vendredi pour les corriger. La classe oscillateur a également posé problème, car la fonction d'évolution n'était pas vraiment ce à quoi on s'attendais. Il a donc fallu corriger le tir.
 
 
 ## Semaine 6

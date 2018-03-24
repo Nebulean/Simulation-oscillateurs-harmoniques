@@ -1,3 +1,23 @@
+# la documentation
 docs/
-*.o
+
+# tous les executables de tests.
+oscillateur/testoscillateur
+integrateur/testintegrateur
+eulercromer/testeulercromer
 vecteur/testvecteur
+
+# Les fichiers d'indexation de Spotlight (?) sur macOS.
+*.DS_STORE
+
+# des trucs de Qt.
+*.qmake.stash
+
+# tous les fichiers utiles à la compilation
+build/*
+
+# Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
+*/Makefile
+
+# Quelques documents non importants.
+eulercromer/tests/test*
