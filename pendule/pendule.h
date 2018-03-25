@@ -8,7 +8,7 @@ class Pendule : public Oscillateur {
 public:
 
 // constructeurs
-  Pendule(double m, double L, double _lambda);
+  Pendule(double, double, double);
 
 // méthode d'évolution
   Vecteur f(double);
