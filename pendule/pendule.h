@@ -10,10 +10,13 @@ public:
 // constructeurs
   Pendule(double m, double L, double _lambda);
 
+// méthode d'évolution
+  Vecteur f(double);
+
 private:
-  double _m;
-  double _L;
-  double _lambda;
+  double _m; // masse
+  double _L; // longueur
+  double _lambda; // coefficient de viscosité
 };
 
 #endif // PENDULE_H
