@@ -6,6 +6,7 @@ oscillateur/testoscillateur
 integrateur/testintegrateur
 eulercromer/testeulercromer
 vecteur/testvecteur
+pendule/testpendule
 
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
