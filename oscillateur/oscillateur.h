@@ -8,12 +8,13 @@
 class Oscillateur{
 public:
   // constructeurs
-  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&);
+  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&);
   virtual Vecteur f(double t) = 0; // marquer toute les fonctions substituées à celle-ci en utilisant override.
 
   // getters
   Vecteur P() const {return _P;}; // pas très optimisé, non ?
   Vecteur Q() const {return _Q;}; // pas très optimisé, non ?
+  Vecteur a() const {return _a;};
 
   // manipulateurs
   void setP(Vecteur const&); // utilisé pour l'évolution
@@ -24,6 +25,7 @@ private:
   Vecteur _P;
   Vecteur _Q; // dérivée de _P
   Vecteur _O; // origine de l'oscillateur
+  Vecteur _a; // direction principale
 };
 
 // surcharge externe

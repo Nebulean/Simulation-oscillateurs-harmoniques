@@ -84,3 +84,5 @@ IntegrateurEulerCromer (notée Eulercromer dans notre projet) **hérite** d'Inte
 
 # Question P7.1
 > Comment se situent ces classes par rapport à la classe Oscillateur définie la semaine passée ?
+
+Pendule et Ressort **héritent** d'Oscillateur. En effet, ce **sont** des oscillateurs, donc de la même manière la relation d'héritage s'applique.
