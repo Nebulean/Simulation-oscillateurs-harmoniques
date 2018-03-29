@@ -8,6 +8,7 @@ eulercromer/testeulercromer
 vecteur/testvecteur
 pendule/testpendule
 ressort/testressort
+dessinable/testdessinable
 
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
