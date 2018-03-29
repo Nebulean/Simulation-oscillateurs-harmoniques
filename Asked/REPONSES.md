@@ -1,3 +1,7 @@
+# A fAIRE
+Corriger question 7s, question 8s.
+
+
 # Question P1.1
 > Comment représentez-vous ces vecteurs ? Comment sont-ils organisés : quels attributs ? quelles méthodes ? quels droits d'accès ?
 
@@ -86,3 +90,9 @@ IntegrateurEulerCromer (notée Eulercromer dans notre projet) **hérite** d'Inte
 > Comment se situent ces classes par rapport à la classe Oscillateur définie la semaine passée ?
 
 Pendule et Ressort **héritent** d'Oscillateur. En effet, ce **sont** des oscillateurs, donc de la même manière la relation d'héritage s'applique.
+
+# Question P8.1
+> En termes de POO, quelle est donc la nature de la méthode dessine() ?
+
+La méthode dessine est une méthode virtuelle pure. En effet, dans la classe Dessinable, elle ne représente "rien", vu qu'on ne sait pas comment dessiner un Dessinable. Cependant, si l'on fait hériter Dessinable, à un oscillateur par exemple, alors elle prend son sens. Celle-ci de dessiner cet oscillateur (qui est un dessinable.)
+Ainsi, avec cette méthode et le polymorphisme, on a une version unifiée pour dessiner des objets.
