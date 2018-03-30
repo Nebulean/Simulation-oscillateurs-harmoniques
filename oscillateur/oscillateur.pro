@@ -6,10 +6,10 @@ QMAKE_CXX = g++
 CONFIG -= app_bundle
 
 # Ajout de tous les fichiers sources
-SOURCES = testoscillateur.cc oscillateur.cc ../vecteur/vecteur.cc
+SOURCES = testoscillateur.cc oscillateur.cc ../vecteur/vecteur.cc ../dessinable/dessinable.cc ../supportadessin/supportadessin.cc 
 
 # Ajout de tous les headers
-HEADERS = oscillateur.h ../vecteur/vecteur.h
+HEADERS = oscillateur.h ../vecteur/vecteur.h ../dessinable/dessinable.h ../supportadessin/supportadessin.h
 
 # le dossier de sortie pour tous les fichiers .o de la compilation.
 OBJECTS_DIR = ../build/
