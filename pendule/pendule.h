@@ -11,7 +11,7 @@ public:
   Pendule(double, double, double);
 
 // méthode d'évolution
-  Vecteur f(double);
+  Vecteur f(double) override;
 
 private:
   double _m; // masse
