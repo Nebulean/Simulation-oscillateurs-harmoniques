@@ -1,4 +1,5 @@
 #include "systeme.h"
+#include "../supportadessin/supportadessin.h"
 using namespace std;
 
 /*
@@ -10,4 +11,6 @@ Systeme::~Systeme()
 
 /*
  * Constructeur de Systeme.*/
-Systeme::Systeme(double dt, double t, std::initializer_list<unique_ptr<Oscillateur>> oscillateurs);
+Systeme::Systeme(double dt, double t, std::initializer_list<unique_ptr<Oscillateur>> oscillateurs, SupportADessin* support)
+ : Dessinable(support), _dt(dt), _t(t), _oscillateurs(oscillateurs)
+{}

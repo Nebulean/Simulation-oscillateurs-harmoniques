@@ -13,7 +13,7 @@ class Pendule : public Oscillateur {
 public:
 
   // constructeurs
-  Pendule(double, double, double, SupportADessin* = nullptr);
+  Pendule(double, double, double, SupportADessin*);
 
   // destructeur
   virtual ~Pendule();
