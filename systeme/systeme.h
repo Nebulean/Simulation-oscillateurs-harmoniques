@@ -5,7 +5,10 @@
 #include <memory> // pour les unique_ptr
 #include "../oscillateur/oscillateur.h"
 #include <initializer_list>
-class Systeme{
+#include "../dessinable/dessinable.h"
+#include "../supportadessin/supportadessin.h"
+
+class Systeme : public Dessinable{
 public:
   /* Destructeur de systeme. N'est pas forcément utile pour le moment, car nous
    * utilisons des unique_ptr qui se désallouent tout seuls. Cependant, le
@@ -15,12 +18,16 @@ public:
   virtual ~Systeme();
 
   // constructeurs
-  Systeme(double, double, std::initializer_list<unique_ptr<Oscillateur>>);
+  Systeme(double, double, std::initializer_list<unique_ptr<Oscillateur>>, SupportADessin*);
+
+  // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
+  virtual void dessine() override
+  { _support->dessine(*this); }
 
   // méthode(s)
   // méthode ajouter_oscillateur() ?
   // méthode vider_tableau() ?
-  
+
 protected:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
    * pour éviter un grand nombre de problèmes liés aux pointeurs.

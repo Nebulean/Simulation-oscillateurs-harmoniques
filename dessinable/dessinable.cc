@@ -6,3 +6,9 @@ using namespace std;
 Dessinable::Dessinable(SupportADessin* support)
  : _support(support)
  {}
+
+
+Dessinable::~Dessinable()
+{
+  delete _support;
+}

@@ -33,7 +33,6 @@ public:
    */
   virtual void dessine() = 0;
 
-
 private:
   Vecteur _P; // Vecteur des n paramètres du système.
   Vecteur _Q; // Vecteur de dérivée de _P.
