@@ -15,8 +15,12 @@ public:
   virtual ~Systeme();
 
   // constructeurs
-  Systeme(double dt, double t, std::initializer_list<unique_ptr<Oscillateur>>)
+  Systeme(double, double, std::initializer_list<unique_ptr<Oscillateur>>);
 
+  // méthode(s)
+  // méthode ajouter_oscillateur() ?
+  // méthode vider_tableau() ?
+  
 protected:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
    * pour éviter un grand nombre de problèmes liés aux pointeurs.

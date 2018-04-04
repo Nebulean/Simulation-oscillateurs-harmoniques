@@ -6,7 +6,10 @@
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
 
-class Pendule : public Oscillateur, public Dessinable {
+// forward declaration
+// class Oscillateur; // on doit avoir des définitions circulaires.
+
+class Pendule : public Oscillateur {
 public:
 
   // constructeurs

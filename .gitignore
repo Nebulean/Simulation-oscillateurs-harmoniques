@@ -24,3 +24,5 @@ build/*
 
 # Quelques documents non importants.
 eulercromer/tests/test*
+
+bin/*

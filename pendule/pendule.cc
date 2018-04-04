@@ -10,7 +10,7 @@
 using namespace std;
 
 Pendule::Pendule(double m, double L, double lambda, SupportADessin* support)
- : Oscillateur({M_PI/2},{0.0},{0.0},{1.0, 0.0}), Dessinable(support), _m(m), _L(L), _lambda(lambda)
+ : Oscillateur({M_PI/2}, {0.0}, {0.0}, {1.0, 0.0}, support), _m(m), _L(L), _lambda(lambda)
  {}
 
 /* Équation d'évolution du pendule pesant:

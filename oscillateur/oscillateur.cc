@@ -6,8 +6,8 @@
 using namespace std;
 
 // ============== CONSTRUCTEURS ===============
-Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<double> const& q, initializer_list<double> const& o, initializer_list<double> const& a)
- : _P(p), _Q(q), _O(o), _a(a)
+Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<double> const& q, initializer_list<double> const& o, initializer_list<double> const& a, SupportADessin* support = nullptr) // c'est bien la valeur par défaut là ?
+ : Dessinable(support), _P(p), _Q(q), _O(o), _a(a)
 {}
 
 
