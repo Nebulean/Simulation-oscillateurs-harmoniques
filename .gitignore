@@ -10,6 +10,7 @@ pendule/testpendule
 ressort/testressort
 dessinable/testdessinable
 textviewer/testtextviewer
+systeme/testsysteme
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 

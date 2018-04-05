@@ -1,5 +1,7 @@
 #include "systeme.h"
+#include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
+#include "../oscillateur/oscillateur.h"
 #include <iostream>
 #include <vector>
 #include <memory>
