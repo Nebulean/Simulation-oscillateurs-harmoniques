@@ -27,7 +27,7 @@ public:
 
   // getter
   // std::vector<std::unique_ptr<Oscillateur>> oscillateurs();
-  // vector<unique_ptr<Oscillateur>>&& oscillateurs();
+  // std::vector<std::unique_ptr<Oscillateur>>&& oscillateurs() const;
 
   // surcharge internes
   // std::ostream& operator<<(std::ostream&);

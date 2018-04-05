@@ -18,10 +18,15 @@ Systeme::~Systeme()
 Systeme::Systeme(double dt, double t, SupportADessin* support)
  : Dessinable(support), _dt(dt), _t(t)
 {
-  // for (auto& osc : _oscillateurs) {
-  //   delete osc;
-  // }
+  _oscillateurs.clear(); // dans le doute, comme ça on a un tableau bien vide.
 }
+
+
+// getter
+// vector<unique_ptr<Oscillateur>>&& Systeme::oscillateurs() const
+// {
+//   return _oscillateurs;
+// }
 
 
 // getter

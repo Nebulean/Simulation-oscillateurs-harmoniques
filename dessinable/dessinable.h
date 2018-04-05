@@ -12,7 +12,7 @@ public:
   virtual void dessine() = 0;
 
 protected:
-  SupportADessin* _support; // Il faut penser à le désallouer ! NON !
+  SupportADessin* _support; // Il faut penser à le désallouer ! NON, C'EST CELUI QUI ALLOUE QUI DESALLOUE ! 
 
 };
 
