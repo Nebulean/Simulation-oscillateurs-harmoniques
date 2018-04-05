@@ -15,16 +15,20 @@ Systeme::~Systeme()
 
 /*
  * Constructeur de Systeme.*/
-Systeme::Systeme(double dt, double t, initializer_list<unique_ptr<Oscillateur>> oscillateurs, SupportADessin* support)
- : Dessinable(support), _dt(dt), _t(t), _oscillateurs(oscillateurs)
-{}
+Systeme::Systeme(double dt, double t, SupportADessin* support)
+ : Dessinable(support), _dt(dt), _t(t)
+{
+  // for (auto& osc : _oscillateurs) {
+  //   delete osc;
+  // }
+}
 
 
 // getter
-  vector<unique_ptr<Oscillateur>> Systeme::oscillateurs()
-  {
-    return _oscillateurs;
-  }
+  // vector<unique_ptr<Oscillateur>> Systeme::oscillateurs()
+  // {
+  //   return _oscillateurs;
+  // }
 // unique_ptr<Oscillateur> oscillateurs(size_t i)
 // { return _oscillateurs[i]; }
   // Oscillateur* oscillateurs()

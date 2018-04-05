@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../pendule/pendule.h"
 #include "../ressort/ressort.h"
+#include "../systeme/systeme.h"
 using namespace std;
 
 
@@ -18,6 +19,11 @@ int main(){
 
   // création d'un ressort.
   Ressort r1(1,1,1, &ecran);
+
+  // création d'un systeme vide.
+  Systeme s(0.1, 1, &ecran);
+
+  cout << "dank" << endl;
 
   // il faudrait:
   // Systeme sys(0.1, 0, support);

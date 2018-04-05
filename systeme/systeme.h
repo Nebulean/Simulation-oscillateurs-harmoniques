@@ -19,14 +19,14 @@ public:
   virtual ~Systeme();
 
   // constructeurs
-  Systeme(double, double, std::initializer_list<std::unique_ptr<Oscillateur>>, SupportADessin*);
+  Systeme(double, double, SupportADessin*);
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
   virtual void dessine() override
   { _support->dessine(*this); }
 
   // getter
-  std::vector<std::unique_ptr<Oscillateur>> oscillateurs();
+  // std::vector<std::unique_ptr<Oscillateur>> oscillateurs();
   // vector<unique_ptr<Oscillateur>>&& oscillateurs();
 
   // surcharge internes
@@ -41,7 +41,7 @@ protected:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
    * pour éviter un grand nombre de problèmes liés aux pointeurs.
    */
-  std::vector<std::unique_ptr<Oscillateur>> _oscillateurs;
+  std::vector<std::unique_ptr<Oscillateur>> _oscillateurs; // Attention: Est vide lors de l'initialisation.
 
   /* Pas de temps. Il est utilisé à travers tout le projet pour savoir à quel
    * point il faut faire évoluer les oscillateurs.

@@ -5,8 +5,7 @@
 #include <iostream>
 #include "../pendule/pendule.h"
 #include "../ressort/ressort.h"
-// #include "../systeme/systeme.h"
-#include "../oscillateur/oscillateur.h"
+#include "../systeme/systeme.h"
 
 class TextViewer : public SupportADessin {
 public:
@@ -16,7 +15,7 @@ public:
   // Redéfinition des fonctions dessine() de SupportADessin
   void dessine(Pendule const&) override;
   void dessine(Ressort const&) override;
-  // void dessine(Systeme const&) override;
+  void dessine(Systeme const&) override;
 
 private:
   std::ostream& _flot;
