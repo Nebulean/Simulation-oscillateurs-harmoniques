@@ -31,7 +31,9 @@ public:
   /* on prolonge la "pureté" de cette méthode virtuelle.
    * Elle doit être redéfinie ailleurs, dans les sous-classes, donc.
    */
-  virtual void dessine() = 0;
+  // virtual void dessine() = 0;
+  virtual void dessine() override
+  { support->dessine(*this); }
 
 private:
   Vecteur _P; // Vecteur des n paramètres du système.

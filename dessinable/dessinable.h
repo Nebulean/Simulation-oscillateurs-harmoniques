@@ -3,6 +3,8 @@
 
 #include "../supportadessin/supportadessin.h"
 
+// class SupportADessin; // ???
+
 class Dessinable{
 public:
   Dessinable(SupportADessin*);
