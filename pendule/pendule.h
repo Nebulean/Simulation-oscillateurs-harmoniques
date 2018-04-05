@@ -16,7 +16,7 @@ public:
   Pendule(double, double, double, SupportADessin*);
 
   // destructeur
-  virtual ~Pendule();
+  virtual ~Pendule() {};
 
   // méthode d'évolution
   Vecteur f(double) override;

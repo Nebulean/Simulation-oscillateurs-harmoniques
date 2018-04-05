@@ -4,6 +4,7 @@
 #include "../vecteur/vecteur.h"
 #include "../oscillateur/oscillateur.h"
 #include "../supportadessin/supportadessin.h"
+#include "../dessinable/dessinable.h"
 
 class Ressort : public Oscillateur {
 public:
@@ -11,8 +12,11 @@ public:
   // constructeurs
   Ressort(double, double, double, SupportADessin*);
 
+  // destructeur
+  virtual ~Ressort() {};
+
   // méthode d'évolution
-  Vecteur f(double);
+  Vecteur f(double) override;
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
   virtual void dessine() override

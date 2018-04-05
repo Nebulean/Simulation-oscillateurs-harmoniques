@@ -9,7 +9,7 @@ vecteur/testvecteur
 pendule/testpendule
 ressort/testressort
 dessinable/testdessinable
-
+textviewer/testtextviewer
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 

@@ -1,4 +1,6 @@
 #include "textviewer.h"
+#include "../pendule/pendule.h"
+#include "../ressort/ressort.h"
 #include <iostream>
 using namespace std;
 
@@ -15,14 +17,14 @@ void TextViewer::dessine(Ressort const& ressort) {
   _flot << ressort << endl;
 }
 
-void TextViewer::dessine(Systeme const& syst) {
-  _flot << "*** Systeme ***" << endl;
-  for (auto osc : syst.oscillateurs()) {
-    dessine(*osc);
-  };
-}
+// void TextViewer::dessine(Systeme const& syst) {
+//   _flot << "*** Systeme ***" << endl;
+//   for (auto osc : syst.oscillateurs()) {
+//     dessine(*osc);
+//   };
+// }
 
-// pour tester
-void TextViewer::dessine(Oscillateur const& osci) {
-  _flot << "wow" << endl;
-}
+// // pour tester
+// void TextViewer::dessine(Oscillateur const& osci) {
+//   _flot << "wow" << endl;
+// }

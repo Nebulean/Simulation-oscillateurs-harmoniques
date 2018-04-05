@@ -7,8 +7,8 @@ Dessinable::Dessinable(SupportADessin* support)
  : _support(support)
  {}
 
-
-Dessinable::~Dessinable()
-{
-  delete _support;
-}
+// NON ! 
+// Dessinable::~Dessinable()
+// {
+//   delete _support;
+// }

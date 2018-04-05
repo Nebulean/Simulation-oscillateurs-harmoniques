@@ -6,12 +6,12 @@
  * partout cette classe.
  * Remarque: Pour ne pas tout casser, oscillateur N'EST PLUS un dessinable. Ah non en fait.
  */
-#include "../dessinable/dessinable.h"
 #include <initializer_list>
 #include <iostream>
+#include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
 
-class Oscillateur : public Dessinable {
+class Oscillateur : public Dessinable{
 public:
   // constructeurs
   Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, SupportADessin*);
@@ -31,9 +31,9 @@ public:
   /* on prolonge la "pureté" de cette méthode virtuelle.
    * Elle doit être redéfinie ailleurs, dans les sous-classes, donc.
    */
-  // virtual void dessine() = 0;
-  virtual void dessine() override
-  { support->dessine(*this); }
+  virtual void dessine() = 0;
+  // virtual void dessine() override
+  // { _support->dessine(*this); }
 
 private:
   Vecteur _P; // Vecteur des n paramètres du système.

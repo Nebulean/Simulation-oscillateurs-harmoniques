@@ -1,16 +1,23 @@
 #include "textviewer.h"
 #include <iostream>
 #include "../pendule/pendule.h"
+#include "../ressort/ressort.h"
+using namespace std;
 
 
 int main(){
   // j'écris en pseudocode
   // initialisation du support textuel
-  ostream flot;
-  TextViewer* support = new TextViewer(flot);
+  // ostream flot;
+  // TextViewer* support = new TextViewer(flot);
+
+  TextViewer ecran(cout);
 
   // création d'un pendule.
-  Pendule p1(1,1,1, support);
+  Pendule p1(1,1,1, &ecran);
+
+  // création d'un ressort.
+  Ressort r1(1,1,1, &ecran);
 
   // il faudrait:
   // Systeme sys(0.1, 0, support);
