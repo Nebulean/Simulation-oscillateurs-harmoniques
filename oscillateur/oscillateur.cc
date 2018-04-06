@@ -17,7 +17,7 @@ Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<dou
 ostream& operator<<(ostream& out, Oscillateur const& osci)
 {
   // on affiche simplement les informations de l'oscillateur.
-  out << "*** Oscillateur ***" << endl;
+  // out << "*** Oscillateur ***" << endl; // plus besoin maintenant qu'on a dessine()
   out << osci.P() << " # parametre" << endl;
   out << osci.Q() << " # vitesse" << endl;
 

@@ -34,7 +34,8 @@ public:
 
 
   // méthode(s)
-  // méthode ajouter_oscillateur() ?
+  void affiche() const; // pour dessine(Systeme)
+  void ajoute(Oscillateur*); // Pour les tests. L'argument est un pointeur pour pouvoir utiliser le polymorphisme.
   // méthode vider_tableau() ?
 
 protected:

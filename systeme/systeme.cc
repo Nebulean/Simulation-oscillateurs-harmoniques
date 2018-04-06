@@ -20,7 +20,21 @@ Systeme::~Systeme()
 Systeme::Systeme(double dt, double t, SupportADessin* support)
  : Dessinable(support), _dt(dt), _t(t)
 {
-  _oscillateurs.clear(); // dans le doute, comme ça on a un tableau bien vide.
+  // _oscillateurs.clear(); // dans le doute, comme ça on a un tableau bien vide.
+}
+
+// afficheur général
+void Systeme::affiche() const {
+  for (auto const& osc : _oscillateurs) {
+    osc->dessine();
+  };
+}
+
+// pour ajouter un oscillateur au système
+void Systeme::ajoute(Oscillateur* osc) {
+  if (osc != nullptr){ // on vérifie que le pointeur pointe vers quelque chose
+    _oscillateurs.push_back(unique_ptr<Oscillateur>(osc));
+  };
 }
 
 
@@ -43,11 +57,11 @@ Systeme::Systeme(double dt, double t, SupportADessin* support)
   //   return &_oscillateurs;
   // }
 
-// /* Surcharge interne de l'opérateur d'affichage d'une Systeme. Celui-ci est utilisé
+// /* Surcharge externe de l'opérateur d'affichage d'une Systeme. Celui-ci est utilisé
 //  * pour la simulation en mode texte. Cela nous paraissait être la meilleure
-//  * solution aux problèmes de droits que nous avions.
+//  * solution aux problèmes de droits que nous avions. // en fait non lol
 //  */
-// std::ostream& Systeme::operator<<(std::ostream& flot)
+// ostream& operator<<(ostream& flot, Systeme syst)
 // {
 //   for (size_t i = 0; i < count; i++) {
 //     /* Doit retourner un truc du type

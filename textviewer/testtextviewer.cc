@@ -16,12 +16,17 @@ int main(){
 
   // création d'un pendule.
   Pendule p1(1,1,1, &ecran);
+  ecran.dessine(p1);
 
   // création d'un ressort.
   Ressort r1(1,1,1, &ecran);
+  ecran.dessine(r1);
 
-  // création d'un systeme vide.
-  Systeme s(0.1, 1, &ecran);
+  // création d'un systeme.
+  Systeme syst(0.1, 1, &ecran);
+  syst.ajoute(new Pendule(p1));
+  syst.ajoute(new Ressort(r1));
+  ecran.dessine(syst);
 
   cout << "dank" << endl;
 
