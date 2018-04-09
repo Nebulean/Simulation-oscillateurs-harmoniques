@@ -8,6 +8,7 @@
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
 #include <iostream>
+#include "../integrateur/integrateur.h"
 
 class Systeme : public Dessinable{
 public:
@@ -19,7 +20,7 @@ public:
   virtual ~Systeme();
 
   // constructeurs
-  Systeme(double, double, SupportADessin*);
+  Systeme(double, double, SupportADessin*, Integrateur*);
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
   virtual void dessine() override
@@ -37,6 +38,7 @@ public:
   void affiche() const; // pour dessine(Systeme)
   void ajoute(Oscillateur*); // Pour les tests. L'argument est un pointeur pour pouvoir utiliser le polymorphisme.
   // méthode vider_tableau() ?
+  void evolue(); // utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
 
 protected:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
@@ -51,12 +53,16 @@ protected:
    * changer la vitesse de simulation par exemple, alors il suffit de retirer le
    * const et tout ira bien.
    */
-   double const _dt;
+  double const _dt;
 
-   /* Temps courant. Utilisé par les oscillateurs, il est utilisé comme le temps
-    * courant du système.
-    */
-    double _t;
+  /* Temps courant. Utilisé par les oscillateurs, il est utilisé comme le temps
+   * courant du système.
+   */
+  double _t;
+
+  /* Integrateur servant à faire évoluer le système d'un pas de temps.
+   */
+  Integrateur* _integr; // pointeur ?
 };
 
 #endif // H_SYSTEME
