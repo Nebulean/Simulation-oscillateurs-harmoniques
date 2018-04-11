@@ -9,7 +9,7 @@ public:
   // Eulercromer() {}; // voir constructeur de integrateur
 
   // méthode qui fait évoluer le stade de l'oscillateur donné en argument.
-  void evolue(Oscillateur&, double, double);
+  void evolue(Oscillateur&, double, double) override;
 };
 
 #endif // H_EULERCROMER

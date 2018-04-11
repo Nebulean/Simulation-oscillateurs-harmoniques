@@ -5,9 +5,9 @@ QMAKE_CXX = g++
 # Utile sur MacOS, permet de ne pas avoir de .app lors de la compilation, mais un simple executable.
 CONFIG -= app_bundle
 
-SOURCES = testpendule.cc pendule.cc ../oscillateur/oscillateur.cc ../eulercromer/eulercromer.cc ../vecteur/vecteur.cc
+SOURCES = testpendule.cc pendule.cc ../oscillateur/oscillateur.cc ../eulercromer/eulercromer.cc ../vecteur/vecteur.cc ../dessinable/dessinable.h ../supportadessin/supportadessin.h
 
-HEADERS = pendule.h ../oscillateur/oscillateur.h ../eulercromer/eulercromer.h ../vecteur/vecteur.h
+HEADERS = pendule.h ../oscillateur/oscillateur.h ../eulercromer/eulercromer.h ../vecteur/vecteur.h ../dessinable/dessinable.h ../supportadessin/supportadessin.h
 
 # le dossier de sortie pour tous les fichiers .o de la compilation.
 # Ca permet de ne pas avoir trop de bordel dans le dossier courant.

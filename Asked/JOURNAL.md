@@ -59,14 +59,23 @@ Pendant le week-end l'un d'entre nous a rencontré un problème de compilation a
 
 
 ## Semaine 6
+Cette semaine de travail a été essentiellement composé de Jeudi soir. Le reste de la semaine, nous étions occupé à travailler sur les branches plus vitales.
 ### Travail accompli
+Nous avons essentiellement réalisé une première version de P8. Cette version n'était pas fonctionnelle, mais avait au moins l'avantage de poser les bases.
 ### Problèmes rencontrés
-
+L'essentiel des soucis sont apparu après coup. En effet, la version de P8 faite ici n'est pas terrible. Il y a quelques implémentation qui font défaut, et qui méritent d'être retravaillés.
 
 ## Semaine 7
+Semaine de vacances, donc on a été efficace.
 ### Travail accompli
+Nous avons réalisé l'entièreté de P8 et P9. Ceux-ci sont désormais fonctionnels, car nous avons corrigé la plupart des problèmes d'implémentation de la semaine précédente.
 ### Problèmes rencontrés
-
+Malgré le travail fourni cette semaine, nous avons tout-de-même eut quelques *gros* problèmes d'implémentation, qui nous ont bloqué pendant deux jours.
+Premièrement, nous avons eu des problèmes avec Dessinable, SupportADessin et les oscillateurs. En effet, il y avait des dépendances cycliques qui posaient des problèmes lors de la compilation. (les classes n'étaient pas définies...)
+Ensuite s'est posé la question de savoir si il fallait que chaque oscillateur (pendule, ressort, ...) hérite de Oscillateur **et** de Dessinable, héritage multiple donc, ou alors s'il héritaient de Dessinable au travers d'Oscillateur par transitivité. C'est ce deuxième choix que nous avons retenu, bien qu'il nous ait demandé plus de compréhension des concepts abordés.
+Et finalement, nous avons eu un problème avec Systeme et TextViewer. En effet, nous avons décidé que Systeme *est* un Dessinable, donc il fallait y implémenter void dessine(Systeme const&). Le souci est que nous devions avoir accès, dans la portée de TextViewer, aux différents oscillateurs de système, qui sont des attributs privés, et ce sont des unique_ptr.
+Après de longues réflexions, nous avons finalement implémenté une méthode *affiche()* dans Système, qui appelle *dessine()* de chaque oscillateur. Ainsi, nous pouvons dessiner tous les éléments de système facilement.
+Remarquons également que cette implémentation devrait être suffisamment générale pour fonctionner avec OpenGL plus tard.
 
 ## Semaine 8
 ### Travail accompli
