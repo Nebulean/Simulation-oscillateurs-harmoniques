@@ -27,6 +27,7 @@ public:
   { _support->dessine(*this); }
 
   // getter
+  double temps() const {return _t;}
   // std::vector<std::unique_ptr<Oscillateur>> oscillateurs();
   // std::vector<std::unique_ptr<Oscillateur>>&& oscillateurs() const;
 

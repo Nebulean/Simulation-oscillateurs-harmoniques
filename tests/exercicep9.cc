@@ -21,12 +21,12 @@ int main() {
   syst1.ajoute(new Ressort(ressort));
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
-  syst1.affiche();
+  syst1.dessine();
 
   for (size_t i = 0; i < 3; ++i) {
     cout << "ÉTAPE " << i+1 << endl;
     syst1.evolue();
-    syst1.affiche();
+    syst1.dessine();
   };
 
   Systeme syst2(0.01, 0, &ecran, &IEC);
@@ -36,12 +36,12 @@ int main() {
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;
-  syst2.affiche();
+  syst2.dessine();
 
   for (size_t i = 0; i < 3; ++i) {
     cout << "ÉTAPE " << i+1 << endl;
     syst2.evolue();
-    syst2.affiche();
+    syst2.dessine();
   };
 
   return 0;

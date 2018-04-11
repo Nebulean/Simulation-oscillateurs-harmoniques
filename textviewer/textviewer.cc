@@ -21,6 +21,7 @@ void TextViewer::dessine(Ressort const& ressort) {
 void TextViewer::dessine(Systeme const& syst) {
   _flot << "***** Systeme *****" << endl;
   syst.affiche();
+  cout << "t = " << syst.temps() << endl << endl;
 
   // for(auto const& osc : syst.oscillateurs()){
   //   // _flot << *osc << endl;
