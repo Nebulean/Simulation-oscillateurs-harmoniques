@@ -2,18 +2,21 @@
 using namespace std;
 
 
-/* On a les calculs suivants à effectuer.
+
+/* Méthode qui fait évoluer les oscillateurs.
+ *
+ * L'intégration d'Euler-Cromer est définit de cette manière.
+ *
  * Q(T(n)) = Q(T(n-1)) + dt*f(P(T(n-1)))
  * P(T(n)) = P(T(n-1)) + dt*Q(T(n))
- * avec T(n) = T(0) + n*dt et f === evolution
+ *
+ * avec T(n) = T(0) + n*dt et f la méthode d'évolution propre à chaque
+ * oscillateur.
+ *
+ * Cette méthode reprend donc cette définition telle quelle.
  */
-
 void Eulercromer::evolue(Oscillateur& osc, double dt, double t)
 {
-  /* Méthode d'évolution de l'oscillateur. Celle-ci reprend la méthode
-   * d'Euler-Cromer défini dans le complément mathématique. Elle modifie
-   * le vecteur P, et sa dérivée Q, de l'oscillateur donné en argument.
-   */
   osc.setQ( osc.Q() + dt * osc.f(t) ); // Q(T(n)) = Q(T(n-1)) + dt*f(P(T(n-1)))
   osc.setP( osc.P() + dt * osc.Q() ); // P(T(n)) = P(T(n-1)) + dt*Q(T(n))
 }

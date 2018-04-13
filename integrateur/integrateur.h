@@ -5,8 +5,14 @@
 
 class Integrateur{
 public:
-  // Integrateur() {}; // l'intégrateur n'a pas d'argument "pas de temps" et "temps courant". C'est la méthode evolue qui les prend en paramètres.
-  // méthode qui fait évoluer l'oscillateur donné en argument.
+  /* Le constructeur et le destructeur par défaut sont suffisent, car il n'y a
+   * rien à initialiser dans cette classe.
+   */
+
+  /* Méthode qui fait évoluer l'oscillateur donné en argument.
+   * Elle est virtuelle pure, car on ne peut pas la définir ici, et ça force la
+   * substitution dans les autres intégrateurs.
+   */
   virtual void evolue(Oscillateur&, double, double) = 0;
 };
 

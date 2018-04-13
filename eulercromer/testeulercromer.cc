@@ -3,42 +3,52 @@
 #include "../vecteur/vecteur.h"
 using namespace std;
 
+/* Correctif du 29.03.18
+ * La classe Chute ne fonctionne PLUS depuis que Oscillateur est un
+ * dessinable. Donc ce test n'est plus fonctionnel.
+ **/
+
+
+/* Classe d'exemple définit dans ce fichier test uniquement pour deux raisons.
+ *    - Ce n'est pas réellement un oscillateur, mais on l'utilise juste pour
+ *     savoir si nos implémentations sont fonctionnelles.
+ *    - Elle n'a rien à voir avec le projet, donc nous la définissons que ici
+ *      pour ne pas avoir plein de code "inutile" éparpillé dans le projet.
+ */
 class Chute : public Oscillateur
 {
 public:
+  // constructeur de Chute.
   Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}), _m(m) {};
 
+  // Simple méthode retournant simplement le vecteur g.
   Vecteur f(double t) override{
-    // dans cet exemple, t n'est pas utilisé.
     return Vecteur({0, -9.81});
   }
 
-  /* Correctif du 29.03.18
-   * cette classe chute ne fonctionne PLUS depuis que Oscillateur est un
-   * dessinable.
-   **/
-
-
 private:
+  // masse de la chute. Inutilisé.
   double _m;
 };
 
 int main(){
+  // on initialise le temps et le pas de temps.
   double t(0);
   double dt(0.01);
+
+  // on crée une instance de Chute.
   Chute c(0.127);
+
+  // on initialise un intégrateur EulerCromer
   Eulercromer IEC;
+
+  // on fait évoluer l'instance de Chute un certain nombre de fois.
   for(size_t i(0); i < 100; ++i){
     cout << c << endl;
     IEC.evolue(c, dt, t);
   }
 
   cout << c << endl;
-  // Chute c(0.127);
-  // Eulercromer integrateurEC;
-  // cout << c << endl;
-  // integrateurEC.evolue(c, 0.01, 1);
-  // cout << c << endl;
 
   return 0;
 }

@@ -6,9 +6,11 @@
 
 class Eulercromer : public Integrateur {
 public:
-  // Eulercromer() {}; // voir constructeur de integrateur
+  /* le constructeur et destructeur par défaut est suffisent, vu que l'on a
+   * rien à initialiser.
+   */
 
-  // méthode qui fait évoluer le stade de l'oscillateur donné en argument.
+  // méthode qui fait évoluer l'oscillateur donné en argument.
   void evolue(Oscillateur&, double, double) override;
 };
 

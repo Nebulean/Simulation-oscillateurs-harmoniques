@@ -2,10 +2,6 @@
 #define OSCILLATEUR_H
 
 #include "../vecteur/vecteur.h"
-/* Un oscillateur EST un dessinable. De plus, pour ne pas avoir à le ré-importer
- * partout cette classe.
- * Remarque: Pour ne pas tout casser, oscillateur N'EST PLUS un dessinable. Ah non en fait.
- */
 #include <initializer_list>
 #include <iostream>
 #include "../dessinable/dessinable.h"
@@ -13,27 +9,29 @@
 
 class Oscillateur : public Dessinable{
 public:
-  // constructeurs
+  // constructeurs d'oscillateur.
   Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, SupportADessin*);
-  virtual Vecteur f(double t) = 0; // marquer toute les fonctions substituées à celle-ci en utilisant override.
+
+  /* méthode d'évolution propre à chaque oscillateur. On ne peut pas la définir
+   * ici, et on force la substitution dans les sous-classes. Donc cette méthode
+   * est virtuelle pure.
+   */
+  virtual Vecteur f(double t) = 0;
 
   // accesseurs
-  Vecteur P() const {return _P;}; // pas très optimisé, non ?
-  Vecteur Q() const {return _Q;}; // pas très optimisé, non ?
+  Vecteur P() const {return _P;};
+  Vecteur Q() const {return _Q;};
   Vecteur a() const {return _a;};
 
   // manipulateurs
   void setP(Vecteur const&); // utilisé pour l'évolution
   void setQ(Vecteur const&); // utilisé pour l'évolution
 
-  // méthodes héritées
-
   /* on prolonge la "pureté" de cette méthode virtuelle.
    * Elle doit être redéfinie ailleurs, dans les sous-classes, donc.
    */
   virtual void dessine() = 0;
-  // virtual void dessine() override
-  // { _support->dessine(*this); }
+
 
 private:
   Vecteur _P; // Vecteur des n paramètres du système.
@@ -42,7 +40,7 @@ private:
   Vecteur _a; // Vecteur de direction principale
 };
 
-// surcharge externe
+// surcharge externe de l'opérateur d'affichage.
 std::ostream& operator<<(std::ostream&, Oscillateur const&);
 
 #endif // OSCILLATEUR_H

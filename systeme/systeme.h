@@ -19,7 +19,7 @@ public:
    */
   virtual ~Systeme();
 
-  // constructeurs
+  // constructeurs de Systeme.
   Systeme(double, double, SupportADessin*, Integrateur*);
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
@@ -28,18 +28,17 @@ public:
 
   // getter
   double temps() const {return _t;}
-  // std::vector<std::unique_ptr<Oscillateur>> oscillateurs();
-  // std::vector<std::unique_ptr<Oscillateur>>&& oscillateurs() const;
-
-  // surcharge internes
-  // std::ostream& operator<<(std::ostream&);
 
 
   // méthode(s)
-  void affiche() const; // pour dessine(Systeme)
-  void ajoute(Oscillateur*); // Pour les tests. L'argument est un pointeur pour pouvoir utiliser le polymorphisme.
-  // méthode vider_tableau() ?
-  void evolue(); // utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
+  // utilisé pour dessiner le système.
+  void affiche() const;
+
+  // ajoute un oscillateur à la collection hétérogène.
+  void ajoute(Oscillateur*);
+
+  // utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
+  void evolue();
 
 protected:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
@@ -63,7 +62,7 @@ protected:
 
   /* Integrateur servant à faire évoluer le système d'un pas de temps.
    */
-  Integrateur* _integr; // pointeur ?
+  Integrateur* _integr;
 };
 
 #endif // H_SYSTEME

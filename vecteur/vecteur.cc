@@ -32,11 +32,6 @@ Vecteur::Vecteur(double x, double y, double z){
 }
 
 // ======================================================================
-// Vecteur::Vecteur(vector<double> const& v)
-// : _coord(v)
-// { }
-
-// ======================================================================
 Vecteur::Vecteur(initializer_list<double> const& list) : _coord(list)
 { }
 
@@ -212,21 +207,6 @@ const Vecteur operator*(Vecteur const& v, double const& a)
    return a * v;
 }
 
-// old
-// Vecteur Vecteur::mult(double const& a) const
-// {
-//   /* Multiplication d'un vecteur par un scalaire.
-//    * Ainsi, pour v1=(1,2,3), on obtient: a*v1=(a*1,a*2,a*3).
-//    */
-//   Vecteur result(*this); // on copie l'instance courante
-//   for (size_t i = 0; i < dim(); ++i) {
-//     result._coord[i] = a*result._coord[i]; // on multiplie chaque coordonnée par a
-//   }
-//   return result;
-// }
-
-
-
 // ======================================================================
 Vecteur& Vecteur::operator+=(Vecteur const& v)
 {
@@ -247,26 +227,6 @@ const Vecteur operator+(Vecteur v1, Vecteur const& v2)
   return v1 += v2;
 }
 
-// old
-// Vecteur Vecteur::addition(Vecteur v) const
-// {
-//   /* Additionne deux vecteurs.
-//    * Soient trois instances de Vecteur: v1, v2 et v3 (qu'importe leur valeurs)
-//    * Pour les additionner, on utilise: v3 = v1.addition(v) pour obtenir le résultat de v1 + v2.
-//    *
-//    * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
-//    *           En effet, additionner deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
-//    */
-//
-//   // on teste si les vecteurs ont la même dimension.
-//   dimCheck(v);
-//
-//     // si les deux dimensions sont identiques, alors on procède à l'addition.
-//   for (size_t i = 0; i < v.dim(); i++) {
-//     v._coord[i] += _coord[i]; // on ajoute la valeur de a
-//   }
-//   return v;
-// }
 
 // ======================================================================
 Vecteur& Vecteur::operator-=(Vecteur const& v)
@@ -288,28 +248,6 @@ const Vecteur operator-(Vecteur v1, Vecteur const& v2)
   return v1 -= v2;
 }
 
-// old
-// Vecteur Vecteur::soustraction(Vecteur const& v) const
-// {
-//   /* Soustrait deux vecteurs.
-//    * Soit trois instances quelconques de Vecteur: v1, v2, v3.
-//    * Alors v1 - v2 sera donné par v3 = v1.soustraction(v2)
-//    *
-//    * Probleme: Dans la cas ou les deux vecteurs ont une dimension différente, on lance une exception.
-//    *           En effet, soustraire deux vecteurs de dimensions différentes n'a aucun sens mathématiquement.
-//    */
-//   Vecteur result; // la variable de retour
-//   result = *this; // on y applique les valeurs de l'instance courante.
-//
-//     // on teste si les vecteurs ont la même dimension.
-//   dimCheck(v);
-//
-//   // si les deux dimensions sont identiques, alors on procède à la soustraction.
-//   for (size_t i = 0; i < v.dim(); i++) {
-//     result._coord[i] -= v._coord[i]; // on ajoute la valeur de a
-//   }
-//   return result;
-// }
 
 const Vecteur operator-(Vecteur const& v)
 {
@@ -318,19 +256,6 @@ const Vecteur operator-(Vecteur const& v)
   return -1*v;
 }
 
-
-// old
-// Vecteur Vecteur::oppose() const
-// {
-//   /* Inverse le vecteur, en inversant son sens.
-//    * Ainsi, l'inverse d'un vecteur v1=(1,2,3) est -v1=(-1,-2,-3).
-//    */
-//   Vecteur result(*this); // on copie l'instance courante
-//   for (size_t i = 0; i < dim(); i++) {
-//     result._coord[i] = -1*result._coord[i]; // on multiplie chaque coordonnée par -1
-//   }
-//   return result;
-// }
 
 // ======================================================================
 ostream& operator<<(ostream& output, Vecteur const& v)
@@ -345,17 +270,6 @@ ostream& operator<<(ostream& output, Vecteur const& v)
   return output;
 }
 
-// old
-// void Vecteur::affiche() const
-// {
-//   /* Affiche le vecteur courant.
-//    * Un vecteur (1,2,3) sera simplement affiché 1 2 3.
-//    */
-//   for (size_t i = 0; i < dim(); i++) {
-//     cout << _coord[i] << " ";
-//   }
-//   cout << endl;
-// }
 
 
 // ======================================================================
@@ -375,22 +289,6 @@ bool Vecteur::operator==(Vecteur const& v) const
   return true;
 }
 
-// old
-// bool Vecteur::compare(Vecteur const& v) const
-// {
-//   /* Compare deux vecteur.
-//    * Si ils sont pareils, alors la méthode retourne true, sinon, elle retourne false.
-//    */
-//   if (v.dim() != dim()) {
-//     return false;
-//   }
-//   for (size_t i = 0; i < dim(); i++) {
-//     if (_coord[i] != v._coord[i]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
 
 // ======================================================================
 bool operator!=(Vecteur const& v1, Vecteur const& v2)
@@ -420,25 +318,3 @@ const Vecteur operator^(Vecteur v1, Vecteur const& v2)
 {
   return v1 ^= v2;
 }
-
-// old
-// calcule le produit vectoriel
-// Vecteur Vecteur::prod_vect(Vecteur const& v) const
-// {
-//   /* Calcul le produit vectoriel de deux vecteurs dans R3.
-//    *
-//    * Problèmes:
-//    *      - Si les vecteurs ne sont pas de dimension 3, alors le produit vectoriel
-//    *        n'est pas défini. Il faut ainsi signaler une erreur.
-//    *      - Cette opération est une opération qui requiert des conditions très
-//    *        particulières. Il faudrait peut-être la dissocier de la classe Vecteur.
-//    */
-//   if (dim() != 3 or v.dim() != 3) { // on vérifie que les deux vecteurs sont bien de dimension 3
-//     throw 4;
-//   }
-//   Vecteur result;
-//   result.augmente(_coord[1]*v._coord[2] - _coord[2]*v._coord[1]);
-//   result.augmente(_coord[2]*v._coord[0] - _coord[0]*v._coord[2]);
-//   result.augmente(_coord[0]*v._coord[1] - _coord[1]*v._coord[0]);
-//   return result;
-// }
