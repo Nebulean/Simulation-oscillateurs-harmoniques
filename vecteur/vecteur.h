@@ -5,6 +5,11 @@
 #include <iostream>
 #include <initializer_list>
 
+/*!
+ * Classe appliquant les opérations classiques des vecteurs dans Rn.
+ *
+ * De plus, on y retrouve quelques méthodes appliquées dans R3 uniquement.
+ */
 class Vecteur{
 public:
   //=================== Constructeurs

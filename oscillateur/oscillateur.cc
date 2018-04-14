@@ -7,16 +7,18 @@
 
 using namespace std;
 
-// ============== CONSTRUCTEURS ===============
-// Oscillateur::Oscillateur(initializer_list<double> const& p, initializer_list<double> const& q, initializer_list<double> const& o, initializer_list<double> const& a, SupportADessin* support)
-//  : Dessinable(support), _P(p), _Q(q), _O(o), _a(a)
-// {}
+/*!
+ * Peut-être initialisé avec une liste d'initialisation, car Vecteur possède
+ * un constructeur qui le permet.
+ */
 Oscillateur::Oscillateur(Vecteur const& p, Vecteur const& q, Vecteur const& o, Vecteur const& a, SupportADessin* support)
  : Dessinable(support), _P(p), _Q(q), _O(o), _a(a)
 {}
 
 
-// ========== SURCHARGES D'OPERATEURS =========
+/*!
+ * Surcharge de l'opérateur d'affichage.
+ */
 ostream& operator<<(ostream& out, Oscillateur const& osci)
 {
   // on affiche simplement les informations de l'oscillateur.
@@ -27,7 +29,6 @@ ostream& operator<<(ostream& out, Oscillateur const& osci)
 }
 
 
-// ============== MANIPULATEURS ===============
 void Oscillateur::setP(Vecteur const& p)
 {
   _P = p;

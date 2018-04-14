@@ -6,26 +6,29 @@
 #include "../supportadessin/supportadessin.h"
 #include "../dessinable/dessinable.h"
 
+/*!
+ * Class Ressort - un oscillateur particulier.
+ */
 class Ressort : public Oscillateur {
 public:
 
-  // constructeurs
+  //! Constructeurs de ressort.
   Ressort(double masse, double elasticite, double viscosite, SupportADessin* support);
 
-  // destructeur
+  //! Destructeur de ressort.
   virtual ~Ressort() {};
 
-  // méthode d'évolution
+  //! Méthode d'évolution propre à l'oscillateur.
   Vecteur f(double temps) override;
 
-  // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
+  //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override
   { _support->dessine(*this); }
 
 private:
-  double _m;
-  double _k;
-  double _lambda;
+  double _m; //!< masse
+  double _k; //!< elasticité
+  double _lambda; //!< viscosité
 };
 
 #endif // RESSORT_H
