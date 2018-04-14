@@ -1,11 +1,13 @@
 #include "pendule.h"
 #include <iostream>
 #include "../eulercromer/eulercromer.h"
+#include "../supportadessin/supportadessin.h"
 
 using namespace std;
 
 int main(){
 
+  // test avant P8.
   Pendule pendule(1, 1, 0);
   Eulercromer IEC;
   cout << pendule << endl;

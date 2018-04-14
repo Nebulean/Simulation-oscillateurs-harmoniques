@@ -9,7 +9,9 @@ vecteur/testvecteur
 pendule/testpendule
 ressort/testressort
 dessinable/testdessinable
-
+textviewer/testtextviewer
+systeme/testsysteme
+tests/exercicep9
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
@@ -24,3 +26,5 @@ build/*
 
 # Quelques documents non importants.
 eulercromer/tests/test*
+
+bin/*

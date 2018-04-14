@@ -2,9 +2,10 @@
 #include <initializer_list>
 #include "../vecteur/vecteur.h"
 #include "../oscillateur/oscillateur.h"
+#include "../supportadessin/supportadessin.h"
 
-Ressort::Ressort(double m, double k, double lambda)
- : Oscillateur({0.18},{0.0},{0.0, 0.0, 0.0},{0.8, 0.0, 0.6}), _m(m), _k(k), _lambda(lambda)
+Ressort::Ressort(double m, double k, double lambda, SupportADessin* support)
+ : Oscillateur({0.18},{0.0},{0.0, 0.0, 0.0},{0.8, 0.0, 0.6}, support), _m(m), _k(k), _lambda(lambda)
  {}
 
 Vecteur Ressort::f(double t) {

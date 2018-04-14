@@ -6,13 +6,18 @@ using namespace std;
 class Chute : public Oscillateur
 {
 public:
-  // Chute() : Oscillateur({0,0}, {0,0}, {0,0}) {}; // inutile, car il FAUT initialiser _m.
-  Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}), _m(m) {};
+  Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}), _m(m) {};
 
   Vecteur f(double t) override{
     // dans cet exemple, t n'est pas utilisé.
     return Vecteur({0, -9.81});
   }
+
+  /* Correctif du 29.03.18
+   * cette classe chute ne fonctionne PLUS depuis que Oscillateur est un
+   * dessinable.
+   **/
+
 
 private:
   double _m;

@@ -3,11 +3,14 @@
 #include <initializer_list>
 #include "../vecteur/vecteur.h"
 #include "../oscillateur/oscillateur.h"
+#include <iostream>
+#include "../dessinable/dessinable.h"
+#include "../supportadessin/supportadessin.h"
 
 using namespace std;
 
-Pendule::Pendule(double m, double L, double lambda)
- : Oscillateur({M_PI/2},{0.0},{0.0},{1.0, 0.0}), _m(m), _L(L), _lambda(lambda)
+Pendule::Pendule(double m, double L, double lambda, SupportADessin* support)
+ : Oscillateur({M_PI/2}, {0.0}, {0.0}, {1.0, 0.0}, support), _m(m), _L(L), _lambda(lambda)
  {}
 
 /* Équation d'évolution du pendule pesant:

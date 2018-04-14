@@ -3,15 +3,34 @@
 
 #include "../vecteur/vecteur.h"
 #include "../oscillateur/oscillateur.h"
+#include "../dessinable/dessinable.h"
+#include "../supportadessin/supportadessin.h"
+
+// forward declaration
+// class Oscillateur; // on doit avoir des définitions circulaires.
 
 class Pendule : public Oscillateur {
 public:
 
-// constructeurs
-  Pendule(double, double, double);
+  // constructeurs
+  Pendule(double, double, double, SupportADessin*);
 
-// méthode d'évolution
+  // destructeur
+  virtual ~Pendule() {};
+
+  // méthode d'évolution
   Vecteur f(double) override;
+
+  // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
+  virtual void dessine() override
+  { _support->dessine(*this); }
+
+  // la méthode de dessin.
+  // void dessine();
+  /* Cette méthode n'est pas ici ! Elle se situera dans, par exemple,
+   * les fichers de simulation en mode texte ou graphique.
+   */
+
 
 private:
   double _m; // masse
