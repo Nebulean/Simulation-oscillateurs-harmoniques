@@ -9,7 +9,8 @@ using namespace std;
  **/
 
 
-/* Classe d'exemple définit dans ce fichier test uniquement pour deux raisons.
+/*!
+ * Classe d'exemple définit dans ce fichier test uniquement pour deux raisons.
  *    - Ce n'est pas réellement un oscillateur, mais on l'utilise juste pour
  *     savoir si nos implémentations sont fonctionnelles.
  *    - Elle n'a rien à voir avec le projet, donc nous la définissons que ici
@@ -18,16 +19,16 @@ using namespace std;
 class Chute : public Oscillateur
 {
 public:
-  // constructeur de Chute.
+  //! Constructeur de Chute.
   Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}), _m(m) {};
 
-  // Simple méthode retournant simplement le vecteur g.
+  //! Méthode retournant simplement le vecteur g.
   Vecteur f(double t) override{
     return Vecteur({0, -9.81});
   }
 
 private:
-  // masse de la chute. Inutilisé.
+  //! Masse de l'objet en chute. Inutilisé.
   double _m;
 };
 
