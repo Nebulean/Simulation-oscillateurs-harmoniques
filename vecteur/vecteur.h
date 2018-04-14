@@ -9,21 +9,21 @@ class Vecteur{
 public:
   //=================== CONSTRUCTEURS
   Vecteur() = default; // constructeur par défaut, utile si on veux créer un vecteur complétement vide. Ne contient aucun code.
-  explicit Vecteur(size_t); // constructeur de vecteur vide, de dimension donnée en paramètre. Explicite est utilisé pour éviter les écriture du type 5 * v.
-  Vecteur(double, double, double); // constructeur de vecteur en 3 dimensions
+  explicit Vecteur(size_t dimension); // constructeur de vecteur vide, de dimension donnée en paramètre. Explicite est utilisé pour éviter les écriture du type 5 * v.
+  Vecteur(double x, double y, double z); // constructeur de vecteur en 3 dimensions
   // Vecteur(std::vector<double> const&); // constructeur de vecteur à partir de la liste donnée en paramètre
-  Vecteur(std::initializer_list<double> const&); // constructeur à partir d'une initializer_list
+  Vecteur(std::initializer_list<double> const& coordonnees); // constructeur à partir d'une initializer_list
 
   //=================== SURCHARGES D'OPERATEUR INTERNES
-  Vecteur& operator+=(Vecteur const&);
-  Vecteur& operator-=(Vecteur const&);
-  bool operator==(Vecteur const&) const;
-  Vecteur& operator*=(double const&); // v*=a <=> v.operator*(a)
-  Vecteur& operator^=(Vecteur const&);
+  Vecteur& operator+=(Vecteur const& operande2);
+  Vecteur& operator-=(Vecteur const& operande2);
+  bool operator==(Vecteur const& vecteur_auquel_comparer) const;
+  Vecteur& operator*=(double const& operande2); // v*=a <=> v.operator*(a)
+  Vecteur& operator^=(Vecteur const& operande2);
 
 
-  void augmente(double); // augmente la dimension du vecteur courant
-  double get_coord(size_t) const;
+  void augmente(double coordonnee); // augmente la dimension du vecteur courant en y ajoutant une coordonnée
+  double get_coord(size_t position_de_la_coordonnee) const;
   // void affiche() const; // affiche le vecteur courant
   // bool compare(Vecteur const&) const; // compare deux vecteurs
 
@@ -31,7 +31,7 @@ public:
   // Vecteur soustraction(Vecteur const&) const; // soustrait deux vecteurs
   // Vecteur oppose() const; // inverse un vecteur (-coordonnées)
   // Vecteur mult(double const&) const; // multiplie un vecteur par un scalaire
-  double prod_scal(Vecteur const&) const; // produit scalaire entre deux vecteurs
+  double prod_scal(Vecteur const& operande2) const; // produit scalaire entre deux vecteurs
   double norme2() const; // calcule le carré de la norme
   double norme() const; // calcule la norme
   // Vecteur prod_vect(Vecteur const&) const; // produit vectoriel entre deux vecteurs
@@ -40,21 +40,21 @@ public:
 
 private:
   std::vector<double> _coord; // coordonnées du vecteurs
-  void dimCheck(Vecteur const&) const; // méthode qui lance une exception en cas de dimension différentes.
-  void set_coord(size_t, double); // applique une valeur à une coordonnée
+  void dimCheck(Vecteur const& vecteur2) const; // méthode qui lance une exception en cas de dimension différentes.
+  void set_coord(size_t position, double valeur); // applique une valeur à une coordonnée
 };
 
 
 //===================SURCHARGES D'OPERATEUR EXTERNES
-std::ostream& operator<<(std::ostream&, Vecteur const&);
-const Vecteur operator+(Vecteur, Vecteur const&);
-const Vecteur operator-(Vecteur, Vecteur const&);
-const Vecteur operator-(Vecteur const&);
-const Vecteur operator*(double const&, Vecteur); // a*v <=> operator*(a,v)
-const Vecteur operator*(Vecteur const&, double const&); // v*a <=> operator*(v,a)
-double operator*(Vecteur const&, Vecteur const&);
-bool operator!=(Vecteur const&, Vecteur const&);
-const Vecteur operator^(Vecteur, Vecteur const&);
+std::ostream& operator<<(std::ostream& flot_de_sortie, Vecteur const& veceur_a_afficher);
+const Vecteur operator+(Vecteur operande1, Vecteur const& operande2);
+const Vecteur operator-(Vecteur operande1, Vecteur const& operande2);
+const Vecteur operator-(Vecteur const& vecteur); // surcharge de l'opérateur "opposé"
+const Vecteur operator*(double const& scalaire, Vecteur vecteur_a_multiplier); // a*v <=> operator*(a,v)
+const Vecteur operator*(Vecteur const& vecteur_a_multiplier, double const& scalaire); // v*a <=> operator*(v,a)
+double operator*(Vecteur const& operande1, Vecteur const& operande2);
+bool operator!=(Vecteur const& operande1, Vecteur const& operande2);
+const Vecteur operator^(Vecteur operande1, Vecteur const& operande2);
 // Vecteur& operator*=()
 // a*v = operator(a, v)
 // v*a = v.operator(a)

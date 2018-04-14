@@ -13,7 +13,7 @@ public:
    * Elle est virtuelle pure, car on ne peut pas la définir ici, et ça force la
    * substitution dans les autres intégrateurs.
    */
-  virtual void evolue(Oscillateur&, double, double) = 0;
+  virtual void evolue(Oscillateur& oscillateur, double pas_de_temps, double temps) = 0;
 };
 
 #endif // H_INTEGRATEUR

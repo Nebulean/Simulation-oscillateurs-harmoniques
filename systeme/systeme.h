@@ -20,7 +20,7 @@ public:
   virtual ~Systeme();
 
   // constructeurs de Systeme.
-  Systeme(double, double, SupportADessin*, Integrateur*);
+  Systeme(double pas_de_temps, double temps, SupportADessin* support, Integrateur* integrateur);
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
   virtual void dessine() override
@@ -35,12 +35,12 @@ public:
   void affiche() const;
 
   // ajoute un oscillateur à la collection hétérogène.
-  void ajoute(Oscillateur*);
+  void ajoute(Oscillateur* oscillateur_a_ajouter);
 
   // utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
   void evolue();
 
-protected:
+private:
   /* Collection hétérogène d'oscillateurs. Nous utilisons des unique_ptr pour
    * pour éviter un grand nombre de problèmes liés aux pointeurs.
    */

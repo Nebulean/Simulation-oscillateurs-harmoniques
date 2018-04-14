@@ -10,15 +10,15 @@
 class TextViewer : public SupportADessin {
 public:
   // constructeur de TextViewer
-  TextViewer(std::ostream&);
+  TextViewer(std::ostream& flot_de_sortie);
 
   // destructeur de TextViewer
   virtual ~TextViewer() {};
 
   // substitution des fonctions dessine() de SupportADessin
-  void dessine(Pendule const&) override;
-  void dessine(Ressort const&) override;
-  void dessine(Systeme const&) override;
+  void dessine(Pendule const& pendule_a_dessiner) override;
+  void dessine(Ressort const& ressort_a_dessiner) override;
+  void dessine(Systeme const& systeme_a_dessiner) override;
 
 private:
   // _flot utilisé pour l'affichage dans TextViewer.

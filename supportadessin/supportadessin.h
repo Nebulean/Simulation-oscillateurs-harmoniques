@@ -11,9 +11,9 @@ public:
   virtual ~SupportADessin() {}
 
   // l'ensemble des méthodes dessinant les objets dessinables.
-  virtual void dessine(Pendule const&) = 0;
-  virtual void dessine(Ressort const&) = 0;
-  virtual void dessine(Systeme const&) = 0;
+  virtual void dessine(Pendule const& pendule_a_dessiner) = 0;
+  virtual void dessine(Ressort const& ressort_a_dessiner) = 0;
+  virtual void dessine(Systeme const& systeme_a_dessiner) = 0;
 };
 
 #endif // H_SUPPORTADESSIN

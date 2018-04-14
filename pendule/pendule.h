@@ -10,13 +10,13 @@
 class Pendule : public Oscillateur {
 public:
   // constructeurs de pendule
-  Pendule(double, double, double, SupportADessin*);
+  Pendule(double masse, double longueur, double viscosite, SupportADessin* support);
 
   // destructeur de pendule
   virtual ~Pendule() {};
 
   // substitution de la méthode d'évolution
-  Vecteur f(double) override;
+  Vecteur f(double temps) override;
 
   // méthode de dessin qui DOIT être implémenté dans toutes les sous-classes de Dessinable.
   virtual void dessine() override

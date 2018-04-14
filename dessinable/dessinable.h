@@ -9,7 +9,7 @@ class SupportADessin;
 class Dessinable{
 public:
   // constructeur de Dessinable
-  Dessinable(SupportADessin*);
+  Dessinable(SupportADessin* support);
 
   // Destructeur virtuel vide
   virtual ~Dessinable() {};

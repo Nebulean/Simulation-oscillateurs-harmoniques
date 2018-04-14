@@ -16,7 +16,7 @@ public:
    * ici, et on force la substitution dans les sous-classes. Donc cette méthode
    * est virtuelle pure.
    */
-  virtual Vecteur f(double t) = 0;
+  virtual Vecteur f(double temps) = 0;
 
   // accesseurs
   Vecteur P() const {return _P;};
@@ -24,8 +24,8 @@ public:
   Vecteur a() const {return _a;};
 
   // manipulateurs
-  void setP(Vecteur const&); // utilisé pour l'évolution
-  void setQ(Vecteur const&); // utilisé pour l'évolution
+  void setP(Vecteur const& position); // utilisé pour l'évolution
+  void setQ(Vecteur const& vitesse); // utilisé pour l'évolution
 
   /* on prolonge la "pureté" de cette méthode virtuelle.
    * Elle doit être redéfinie ailleurs, dans les sous-classes, donc.
@@ -41,6 +41,6 @@ private:
 };
 
 // surcharge externe de l'opérateur d'affichage.
-std::ostream& operator<<(std::ostream&, Oscillateur const&);
+std::ostream& operator<<(std::ostream& flot_de_sortie, Oscillateur const& oscillateur_a_afficher);
 
 #endif // OSCILLATEUR_H
