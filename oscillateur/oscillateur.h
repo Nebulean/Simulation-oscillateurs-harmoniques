@@ -2,7 +2,7 @@
 #define OSCILLATEUR_H
 
 #include "../vecteur/vecteur.h"
-#include <initializer_list>
+// #include <initializer_list>
 #include <iostream>
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
@@ -10,8 +10,8 @@
 class Oscillateur : public Dessinable{
 public:
   // constructeurs d'oscillateur.
-  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, SupportADessin*);
-
+  // Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, SupportADessin*);
+  Oscillateur(Vecteur const& position, Vecteur const& vitesse, Vecteur const& origine, Vecteur const& direction_principale, SupportADessin* support);
   /* méthode d'évolution propre à chaque oscillateur. On ne peut pas la définir
    * ici, et on force la substitution dans les sous-classes. Donc cette méthode
    * est virtuelle pure.
