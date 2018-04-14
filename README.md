@@ -1,4 +1,11 @@
 # Oscillateurs couplés
+Bienvenu dans ce projet d'informatique du Bachelor 2 à l'EPFL.
+
+Nous y réalisons une simulation d'oscillateurs.
+
+Vous pouvez retrouver les pages associées dans le menu de la page.
+
+Projet réalisé par **Delphine Martres** et **Damien Korber**.
 ## Table des matières
 1. [Compilation](#compilation)
 2. [Utilisation](#utilisation)
@@ -12,6 +19,13 @@ Pour compiler le projet ou les tests qui sont encore compilable, il suffit d'exe
 qmake # ou qmake-qt5 dans certaines distributions. Génère le Makefile. Attention, il faut utiliser Qt5 !
 make # Compile le projet ou les tests.
 ```
+
+### (Bonus) La documentation
+La documentation du projet peut-être générée avec Doxygen. Pour ce faire, rien de plus simple !
+
+Il suffit de se rendre à la racine du projet et d'executer `doxygen doxyfile`.
+
+La documentation ainsi générée se trouve dans le dossier `docs/`.
 
 ## Utilisation <a name="utilisation"/>
 A REMPLIR
