@@ -2,8 +2,8 @@
 using namespace std;
 
 
-
-/* Méthode qui fait évoluer les oscillateurs.
+/*!
+ * Méthode qui fait évoluer les oscillateurs.
  *
  * L'intégration d'Euler-Cromer est définit de cette manière.
  *

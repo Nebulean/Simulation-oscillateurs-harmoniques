@@ -9,12 +9,12 @@
 
 using namespace std;
 
-// constructeur de pendule
 Pendule::Pendule(double m, double L, double lambda, SupportADessin* support)
  : Oscillateur({M_PI/2}, {0.0}, {0.0}, {1.0, 0.0}, support), _m(m), _L(L), _lambda(lambda)
  {}
 
-/* Équation d'évolution du pendule pesant, définie de cette manière:
+/*!
+ * Équation d'évolution du pendule pesant, définie de cette manière:
  *f(t,P,Q) = (-g/L)sin(P1)-(lambda/(m*L^2))Q1
  */
 Vecteur Pendule::f(double t) {
