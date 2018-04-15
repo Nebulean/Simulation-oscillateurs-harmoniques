@@ -26,7 +26,7 @@ En bref: La première version de la classe Vecteur est finie.
 
 ### Problèmes rencontrés
 Nous avons eu quelques questions de conception, des question principalement liée à "Est-ce que c'est bien de faire X de la manière Y".
-Nous avons également eu un problème avec les exceptions en c++. Nos souvenirs sur le cours à ce sujet, qui date d'il y a plus d'un an pour nous, n'étaient plus très frais , et les réponses données sur internet ne sont guères suffisantes. La solution est donc de relire le cours sur les exceptions.
+Nous avons également eu un problème avec les exceptions en c++. Nos souvenirs sur le cours à ce sujet, qui date d'il y a plus d'un an pour nous, n'étaient plus très frais , et les réponses données sur internet ne sont guère suffisantes. La solution est donc de relire le cours sur les exceptions.
 
 ## Semaine 3
 ### Travail accompli
@@ -63,12 +63,12 @@ Cette semaine de travail a été essentiellement composé de Jeudi soir. Le rest
 ### Travail accompli
 Nous avons essentiellement réalisé une première version de P8. Cette version n'était pas fonctionnelle, mais avait au moins l'avantage de poser les bases.
 ### Problèmes rencontrés
-L'essentiel des soucis sont apparu après coup. En effet, la version de P8 faite ici n'est pas terrible. Il y a quelques implémentation qui font défaut, et qui méritent d'être retravaillés.
+L'essentiel des soucis sont apparu après coup. En effet, la version de P8 faite ici n'est pas terrible. Il y a quelques implémentation qui font défaut, et qui méritent d'être retravaillées.
 
 ## Semaine 7
 Semaine de vacances, donc on a été efficace.
 ### Travail accompli
-Nous avons réalisé l'entièreté de P8 et P9. Ceux-ci sont désormais fonctionnels, car nous avons corrigé la plupart des problèmes d'implémentation de la semaine précédente.
+Nous avons réalisé l'entièreté de P8 et le début de P9. Ceux-ci sont désormais fonctionnels, car nous avons corrigé la plupart des problèmes d'implémentation de la semaine précédente.
 ### Problèmes rencontrés
 Malgré le travail fourni cette semaine, nous avons tout-de-même eut quelques *gros* problèmes d'implémentation, qui nous ont bloqué pendant deux jours.
 Premièrement, nous avons eu des problèmes avec Dessinable, SupportADessin et les oscillateurs. En effet, il y avait des dépendances cycliques qui posaient des problèmes lors de la compilation. (les classes n'étaient pas définies...)
@@ -79,7 +79,9 @@ Remarquons également que cette implémentation devrait être suffisamment gén�
 
 ## Semaine 8
 ### Travail accompli
+Nous avons terminé P9 et rendu le code plus clair en appliquant les conseils des assistants et du professeur, notamment en nommant tous les paramètres dans les fichiers .h.
 ### Problèmes rencontrés
+RAS.
 
 
 ## Semaine 9
