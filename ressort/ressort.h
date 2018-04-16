@@ -26,7 +26,7 @@ public:
   virtual void dessine() override
   { _support->dessine(*this); }
 
-  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  // Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot) const override;
 
 private:

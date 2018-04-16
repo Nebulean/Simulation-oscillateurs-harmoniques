@@ -53,7 +53,4 @@ private:
   Vecteur _a; //!< Vecteur de direction principale.
 };
 
-// //! surcharge externe de l'opérateur d'affichage.
-// std::ostream& operator<<(std::ostream& flot_de_sortie, Oscillateur const& oscillateur_a_afficher);
-
 #endif // OSCILLATEUR_H

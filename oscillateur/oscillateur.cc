@@ -15,20 +15,6 @@ Oscillateur::Oscillateur(Vecteur const& p, Vecteur const& q, Vecteur const& o, V
  : Dessinable(support), _P(p), _Q(q), _O(o), _a(a)
 {}
 
-
-/*!
- * Surcharge de l'opérateur d'affichage.
- */
-ostream& operator<<(ostream& out, Oscillateur const& osci)
-{
-  // on affiche simplement les informations de l'oscillateur.
-  out << osci.P() << " # parametre" << endl;
-  out << osci.Q() << " # vitesse" << endl;
-
-  return out;
-}
-
-
 void Oscillateur::setP(Vecteur const& p)
 {
   _P = p;

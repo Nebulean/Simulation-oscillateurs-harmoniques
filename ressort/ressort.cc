@@ -19,6 +19,7 @@ Vecteur Ressort::f(double t) {
   return Vecteur{-(_k/_m)*P().get_coord(0) - (_lambda/_m)*Q().get_coord(0) + g*a()};
 }
 
+// Affiche textuellement le ressort courant.
 void Ressort::affiche(ostream& out) const {
   out << "*** Ressort ***" << endl;
   // on affiche simplement les informations du ressort.
