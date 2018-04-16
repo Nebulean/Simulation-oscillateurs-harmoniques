@@ -2,6 +2,7 @@
 #define H_DESSINABLE
 
 #include "../supportadessin/supportadessin.h"
+#include <iostream>
 
 
 class SupportADessin;
@@ -26,10 +27,14 @@ public:
    */
   virtual void dessine() = 0; //!< Méthode de dessin des objets.
 
+  virtual void affiche(std::ostream& flot_de_sortie) const = 0; //!< Méthode d'affichage pour la surcharge d'opérateur (pour Textviewer).
+
 protected:
   //! SupportADessin utilisé par les dessinable. (Texte ou OpenGL dans notre cas)
   SupportADessin* _support;
 
 };
+
+std::ostream& operator<<(std::ostream& flot_de_sortie, Dessinable const& objet_a_afficher);
 
 #endif // H_DESSINABLE

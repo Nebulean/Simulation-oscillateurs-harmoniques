@@ -17,9 +17,10 @@ Systeme::Systeme(double dt, double t, SupportADessin* support, Integrateur* inte
 {}
 
 
-void Systeme::affiche() const {
+void Systeme::affiche(ostream& out) const {
+  out << "***** Systeme *****" << endl;
   for (auto const& osc : _oscillateurs) {
-    osc->dessine();
+    out << *osc << endl;
   };
 }
 

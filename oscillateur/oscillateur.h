@@ -43,6 +43,8 @@ public:
    */
   virtual void dessine() = 0;
 
+  virtual void affiche(std::ostream& flot_de_sortie) const = 0;
+
 
 private:
   Vecteur _P; //!< Vecteur des n paramètres du système.
@@ -51,7 +53,7 @@ private:
   Vecteur _a; //!< Vecteur de direction principale.
 };
 
-//! surcharge externe de l'opérateur d'affichage.
-std::ostream& operator<<(std::ostream& flot_de_sortie, Oscillateur const& oscillateur_a_afficher);
+// //! surcharge externe de l'opérateur d'affichage.
+// std::ostream& operator<<(std::ostream& flot_de_sortie, Oscillateur const& oscillateur_a_afficher);
 
 #endif // OSCILLATEUR_H
