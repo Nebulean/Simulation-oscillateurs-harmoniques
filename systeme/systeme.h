@@ -35,8 +35,8 @@ public:
 
 
   // méthodes
-  //! Affiche le système.
-  void affiche() const;
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& out) const override;
 
   //! Ajoute un oscillateur à la collection hétérogène.
   void ajoute(Oscillateur* oscillateur_a_ajouter);

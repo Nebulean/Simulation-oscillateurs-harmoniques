@@ -5,6 +5,7 @@
 #include "../oscillateur/oscillateur.h"
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
+#include <iostream>
 
 /*!
  * Class Pendule - un oscillateur particulier.
@@ -23,6 +24,9 @@ public:
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override
   { _support->dessine(*this); }
+
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& flot) const override;
 
 private:
   double _m; //!< masse
