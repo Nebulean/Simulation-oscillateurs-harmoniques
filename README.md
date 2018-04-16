@@ -1,5 +1,5 @@
 # Oscillateurs couplés
-Bienvenu dans ce projet d'informatique du Bachelor 2 à l'EPFL.
+Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL.
 
 Nous y réalisons une simulation d'oscillateurs.
 
@@ -14,14 +14,14 @@ Projet réalisé par **Delphine Martres** et **Damien Korber**.
 
 ## Compilation <a name="compilation"/>
 ### Compiler le projet dans son ensemble
-Pour compiler le projet ou les tests qui sont encore compilable, il suffit d'executer ces commandes.
+Pour compiler le projet ou les tests qui sont encore compilable, il suffit d'exécuter ces commandes.
 ```bash
 qmake # ou qmake-qt5 dans certaines distributions. Génère le Makefile. Attention, il faut utiliser Qt5 !
 make # Compile le projet ou les tests.
 ```
 
 ### (Bonus) La documentation
-La documentation du projet peut-être générée avec Doxygen. Pour ce faire, rien de plus simple !
+La documentation du projet peut être générée avec Doxygen. Pour ce faire, rien de plus simple !
 
 Il suffit de se rendre à la racine du projet et d'executer `doxygen doxyfile`.
 
@@ -38,7 +38,7 @@ L'organisation du projet suit une certaine structure, que voici.
 ```
 
 ## Conventions (À supprimer pour le rendu) <a name="conventions"/>
-Quelques conventions sont respectée dans ce projet.
+Quelques conventions sont respectées dans ce projet.
 ### Les commentaires.
 Pour garder le code lisible, il est utile d'avoir certaines conventions, et comme un exemple est plus parlant qu'un long texte, voici ce qui devrait être pratiqué.
 
@@ -47,7 +47,7 @@ Pour garder le code lisible, il est utile d'avoir certaines conventions, et comm
 * Brève explication de son intéret.
 * Un exemple de son fonctionnement si besoin
 *
-* Problème(s) liés à cette fonction si besoin
+* Problèmes liés à cette fonction si besoin
 *
 * Il est fortement conseillé d'écrire sur plusieurs lignes, afin de garder
 * un semblant de lisibilité. De plus, il est préférable de mettre les commentaires
