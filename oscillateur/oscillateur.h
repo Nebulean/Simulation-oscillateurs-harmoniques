@@ -43,6 +43,7 @@ public:
    */
   virtual void dessine() = 0;
 
+protected:
   virtual void affiche(std::ostream& flot_de_sortie) const = 0;
 
 

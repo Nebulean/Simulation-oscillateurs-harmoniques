@@ -25,13 +25,14 @@ public:
   virtual void dessine() override
   { _support->dessine(*this); }
 
-  
-  virtual void affiche(std::ostream& flot_de_sortie) const override;
 
 private:
   double _m; //!< masse
   double _L; //!< longueur
   double _lambda; //!< coefficient de viscosité
+
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& flot_de_sortie) const override;
 };
 
 #endif // PENDULE_H

@@ -35,9 +35,6 @@ public:
 
 
   // méthodes
-  // Utilisation du polymorphisme pour l'opérateur d'affichage.
-  virtual void affiche(std::ostream& out) const override;
-
   //! Ajoute un oscillateur à la collection hétérogène.
   void ajoute(Oscillateur* oscillateur_a_ajouter);
 
@@ -65,6 +62,9 @@ private:
 
   //! Integrateur servant à faire évoluer le système d'un pas de temps.
   Integrateur* _integr;
+
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& out) const override;
 };
 
 #endif // H_SYSTEME
