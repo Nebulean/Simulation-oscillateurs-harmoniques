@@ -43,15 +43,15 @@ public:
    */
   virtual void dessine() = 0;
 
-protected:
-  virtual void affiche(std::ostream& flot_de_sortie) const = 0;
-
 
 private:
   Vecteur _P; //!< Vecteur des n paramètres du système.
   Vecteur _Q; //!< Vecteur de dérivée de _P.
   Vecteur _O; //!< Vecteur de l'origine de l'oscillateur.
   Vecteur _a; //!< Vecteur de direction principale.
+  
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& flot_de_sortie) const = 0;
 };
 
 #endif // OSCILLATEUR_H
