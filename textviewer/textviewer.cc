@@ -24,3 +24,7 @@ void TextViewer::dessine(Systeme const& syst) {
   _flot << syst;
   cout << "t = " << syst.temps() << endl << endl;
 }
+
+void TextViewer::dessine(Torsion const& torsion) {
+  _flot << torsion << endl;
+}

@@ -17,7 +17,7 @@ public:
   Ressort(double masse, double elasticite, double viscosite, SupportADessin* support);
 
   //! Destructeur de ressort.
-  virtual ~Ressort() {};
+  virtual ~Ressort() {}
 
   //! Méthode d'évolution propre à l'oscillateur.
   Vecteur f(double temps) override;

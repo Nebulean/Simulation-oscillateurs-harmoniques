@@ -4,6 +4,7 @@
 class Pendule;
 class Ressort;
 class Systeme;
+class Torsion;
 
 /*!
  * Méthode de base des support à dessin.
@@ -25,6 +26,9 @@ public:
 
   //! Méthode de dessin de Systeme.
   virtual void dessine(Systeme const& systeme_a_dessiner) = 0;
+
+  //! Méthode de dessin de Torsion.
+  virtual void dessine(Torsion const& torsion_a_dessiner) = 0;
 };
 
 #endif // H_SUPPORTADESSIN

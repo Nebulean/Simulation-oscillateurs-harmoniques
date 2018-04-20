@@ -6,6 +6,7 @@
 #include "../pendule/pendule.h"
 #include "../ressort/ressort.h"
 #include "../systeme/systeme.h"
+#include "../torsion/torsion.h"
 
 /*!
  * Visualisation en mode texte du simulateur.
@@ -27,6 +28,9 @@ public:
 
   //! Dessine en version texte un Systeme.
   void dessine(Systeme const& systeme_a_dessiner) override;
+
+  //! Dessine en version texte un Torsion.
+  void dessine(Torsion const& torsion_a_dessiner) override;
 
 private:
   //! flot de sortie, utilisé pour l'affichage dans TextViewer.
