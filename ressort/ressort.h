@@ -7,6 +7,7 @@
 #include "../dessinable/dessinable.h"
 #include <iostream>
 #include <memory>
+#include <cmath>
 
 /*!
  * Class Ressort - un oscillateur particulier.
@@ -15,7 +16,7 @@ class Ressort : public Oscillateur {
 public:
 
   //! Constructeurs de ressort.
-  Ressort(double masse, double elasticite, double viscosite, SupportADessin* support);
+  Ressort(double masse, double elasticite, double viscosite, SupportADessin* support, Vecteur P = {0.18}, Vecteur Q = {0.0}, Vecteur O = {0.0, 0.0, 0.0}, Vecteur a = {0.8, 0.0, 0.6});
 
   //! Destructeur de ressort.
   virtual ~Ressort() {}

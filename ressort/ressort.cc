@@ -7,8 +7,8 @@
 
 using namespace std;
 
-Ressort::Ressort(double m, double k, double lambda, SupportADessin* support)
- : Oscillateur({0.18},{0.0},{0.0, 0.0, 0.0},{0.8, 0.0, 0.6}, support), _m(m), _k(k), _lambda(lambda)
+Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
+ : Oscillateur(P, Q, O, a, support), _m(m), _k(k), _lambda(lambda)
  {}
 
 /*!

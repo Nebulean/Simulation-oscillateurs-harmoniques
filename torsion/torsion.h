@@ -7,11 +7,12 @@
 #include "../supportadessin/supportadessin.h"
 #include <iostream>
 #include <memory>
+#include <cmath>
 
 class Torsion : public Oscillateur {
 public:
   //! Constructeur de pendule de torsion
-  Torsion(double moment_inertie, double constante_torsion, double friction, SupportADessin* support);
+  Torsion(double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0});
 
   //! Destructeur de pendule de torsion
   virtual ~Torsion() {}
