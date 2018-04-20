@@ -1,8 +1,8 @@
 #include "ressort.h"
 #include <initializer_list>
-#include "../vecteur/vecteur.h"
-#include "../oscillateur/oscillateur.h"
-#include "../supportadessin/supportadessin.h"
+#include "vecteur.h"
+#include "oscillateur.h"
+#include "supportadessin.h"
 #include <iostream>
 
 using namespace std;

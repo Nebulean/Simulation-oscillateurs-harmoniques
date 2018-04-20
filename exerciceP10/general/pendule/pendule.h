@@ -1,10 +1,10 @@
 #ifndef PENDULE_H
 #define PENDULE_H
 
-#include "../vecteur/vecteur.h"
-#include "../oscillateur/oscillateur.h"
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "vecteur.h"
+#include "oscillateur.h"
+#include "dessinable.h"
+#include "supportadessin.h"
 #include <iostream>
 #include <memory>
 #include <cmath> // pour M_PI

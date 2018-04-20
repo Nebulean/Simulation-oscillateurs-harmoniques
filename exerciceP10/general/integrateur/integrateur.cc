@@ -1,5 +1,5 @@
 #include "integrateur.h"
-#include "../oscillateur/oscillateur.h"
+#include "oscillateur.h"
 using namespace std;
 
 /* Ce document est vide, et ne sera pas forcément rempli dans le futur.

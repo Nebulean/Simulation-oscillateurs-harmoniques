@@ -1,8 +1,8 @@
 #ifndef H_EULERCROMER
 #define H_EULERCROMER
 
-#include "../integrateur/integrateur.h"
-#include "../oscillateur/oscillateur.h"
+#include "integrateur.h"
+#include "oscillateur.h"
 
 /*!
  * Intégrateur d'Euler-Cromer.

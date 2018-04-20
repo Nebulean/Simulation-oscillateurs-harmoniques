@@ -1,10 +1,10 @@
 #ifndef OSCILLATEUR_H
 #define OSCILLATEUR_H
 
-#include "../vecteur/vecteur.h"
+#include "vecteur.h"
 #include <iostream>
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "dessinable.h"
+#include "supportadessin.h"
 #include <memory>
 
 /*!

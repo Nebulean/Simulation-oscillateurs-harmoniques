@@ -1,7 +1,7 @@
 #include "textviewer.h"
-#include "../pendule/pendule.h"
-#include "../ressort/ressort.h"
-#include "../systeme/systeme.h"
+#include "pendule.h"
+#include "ressort.h"
+#include "systeme.h"
 #include <iostream>
 using namespace std;
 

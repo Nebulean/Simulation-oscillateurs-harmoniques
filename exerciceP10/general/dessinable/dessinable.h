@@ -1,7 +1,7 @@
 #ifndef H_DESSINABLE
 #define H_DESSINABLE
 
-#include "../supportadessin/supportadessin.h"
+#include "supportadessin.h"
 #include <iostream>
 
 

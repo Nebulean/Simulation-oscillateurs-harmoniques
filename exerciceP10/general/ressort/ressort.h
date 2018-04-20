@@ -1,10 +1,10 @@
 #ifndef RESSORT_H
 #define RESSORT_H
 
-#include "../vecteur/vecteur.h"
-#include "../oscillateur/oscillateur.h"
-#include "../supportadessin/supportadessin.h"
-#include "../dessinable/dessinable.h"
+#include "vecteur.h"
+#include "oscillateur.h"
+#include "supportadessin.h"
+#include "dessinable.h"
 #include <iostream>
 #include <memory>
 #include <cmath>

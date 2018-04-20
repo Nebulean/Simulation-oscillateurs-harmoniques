@@ -1,12 +1,12 @@
 #ifndef TEXTVIEWER_H
 #define TEXTVIEWER_H
 
-#include "../supportadessin/supportadessin.h"
+#include "supportadessin.h"
 #include <iostream>
-#include "../pendule/pendule.h"
-#include "../ressort/ressort.h"
-#include "../systeme/systeme.h"
-#include "../torsion/torsion.h"
+#include "pendule.h"
+#include "ressort.h"
+#include "systeme.h"
+#include "torsion.h"
 
 /*!
  * Visualisation en mode texte du simulateur.

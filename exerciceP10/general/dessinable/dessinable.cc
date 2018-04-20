@@ -1,5 +1,5 @@
 #include "dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "supportadessin.h"
 #include <iostream>
 using namespace std;
 

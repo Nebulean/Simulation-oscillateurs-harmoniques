@@ -1,7 +1,7 @@
 #ifndef H_INTEGRATEUR
 #define H_INTEGRATEUR
 
-#include "../oscillateur/oscillateur.h"
+#include "oscillateur.h"
 
 /*!
  * Classe de base des Intégrateurs.

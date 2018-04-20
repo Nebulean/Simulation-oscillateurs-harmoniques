@@ -1,8 +1,8 @@
 #include "systeme.h"
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
-#include "../oscillateur/oscillateur.h"
-#include "../integrateur/integrateur.h"
+#include "dessinable.h"
+#include "supportadessin.h"
+#include "oscillateur.h"
+#include "integrateur.h"
 #include <iostream>
 #include <vector>
 #include <memory>

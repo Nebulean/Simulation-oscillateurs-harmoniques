@@ -2,17 +2,16 @@
 docs/
 
 # tous les executables de tests.
-oscillateur/testoscillateur
-integrateur/testintegrateur
-eulercromer/testeulercromer
-vecteur/testvecteur
-pendule/testpendule
-ressort/testressort
-dessinable/testdessinable
-textviewer/testtextviewer
-systeme/testsysteme
-tests/exercicep9
-torsion/testtorsion
+exerciceP10/general/oscillateur/testoscillateur
+exerciceP10/general/integrateur/testintegrateur
+exerciceP10/general/eulercromer/testeulercromer
+exerciceP10/general/vecteur/testvecteur
+exerciceP10/general/pendule/testpendule
+exerciceP10/general/ressort/testressort
+exerciceP10/general/dessinable/testdessinable
+exerciceP10/general/systeme/testsysteme
+exerciceP10/general/torsion/testtorsion
+exerciceP10/text/simulationText
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
@@ -26,6 +25,4 @@ build/*
 */Makefile
 
 # Quelques documents non importants.
-eulercromer/tests/test*
-
-bin/*
+exerciceP10/general/eulercromer/tests/test*

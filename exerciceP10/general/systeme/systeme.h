@@ -3,12 +3,12 @@
 
 #include <vector>
 #include <memory> // pour les unique_ptr
-#include "../oscillateur/oscillateur.h"
+#include "oscillateur.h"
 #include <initializer_list>
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "dessinable.h"
+#include "supportadessin.h"
 #include <iostream>
-#include "../integrateur/integrateur.h"
+#include "integrateur.h"
 
 /*!
  * Système regroupant tous les éléments sur l'écran, et pas que...

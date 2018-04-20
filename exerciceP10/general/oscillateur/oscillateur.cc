@@ -1,7 +1,7 @@
 #include "oscillateur.h"
-#include "../vecteur/vecteur.h"
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "vecteur.h"
+#include "dessinable.h"
+#include "supportadessin.h"
 #include <initializer_list>
 #include <iostream>
 

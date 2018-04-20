@@ -1,10 +1,10 @@
 #include "torsion.h"
 #include <initializer_list>
-#include "../vecteur/vecteur.h"
-#include "../oscillateur/oscillateur.h"
+#include "vecteur.h"
+#include "oscillateur.h"
 #include <iostream>
-#include "../dessinable/dessinable.h"
-#include "../supportadessin/supportadessin.h"
+#include "dessinable.h"
+#include "supportadessin.h"
 
 using namespace std;
 
