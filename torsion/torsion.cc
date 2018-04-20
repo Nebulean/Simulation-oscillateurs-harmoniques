@@ -28,3 +28,11 @@ void Torsion::affiche(ostream& out) const {
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
 }
+
+unique_ptr<Torsion> Torsion::clone() const {
+  return unique_ptr<Torsion>(new Torsion(*this));
+}
+
+unique_ptr<Oscillateur> Torsion::copie() const {
+  return clone();
+}

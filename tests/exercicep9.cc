@@ -6,6 +6,7 @@
 #include "../oscillateur/oscillateur.h"
 #include "../vecteur/vecteur.h"
 #include "../dessinable/dessinable.h"
+#include "../torsion/torsion.h"
 
 using namespace std;
 
@@ -16,11 +17,13 @@ int main() {
   Systeme syst1(0.1, 0, &ecran, &IEC);
   Pendule pendule(1, 1, 0, &ecran);
   Ressort ressort(0.25, 0.33, 0.15, &ecran);
+  Torsion torsion(1, 0.33, 0, &ecran);
 
   // syst1.ajoute(new Pendule(pendule));
   // syst1.ajoute(new Ressort(ressort));
   syst1.ajoute(pendule);
   syst1.ajoute(ressort);
+  syst1.ajoute(torsion);
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
   syst1.dessine();
@@ -35,6 +38,7 @@ int main() {
 
   syst2.ajoute(pendule);
   syst2.ajoute(ressort);
+  syst2.ajoute(torsion);
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;
