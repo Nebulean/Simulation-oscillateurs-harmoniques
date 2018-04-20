@@ -2,47 +2,56 @@
 #define OSCILLATEUR_H
 
 #include "../vecteur/vecteur.h"
-/* Un oscillateur EST un dessinable. De plus, pour ne pas avoir à le ré-importer
- * partout cette classe.
- * Remarque: Pour ne pas tout casser, oscillateur N'EST PLUS un dessinable. Ah non en fait.
- */
-#include <initializer_list>
 #include <iostream>
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
 
+/*!
+ * Classe de base des oscillateurs.
+ */
 class Oscillateur : public Dessinable{
 public:
-  // constructeurs
-  Oscillateur(std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, std::initializer_list<double> const&, SupportADessin*);
-  virtual Vecteur f(double t) = 0; // marquer toute les fonctions substituées à celle-ci en utilisant override.
+  //! Constructeur d'Oscillateur.
+  Oscillateur(Vecteur const& position, Vecteur const& vitesse, Vecteur const& origine, Vecteur const& direction_principale, SupportADessin* support);
 
-  // accesseurs
-  Vecteur P() const {return _P;}; // pas très optimisé, non ?
-  Vecteur Q() const {return _Q;}; // pas très optimisé, non ?
+  //! Méthode d'évolution propre à chaque oscillateur.
+  /*!
+   * Méthode d'évolution propre à chaque oscillateur. On ne peut pas la définir
+   * ici, et on force la substitution dans les sous-classes. Donc cette méthode
+   * est virtuelle pure.
+   */
+  virtual Vecteur f(double temps) = 0;
+
+  //! Accesseur retournant la position.
+  Vecteur P() const {return _P;};
+
+  //! Accesseur retournant la vitesse.
+  Vecteur Q() const {return _Q;};
+
+  //! Accesseur retournant la direction principale de l'oscillateur.
   Vecteur a() const {return _a;};
 
-  // manipulateurs
-  void setP(Vecteur const&); // utilisé pour l'évolution
-  void setQ(Vecteur const&); // utilisé pour l'évolution
+  //! Manipulateurs de la position.
+  void setP(Vecteur const& position); // utilisé pour l'évolution
 
-  // méthodes héritées
+  //! Manipulateurs de la vitesse.
+  void setQ(Vecteur const& vitesse); // utilisé pour l'évolution
 
-  /* on prolonge la "pureté" de cette méthode virtuelle.
+  //! Méthode de dessin.
+  /*! Méthode de dessin. On prolonge la "pureté" de cette méthode virtuelle.
    * Elle doit être redéfinie ailleurs, dans les sous-classes, donc.
    */
   virtual void dessine() = 0;
-  // virtual void dessine() override
-  // { _support->dessine(*this); }
+
 
 private:
-  Vecteur _P; // Vecteur des n paramètres du système.
-  Vecteur _Q; // Vecteur de dérivée de _P.
-  Vecteur _O; // Vecteur de l'origine de l'oscillateur
-  Vecteur _a; // Vecteur de direction principale
+  Vecteur _P; //!< Vecteur des n paramètres du système.
+  Vecteur _Q; //!< Vecteur de dérivée de _P.
+  Vecteur _O; //!< Vecteur de l'origine de l'oscillateur.
+  Vecteur _a; //!< Vecteur de direction principale.
+  
+  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  virtual void affiche(std::ostream& flot_de_sortie) const = 0;
 };
-
-// surcharge externe
-std::ostream& operator<<(std::ostream&, Oscillateur const&);
 
 #endif // OSCILLATEUR_H

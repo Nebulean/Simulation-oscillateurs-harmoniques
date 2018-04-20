@@ -12,6 +12,7 @@ dessinable/testdessinable
 textviewer/testtextviewer
 systeme/testsysteme
 tests/exercicep9
+torsion/testtorsion
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
