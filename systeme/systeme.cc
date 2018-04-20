@@ -29,11 +29,11 @@ void Systeme::affiche(ostream& out) const {
  * Si l'adresse pointée par le pointeur donné en paramètre existe, alors ce
  * pointeur est ajouté à la collection hétérogène d'Oscillateur.
  */
-void Systeme::ajoute(Oscillateur* osc) {
-  if (osc != nullptr){ // on vérifie que le pointeur pointe vers quelque chose
-    _oscillateurs.push_back(unique_ptr<Oscillateur>(osc));
-  };
-}
+// void Systeme::ajoute(Oscillateur* osc) {
+//   if (osc != nullptr){ // on vérifie que le pointeur pointe vers quelque chose
+//     _oscillateurs.push_back(unique_ptr<Oscillateur>(osc));
+//   };
+// }
 
 /*!
  * Fait évoluer tous les Oscillateur de la collection hétérogène d'un pas de
@@ -44,4 +44,13 @@ void Systeme::evolue() {
     _integr->evolue(*osc, _dt, _t);
   };
   _t += _dt;
+}
+
+
+
+/*!
+ *
+ */
+void Systeme::ajoute(Oscillateur const& o){
+  _oscillateurs.push_back(o.copie());
 }

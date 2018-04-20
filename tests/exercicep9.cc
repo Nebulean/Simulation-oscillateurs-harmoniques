@@ -17,8 +17,10 @@ int main() {
   Pendule pendule(1, 1, 0, &ecran);
   Ressort ressort(0.25, 0.33, 0.15, &ecran);
 
-  syst1.ajoute(new Pendule(pendule));
-  syst1.ajoute(new Ressort(ressort));
+  // syst1.ajoute(new Pendule(pendule));
+  // syst1.ajoute(new Ressort(ressort));
+  syst1.ajoute(pendule);
+  syst1.ajoute(ressort);
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
   syst1.dessine();
@@ -31,8 +33,8 @@ int main() {
 
   Systeme syst2(0.01, 0, &ecran, &IEC);
 
-  syst2.ajoute(new Pendule(pendule));
-  syst2.ajoute(new Ressort(ressort));
+  syst2.ajoute(pendule);
+  syst2.ajoute(ressort);
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;

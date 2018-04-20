@@ -29,3 +29,12 @@ void Pendule::affiche(ostream& out) const {
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
 }
+
+
+unique_ptr<Pendule> Pendule::clone() const {
+  return unique_ptr<Pendule>(new Pendule(*this));
+}
+
+unique_ptr<Oscillateur> Pendule::copie() const {
+  return clone();
+}

@@ -6,6 +6,7 @@
 #include "../supportadessin/supportadessin.h"
 #include "../dessinable/dessinable.h"
 #include <iostream>
+#include <memory>
 
 /*!
  * Class Ressort - un oscillateur particulier.
@@ -25,6 +26,11 @@ public:
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override
   { _support->dessine(*this); }
+
+  //! Requis pour la copie polymorphique de pendule (pour les unique_ptr).
+  virtual std::unique_ptr<Ressort> clone() const;
+  //! Copie polymorphique
+  virtual std::unique_ptr<Oscillateur> copie() const override;
 
 
 private:
