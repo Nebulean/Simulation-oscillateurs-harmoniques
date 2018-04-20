@@ -6,21 +6,36 @@
 #include "../pendule/pendule.h"
 #include "../ressort/ressort.h"
 #include "../systeme/systeme.h"
+#include "../torsion/torsion.h"
 
+/*!
+ * Visualisation en mode texte du simulateur.
+ */
 class TextViewer : public SupportADessin {
 public:
-  TextViewer(std::ostream&); // constructeur
-  virtual ~TextViewer() {}; // destructeur
+  //! Constructeur de TextViewer
+  TextViewer(std::ostream& flot_de_sortie);
 
-  // Redéfinition des fonctions dessine() de SupportADessin
-  void dessine(Pendule const&) override;
-  void dessine(Ressort const&) override;
-  void dessine(Systeme const&) override;
+  //! Destructeur de TextViewer
+  virtual ~TextViewer() {};
+
+  // substitution des fonctions dessine() de SupportADessin
+  //! Dessine en version texte un Pendule.
+  void dessine(Pendule const& pendule_a_dessiner) override;
+
+  //! Dessine en version texte un Ressort.
+  void dessine(Ressort const& ressort_a_dessiner) override;
+
+  //! Dessine en version texte un Systeme.
+  void dessine(Systeme const& systeme_a_dessiner) override;
+
+  //! Dessine en version texte un Torsion.
+  void dessine(Torsion const& torsion_a_dessiner) override;
 
 private:
+  //! flot de sortie, utilisé pour l'affichage dans TextViewer.
   std::ostream& _flot;
 
 };
-
 
 #endif // TEXTVIEWER_H
