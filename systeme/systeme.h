@@ -33,10 +33,12 @@ public:
   //! Accesseur retournant le temps courant.
   double temps() const {return _t;}
 
+  //! Copie polymorphique
+  void ajoute(Oscillateur const& nouvel);
 
   // méthodes
   //! Ajoute un oscillateur à la collection hétérogène.
-  void ajoute(Oscillateur* oscillateur_a_ajouter);
+  // void ajoute(Oscillateur* oscillateur_a_ajouter);
 
   //! Utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
   void evolue();

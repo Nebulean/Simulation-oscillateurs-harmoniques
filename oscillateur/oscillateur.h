@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../dessinable/dessinable.h"
 #include "../supportadessin/supportadessin.h"
+#include <memory>
 
 /*!
  * Classe de base des oscillateurs.
@@ -21,6 +22,9 @@ public:
    * est virtuelle pure.
    */
   virtual Vecteur f(double temps) = 0;
+
+  //! Copie polymorphique.
+  virtual std::unique_ptr<Oscillateur> copie() const = 0;
 
   //! Accesseur retournant la position.
   Vecteur P() const {return _P;};
@@ -49,7 +53,7 @@ private:
   Vecteur _Q; //!< Vecteur de dérivée de _P.
   Vecteur _O; //!< Vecteur de l'origine de l'oscillateur.
   Vecteur _a; //!< Vecteur de direction principale.
-  
+
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const = 0;
 };

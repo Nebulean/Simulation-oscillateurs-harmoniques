@@ -1,6 +1,5 @@
 #include "torsion.h"
 #include <initializer_list>
-#include <cmath> //pour M_PI
 #include "../vecteur/vecteur.h"
 #include "../oscillateur/oscillateur.h"
 #include <iostream>
@@ -9,8 +8,8 @@
 
 using namespace std;
 
-Torsion::Torsion(double I, double C, double lambda, SupportADessin* support)
- : Oscillateur({M_PI/4}, {0.0}, {0.0}, {1.0, 0.0}, support), _I(I), _C(C), _lambda(lambda)
+Torsion::Torsion(double I, double C, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
+ : Oscillateur(P, Q, O, a, support), _I(I), _C(C), _lambda(lambda)
  {}
 
    /*!
@@ -27,4 +26,12 @@ void Torsion::affiche(ostream& out) const {
   // on affiche simplement les informations du pendule.
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
+}
+
+unique_ptr<Torsion> Torsion::clone() const {
+  return unique_ptr<Torsion>(new Torsion(*this));
+}
+
+unique_ptr<Oscillateur> Torsion::copie() const {
+  return clone();
 }

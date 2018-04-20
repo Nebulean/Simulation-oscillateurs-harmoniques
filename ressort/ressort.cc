@@ -7,8 +7,8 @@
 
 using namespace std;
 
-Ressort::Ressort(double m, double k, double lambda, SupportADessin* support)
- : Oscillateur({0.18},{0.0},{0.0, 0.0, 0.0},{0.8, 0.0, 0.6}, support), _m(m), _k(k), _lambda(lambda)
+Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
+ : Oscillateur(P, Q, O, a, support), _m(m), _k(k), _lambda(lambda)
  {}
 
 /*!
@@ -25,4 +25,14 @@ void Ressort::affiche(ostream& out) const {
   // on affiche simplement les informations du ressort.
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
+}
+
+
+
+unique_ptr<Ressort> Ressort::clone() const {
+  return unique_ptr<Ressort>(new Ressort(*this));
+}
+
+unique_ptr<Oscillateur> Ressort::copie() const {
+  return clone();
 }

@@ -9,8 +9,8 @@
 
 using namespace std;
 
-Pendule::Pendule(double m, double L, double lambda, SupportADessin* support)
- : Oscillateur({M_PI/2}, {0.0}, {0.0}, {1.0, 0.0}, support), _m(m), _L(L), _lambda(lambda)
+Pendule::Pendule(double m, double L, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
+ : Oscillateur(P, Q, O, a, support), _m(m), _L(L), _lambda(lambda)
  {}
 
 /*!
@@ -28,4 +28,13 @@ void Pendule::affiche(ostream& out) const {
   // on affiche simplement les informations du pendule.
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
+}
+
+
+unique_ptr<Pendule> Pendule::clone() const {
+  return unique_ptr<Pendule>(new Pendule(*this));
+}
+
+unique_ptr<Oscillateur> Pendule::copie() const {
+  return clone();
 }
