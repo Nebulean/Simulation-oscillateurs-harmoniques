@@ -26,3 +26,13 @@ void Ressort::affiche(ostream& out) const {
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
 }
+
+
+
+unique_ptr<Ressort> Ressort::clone() const {
+  return unique_ptr<Ressort>(new Ressort(*this));
+}
+
+unique_ptr<Oscillateur> Ressort::copie() const {
+  return clone();
+}
