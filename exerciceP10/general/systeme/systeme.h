@@ -24,7 +24,7 @@ public:
   virtual ~Systeme();
 
   //! Constructeurs de Systeme.
-  Systeme(double pas_de_temps, double temps, SupportADessin* support, Integrateur* integrateur);
+  Systeme(double pas_de_temps, SupportADessin* support, Integrateur* integrateur);
 
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override

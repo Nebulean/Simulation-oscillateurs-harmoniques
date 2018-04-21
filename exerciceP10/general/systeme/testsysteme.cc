@@ -10,7 +10,7 @@ int main() {
 
   TextViewer ecran(cout);
   Eulercromer IEC;
-  Systeme syst(0.1, 0, &ecran, &IEC);
+  Systeme syst(0.1, &ecran, &IEC);
   Pendule pendule(1, 1, 0, &ecran);
 
   syst.ajoute(new Pendule(pendule));

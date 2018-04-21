@@ -12,7 +12,7 @@ using namespace std;
 int main(){
   TextViewer ecran(cout);
   Eulercromer IEC;
-  Systeme syst1(0.1, 0, &ecran, &IEC);
+  Systeme syst1(0.1, &ecran, &IEC);
   Pendule pendule(1, 1, 0, &ecran);
   Ressort ressort(0.25, 0.33, 0.15, &ecran);
   Torsion torsion(1, 0.33, 0, &ecran);
@@ -30,7 +30,7 @@ int main(){
     syst1.dessine();
   };
 
-  Systeme syst2(0.01, 0, &ecran, &IEC);
+  Systeme syst2(0.01, &ecran, &IEC);
 
   syst2.ajoute(pendule);
   syst2.ajoute(ressort);

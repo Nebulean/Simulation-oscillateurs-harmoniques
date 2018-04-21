@@ -12,8 +12,8 @@ using namespace std;
 Systeme::~Systeme()
 {}
 
-Systeme::Systeme(double dt, double t, SupportADessin* support, Integrateur* integr)
- : Dessinable(support), _dt(dt), _t(t), _integr(integr)
+Systeme::Systeme(double dt, SupportADessin* support, Integrateur* integr)
+ : Dessinable(support), _dt(dt), _t(0), _integr(integr)
 {}
 
 // Affiche l'ensemble des oscillateurs se trouvant dans la collection hétérogène.
