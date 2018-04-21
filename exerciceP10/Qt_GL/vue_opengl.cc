@@ -47,7 +47,8 @@ void VueOpenGL::dessine(Torsion const& torsion)
 void VueOpenGL::dessine(Systeme const& systeme)
 {
   // dessineCube();
-  dessineSphere(matrice_vue, 1.0, 0.5, 0.0);
+  // dessineSphere(matrice_vue, 1.0, 0.5, 0.0);
+  dessineAxes(matrice_vue);
 }
 
 // ======================================================================
@@ -196,4 +197,32 @@ void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, dou
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère
+}
+
+void VueOpenGL::dessineAxes (QMatrix4x4 const& point_de_vue, bool en_couleur)
+{
+  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+
+  glBegin(GL_LINES);
+
+  // axe X
+  if (en_couleur) {
+    prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0); // rouge
+  } else {
+    prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
+  }
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, 1.0, 0.0, 0.0);
+
+  // axe Y
+  if (en_couleur) prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0); // vert
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, 0.0, 1.0, 0.0);
+
+  // axe Z
+  if (en_couleur) prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0); // bleu
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 1.0);
+
+  glEnd();
 }
