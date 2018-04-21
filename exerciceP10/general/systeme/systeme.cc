@@ -54,3 +54,15 @@ void Systeme::evolue() {
 void Systeme::ajoute(Oscillateur const& o){
   _oscillateurs.push_back(o.copie());
 }
+
+
+
+/*!
+ * Manipulateur du pas de temps.
+ *
+ * Utilisé pour la synchronisation entre le dt de système et le dt de Qt.
+ */
+void Systeme::setdt(double dt)
+{
+  _dt = dt;
+}

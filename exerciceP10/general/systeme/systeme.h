@@ -33,6 +33,9 @@ public:
   //! Accesseur retournant le temps courant.
   double temps() const {return _t;}
 
+  //! Manipulateur du pas de temps
+  void setdt(double nouveau_pas_de_temps);
+
   //! Copie polymorphique
   void ajoute(Oscillateur const& nouvel);
 

@@ -22,8 +22,7 @@ TARGET = simulationQtGL
 # PRE_TARGETDEPS += ../general/libgeneral.a
 
 
-INCLUDEPATH +=  ../general/contenu \
-                ../general/dessinable/ \
+INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/eulercromer/ \
                 ../general/integrateur/ \
                 ../general/oscillateur/ \
@@ -32,13 +31,13 @@ INCLUDEPATH +=  ../general/contenu \
                 ../general/supportadessin/ \
                 ../general/systeme/ \
                 ../general/torsion/ \
-                ../general/vecteur/
+                ../general/vecteur/ \
+                # ../general/contenu/
 
 SOURCES += \
     main_qt_gl.cc \
     glwidget.cc \
     vue_opengl.cc \
-    ../general/contenu/contenu.cc \
     ../general/dessinable/dessinable.cc \
     ../general/eulercromer/eulercromer.cc \
     ../general/integrateur/integrateur.cc \
@@ -48,13 +47,13 @@ SOURCES += \
     ../general/supportadessin/supportadessin.cc \
     ../general/systeme/systeme.cc \
     ../general/torsion/torsion.cc \
-    ../general/vecteur/vecteur.cc
+    ../general/vecteur/vecteur.cc \
+    # ../general/contenu/contenu.cc
 
 HEADERS += \
     glwidget.h \
     vertex_shader.h \
     vue_opengl.h \
-    ../general/contenu/contenu.h \
     ../general/dessinable/dessinable.h \
     ../general/eulercromer/eulercromer.h \
     ../general/integrateur/integrateur.h \
@@ -64,7 +63,8 @@ HEADERS += \
     ../general/supportadessin/supportadessin.h \
     ../general/systeme/systeme.h \
     ../general/torsion/torsion.h \
-    ../general/vecteur/vecteur.h
+    ../general/vecteur/vecteur.h \
+    # ../general/contenu/contenu.h
 
 RESOURCES += \
     resource.qrc

@@ -1,32 +1,52 @@
 #include "vue_opengl.h"
 #include "vertex_shader.h" // Identifiants Qt de nos différents attributs
-#include "contenu.h"
+// #include "contenu.h"
 
 // ======================================================================
-void VueOpenGL::dessine(Contenu const& a_dessiner)
+// void VueOpenGL::dessine(Contenu const& a_dessiner)
+// {
+//    // Dessine le 1er cube (à l'origine)
+//   dessineCube();
+//
+//   QMatrix4x4 matrice;
+//   // Dessine le 2e cube
+//   matrice.translate(0.0, 1.5, 0.0);
+//   matrice.scale(0.25);
+//   dessineCube(matrice);
+//
+//   // Dessine le 3e cube
+//   matrice.setToIdentity();
+//   matrice.translate(0.0, 0.0, 1.5);
+//   matrice.scale(0.25);
+//   matrice.rotate(45.0, 0.0, 1.0, 0.0);
+//   dessineCube(matrice);
+//
+//   // Dessine le 4e cube
+//   matrice.setToIdentity();
+//   matrice.rotate(a_dessiner.infos(), 1.0, 0.0, 0.0);
+//   matrice.translate(0.0, 2.3, 0.0);
+//   matrice.scale(0.2);
+//   dessineCube(matrice);
+// }
+
+void VueOpenGL::dessine(Pendule const& pendule)
 {
-   // Dessine le 1er cube (à l'origine)
+
+}
+
+void VueOpenGL::dessine(Ressort const& ressort)
+{
+
+}
+
+void VueOpenGL::dessine(Torsion const& torsion)
+{
+
+}
+
+void VueOpenGL::dessine(Systeme const& systeme)
+{
   dessineCube();
-
-  QMatrix4x4 matrice;
-  // Dessine le 2e cube
-  matrice.translate(0.0, 1.5, 0.0);
-  matrice.scale(0.25);
-  dessineCube(matrice);
-
-  // Dessine le 3e cube
-  matrice.setToIdentity();
-  matrice.translate(0.0, 0.0, 1.5);
-  matrice.scale(0.25);
-  matrice.rotate(45.0, 0.0, 1.0, 0.0);
-  dessineCube(matrice);
-
-  // Dessine le 4e cube
-  matrice.setToIdentity();
-  matrice.rotate(a_dessiner.infos(), 1.0, 0.0, 0.0);
-  matrice.translate(0.0, 2.3, 0.0);
-  matrice.scale(0.2);
-  dessineCube(matrice);
 }
 
 // ======================================================================
@@ -36,7 +56,7 @@ void VueOpenGL::init()
    * Dans cet exemple, nous créons et activons notre shader.
    *
    * En raison du contenu des fichiers *.glsl, le shader de cet exemple
-   * NE permet QUE de dessiner des primitives colorées 
+   * NE permet QUE de dessiner des primitives colorées
    * (pas de textures, brouillard, reflets de la lumière ou autres).
    *
    * Il est séparé en deux parties VERTEX et FRAGMENT.
@@ -59,14 +79,14 @@ void VueOpenGL::init()
    *
    * L'attribut identifié par 0 est particulier, il permet d'envoyer un
    * nouveau "point" à OpenGL
-   * 
-   * C'est pourquoi il devra obligatoirement être spécifié et en dernier 
+   *
+   * C'est pourquoi il devra obligatoirement être spécifié et en dernier
    * (après la couleur dans cet exemple, voir plus bas).
    */
 
   prog.bindAttributeLocation("sommet",  SommetId);
   prog.bindAttributeLocation("couleur", CouleurId);
-  
+
   // Compilation du shader OpenGL
   prog.link();
 
@@ -76,8 +96,8 @@ void VueOpenGL::init()
   /* Activation du "Test de profondeur" et du "Back-face culling"
    * Le Test de profondeur permet de dessiner un objet à l'arrière-plan
    * partielement caché par d'autres objets.
-   * 
-   * Le Back-face culling consiste à ne dessiner que les face avec ordre 
+   *
+   * Le Back-face culling consiste à ne dessiner que les face avec ordre
    * de déclaration dans le sens trigonométrique.
    */
   glEnable(GL_DEPTH_TEST);
