@@ -22,7 +22,7 @@ exerciceP10/text/simulationText
 build/*
 
 # Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
-*/Makefile
+exerciceP10/*/Makefile
 
 # Quelques documents non importants.
 exerciceP10/general/eulercromer/tests/test*
