@@ -12,6 +12,7 @@ exerciceP10/general/dessinable/testdessinable
 exerciceP10/general/systeme/testsysteme
 exerciceP10/general/torsion/testtorsion
 exerciceP10/text/simulationText
+exerciceP10/Qt_GL/simulationQtGL
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
