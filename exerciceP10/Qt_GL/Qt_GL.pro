@@ -9,7 +9,7 @@ CONFIG -= app_bundle
 
 QMAKE_CXXFLAGS += -std=c++11
 
-# greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # le dossier de sortie pour tous les fichiers .o de la compilation.
 # Ca permet de ne pas avoir trop de bordel dans le dossier courant.
@@ -38,6 +38,7 @@ SOURCES += \
     main_qt_gl.cc \
     glwidget.cc \
     vue_opengl.cc \
+    glsphere.cc \
     ../general/dessinable/dessinable.cc \
     ../general/eulercromer/eulercromer.cc \
     ../general/integrateur/integrateur.cc \
@@ -54,6 +55,7 @@ HEADERS += \
     glwidget.h \
     vertex_shader.h \
     vue_opengl.h \
+    glsphere.h \
     ../general/dessinable/dessinable.h \
     ../general/eulercromer/eulercromer.h \
     ../general/integrateur/integrateur.h \

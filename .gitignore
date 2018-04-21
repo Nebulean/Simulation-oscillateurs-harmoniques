@@ -18,13 +18,14 @@ exerciceP10/Qt_GL/simulationQtGL
 
 # des trucs de Qt.
 *.qmake.stash
-
+exerciceP10/Qt_GL/qrc_resource.cpp
 # tous les fichiers utiles à la compilation
 build/*
 
 # Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
 */Makefile
 exerciceP10/*/Makefile
+exerciceP10/general/systeme/Makefile
 
 # Quelques documents non importants.
 exerciceP10/general/eulercromer/tests/test*

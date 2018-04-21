@@ -46,7 +46,8 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
-  dessineCube();
+  // dessineCube();
+  dessineSphere(matrice_vue, 1.0, 0.5, 0.0);
 }
 
 // ======================================================================
@@ -103,6 +104,7 @@ void VueOpenGL::init()
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
 
+  sphere.initialize();
   initializePosition();
 }
 
@@ -186,4 +188,12 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
   prog.setAttributeValue(SommetId, +1.0, -1.0, -1.0);
 
   glEnd();
+}
+
+
+void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
+{
+  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+  prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
+  sphere.draw(prog, SommetId);                           // dessine la sphère
 }
