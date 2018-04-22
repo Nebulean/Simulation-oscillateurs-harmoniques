@@ -31,6 +31,11 @@
 
 void VueOpenGL::dessine(Pendule const& pendule)
 {
+  // on dessine une sphère devant le point de vue.
+  // QMatrix4x4 matrice;
+  // matrice = matrice_vue;
+
+  // matrice
 
 }
 
@@ -46,9 +51,11 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // dessineAxesCamera();
   // dessineCube();
   // dessineSphere(matrice_vue, 1.0, 0.5, 0.0);
-  dessineAxes(matrice_vue);
+  // dessineAxes(matrice_vue);
+  dessineAxesCamera();
 }
 
 // ======================================================================
@@ -192,12 +199,21 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
 }
 
 
+
+
+
+
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère
 }
+
+
+
+
+
 
 void VueOpenGL::dessineAxes (QMatrix4x4 const& point_de_vue, bool en_couleur)
 {
@@ -225,4 +241,24 @@ void VueOpenGL::dessineAxes (QMatrix4x4 const& point_de_vue, bool en_couleur)
   prog.setAttributeValue(SommetId, 0.0, 0.0, 1.0);
 
   glEnd();
+}
+
+
+
+
+
+
+
+/*!
+ * Méthode de dessin des axes qui suivent le point de vue (caméra).
+ */
+void VueOpenGL::dessineAxesCamera()
+{
+  // on dessine le repère, qui bouge avec la caméra.
+  // on commence par créer une matrice 4x4 du point de vue des Axes.
+  QMatrix4x4 pdvAxes;
+  pdvAxes.translate(0, 0, -1);
+  //
+  // positionAxes.translate(0, -2, 0);
+  dessineAxes(pdvAxes, false);
 }
