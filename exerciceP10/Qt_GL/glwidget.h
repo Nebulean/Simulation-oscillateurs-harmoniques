@@ -30,6 +30,13 @@ private:
   virtual void keyPressEvent(QKeyEvent* event) override;
   virtual void timerEvent(QTimerEvent* event)  override;
 
+  //! gestion des clicks de souris
+  virtual void mousePressEvent(QMouseEvent* event) override;
+
+  //! gestion des mouvements de la souris
+  virtual void mouseMoveEvent(QMouseEvent* event)  override;
+
+
   // Méthodes de gestion interne
   void pause();
 
@@ -40,6 +47,10 @@ private:
   int timerId;
   // pour faire évoluer les objets avec le bon "dt"
   QTime chronometre;
+
+  //! Position de la souris.
+  QPoint lastMousePosition;
+
 
   // objets à dessiner, faire évoluer
   // Contenu c;

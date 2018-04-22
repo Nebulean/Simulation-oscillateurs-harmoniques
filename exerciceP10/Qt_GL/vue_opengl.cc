@@ -57,7 +57,7 @@ void VueOpenGL::dessine(Systeme const& systeme)
   }
 
   // on dessine une petite sphère et des axes au point d'origine.
-  QMatrix4x4 origine;
+  QMatrix4x4 origine; // edit: En fait, il se trouve en (0,0,-4).
   origine.translate(0.0, 0.0, -2.0);
   dessineAxes(origine, true);
   origine.scale(0.01);
