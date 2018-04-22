@@ -113,10 +113,10 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     pause();
     break;
 
-  // pour des tests. Fait spawner un cube. Ca marche pas :thinking:
-  // case Qt::Key_K:
-  //   vue.dessineCube();
-  //   break;
+  // lorsqu'on appuie sur B, la visibilité de la boussole s'inverse.
+  case Qt::Key_B:
+    vue.toggleBoussole();
+    break;
   };
 
   updateGL(); // redessine

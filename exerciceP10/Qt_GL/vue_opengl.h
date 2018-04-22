@@ -39,6 +39,9 @@ class VueOpenGL : public SupportADessin {
   //! Méthode de dessin des axes suivant le point de vue.
   void dessineAxesCamera();
 
+  //! Switch changeant la visibilité de la boussole.
+  void toggleBoussole() {boussoleVisible = !boussoleVisible;};
+
  private:
   // Un shader OpenGL encapsulé dans une classe Qt
   QGLShaderProgram prog;
@@ -53,6 +56,9 @@ class VueOpenGL : public SupportADessin {
   QMatrix4x4 boussole;
   //! Matrice qui mémorise la position des axes de la boussole
   QMatrix4x4 position;
+
+  //! Variable d'état de la boussole, true = visible.
+  bool boussoleVisible;
 };
 
 #endif

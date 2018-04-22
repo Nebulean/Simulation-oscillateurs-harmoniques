@@ -51,11 +51,16 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // On choisit de dessiner la boussole ou non.
+  if (boussoleVisible) {
+    dessineAxesCamera();
+  }
+
   // dessineAxesCamera();
   // dessineCube();
   dessineSphere(QMatrix4x4(), 1.0, 0.5, 0.0);
   // dessineAxes();
-  dessineAxesCamera();
+
 }
 
 // ======================================================================
@@ -111,6 +116,9 @@ void VueOpenGL::init()
    */
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
+
+  // on active la boussole
+  boussoleVisible = true;
 
   sphere.initialize();
   initializePosition();
