@@ -56,9 +56,34 @@ void VueOpenGL::dessine(Systeme const& systeme)
     dessineAxesCamera();
   }
 
+  // on dessine une petite sphère et des axes au point d'origine.
+  QMatrix4x4 origine;
+  origine.translate(0.0, 0.0, -2.0);
+  dessineAxes(origine, true);
+  origine.scale(0.01);
+  dessineSphere(origine);
+
+
+
+
+  // ZONE EXPERIMENTALE.
+
+
+  // on va tenter de dessiner un pendule.
+  // commençons par la masse.
+  // QMatrix4x4 position;
+  // position.translate(0.0, 0.0, -1.0);
+  // position.scale(0.1);
+  // dessineSphere(position);
+  // // puis on dessine la ligne.
+  // position.translate(0.0, 1.0, 0.0);
+  // dessineLigne(position);
+
+
+  // dessineLigne(QMatrix4x4());
   // dessineAxesCamera();
   // dessineCube();
-  dessineSphere(QMatrix4x4(), 1.0, 0.5, 0.0);
+  // dessineSphere(QMatrix4x4(), 1.0, 0.5, 0.0);
   // dessineAxes();
 
 }
@@ -223,7 +248,9 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
 
 
 
-
+/*!
+ * Méthode générique de dessin de sphère.
+ */
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
@@ -235,7 +262,9 @@ void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, dou
 
 
 
-
+/*!
+ * Méthode générique de dessin d'axes.
+ */
 void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, bool en_couleur)
 {
   if (translatable) {
@@ -263,7 +292,7 @@ void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, b
   prog.setAttributeValue(SommetId, 0.0, 1.0, 0.0);
 
   // axe Z
-  if (en_couleur) prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0); // bleu
+  if (en_couleur) prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
   prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
   prog.setAttributeValue(SommetId, 0.0, 0.0, 1.0);
 
@@ -271,6 +300,25 @@ void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, b
 }
 
 
+/*!
+ * Méthode générique de dessin de lignes.
+ */
+void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur )
+{
+  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+
+  glBegin(GL_LINES);
+
+  if (en_couleur) {
+    prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0); // vert
+  } else {
+    prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
+  }
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, 1.0, 0.0, 0.0);
+
+  glEnd();
+}
 
 
 
