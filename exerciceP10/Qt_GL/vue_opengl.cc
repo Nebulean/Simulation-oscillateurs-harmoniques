@@ -31,6 +31,11 @@
 
 void VueOpenGL::dessine(Pendule const& pendule)
 {
+  // on dessine une sphère devant le point de vue.
+  // QMatrix4x4 matrice;
+  // matrice = matrice_vue;
+
+  // matrice
 
 }
 
@@ -46,9 +51,16 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // On choisit de dessiner la boussole ou non.
+  if (boussoleVisible) {
+    dessineAxesCamera();
+  }
+
+  // dessineAxesCamera();
   // dessineCube();
-  // dessineSphere(matrice_vue, 1.0, 0.5, 0.0);
-  dessineAxes(matrice_vue);
+  dessineSphere(QMatrix4x4(), 1.0, 0.5, 0.0);
+  // dessineAxes();
+
 }
 
 // ======================================================================
@@ -105,6 +117,9 @@ void VueOpenGL::init()
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
 
+  // on active la boussole
+  boussoleVisible = true;
+
   sphere.initialize();
   initializePosition();
 }
@@ -114,9 +129,15 @@ void VueOpenGL::initializePosition()
 {
   // position initiale
   matrice_vue.setToIdentity();
-  matrice_vue.translate(0.0, 0.0, -4.0);
-  matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
-  matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
+  matrice_vue.translate(0.0, 0.0, -2.0);
+  translation.setToIdentity();
+  translation.translate(0.0, 0.0, -2.0); // MEMES VALEURS QUE POUR MATRICE_VUE
+  boussole.setToIdentity();
+  boussole.translate(-2.0, -1.0, -3.0);
+  position.setToIdentity();
+  position.translate(-2.0, -1.0, -3.0); //MEMES VALEURS QUE POUR BOUSSOLE
+  // matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
+  // matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
 }
 
 // ======================================================================
@@ -129,6 +150,7 @@ void VueOpenGL::translate(double x, double y, double z)
   QMatrix4x4 translation_supplementaire;
   translation_supplementaire.translate(x, y, z);
   matrice_vue = translation_supplementaire * matrice_vue;
+  translation = translation_supplementaire * translation;
 }
 
 // ======================================================================
@@ -137,7 +159,13 @@ void VueOpenGL::rotate(double angle, double dir_x, double dir_y, double dir_z)
   // Multiplie la matrice de vue par LA GAUCHE
   QMatrix4x4 rotation_supplementaire;
   rotation_supplementaire.rotate(angle, dir_x, dir_y, dir_z);
-  matrice_vue = rotation_supplementaire * matrice_vue;
+  /*! En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
+   *! on fait en sorte que toutes les rotations se passent AVANT les translations
+   *! comme ça l'objet tourne sur lui-même. :)
+   */
+  matrice_vue = translation * rotation_supplementaire * translation.inverted() * matrice_vue;
+
+  boussole = position * rotation_supplementaire * position.inverted() * boussole;
 }
 
 // ======================================================================
@@ -192,6 +220,10 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
 }
 
 
+
+
+
+
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
@@ -199,9 +231,20 @@ void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, dou
   sphere.draw(prog, SommetId);                           // dessine la sphère
 }
 
-void VueOpenGL::dessineAxes (QMatrix4x4 const& point_de_vue, bool en_couleur)
+
+
+
+
+
+void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, bool en_couleur)
 {
-  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+  if (translatable) {
+    prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+  } else {
+    prog.setUniformValue("vue_modele", boussole * point_de_vue);
+  }
+
+  // prog.setUniformValue("vue_modele", boussole * point_de_vue);
 
   glBegin(GL_LINES);
 
@@ -225,4 +268,24 @@ void VueOpenGL::dessineAxes (QMatrix4x4 const& point_de_vue, bool en_couleur)
   prog.setAttributeValue(SommetId, 0.0, 0.0, 1.0);
 
   glEnd();
+}
+
+
+
+
+
+
+
+/*!
+ * Méthode de dessin des axes qui suivent le point de vue (caméra).
+ */
+void VueOpenGL::dessineAxesCamera()
+{
+  // on dessine le repère, qui bouge avec la caméra.
+  // on commence par créer une matrice 4x4 du point de vue des Axes.
+  // QMatrix4x4 pdvAxes;
+  // pdvAxes.translate(-2.0, -1.0, -3.0);
+  //
+  // positionAxes.translate(0, -2, 0);
+  dessineAxes(QMatrix4x4(), false); // Laisser une matrice par défaut ici, sinon ça fuck up tout
 }

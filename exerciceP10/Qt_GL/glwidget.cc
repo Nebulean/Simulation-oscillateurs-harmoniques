@@ -36,8 +36,13 @@ void GLWidget::resizeGL(int width, int height)
 // ======================================================================
 void GLWidget::paintGL()
 {
+  /* Cette méthode redessine la scène.
+   * Elle est appellée lorsqu'on utilise updateGL().
+   */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   // c.dessine();
+
+  // vue.dessineAxesCamera();
   _sys.dessine();
 }
 
@@ -106,6 +111,11 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_Space:
     pause();
+    break;
+
+  // lorsqu'on appuie sur B, la visibilité de la boussole s'inverse.
+  case Qt::Key_B:
+    vue.toggleBoussole();
     break;
   };
 
