@@ -86,7 +86,10 @@ RAS.
 
 ## Semaine 9
 ### Travail accompli
+Cette semaine, nous avons bien avancé. Premièrement, nous avons fini de rendre P9 présentable, ce qui a pris beaucoup de temps, mais c'est fait. Le code est donc commenté (et compatible doxygen) et semble présentable.
+Nous avons également pu enfin commencer P10. Nous avons bien réorganisé notre code pour que la version texte soit encore fonctionnelle, et nous avons pu débuter la partie graphique. Donc avons donc une fenêtre où nous pouvons nous déplacer. Nous avons implémenté les sphères, carrés et axes. De plus, nous avons réussi à réalisé une boussole qui nous permet de se repérer facilement dans l'espace !
 ### Problèmes rencontrés
+Le principal problème rencontré touche essentiellement à l'implémentation de cette boussole. Ce n'était pas aisé, mais c'est un franc succès !
 
 
 ## Semaine 10
