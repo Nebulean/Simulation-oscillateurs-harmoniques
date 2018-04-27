@@ -34,13 +34,6 @@ void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
   QMatrix4x4 matrice;
-  // matrice.setToIdentity();
-  // matrice = matrice_vue;
-
-  // on se place à notre position
-  // matrice_vue.setToIdentity();
-
-  // cout << pendule.P(0) << endl;
 
   // on déplace le point devant nous, centré.
   matrice.translate(0.0, 0.0, -2.0);
@@ -51,7 +44,8 @@ void VueOpenGL::dessine(Pendule const& pendule)
   // on fait une rotation à 90 degrés pour avoir le pendule à l'angle 0.
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
-  // on applique la rotation actuelle du pendule.
+  // on applique la rotation actuelle du pendule, dans le plan perpendiculaire à
+  // la direction principale et passant par O. (a n'est pas encore implémenté.)
   matrice.rotate(toDegree(pendule.P(0)), 0.0, 0.0, 1.0);
 
   // on dessine la ligne.
@@ -66,26 +60,45 @@ void VueOpenGL::dessine(Pendule const& pendule)
   // on dessine la sphère.
   dessineSphere(matrice);
 
-
-
-  // on déplace le point vers l'extremité du pendule.
-  // matrice.translate(1.0, 0.0, 0.0);
-  // matrice.scale(0.2);
-  // dessineSphere(matrice);
-  // matrice_vue.setToIdentity();
-
-
-  // dessineSphere(matrice_vue);
-
-
-
-  // matrice
-
 }
 
 void VueOpenGL::dessine(Ressort const& ressort)
 {
+  // on créé une matrice 4x4.
+  QMatrix4x4 matrice;
 
+  // on place le point dans le centre gauche de l'écran.
+  matrice.translate(0.0, 0.0, -2.0);
+
+  // on déplace le ressort à l'origine
+  matrice.translate(ressort.O(0), ressort.O(1), ressort.O(2));
+
+  // on fait une rotation à 90 degrés de la matrice.
+  matrice.rotate(90, 0.0, 0.0, 1.0);
+
+  // on se place le ressort dans la direction de a.
+  matrice.translate(ressort.a(0), ressort.a(1), ressort.a(2));
+
+  // on dessine la ligne, qui prend en paramètre la longueur courante du
+  // ressort.
+  dessineLigne(matrice, false, ressort.P(0));
+
+  // on se place au bout du fil
+  matrice.translate(ressort.P(0), 0.0, 0.0);
+
+  // on modifie la taille de la sphère en fonction de la masse.
+  matrice.scale(ressort.m()/3);
+
+  // on dessine la sphère
+  dessineSphere(matrice);
+
+  //
+  // matrice.scale(0.1);
+  // on dessine la masse
+  // dessineSphere(matrice);
+
+
+  // on place le point au centre gauche de l'écran.
 }
 
 void VueOpenGL::dessine(Torsion const& torsion)

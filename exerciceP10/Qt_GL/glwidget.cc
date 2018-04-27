@@ -7,12 +7,15 @@
 
 void GLWidget::initSys(){
 
-  /* Pendule: masse, longueur, viscosité, P, Q, O, a.
-   *
+  /* Pendule: masse, longueur, viscosité, supportadessin, P, Q, O, a.
+   * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a.
    *
    */
-  Pendule p(4, 3, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
   _sys.ajoute(p);
+
+  Ressort r(0.2, 0.8, 0.05, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
+  _sys.ajoute(r);
 }
 
 

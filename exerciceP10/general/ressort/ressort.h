@@ -33,6 +33,8 @@ public:
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
+  //! Accesseur de la masse.
+  double m() const {return _m; }
 
 private:
   double _m; //!< masse
