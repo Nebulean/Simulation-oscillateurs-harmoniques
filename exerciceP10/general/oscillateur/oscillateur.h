@@ -27,13 +27,28 @@ public:
   virtual std::unique_ptr<Oscillateur> copie() const = 0;
 
   //! Accesseur retournant la position.
-  Vecteur P() const {return _P;};
+  Vecteur P() const {return _P;}
 
   //! Accesseur retournant la vitesse.
-  Vecteur Q() const {return _Q;};
+  Vecteur Q() const {return _Q;}
+
+  //! Accesseur retournant l'origine.
+  Vecteur O() const {return _O;}
 
   //! Accesseur retournant la direction principale de l'oscillateur.
-  Vecteur a() const {return _a;};
+  Vecteur a() const {return _a;}
+
+  //! Accesseur retournant la coordonnée demandée de la position.
+  double P(size_t i) const {return _P.get_coord(i);}
+
+  //! Accesseur retournant la coordonnée demandée de la vitesse.
+  double Q(size_t i) const {return _Q.get_coord(i);}
+
+  //! Accesseur retournant la coordonnée demandée de l'origine.
+  double O(size_t i) const {return _O.get_coord(i);}
+
+  //! Accesseur retournant la coordonnée demandée de la direction principale de l'oscillateur.
+  double a(size_t i) const {return _a.get_coord(i);}
 
   //! Manipulateurs de la position.
   void setP(Vecteur const& position); // utilisé pour l'évolution

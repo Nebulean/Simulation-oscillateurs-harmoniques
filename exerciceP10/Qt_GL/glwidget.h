@@ -6,6 +6,7 @@
 #include "vue_opengl.h"
 // #include "contenu.h"
 #include "systeme.h"
+#include "eulercromer.h"
 
 class GLWidget : public QGLWidget
 /* La fenêtre hérite de QGLWidget ;
@@ -16,7 +17,8 @@ public:
   GLWidget(QWidget* parent = nullptr)
     : QGLWidget(parent)
     // , c(&vue)
-    , _sys(0.1, &vue, nullptr)
+    , _integrateur(new Eulercromer) // Ne faut-il pas le delete ?
+    , _sys(0.1, &vue, _integrateur)
   {}
   virtual ~GLWidget() {}
 
@@ -25,6 +27,9 @@ private:
   virtual void initializeGL()                  override;
   virtual void resizeGL(int width, int height) override;
   virtual void paintGL()                       override;
+
+  //! Méthode d'initialisation du système.
+  void initSys();
 
   // Méthodes de gestion d'évènements
   virtual void keyPressEvent(QKeyEvent* event) override;
@@ -51,10 +56,18 @@ private:
   //! Position de la souris.
   QPoint lastMousePosition;
 
+  //! L'intégrateur utilisé dans ce projet
+  /*!
+   * Il s'agit d'un pointeur pour se laisser la liberté de le changer lors de
+   * l'initialisation.
+   */
+  Integrateur* _integrateur;
 
   // objets à dessiner, faire évoluer
   // Contenu c;
+  //! Systeme contenant tous les Oscillateurs.
   Systeme _sys;
+
 };
 
 #endif // GLWIDGET_H

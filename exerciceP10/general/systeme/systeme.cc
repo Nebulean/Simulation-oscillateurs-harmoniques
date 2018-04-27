@@ -16,6 +16,16 @@ Systeme::Systeme(double dt, SupportADessin* support, Integrateur* integr)
  : Dessinable(support), _dt(dt), _t(0), _integr(integr)
 {}
 
+
+/*!
+ * Afficheur du Systeme en mode graphique. Utilisé par OpenGL.
+ */
+void Systeme::affiche() const {
+  for (auto const& osc : _oscillateurs) {
+    osc->dessine();
+  }
+}
+
 // Affiche l'ensemble des oscillateurs se trouvant dans la collection hétérogène.
 void Systeme::affiche(ostream& out) const {
   out << "***** Systeme *****" << endl;

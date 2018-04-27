@@ -8,6 +8,15 @@ using namespace std;
 
 
 /*!
+ * Surcharge de l'operateur []. Il retourne la valeur du vecteur à la position
+ * demandée.
+ */
+// double Vecteur::operator[](size_t position)
+// {
+//   return get_coord(position);
+// }
+
+/*!
  * Constructeur créant un vecteur de dimension donnée en paramètre. De plus, ce
  * vecteur est nul.
  */

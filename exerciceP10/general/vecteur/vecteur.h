@@ -25,6 +25,7 @@ public:
   bool operator==(Vecteur const& vecteur_auquel_comparer) const; //!< Operateur de comparaison: a == b.
   Vecteur& operator*=(double const& operande2); //!< Operateur de multiplication par un scalaire: a *= b.
   Vecteur& operator^=(Vecteur const& operande2); //!< Operateur de produit vectoriel pour vecteur de dimension 3: a ^= b.
+  // double operator[](size_t position); //!< Surcharge de []. Retourne la valeur se trouvant à la position demandée.
 
   // ================== Méthodes
   void augmente(double coordonnee); //!< Augmente la dimension du Vecteur courant en y ajoutant une coordonnée.

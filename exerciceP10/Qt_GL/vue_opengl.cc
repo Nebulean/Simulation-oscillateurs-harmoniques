@@ -1,5 +1,7 @@
 #include "vue_opengl.h"
 #include "vertex_shader.h" // Identifiants Qt de nos différents attributs
+#include <cmath>
+using namespace std;
 // #include "contenu.h"
 
 // ======================================================================
@@ -28,12 +30,54 @@
 //   matrice.scale(0.2);
 //   dessineCube(matrice);
 // }
-
 void VueOpenGL::dessine(Pendule const& pendule)
 {
-  // on dessine une sphère devant le point de vue.
-  // QMatrix4x4 matrice;
+  // on créé une matrice.
+  QMatrix4x4 matrice;
+  // matrice.setToIdentity();
   // matrice = matrice_vue;
+
+  // on se place à notre position
+  // matrice_vue.setToIdentity();
+
+  // cout << pendule.P(0) << endl;
+
+  // on déplace le point devant nous, centré.
+  matrice.translate(0.0, 0.0, -2.0);
+
+  // on déplace le point pour l'amener à l'origine du pendule.
+  matrice.translate(pendule.O(0), pendule.O(1), pendule.O(2));
+
+  // on fait une rotation à 90 degrés pour avoir le pendule à l'angle 0.
+  matrice.rotate(-90, 0.0, 0.0, 1.0);
+
+  // on applique la rotation actuelle du pendule.
+  matrice.rotate(toDegree(pendule.P(0)), 0.0, 0.0, 1.0);
+
+  // on dessine la ligne.
+  dessineLigne(matrice, false, pendule.L());
+
+  // on va a l'extrémité de la ligne
+  matrice.translate(pendule.L(), 0.0, 0.0);
+
+  // on réduit un peu la taille de la sphère
+  matrice.scale(pendule.m()/10);
+
+  // on dessine la sphère.
+  dessineSphere(matrice);
+
+
+
+  // on déplace le point vers l'extremité du pendule.
+  // matrice.translate(1.0, 0.0, 0.0);
+  // matrice.scale(0.2);
+  // dessineSphere(matrice);
+  // matrice_vue.setToIdentity();
+
+
+  // dessineSphere(matrice_vue);
+
+
 
   // matrice
 
@@ -51,24 +95,35 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // on dessine le système
+  systeme.affiche();
+
+  // On choisi d'afficher les informations de debug.
+  if (debugMode) {
+    cout << systeme << endl;
+  }
+
   // On choisit de dessiner la boussole ou non.
   if (boussoleVisible) {
     dessineAxesCamera();
   }
 
   // on dessine une petite sphère et des axes au point d'origine.
-  QMatrix4x4 origine; // edit: En fait, il se trouve en (0,0,-4).
-  origine.translate(0.0, 0.0, -2.0);
-  dessineAxes(origine, true);
-  origine.scale(0.01);
-  dessineSphere(origine);
+  // QMatrix4x4 origine; // edit: En fait, il se trouve en (0,0,-4).
+  // origine.translate(0.0, 0.0, -2.0);
+  // // dessineAxes(origine, true);
+  // origine.scale(0.01);
+  // dessineSphere(origine);
 
 
 
 
-  // ZONE EXPERIMENTALE.
-
-
+  // ZONE EXPERIMENTALE. TEMPORAIRE.
+  // on choisit un intégrateur
+  // Integrateur()
+  // Pendule p(1, 2, 0.5, this);
+  //
+  // double masse, double longueur, double viscosite, SupportADessin* support
   // on va tenter de dessiner un pendule.
   // commençons par la masse.
   // QMatrix4x4 position;
@@ -144,6 +199,9 @@ void VueOpenGL::init()
 
   // on active la boussole
   boussoleVisible = true;
+
+  // on désactive le mode debug
+  debugMode = false;
 
   sphere.initialize();
   initializePosition();
@@ -303,7 +361,7 @@ void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, b
 /*!
  * Méthode générique de dessin de lignes.
  */
-void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur )
+void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, double longueur )
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
 
@@ -315,7 +373,7 @@ void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur )
     prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
   }
   prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
-  prog.setAttributeValue(SommetId, 1.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, longueur, 0.0, 0.0);
 
   glEnd();
 }
@@ -336,4 +394,12 @@ void VueOpenGL::dessineAxesCamera()
   //
   // positionAxes.translate(0, -2, 0);
   dessineAxes(QMatrix4x4(), false); // Laisser une matrice par défaut ici, sinon ça fuck up tout
+}
+
+
+/*!
+ * Converti des angles exprimés en radians, vers les degrés.
+ */
+double toDegree(double radian){
+  return radian * 180 / M_PI;
 }

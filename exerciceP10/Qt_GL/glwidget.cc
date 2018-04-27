@@ -1,13 +1,31 @@
 #include <QKeyEvent>
 #include <QTimerEvent>
 #include <QMatrix4x4>
+#include <cmath>
 #include "glwidget.h"
+
+
+void GLWidget::initSys(){
+
+  /* Pendule: masse, longueur, viscosité, P, Q, O, a.
+   *
+   *
+   */
+  Pendule p(4, 3, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  _sys.ajoute(p);
+}
+
+
+
 
 // ======================================================================
 void GLWidget::initializeGL()
 {
   vue.init();
   timerId = startTimer(20);
+
+  // on initialise le Systeme.
+  initSys();
 }
 
 // ======================================================================
@@ -116,6 +134,11 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   // lorsqu'on appuie sur B, la visibilité de la boussole s'inverse.
   case Qt::Key_B:
     vue.toggleBoussole();
+    break;
+
+  // lorsqu'on appuie sur §, le mode debug est activé.
+  case Qt::Key_section:
+    vue.toggleDebugMode();
     break;
   };
 

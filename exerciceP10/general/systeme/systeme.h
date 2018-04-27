@@ -46,6 +46,9 @@ public:
   //! Utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
   void evolue();
 
+  //! Affichage graphique du Systeme.
+  void affiche() const;
+
 private:
   //! Collection hétérohène d'Oscillateur.
   /*!

@@ -27,10 +27,17 @@ public:
   virtual void dessine() override
   { _support->dessine(*this); }
 
+
   //! Requis pour la copie polymorphique de Pendule (pour les unique_ptr, voir cours).
   virtual std::unique_ptr<Pendule> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
+
+  //! Accesseur de la masse.
+  double m() const {return _m;}
+
+  //! Accesseur de la longueur.
+  double L() const {return _L;}
 
 
 private:
