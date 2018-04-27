@@ -29,6 +29,9 @@ public:
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
+  //! Accesseur du moment d'inertie.
+  double I() const {return _I; }
+
 private:
   double _I; //!< moment d'inertie
   double _C; //!< constante de torsion

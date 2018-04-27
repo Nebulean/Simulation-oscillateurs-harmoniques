@@ -67,7 +67,7 @@ void VueOpenGL::dessine(Ressort const& ressort)
   // on créé une matrice 4x4.
   QMatrix4x4 matrice;
 
-  // on place le point dans le centre gauche de l'écran.
+  // on place le point dans le centre de l'écran.
   matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le ressort à l'origine
@@ -91,19 +91,58 @@ void VueOpenGL::dessine(Ressort const& ressort)
 
   // on dessine la sphère
   dessineSphere(matrice);
-
-  //
-  // matrice.scale(0.1);
-  // on dessine la masse
-  // dessineSphere(matrice);
-
-
-  // on place le point au centre gauche de l'écran.
 }
 
 void VueOpenGL::dessine(Torsion const& torsion)
 {
+  QMatrix4x4 matrice;
 
+  // on place le point dans le centre de l'écran.
+  matrice.translate(0.0, 0.0, -2.0);
+
+  // on déplace le pendule de Torsion à l'origine.
+  matrice.translate(torsion.O(0), torsion.O(1), torsion.O(2));
+
+  // on fait une rotation pour placer le pendule de Torsion dans sa position
+  // initiale
+  matrice.rotate(45, 0.0, 1.0, 0.0);
+
+  // on applique la rotation du pendule.
+  matrice.rotate(toDegree(torsion.P(0)), 0.0, 1.0, 0.0);
+
+  // on dessine la première demi-tige.
+  dessineLigne(matrice);
+
+  // on se place au bout de la demi-tige.
+  matrice.translate(1.0, 0.0, 0.0);
+
+  // on réduit la taille de la sphère
+  matrice.scale(torsion.I()/5);
+
+  // on dessine la première masse.
+  dessineSphere(matrice);
+
+  // on va de l'autre côté du pendule en faisant les opérations inverses.
+  // on augmente de 20 la taille
+  matrice.scale(torsion.I()*5);
+
+  // on déplace le point au centre.
+  matrice.translate(-1.0, 0.0, 0.0);
+
+  // on inverse le sens
+  matrice.scale(-1);
+
+  // on dessine la deuxième demi-tige.
+  dessineLigne(matrice);
+
+  // on se place au bout de la demi-tige.
+  matrice.translate(1.0, 0.0, 0.0);
+
+  // on réduit la taille de la sphère
+  matrice.scale(torsion.I()/5);
+
+  // on dessine la première masse.
+  dessineSphere(matrice);
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -120,40 +159,6 @@ void VueOpenGL::dessine(Systeme const& systeme)
   if (boussoleVisible) {
     dessineAxesCamera();
   }
-
-  // on dessine une petite sphère et des axes au point d'origine.
-  // QMatrix4x4 origine; // edit: En fait, il se trouve en (0,0,-4).
-  // origine.translate(0.0, 0.0, -2.0);
-  // // dessineAxes(origine, true);
-  // origine.scale(0.01);
-  // dessineSphere(origine);
-
-
-
-
-  // ZONE EXPERIMENTALE. TEMPORAIRE.
-  // on choisit un intégrateur
-  // Integrateur()
-  // Pendule p(1, 2, 0.5, this);
-  //
-  // double masse, double longueur, double viscosite, SupportADessin* support
-  // on va tenter de dessiner un pendule.
-  // commençons par la masse.
-  // QMatrix4x4 position;
-  // position.translate(0.0, 0.0, -1.0);
-  // position.scale(0.1);
-  // dessineSphere(position);
-  // // puis on dessine la ligne.
-  // position.translate(0.0, 1.0, 0.0);
-  // dessineLigne(position);
-
-
-  // dessineLigne(QMatrix4x4());
-  // dessineAxesCamera();
-  // dessineCube();
-  // dessineSphere(QMatrix4x4(), 1.0, 0.5, 0.0);
-  // dessineAxes();
-
 }
 
 // ======================================================================
