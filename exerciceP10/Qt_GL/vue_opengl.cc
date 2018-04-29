@@ -36,7 +36,7 @@ void VueOpenGL::dessine(Pendule const& pendule)
   QMatrix4x4 matrice;
 
   // on déplace le point devant nous, centré.
-  matrice.translate(0.0, 0.0, -2.0);
+  //matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le point pour l'amener à l'origine du pendule.
   matrice.translate(pendule.O(0), pendule.O(1), pendule.O(2));
@@ -68,7 +68,7 @@ void VueOpenGL::dessine(Ressort const& ressort)
   QMatrix4x4 matrice;
 
   // on place le point dans le centre de l'écran.
-  matrice.translate(0.0, 0.0, -2.0);
+  //matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le ressort à l'origine
   matrice.translate(ressort.O(0), ressort.O(1), ressort.O(2));
@@ -99,7 +99,7 @@ void VueOpenGL::dessine(Torsion const& torsion)
   QMatrix4x4 matrice;
 
   // on place le point dans le centre de l'écran.
-  matrice.translate(0.0, 0.0, -2.0);
+  //matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le pendule de Torsion à l'origine.
   matrice.translate(torsion.O(0), torsion.O(1), torsion.O(2));
@@ -228,6 +228,9 @@ void VueOpenGL::init()
   // on désactive le mode debug
   debugMode = false;
 
+  // on active le mode troisième personne
+  TPS = true;
+
   sphere.initialize();
   initializePosition();
 }
@@ -237,15 +240,15 @@ void VueOpenGL::initializePosition()
 {
   // position initiale
   matrice_vue.setToIdentity();
-  matrice_vue.translate(0.0, 0.0, -2.0);
-  translation.setToIdentity();
-  translation.translate(0.0, 0.0, -2.0); // MEMES VALEURS QUE POUR MATRICE_VUE
+  matrice_vue.translate(0.0, 0.0, -4.0);
+  // translation = matrice_vue;
+  memoire = matrice_vue;
   boussole.setToIdentity();
   boussole.translate(-2.0, -1.0, -3.0);
-  position.setToIdentity();
-  position.translate(-2.0, -1.0, -3.0); //MEMES VALEURS QUE POUR BOUSSOLE
+  position = boussole;
   // matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
   // matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
+  // rotfps.setToIdentity();
 }
 
 // ======================================================================
@@ -258,7 +261,8 @@ void VueOpenGL::translate(double x, double y, double z)
   QMatrix4x4 translation_supplementaire;
   translation_supplementaire.translate(x, y, z);
   matrice_vue = translation_supplementaire * matrice_vue;
-  translation = translation_supplementaire * translation;
+  // translation = translation_supplementaire * translation;
+  memoire = translation_supplementaire * memoire;
 }
 
 // ======================================================================
@@ -267,11 +271,18 @@ void VueOpenGL::rotate(double angle, double dir_x, double dir_y, double dir_z)
   // Multiplie la matrice de vue par LA GAUCHE
   QMatrix4x4 rotation_supplementaire;
   rotation_supplementaire.rotate(angle, dir_x, dir_y, dir_z);
+
+  if (TPS) {
   /* En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
    * on fait en sorte que toutes les rotations se passent AVANT les translations
    * comme ça l'objet tourne sur lui-même. :)
    */
-  matrice_vue = translation * rotation_supplementaire * translation.inverted() * matrice_vue;
+    matrice_vue = memoire * rotation_supplementaire * memoire.inverted() * matrice_vue; // troisième personne
+  } else {
+    matrice_vue = rotation_supplementaire * matrice_vue; // première personne
+    // rotfps = rotation_supplementaire * rotfps;
+    memoire = rotation_supplementaire * memoire;
+  }
 
   boussole = position * rotation_supplementaire * position.inverted() * boussole;
 }
@@ -404,9 +415,6 @@ void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, do
 }
 
 
-
-
-
 /*!
  * Méthode de dessin des axes qui suivent le point de vue (caméra).
  */
@@ -420,7 +428,6 @@ void VueOpenGL::dessineAxesCamera()
   // positionAxes.translate(0, -2, 0);
   dessineAxes(QMatrix4x4(), false); // Laisser une matrice par défaut ici, sinon ça fuck up tout
 }
-
 
 /*!
  * Convertit des angles exprimés en radians vers les degrés.

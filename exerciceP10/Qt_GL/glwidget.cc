@@ -147,6 +147,10 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   case Qt::Key_section:
     vue.toggleDebugMode();
     break;
+
+  case Qt::Key_V:
+    vue.toggleVue();
+    break;
   };
 
   updateGL(); // redessine
