@@ -110,6 +110,9 @@ void VueOpenGL::dessine(Torsion const& torsion)
   // on applique la rotation du pendule.
   matrice.rotate(toDegree(torsion.P(0)), 0.0, 1.0, 0.0);
 
+  // on enregistre la position
+  QMatrix4x4 reference(matrice);
+
   // on dessine la première demi-tige.
   dessineLigne(matrice);
 
@@ -123,11 +126,14 @@ void VueOpenGL::dessine(Torsion const& torsion)
   dessineSphere(matrice);
 
   // on va de l'autre côté du pendule en faisant les opérations inverses.
-  // on augmente de 20 la taille
-  matrice.scale(torsion.I()*5);
+  // on augmente de 5 la taille
+  // matrice.scale(torsion.I()*5);
 
   // on déplace le point au centre.
-  matrice.translate(-1.0, 0.0, 0.0);
+  // matrice.translate(-1.0, 0.0, 0.0);
+
+  // on revient à la posiiton de référence
+  matrice = reference;
 
   // on inverse le sens
   matrice.scale(-1);
@@ -141,7 +147,7 @@ void VueOpenGL::dessine(Torsion const& torsion)
   // on réduit la taille de la sphère
   matrice.scale(torsion.I()/5);
 
-  // on dessine la première masse.
+  // on dessine la deuxième masse.
   dessineSphere(matrice);
 }
 
@@ -260,9 +266,9 @@ void VueOpenGL::rotate(double angle, double dir_x, double dir_y, double dir_z)
   // Multiplie la matrice de vue par LA GAUCHE
   QMatrix4x4 rotation_supplementaire;
   rotation_supplementaire.rotate(angle, dir_x, dir_y, dir_z);
-  /*! En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
-   *! on fait en sorte que toutes les rotations se passent AVANT les translations
-   *! comme ça l'objet tourne sur lui-même. :)
+  /* En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
+   * on fait en sorte que toutes les rotations se passent AVANT les translations
+   * comme ça l'objet tourne sur lui-même. :)
    */
   matrice_vue = translation * rotation_supplementaire * translation.inverted() * matrice_vue;
 
@@ -416,7 +422,7 @@ void VueOpenGL::dessineAxesCamera()
 
 
 /*!
- * Converti des angles exprimés en radians, vers les degrés.
+ * Convertit des angles exprimés en radians vers les degrés.
  */
 double toDegree(double radian){
   return radian * 180 / M_PI;

@@ -38,7 +38,7 @@ void GLWidget::initializeGL()
 // ======================================================================
 void GLWidget::resizeGL(int width, int height)
 {
-  /* On commance par dire sur quelle partie de la
+  /* On commence par dire sur quelle partie de la
    * fenêtre OpenGL doit dessiner.
    * Ici on lui demande de dessiner sur toute la fenêtre.
    */
@@ -186,7 +186,7 @@ void GLWidget::pause()
 
 
 /*!
- * Enregistre la denrière position
+ * Enregistre la dernière position
  */
 void GLWidget::mousePressEvent(QMouseEvent* event)
 {
