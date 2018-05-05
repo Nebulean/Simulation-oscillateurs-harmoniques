@@ -9,6 +9,7 @@
 #include "ressort.h"
 #include "systeme.h"
 #include "torsion.h"
+#include "chute.h"
 #include "glsphere.h"
 
 class VueOpenGL : public SupportADessin {
@@ -19,7 +20,8 @@ class VueOpenGL : public SupportADessin {
   virtual void dessine(Ressort const& ressort_a_dessiner) override;
   virtual void dessine(Systeme const& systeme_a_dessiner) override;
   virtual void dessine(Torsion const& torsion_a_dessiner) override;
-
+  // est vide, mais est requis pour compiler.
+  virtual void dessine(Chute const& chute_a_dessiner) override {}
   //! méthode de (ré-)initialisation
   void init();
   //! méthode de (ré-)initialisation

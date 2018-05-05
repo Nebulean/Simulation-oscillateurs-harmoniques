@@ -1,4 +1,5 @@
 #include "eulercromer.h"
+#include "oscillateur.h"
 using namespace std;
 
 
