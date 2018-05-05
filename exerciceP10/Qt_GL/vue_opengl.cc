@@ -48,17 +48,19 @@ void VueOpenGL::dessine(Pendule const& pendule)
   // la direction principale et passant par O. (a n'est pas encore implémenté.)
   matrice.rotate(toDegree(pendule.P(0)), 0.0, 0.0, 1.0);
 
-  // on dessine la ligne.
-  dessineLigne(matrice, false, pendule.L());
+  // // on dessine la ligne.
+  // dessineLigne(matrice, false, pendule.L(), pendule.a(0), pendule.a(1), pendule.a(2));
+  //
+  // // on va a l'extrémité de la ligne
+  // matrice.translate(pendule.L()*pendule.a(0), pendule.L()*pendule.a(1), pendule.L()*pendule.a(2));
+  //
+  // // on réduit un peu la taille de la sphère
+  // matrice.scale(pendule.m()/10);
+  //
+  // // on dessine la sphère.
+  // dessineSphere(matrice);
 
-  // on va a l'extrémité de la ligne
-  matrice.translate(pendule.L(), 0.0, 0.0);
-
-  // on réduit un peu la taille de la sphère
-  matrice.scale(pendule.m()/10);
-
-  // on dessine la sphère.
-  dessineSphere(matrice);
+  dessineOscill(pendule, matrice, pendule.L(), pendule.m());
 
 }
 
@@ -77,21 +79,25 @@ void VueOpenGL::dessine(Ressort const& ressort)
   matrice.rotate(90, 0.0, 0.0, 1.0);
 
   // on se place le ressort dans la direction de a.
-  // matrice.translate(ressort.a(0), ressort.a(1), ressort.a(2));
-  matrice.rotate(toDegree(atan(ressort.a(2)/ressort.a(0))), 0.0, 1.0, 0.0);
+  //matrice.translate(ressort.a(0), ressort.a(1), ressort.a(2));
+  //matrice.rotate(toDegree(atan(ressort.a(2)/ressort.a(0))), 0.0, 1.0, 0.0);
 
-  // on dessine la ligne, qui prend en paramètre la longueur courante du
-  // ressort.
-  dessineLigne(matrice, false, ressort.P(0));
+  // // on dessine la ligne, qui prend en paramètre la longueur courante du
+  // // ressort.
+  // //dessineLigne(matrice, false, ressort.P(0));
+  // dessineLigne(matrice, false, ressort.P(0), ressort.a(0), ressort.a(1), ressort.a(2));
+  //
+  // // on se place au bout du fil
+  // //matrice.translate(ressort.P(0), 0.0, 0.0);
+  // matrice.translate(ressort.P(0)*ressort.a(0), ressort.P(0)*ressort.a(1), ressort.P(0)*ressort.a(2));
+  //
+  // // on modifie la taille de la sphère en fonction de la masse.
+  // matrice.scale(ressort.m()/3);
+  //
+  // // on dessine la sphère
+  // dessineSphere(matrice);
 
-  // on se place au bout du fil
-  matrice.translate(ressort.P(0), 0.0, 0.0);
-
-  // on modifie la taille de la sphère en fonction de la masse.
-  matrice.scale(ressort.m()/3);
-
-  // on dessine la sphère
-  dessineSphere(matrice);
+  dessineOscill(ressort, matrice, ressort.P(0), ressort.m());
 }
 
 void VueOpenGL::dessine(Torsion const& torsion)
@@ -106,25 +112,27 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
   // on fait une rotation pour placer le pendule de Torsion dans sa position
   // initiale
-  matrice.rotate(45, 0.0, 1.0, 0.0);
+  //matrice.rotate(45, 0.0, 1.0, 0.0);
 
   // on applique la rotation du pendule.
   matrice.rotate(toDegree(torsion.P(0)), 0.0, 1.0, 0.0);
 
-  // on enregistre la position
-  QMatrix4x4 reference(matrice);
+  // // on enregistre la position
+  // QMatrix4x4 reference(matrice);
 
-  // on dessine la première demi-tige.
-  dessineLigne(matrice);
+  // // on dessine la première demi-tige.
+  // dessineLigne(matrice, false, sqrt(torsion.I()), torsion.a(0), torsion.a(1), torsion.a(2));
+  //
+  // // on se place au bout de la demi-tige.
+  // matrice.translate(sqrt(torsion.I())*torsion.a(0), sqrt(torsion.I())*torsion.a(1), sqrt(torsion.I())*torsion.a(2));
+  //
+  // // on réduit la taille de la sphère
+  // matrice.scale(torsion.I()/5);
+  //
+  // // on dessine la première masse.
+  // dessineSphere(matrice);
 
-  // on se place au bout de la demi-tige.
-  matrice.translate(1.0, 0.0, 0.0);
-
-  // on réduit la taille de la sphère
-  matrice.scale(torsion.I()/5);
-
-  // on dessine la première masse.
-  dessineSphere(matrice);
+  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I());
 
   // on va de l'autre côté du pendule en faisant les opérations inverses.
   // on augmente de 5 la taille
@@ -133,23 +141,27 @@ void VueOpenGL::dessine(Torsion const& torsion)
   // on déplace le point au centre.
   // matrice.translate(-1.0, 0.0, 0.0);
 
-  // on revient à la posiiton de référence
-  matrice = reference;
+  // // on revient à la posiiton de référence
+  // matrice = reference;
 
   // on inverse le sens
   matrice.scale(-1);
 
-  // on dessine la deuxième demi-tige.
-  dessineLigne(matrice);
+  // // on dessine la deuxième demi-tige.
+  // //dessineLigne(matrice);
+  // dessineLigne(matrice, false, sqrt(torsion.I()), torsion.a(0), torsion.a(1), torsion.a(2));
+  //
+  // // on se place au bout de la demi-tige.
+  // //matrice.translate(1.0, 0.0, 0.0);
+  // matrice.translate(sqrt(torsion.I())*torsion.a(0), sqrt(torsion.I())*torsion.a(1), sqrt(torsion.I())*torsion.a(2));
+  //
+  // // on réduit la taille de la sphère
+  // matrice.scale(torsion.I()/5);
+  //
+  // // on dessine la deuxième masse.
+  // dessineSphere(matrice);
 
-  // on se place au bout de la demi-tige.
-  matrice.translate(1.0, 0.0, 0.0);
-
-  // on réduit la taille de la sphère
-  matrice.scale(torsion.I()/5);
-
-  // on dessine la deuxième masse.
-  dessineSphere(matrice);
+  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I());
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -245,6 +257,7 @@ void VueOpenGL::initializePosition()
   memoire = matrice_vue;
   boussole.setToIdentity();
   boussole.translate(-2.0, -1.0, -3.0);
+  //boussole.rotate(-90.0, 1.0, 0.0, 0.0);
   position = boussole;
   // matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
   // matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
@@ -397,7 +410,7 @@ void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, b
 /*!
  * Méthode générique de dessin de lignes.
  */
-void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, double longueur )
+void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, double longueur, double x, double y, double z )
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
 
@@ -409,9 +422,27 @@ void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, do
     prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
   }
   prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
-  prog.setAttributeValue(SommetId, longueur, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, longueur*x, longueur*y, longueur*z);
 
   glEnd();
+}
+
+/*!
+ * Méthode générique de dessin d'oscillateur.
+ */
+void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, double longueur, double coeff){
+
+  //on dessine l'axe de l'oscillateur en utilisant sa direction principale a
+  dessineLigne(point_de_vue, false, longueur, osc.a(0), osc.a(1), osc.a(2));
+
+  //on se déplace au bout de l'axe
+  point_de_vue.translate(longueur*osc.a(0), longueur*osc.a(1), longueur*osc.a(2));
+
+  //on réduit la taille de la sphère proportionnellement à la racine de la masse de l'oscillateur
+  point_de_vue.scale(sqrt(coeff)/3);
+
+  //on dessine la sphère
+  dessineSphere(point_de_vue);
 }
 
 

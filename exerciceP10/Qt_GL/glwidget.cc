@@ -14,7 +14,7 @@ void GLWidget::initSys(){
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
   _sys.ajoute(p);
 
-  Ressort r(0.2, 0.8, 0.05, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
+  Ressort r(0.25, 0.33, 0.15, &vue, {0.18}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
   _sys.ajoute(r);
 
   // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
@@ -82,10 +82,12 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_Left:
     vue.rotate(petit_angle, 0.0, -1.0, 0.0);
+    //vue.rotate(petit_angle, 0.0, 0.0, -1.0);
     break;
 
   case Qt::Key_Right:
     vue.rotate(petit_angle, 0.0, +1.0, 0.0);
+    //vue.rotate(petit_angle, 0.0, 0.0, +1.0);
     break;
 
   case Qt::Key_Up:
@@ -124,10 +126,12 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_Q:
     vue.rotate(petit_angle, 0.0, 0.0, -1.0);
+    //vue.rotate(petit_angle, 0.0, -1.0, 0.0);
     break;
 
   case Qt::Key_E:
     vue.rotate(petit_angle, 0.0, 0.0, +1.0);
+    //vue.rotate(petit_angle, 0.0, +1.0, 0.0);
     break;
 
   case Qt::Key_Home:

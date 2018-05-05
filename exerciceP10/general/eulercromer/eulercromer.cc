@@ -5,7 +5,7 @@ using namespace std;
 /*!
  * Méthode qui fait évoluer les oscillateurs.
  *
- * L'intégration d'Euler-Cromer est définit de cette manière.
+ * L'intégration d'Euler-Cromer est définie de cette manière.
  *
  * Q(T(n)) = Q(T(n-1)) + dt*f(P(T(n-1)))
  * P(T(n)) = P(T(n-1)) + dt*Q(T(n))
