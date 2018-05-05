@@ -17,9 +17,12 @@ int main(){
   Ressort ressort(0.25, 0.33, 0.15, &ecran);
   Torsion torsion(1, 0.33, 0, &ecran);
 
-  syst1.ajoute(pendule);
-  syst1.ajoute(ressort);
-  syst1.ajoute(torsion);
+  // syst1.ajoute(pendule);
+  // syst1.ajoute(ressort);
+  // syst1.ajoute(torsion);
+  syst1 += pendule;
+  syst1 += ressort;
+  syst1 += torsion;
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
   syst1.dessine();
@@ -32,9 +35,12 @@ int main(){
 
   Systeme syst2(0.01, &ecran, &IEC);
 
-  syst2.ajoute(pendule);
-  syst2.ajoute(ressort);
-  syst2.ajoute(torsion);
+  // syst2.ajoute(pendule);
+  // syst2.ajoute(ressort);
+  // syst2.ajoute(torsion);
+  syst2 += pendule;
+  syst2 += ressort;
+  syst2 += torsion;
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;

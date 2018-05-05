@@ -49,8 +49,13 @@ public:
   //! Affichage graphique du Systeme.
   void affiche() const;
 
+  //! Surchage de l'opérateur d'auto-affectation pour l'addition, qui permet d'ajouter un oscillateur au système.
+  Systeme& operator+=(Oscillateur const& nouvel);
+  //Systeme& operator+=(Systeme const& nouvel);
+  //Systeme& operator+=(std::initializer_list<Oscillateur> const& liste); //apparemment c'est pas possible
+
 private:
-  //! Collection hétérohène d'Oscillateur.
+  //! Collection hétérogène d'Oscillateur.
   /*!
    * Nous utilisons des unique_ptr pour éviter un grand nombre de problèmes
    * liés aux pointeurs.
@@ -74,5 +79,10 @@ private:
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& out) const override;
 };
+
+//! Surcharge d'opérateur externe pour l'addition. nvm ça marche pas du tout
+// const Systeme operator+(Systeme const& s, Oscillateur const& o);
+//const Systeme operator+(Oscillateur const& o1, Oscillateur const& o2); // celle-ci est viable mais n'a aucune utilité en pratique puisqu'on ne peut pas copier les unique_ptr
+//const Systeme operator+(Systeme s1, Systeme const& s2);
 
 #endif // H_SYSTEME

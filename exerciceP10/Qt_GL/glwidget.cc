@@ -12,14 +12,14 @@ void GLWidget::initSys(){
    * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O, a.
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
-  _sys.ajoute(p);
+  _sys+=p;
 
   Ressort r(0.25, 0.33, 0.15, &vue, {0.18}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
-  _sys.ajoute(r);
+  _sys+=r;
 
   // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
   Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
-  _sys.ajoute(t);
+  _sys+=t;
 }
 
 
