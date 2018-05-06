@@ -33,6 +33,8 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/torsion/ \
                 ../general/vecteur/ \
                 ../general/chute/ \
+                ../general/newmark/ \
+                ../general/rungekutta/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -50,6 +52,8 @@ SOURCES += \
     ../general/torsion/torsion.cc \
     ../general/vecteur/vecteur.cc \
     ../general/chute/chute.cc \
+    ../general/newmark/newmark.cc \
+    ../general/rungekutta/rungekutta.cc \
 
 HEADERS += \
     glwidget.h \
@@ -67,6 +71,8 @@ HEADERS += \
     ../general/torsion/torsion.h \
     ../general/vecteur/vecteur.h \
     ../general/chute/chute.h \
+    ../general/newmark/newmark.h \
+    ../general/rungekutta/rungekutta.h \
 
 RESOURCES += \
     resource.qrc

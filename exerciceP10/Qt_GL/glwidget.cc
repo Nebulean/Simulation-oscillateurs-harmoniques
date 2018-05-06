@@ -3,7 +3,12 @@
 #include <QMatrix4x4>
 #include <cmath>
 #include "glwidget.h"
-
+#include "integrateur.h"
+#include "eulercromer.h"
+#include "rungekutta.h"
+#include "newmark.h"
+using namespace std;
+// using namespace integr;
 
 void GLWidget::initSys(){
 
@@ -155,6 +160,17 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   case Qt::Key_V:
     vue.toggleVue();
     break;
+
+  // case Qt::Key_I:
+  //   // on commence par désallouer l'intégrateur actuel
+  //   Integrateur* tmp(_integrateur);
+  //   _integrateur = nullptr;
+  //   // delete tmp;
+  //
+  //   // ensuite, on choisi l'intégrateur suivant
+  //   // change_integrateur(_integrateur);
+  //   break;
+
   };
 
   updateGL(); // redessine
@@ -227,3 +243,39 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
 	update();
   }
 }
+
+// pour changer d'intégrateur...
+// void GLWidget::change_integrateur(Eulercromer* IEC){
+//   Q_UNUSED(IEC);
+//   _integrateur = new Newmark; // par défaut, on l'initialise à une précision 1e-6.
+// }
+//
+// void GLWidget::change_integrateur(Newmark* INM){
+//   Q_UNUSED(INM);
+//   _integrateur = new RungeKutta;
+// }
+//
+// void GLWidget::change_integrateur(RungeKutta* IRK){
+//   Q_UNUSED(IRK);
+//   _integrateur = new Eulercromer;
+// }
+
+//! Choisi un nouvel intégrateur en fonction du précédent.
+// void GLWidget::choose_integrateur(){
+//   switch (_integrateurActuel) {
+//     case EC:
+//       // _integrateur = new Newmark; // par défaut, on l'initialise à une précision 1e-6.
+//       // _integrateurActuel = NM;
+//       break;
+//
+//     case NM:
+//       // _integrateur = new RungeKutta;
+//       // _integrateurActuel = RK4;
+//       break;
+//
+//     case RK4:
+//       // _integrateur = new Eulercromer;
+//       // _integrateurActuel = EC;
+//       break;
+//   }
+// }
