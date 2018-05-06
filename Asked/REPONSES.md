@@ -121,3 +121,9 @@ Au niveau des méthodes, nous avons défini en plus de la méthode dessine():
 * ajoute(Oscillateur) qui permet d'ajouter un oscillateur à la collection hétérogène; (À CHANGER si on surcharge operator+)
 * evolue() qui fait évoluer le système d'un pas de temps;
 * affiche(ostream&), une méthode d'affichage textuel polymorphique qui permet d'utiliser operator<<, défini pour toutes les classes Dessinable.
+
+
+# Question P11.1
+> Comment représentez-vous ces nouveaux oscillateurs ? Où s'inscrivent-ils dans votre conception ?
+
+Comme les oscillateurs couplés sont des combinaisons d'oscillateurs existants, il y a une tentation de les faire hériter de plusieurs sous-classes d'oscillateurs. Cependant, un oscillateur couplé composé d'une partie ressort et d'une partie pendule par exemple, n'**est pas** un ressort **et** un pendule en même temps. C'est un composé des deux, avec ses propres attributs et propriétés. Nous avons donc décidé de les faire hériter d'Oscillateur uniquement. Ils ont donc le même statut que les oscillateurs simples.
