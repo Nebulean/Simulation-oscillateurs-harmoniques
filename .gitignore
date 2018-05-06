@@ -13,6 +13,7 @@ exerciceP10/general/systeme/testsysteme
 exerciceP10/general/torsion/testtorsion
 exerciceP10/text/simulationText
 exerciceP10/Qt_GL/simulationQtGL
+exerciceP10/general/newmark/testnewmark
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
@@ -29,3 +30,4 @@ exerciceP10/general/systeme/Makefile
 
 # Quelques documents non importants.
 exerciceP10/general/eulercromer/tests/test*
+/Users/damien/projet-BA2/exerciceP10/general/newmark/tests/*.txt

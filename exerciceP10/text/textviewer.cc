@@ -28,3 +28,7 @@ void TextViewer::dessine(Systeme const& syst) {
 void TextViewer::dessine(Torsion const& torsion) {
   _flot << torsion << endl;
 }
+
+void TextViewer::dessine(Chute const& chute) {
+  _flot << chute << endl;
+}
