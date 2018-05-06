@@ -7,6 +7,7 @@ Projet réalisé par **Delphine Martres** et **Damien Korber**.
 1. [Introduction](#intro)
 2. [Guide de compilation](#compile)
 3. [Guide d'utilisation](#util)
+4. [Analyse](#analyse)
 
 
 ### 1. Introduction <a name="intro"/>
@@ -17,6 +18,14 @@ A REMPLIR: explication de comment on compile notre projet sur linux et mac, avec
 
 ### 3. Guide d'utilisation <a name="util"/>
 A REMPLIR: Une explication de comment utiliser notre projet, ajouter des trucs, les touches importantes, ...
+
+### 4. Analyse <a name="analyse"/>
+Nous avons effectué quelques petites analyse de nos différentes implémentations.
+#### 4.1 Les intégrateurs
+Nous avons implémentés les trois intégrateurs proposés. L'intégrateur d'Euler-Cromer, de Newmark, et de Runge-Kutta à l'ordre 4. Nous avons donc testé une chute libre de conditions initiales $\vec{P} = (0, 1)$ et $\dot{\vec{P}} = (1, 2)$. ![graphique comparant les différents intégrateurs](annexes/integr_comp.png)
+Remarque:
+* l'intégrateur de Newmark a une précision de 1e-6 dans cet exemple.
+* DIRE QQCH SUR LES AXES
 
 
 # ANCIENNE VERSION QUI SERA SUPPRIMEE POUR LE RENDU
