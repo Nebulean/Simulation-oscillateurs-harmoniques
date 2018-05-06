@@ -20,7 +20,8 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/supportadessin/ \
                 ../general/systeme/ \
                 ../general/torsion/ \
-                ../general/vecteur/
+                ../general/vecteur/ \
+                ../general/chute/ \
 
 SOURCES += \
     main_text.cc \
@@ -34,7 +35,8 @@ SOURCES += \
     ../general/supportadessin/supportadessin.cc \
     ../general/systeme/systeme.cc \
     ../general/torsion/torsion.cc \
-    ../general/vecteur/vecteur.cc
+    ../general/vecteur/vecteur.cc \
+    ../general/chute/chute.cc \
 
 HEADERS += \
     textviewer.h \
@@ -47,7 +49,8 @@ HEADERS += \
     ../general/supportadessin/supportadessin.h \
     ../general/systeme/systeme.h \
     ../general/torsion/torsion.h \
-    ../general/vecteur/vecteur.h
+    ../general/vecteur/vecteur.h \
+    ../general/chute/chute.h \
 
 
 
