@@ -6,6 +6,7 @@ class Ressort;
 class Systeme;
 class Torsion;
 class Chute;
+class Chariot;
 
 /*!
  * Méthode de base des support à dessin.
@@ -33,6 +34,9 @@ public:
 
   //! Méthode de dessin de Chute.
   virtual void dessine(Chute const& chute_a_dessiner) = 0;
+
+  //! Méthode de dessin de Chariot.
+  virtual void dessine(Chariot const& chute_a_dessiner) = 0;
 };
 
 #endif // H_SUPPORTADESSIN
