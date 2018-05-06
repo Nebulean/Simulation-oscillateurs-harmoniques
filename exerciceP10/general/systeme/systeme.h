@@ -37,7 +37,7 @@ public:
   void setdt(double nouveau_pas_de_temps);
 
   //! Copie polymorphique
-  void ajoute(Oscillateur const& nouvel);
+  //void ajoute(Oscillateur const& nouvel);
 
   // méthodes
   //! Ajoute un oscillateur à la collection hétérogène.
