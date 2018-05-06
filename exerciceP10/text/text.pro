@@ -21,6 +21,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/systeme/ \
                 ../general/torsion/ \
                 ../general/vecteur/ \
+                ../general/chariot/ \
                 ../general/chute/ \
 
 SOURCES += \
@@ -36,6 +37,7 @@ SOURCES += \
     ../general/systeme/systeme.cc \
     ../general/torsion/torsion.cc \
     ../general/vecteur/vecteur.cc \
+    ../general/chariot/chariot.cc \
     ../general/chute/chute.cc \
 
 HEADERS += \
@@ -50,6 +52,7 @@ HEADERS += \
     ../general/systeme/systeme.h \
     ../general/torsion/torsion.h \
     ../general/vecteur/vecteur.h \
+    ../general/chariot/chariot.h \
     ../general/chute/chute.h \
 
 

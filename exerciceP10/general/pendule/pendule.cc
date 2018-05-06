@@ -18,7 +18,7 @@ Pendule::Pendule(double m, double L, double lambda, SupportADessin* support, Vec
  * f(t,P,Q) = (-g/L)sin(P1)-(lambda/(m*L^2))Q1
  */
 Vecteur Pendule::f(double t) {
-  return {(-9.81/_L) * sin(P().get_coord(0)) - _lambda/(_m*_L*_L) * Q().get_coord(0)};
+  return {(-9.81/_L) * sin(P(0)) - _lambda/(_m*_L*_L) * Q(0)};
 }
 
 
