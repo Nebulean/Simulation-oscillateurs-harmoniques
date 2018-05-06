@@ -2,30 +2,30 @@
 docs/
 
 # tous les executables de tests.
-exerciceP10/general/oscillateur/testoscillateur
-exerciceP10/general/integrateur/testintegrateur
-exerciceP10/general/eulercromer/testeulercromer
-exerciceP10/general/vecteur/testvecteur
-exerciceP10/general/pendule/testpendule
-exerciceP10/general/ressort/testressort
-exerciceP10/general/dessinable/testdessinable
-exerciceP10/general/systeme/testsysteme
-exerciceP10/general/torsion/testtorsion
-exerciceP10/text/simulationText
-exerciceP10/Qt_GL/simulationQtGL
+oscillateur/testoscillateur
+integrateur/testintegrateur
+eulercromer/testeulercromer
+vecteur/testvecteur
+pendule/testpendule
+ressort/testressort
+dessinable/testdessinable
+textviewer/testtextviewer
+systeme/testsysteme
+tests/exercicep9
+torsion/testtorsion
 # Les fichiers d'indexation de Spotlight (?) sur macOS.
 *.DS_STORE
 
 # des trucs de Qt.
 *.qmake.stash
-exerciceP10/Qt_GL/qrc_resource.cpp
+
 # tous les fichiers utiles à la compilation
 build/*
 
 # Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
 */Makefile
-exerciceP10/*/Makefile
-exerciceP10/general/systeme/Makefile
 
 # Quelques documents non importants.
-exerciceP10/general/eulercromer/tests/test*
+eulercromer/tests/test*
+
+bin/*

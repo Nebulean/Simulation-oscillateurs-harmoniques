@@ -100,24 +100,18 @@ Ainsi, avec cette méthode et le polymorphisme, on a une version unifiée pour d
 # Question P8.2
 > Quelle est la bonne façon de le faire dans un cadre de programmation orientée-objet ?
 
-Il s'agit d'une collection hétérogène. On a donc une collection (vector) d'éléments qui sont un pointeur sur un Oscillateur. Ainsi, comme les différentes classes comme Pendule, ou autre **sont** des oscillateur, et que l'on utilise des pointeurs, alors le polymorphisme entre en jeu.
+Il s'agit d'une collection hétérogène ! On a donc une collection (vector) d'éléments qui sont un pointeur sur un Oscillateur. Ainsi, comme les différentes classes comme Pendule, ou autre **sont** des oscillateur, et que l'on utilise des pointeurs, alors le polymorphisme entre en jeu.
 
 # Question P8.3
 > A quoi faut-il faire attention pour les classes contenant des pointeurs ? Quelles solutions peut-on envisager ?
 
 Il faut faire attention à plusieurs éléments.
-* Le **constructeur de copie**: il faut le redéfinir, car si une instance est la copie d'une autre, elle doit réallouer de nouvelles cases mémoires pour les paramètres. Il faut pour cela implémenter une copie profonde;
-* L'**opérateur d'affectation operator=**, qui est très lié au constructeur de copie et doit par conséquent aussi être redéfini pour faire une copie profonde;
+* Le **constructeur de copie**: il faut le redéfinir, car si une instance est la copie d'une autre, elle doit réallouer de nouvelles cases mémoires pour les paramètres. Il faut pour cela implémenter une copie profonde.
 * Le **destructeur**: Il faut penser à désallouer les pointeurs lorsqu'ils sont en fin de vie.
-
-Pour nous éviter tous ces problèmes, nous avons cependant choisi d'utiliser des unique_ptr, des smart pointers qui se désallouent d'eux-même quand c'est nécessaire et ne permettent pas la copie.
+* IL Y A UN TROISIEME TRUC, NON ?
 
 # Question P8.4
 > Comment représentez vous la classe Systeme ? Expliquez votre conception (attributs, interface, ...).
 
-La classe Systeme contient une une collection hétérogène d'oscillateurs. C'est dans ce tableau que seront stockés tous les oscillateurs du système. Elle contient également deux attributs double: le temps courant et le pas de temps. Ces deux sont des variables utilisées dans tous le projet, et pour simplifier le tout, elles se situent dans l'instance de Systeme. De plus, elle contient un pointeur sur un Integrateur, qui est utilisé pour faire évoluer le système.
-Au niveau des méthodes, nous avons défini en plus de la méthode dessine():
-* temps(), un accesseur pour pouvoir afficher le temps courant du système;
-* ajoute(Oscillateur) qui permet d'ajouter un oscillateur à la collection hétérogène; (À CHANGER si on surcharge operator+)
-* evolue() qui fait évoluer le système d'un pas de temps;
-* affiche(ostream&), une méthode d'affichage textuel polymorphique qui permet d'utiliser operator<<, défini pour toutes les classes Dessinable.
+La classe Systeme contient une une collection hétérogène d'oscillateurs. C'est dans ce tableau que seront stockés tous les oscillateurs du système. Elle contient également deux attributs double: le temps courant et le pas de temps. Ces deux sont des variables utilisées dans tous le projet, et pour simplifier le tout, elles se situent dans l'instance de Systeme.
+Au niveau des méthodes [A REMPLIR]
