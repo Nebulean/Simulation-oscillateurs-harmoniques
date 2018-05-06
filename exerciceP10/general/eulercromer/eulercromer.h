@@ -14,7 +14,7 @@ public:
    */
 
   //! Méthode qui fait évoluer l'oscillateur donné en argument.
-  void evolue(Oscillateur& oscillateur, double pas_de_temps, double temps) override;
+  virtual void evolue(Oscillateur& oscillateur, double pas_de_temps, double temps) override;
 };
 
 #endif // H_EULERCROMER

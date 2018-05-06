@@ -1,11 +1,26 @@
 # Oscillateurs couplés
-Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL.
-
-Nous y réalisons une simulation d'oscillateurs.
-
-Vous pouvez retrouver les pages associées dans le menu de la page.
+Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL, en section physique.
 
 Projet réalisé par **Delphine Martres** et **Damien Korber**.
+
+### Table des matières
+1. [Introduction](#intro)
+2. [Guide de compilation](#compile)
+3. [Guide d'utilisation](#util)
+
+
+### 1. Introduction <a name="intro"/>
+A REMPLIR: explication de ce qu'est notre programme.
+
+### 2. Guide de compilation <a name="compile"/>
+A REMPLIR: explication de comment on compile notre projet sur linux et mac, avec les informations utiles du type quelle version de Qt utiliser, ...
+
+### 3. Guide d'utilisation <a name="util"/>
+A REMPLIR: Une explication de comment utiliser notre projet, ajouter des trucs, les touches importantes, ...
+
+
+# ANCIENNE VERSION QUI SERA SUPPRIMEE POUR LE RENDU
+
 ## Table des matières
 1. [Compilation](#compilation)
 2. [Utilisation](#utilisation)

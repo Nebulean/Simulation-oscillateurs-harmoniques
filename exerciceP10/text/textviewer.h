@@ -7,6 +7,7 @@
 #include "ressort.h"
 #include "systeme.h"
 #include "torsion.h"
+#include "chute.h"
 
 /*!
  * Visualisation en mode texte du simulateur.
@@ -31,6 +32,9 @@ public:
 
   //! Dessine en version texte un Torsion.
   void dessine(Torsion const& torsion_a_dessiner) override;
+
+  //! Dessine en version texte un Chute.
+  void dessine(Chute const& chute_a_dessiner) override;
 
 private:
   //! flot de sortie, utilisé pour l'affichage dans TextViewer.
