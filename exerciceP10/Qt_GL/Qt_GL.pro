@@ -33,6 +33,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/torsion/ \
                 ../general/vecteur/ \
                 ../general/chute/ \
+                ../general/chariot/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -50,6 +51,7 @@ SOURCES += \
     ../general/torsion/torsion.cc \
     ../general/vecteur/vecteur.cc \
     ../general/chute/chute.cc \
+    ../general/chariot/chariot.cc \
 
 HEADERS += \
     glwidget.h \
@@ -67,6 +69,7 @@ HEADERS += \
     ../general/torsion/torsion.h \
     ../general/vecteur/vecteur.h \
     ../general/chute/chute.h \
+    ../general/chariot/chariot.h \
 
 RESOURCES += \
     resource.qrc
