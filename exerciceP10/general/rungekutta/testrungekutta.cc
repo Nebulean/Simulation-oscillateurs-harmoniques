@@ -1,13 +1,9 @@
-#include "newmark.h"
-#include "vecteur.h"
+#include "rungekutta.h"
 #include "chute.h"
 #include "textviewer.h"
-// #include "eulercromer.h" // pour des tests.
-
 using namespace std;
 
 int main(){
-  // on initialise le temps et le pas de temps.
   double t(0);
   double dt(0.01);
 
@@ -18,13 +14,12 @@ int main(){
   Chute c(0.127, &vue);
 
   // on initialise un intégrateur Newmark
-  Newmark INM;
-  // Eulercromer IEC; // pour des tests
+  RungeKutta IRK;
 
   // on fait évoluer l'instance de Chute un certain nombre de fois.
   for(size_t i(0); i < 69; ++i){
     vue.dessine(c);
-    INM.evolue(c, dt, t);
+    IRK.evolue(c, dt, t);
   }
 
   return 0;
