@@ -21,7 +21,8 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/systeme/ \
                 ../general/torsion/ \
                 ../general/vecteur/ \
-                ../general/chariot/
+                ../general/chariot/ \
+                ../general/chute/ \
 
 SOURCES += \
     main_text.cc \
@@ -36,7 +37,8 @@ SOURCES += \
     ../general/systeme/systeme.cc \
     ../general/torsion/torsion.cc \
     ../general/vecteur/vecteur.cc \
-    ../general/chariot/chario.cc
+    ../general/chariot/chariot.cc \
+    ../general/chute/chute.cc \
 
 HEADERS += \
     textviewer.h \
@@ -50,7 +52,8 @@ HEADERS += \
     ../general/systeme/systeme.h \
     ../general/torsion/torsion.h \
     ../general/vecteur/vecteur.h \
-    ../general/chariot/chariot.h
+    ../general/chariot/chariot.h \
+    ../general/chute/chute.h \
 
 
 
