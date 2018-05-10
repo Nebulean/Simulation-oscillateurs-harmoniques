@@ -34,6 +34,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/vecteur/ \
                 ../general/chute/ \
                 ../general/chariot/ \
+                ../general/rungekutta/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -52,6 +53,7 @@ SOURCES += \
     ../general/vecteur/vecteur.cc \
     ../general/chute/chute.cc \
     ../general/chariot/chariot.cc \
+    ../general/rungekutta/rungekutta.cc \
 
 HEADERS += \
     glwidget.h \
@@ -70,6 +72,7 @@ HEADERS += \
     ../general/vecteur/vecteur.h \
     ../general/chute/chute.h \
     ../general/chariot/chariot.h \
+    ../general/rungekutta/rungekutta.h \
 
 RESOURCES += \
     resource.qrc

@@ -7,6 +7,7 @@
 // #include "contenu.h"
 #include "systeme.h"
 #include "eulercromer.h"
+#include "rungekutta.h"
 
 class GLWidget : public QGLWidget
 /* La fenêtre hérite de QGLWidget ;
@@ -17,7 +18,7 @@ public:
   GLWidget(QWidget* parent = nullptr)
     : QGLWidget(parent)
     // , c(&vue)
-    , _integrateur(new Eulercromer) // Ne faut-il pas le delete ?
+    , _integrateur(new RungeKutta) // Ne faut-il pas le delete ?
     , _sys(0.1, &vue, _integrateur)
   {}
   virtual ~GLWidget() {}
