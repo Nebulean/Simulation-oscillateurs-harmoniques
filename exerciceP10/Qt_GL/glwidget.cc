@@ -161,15 +161,23 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     vue.toggleVue();
     break;
 
-  // case Qt::Key_I:
-  //   // on commence par désallouer l'intégrateur actuel
-  //   Integrateur* tmp(_integrateur);
-  //   _integrateur = nullptr;
-  //   // delete tmp;
-  //
-  //   // ensuite, on choisi l'intégrateur suivant
-  //   // change_integrateur(_integrateur);
-  //   break;
+  // lorsqu'on appuie, on choisi l'intégrateur d'Euler-Cromer.
+  case Qt::Key_1:
+    change_integrateur(new Eulercromer, 1);
+    cout << "Nouvel intégrateur: Euler-Cromer: " << _integrateur << endl;
+    break;
+
+  // lorsqu'on appuie, on choisi l'intégrateur de Newmark.
+  case Qt::Key_2:
+    change_integrateur(new Newmark, 2);
+    cout << "Nouvel intégrateur: Newmark: " << _integrateur << endl;
+    break;
+
+  // lorsqu'on appuie, on choisi l'intégrateur d'Runge-Kutta.
+  case Qt::Key_3:
+    change_integrateur(new RungeKutta, 3);
+    cout << "Nouvel intégrateur: Runge-Kutta: " << _integrateur << endl;
+    break;
 
   };
 
@@ -245,6 +253,26 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
 }
 
 // pour changer d'intégrateur...
+void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
+  if (_integrateurActuel != nbIntgr) {
+    // copie du pointeur
+    Integrateur* tmp(_integrateur);
+
+    // on applique le nouveau pointeur à GLWidget
+    _integrateur = intgr;
+
+    // on l'applique au système
+    _sys.changeIntegrateur(_integrateur);
+
+    // on change l'id de l'intégrateur
+    _integrateurActuel = nbIntgr;
+
+    // et on désalloue l'intégrateur précédent.
+    delete tmp;
+  } else {
+    delete intgr;
+  }
+}
 // void GLWidget::change_integrateur(Eulercromer* IEC){
 //   Q_UNUSED(IEC);
 //   _integrateur = new Newmark; // par défaut, on l'initialise à une précision 1e-6.

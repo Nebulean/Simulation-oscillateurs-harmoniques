@@ -34,6 +34,11 @@ void Systeme::affiche(ostream& out) const {
   };
 }
 
+// change l'intégrateur.
+void Systeme::changeIntegrateur(Integrateur* intgr){
+  _integr = intgr;
+}
+
 
 /*!
  * Si l'adresse pointée par le pointeur donné en paramètre existe, alors ce

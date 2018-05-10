@@ -21,7 +21,7 @@ public:
     // , c(&vue)
     , _integrateur(new RungeKutta) // Par défaut, on utilise un intégrateur de RungeKutta
     , _sys(0.1, &vue, _integrateur)
-    // , _integrateurActuel(integr::RK4) // par défaut, on utilise un intégrateur de Runge-Kutta.
+    , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
   {}
   virtual ~GLWidget() { delete _integrateur; }
 
@@ -48,6 +48,7 @@ private:
   // void change_integrateur(Eulercromer* IEC);
   // void change_integrateur(Newmark* INM);
   // void change_integrateur(RungeKutta* INM);
+  void change_integrateur(Integrateur* nouvel_integrateur, int nombre_integrateur_actuel);
 
   //! Méthodes de gestion interne
   void pause();
@@ -69,6 +70,16 @@ private:
    * de changer d'intégrateur facilement.
    */
   Integrateur* _integrateur;
+
+  //! Variable conservant l'intégrateur actuellement utilisé.
+  /*!
+   * Les intégrateurs sont décrit par des ints.
+   *
+   * - (1) --> Euler-Cromer
+   * - (2) --> Newmark
+   * - (3) --> Runge-Kutta
+   */
+  int _integrateurActuel;
 
   //! Variable gardant l'intégrateur actuel utilisé en mémoire.
   // integr::EnsIntegr _integrateurActuel;
