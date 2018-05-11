@@ -35,6 +35,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/chute/ \
                 ../general/chariot/ \
                 ../general/rungekutta/ \
+                ../general/penduledouble/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -54,6 +55,7 @@ SOURCES += \
     ../general/chute/chute.cc \
     ../general/chariot/chariot.cc \
     ../general/rungekutta/rungekutta.cc \
+    ../general/penduledouble/penduledouble.cc \
 
 HEADERS += \
     glwidget.h \
@@ -73,6 +75,7 @@ HEADERS += \
     ../general/chute/chute.h \
     ../general/chariot/chariot.h \
     ../general/rungekutta/rungekutta.h \
+    ../general/penduledouble/penduledouble.h \
 
 RESOURCES += \
     resource.qrc
