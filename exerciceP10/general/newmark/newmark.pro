@@ -26,6 +26,7 @@ INCLUDEPATH +=  ../integrateur/ \
                 ../torsion/ \
                 ../chute/ \
                 ../eulercromer/ \
+                ../chariot/ \
 
 SOURCES +=  testnewmark.cc \
             newmark.cc \
@@ -41,6 +42,7 @@ SOURCES +=  testnewmark.cc \
             ../torsion/torsion.cc \
             ../chute/chute.cc \
             ../eulercromer/eulercromer.cc \
+            ../chariot/chariot.cc \
 
 HEADERS +=  newmark.h \
             ../integrateur/integrateur.h \
@@ -55,3 +57,4 @@ HEADERS +=  newmark.h \
             ../torsion/torsion.h \
             ../chute/chute.h \
             ../eulercromer/eulercromer.h \
+            ../chariot/chariot.h \
