@@ -41,8 +41,8 @@ class VueOpenGL : public SupportADessin {
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
   void dessineSphere(QMatrix4x4 const& point_de_vue = QMatrix4x4(), double rouge = 1.0, double vert = 1.0, double bleu = 1.0);
   void dessineAxes(QMatrix4x4 const& point_de_vue = QMatrix4x4(), bool translatable = true, bool en_couleur = true);
-  void dessineLigne(QMatrix4x4 const& point_de_vue = QMatrix4x4(), bool en_couleur = false, double longueur = 1, double x = 1.0, double y = 0.0, double z = 0.0 );
-  void dessineOscill(Oscillateur const& a_dessiner, QMatrix4x4 point_de_vue, double longueur, double coeff_diametre);
+  void dessineLigne(QMatrix4x4 const& point_de_vue = QMatrix4x4(), bool en_couleur = false, double longueur = 1, double x = 1.0, double y = 0.0, double z = 0.0, double rouge = 1.0, double vert = 1.0, double bleu = 1.0 );
+  void dessineOscill(Oscillateur const& a_dessiner, QMatrix4x4 point_de_vue, double longueur, double coeff_diametre, double rougeLigne = 1.0, double vertLigne = 1.0, double bleuLigne = 1.0, double rougeSphere = 1.0, double vertSphere = 1.0, double bleuSphere = 1.0);
 
   //! Méthode de dessin des axes suivant le point de vue.
   void dessineAxesCamera();
@@ -87,5 +87,8 @@ class VueOpenGL : public SupportADessin {
 
 //! Convertisseur Radian -> Degrés.
 double toDegree(double radian);
+
+//! "Change l'echelle"
+double mapTo(double valeur, double fromLow, double fromHigh, double toLow, double toHigh);
 
 #endif

@@ -29,10 +29,17 @@ public:
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
-  //! Accesseurs
+  //! Accesseur de _m2
   double m1() const {return _m1;}
+  //! Accesseur de _m2
   double m2() const {return _m2;}
+  //! Accesseur de _L
   double L() const {return _L;}
+
+  //! Méthode retournant la taille maximum du ressort.
+  double getMaxSize() const {return _m1*9.81/_k;}
+
+
 
 private:
   double _m1; //!< masse du chariot

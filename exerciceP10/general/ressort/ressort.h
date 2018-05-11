@@ -36,6 +36,9 @@ public:
   //! Accesseur de la masse.
   double m() const {return _m; }
 
+  //! Retourne le maximum (je crois) de la longueur du ressort. Utilisé pour les couleurs de l'élastique.
+  double getMaxSize() const {return _m*9.81/_k;}
+
 private:
   double _m; //!< masse
   double _k; //!< elasticité

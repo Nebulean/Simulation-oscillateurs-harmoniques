@@ -2,34 +2,8 @@
 #include "vertex_shader.h" // Identifiants Qt de nos différents attributs
 #include <cmath>
 using namespace std;
-// #include "contenu.h"
 
-// ======================================================================
-// void VueOpenGL::dessine(Contenu const& a_dessiner)
-// {
-//    // Dessine le 1er cube (à l'origine)
-//   dessineCube();
-//
-//   QMatrix4x4 matrice;
-//   // Dessine le 2e cube
-//   matrice.translate(0.0, 1.5, 0.0);
-//   matrice.scale(0.25);
-//   dessineCube(matrice);
-//
-//   // Dessine le 3e cube
-//   matrice.setToIdentity();
-//   matrice.translate(0.0, 0.0, 1.5);
-//   matrice.scale(0.25);
-//   matrice.rotate(45.0, 0.0, 1.0, 0.0);
-//   dessineCube(matrice);
-//
-//   // Dessine le 4e cube
-//   matrice.setToIdentity();
-//   matrice.rotate(a_dessiner.infos(), 1.0, 0.0, 0.0);
-//   matrice.translate(0.0, 2.3, 0.0);
-//   matrice.scale(0.2);
-//   dessineCube(matrice);
-// }
+
 void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
@@ -48,19 +22,21 @@ void VueOpenGL::dessine(Pendule const& pendule)
   // la direction principale et passant par O. (a n'est pas encore implémenté.)
   matrice.rotate(toDegree(pendule.P(0)), 0.0, 0.0, 1.0);
 
-  // // on dessine la ligne.
-  // dessineLigne(matrice, false, pendule.L(), pendule.a(0), pendule.a(1), pendule.a(2));
-  //
-  // // on va a l'extrémité de la ligne
-  // matrice.translate(pendule.L()*pendule.a(0), pendule.L()*pendule.a(1), pendule.L()*pendule.a(2));
-  //
-  // // on réduit un peu la taille de la sphère
-  // matrice.scale(pendule.m()/10);
-  //
-  // // on dessine la sphère.
-  // dessineSphere(matrice);
+  // on choisi les couleurs du pendule.
+  // la tige est un solide indéformable, alors on lui donne une couleur fixe:
+  // vert.
+  double rL( 0.1 );
+  double vL( 0.8 );
+  double bL( 0 );
 
-  dessineOscill(pendule, matrice, pendule.L(), pendule.m());
+  // la boule est également indéformable, donc on lui donne une couleur fixe:
+  // bleu turquoise.
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1 );
+
+  // et on dessine le pendule
+  dessineOscill(pendule, matrice, pendule.L(), pendule.m(), rL, vL, bL, rS, vS, bS);
 
 }
 
@@ -78,26 +54,23 @@ void VueOpenGL::dessine(Ressort const& ressort)
   // on fait une rotation à 90 degrés de la matrice.
   matrice.rotate(90, 0.0, 0.0, 1.0);
 
-  // on se place le ressort dans la direction de a.
-  //matrice.translate(ressort.a(0), ressort.a(1), ressort.a(2));
-  //matrice.rotate(toDegree(atan(ressort.a(2)/ressort.a(0))), 0.0, 1.0, 0.0);
+  // la tige est un solide déformable, alors on lui donne une couleur variable
+  // en fonction de sa déformation: jaune à rouge.
+  if (debugMode) {
+    cout << "Niveau de vert de l'élastique du Ressort -  " << abs(ressort.P(0)) <<  " in [ " << 0 << ", " << ressort.getMaxSize() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(ressort.P(0)), 0, ressort.getMaxSize(), 0, 1) << endl;
+  }
+  double rL( 1 );
+  double vL( 1 - mapTo(abs(ressort.P(0)), 0, ressort.getMaxSize(), 0, 1) ); // inversement proportionnel
+  double bL( 0.1 );
 
-  // // on dessine la ligne, qui prend en paramètre la longueur courante du
-  // // ressort.
-  // //dessineLigne(matrice, false, ressort.P(0));
-  // dessineLigne(matrice, false, ressort.P(0), ressort.a(0), ressort.a(1), ressort.a(2));
-  //
-  // // on se place au bout du fil
-  // //matrice.translate(ressort.P(0), 0.0, 0.0);
-  // matrice.translate(ressort.P(0)*ressort.a(0), ressort.P(0)*ressort.a(1), ressort.P(0)*ressort.a(2));
-  //
-  // // on modifie la taille de la sphère en fonction de la masse.
-  // matrice.scale(ressort.m()/3);
-  //
-  // // on dessine la sphère
-  // dessineSphere(matrice);
+  // la boule est indéformable, donc on lui donne une couleur fixe:
+  // bleu turquoise.
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1 );
 
-  dessineOscill(ressort, matrice, ressort.P(0), ressort.m());
+  // et on dessine le ressort
+  dessineOscill(ressort, matrice, ressort.P(0), ressort.m(), rL, vL, bL, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Torsion const& torsion)
@@ -110,58 +83,43 @@ void VueOpenGL::dessine(Torsion const& torsion)
   // on déplace le pendule de Torsion à l'origine.
   matrice.translate(torsion.O(0), torsion.O(1), torsion.O(2));
 
-  // on fait une rotation pour placer le pendule de Torsion dans sa position
-  // initiale
-  //matrice.rotate(45, 0.0, 1.0, 0.0);
+  // on choisi la couleur de l'axe central, en fonction de la torsion.
+  // de jaune à rouge.
+  if (debugMode) {
+    cout << "Niveau de vert de l'axe central du pendule de torsion -  " << abs(torsion.P(0)) <<  " in [ " << 0 << ", " << torsion.getMaxAngle() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(torsion.P(0)), 0, torsion.getMaxAngle(), 0, 1) << endl;
+  }
+  double rA( 1 );
+  double vA( 1 - mapTo(abs(torsion.P(0)), 0, torsion.getMaxAngle(), 0, 1) );
+  double bA( 0.1 );
+
+  // on dessine l'axe central
+  dessineLigne(matrice, true, 1.0, 0.0, 1.0, 0.0, rA, vA, bA);
+  dessineLigne(matrice, true, 1.0, 0.0, -1.0, 0.0, rA, vA, bA);
 
   // on applique la rotation du pendule.
   matrice.rotate(toDegree(torsion.P(0)), 0.0, 1.0, 0.0);
 
-  // // on enregistre la position
-  // QMatrix4x4 reference(matrice);
+  // on choisi les couleurs de Torsion.
+  // les tige est un solide indéformable, alors on lui donne une couleur fixe:
+  // vert.
+  double rL( 0.1 );
+  double vL( 0.8 );
+  double bL( 0 );
 
-  // // on dessine la première demi-tige.
-  // dessineLigne(matrice, false, sqrt(torsion.I()), torsion.a(0), torsion.a(1), torsion.a(2));
-  //
-  // // on se place au bout de la demi-tige.
-  // matrice.translate(sqrt(torsion.I())*torsion.a(0), sqrt(torsion.I())*torsion.a(1), sqrt(torsion.I())*torsion.a(2));
-  //
-  // // on réduit la taille de la sphère
-  // matrice.scale(torsion.I()/5);
-  //
-  // // on dessine la première masse.
-  // dessineSphere(matrice);
+  // les boules sont également indéformable, donc on leur donne une couleur fixe:
+  // bleu turquoise.
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1 );
 
-  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I());
-
-  // on va de l'autre côté du pendule en faisant les opérations inverses.
-  // on augmente de 5 la taille
-  // matrice.scale(torsion.I()*5);
-
-  // on déplace le point au centre.
-  // matrice.translate(-1.0, 0.0, 0.0);
-
-  // // on revient à la posiiton de référence
-  // matrice = reference;
+  // on dessine la 1e partie
+  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I(), rL, vL, bL, rS, vS, bS);
 
   // on inverse le sens
   matrice.scale(-1);
 
-  // // on dessine la deuxième demi-tige.
-  // //dessineLigne(matrice);
-  // dessineLigne(matrice, false, sqrt(torsion.I()), torsion.a(0), torsion.a(1), torsion.a(2));
-  //
-  // // on se place au bout de la demi-tige.
-  // //matrice.translate(1.0, 0.0, 0.0);
-  // matrice.translate(sqrt(torsion.I())*torsion.a(0), sqrt(torsion.I())*torsion.a(1), sqrt(torsion.I())*torsion.a(2));
-  //
-  // // on réduit la taille de la sphère
-  // matrice.scale(torsion.I()/5);
-  //
-  // // on dessine la deuxième masse.
-  // dessineSphere(matrice);
-
-  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I());
+  // on dessine l'autre partie
+  dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I(), rL, vL, bL, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Chariot const& chariot)
@@ -172,8 +130,24 @@ void VueOpenGL::dessine(Chariot const& chariot)
   // on déplace le point pour l'amener à l'origine du chariot
   matrice.translate(chariot.O(0), chariot.O(1), chariot.O(2));
 
+  // on choisi les couleurs du chariot
+  // la tige est un solide déformable, alors on lui donne une couleur variable
+  // en fonction de sa déformation: jaune à rouge.
+  if (debugMode) {
+    cout << "Niveau de vert du ressort du chariot -  " << abs(chariot.P(0)) <<  " in [ " << 0 << ", " << chariot.getMaxSize() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(chariot.P(0)), 0, chariot.getMaxSize(), 0, 1) << endl;
+  }
+  double rC( 1 );
+  double vC( 1 - mapTo(abs(chariot.P(0)), 0, chariot.getMaxSize(), 0, 1) ); // inversement proportionnel
+  double bC( 0.1 );
+
+  // les boules sont indéformables, donc on leur donne une couleur fixe:
+  // bleu turquoise.
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1 );
+
   // on dessine le chariot d'abord
-  dessineOscill(chariot, matrice, chariot.P(0), chariot.m1());
+  dessineOscill(chariot, matrice, chariot.P(0), chariot.m1(), rC, vC, bC, rS, vS, bS);
 
   // on se déplace au bout du chariot
   matrice.translate(chariot.P(0)*chariot.a(0), chariot.P(0)*chariot.a(1), chariot.P(0)*chariot.a(2));
@@ -184,8 +158,14 @@ void VueOpenGL::dessine(Chariot const& chariot)
   // on fait une rotation de 90 degrés
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
+  // on choisi une couleur pour les tiges solides du pendule.
+  // vert
+  double rP( 0.1 );
+  double vP( 0.8 );
+  double bP( 0.0 );
+
   //on dessine le pendule
-  dessineOscill(chariot, matrice, chariot.L(), chariot.m2());
+  dessineOscill(chariot, matrice, chariot.L(), chariot.m2(), rP, vP, bP, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -434,14 +414,14 @@ void VueOpenGL::dessineAxes(QMatrix4x4 const& point_de_vue, bool translatable, b
 /*!
  * Méthode générique de dessin de lignes.
  */
-void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, double longueur, double x, double y, double z )
+void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, double longueur, double x, double y, double z, double rouge, double vert, double bleu)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
 
   glBegin(GL_LINES);
 
   if (en_couleur) {
-    prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0); // vert
+    prog.setAttributeValue(CouleurId, rouge, vert, bleu); // vert
   } else {
     prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0); // blanc
   }
@@ -454,10 +434,10 @@ void VueOpenGL::dessineLigne(QMatrix4x4 const& point_de_vue, bool en_couleur, do
 /*!
  * Méthode générique de dessin d'oscillateur.
  */
-void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, double longueur, double coeff){
+void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, double longueur, double coeff, double rougeL, double vertL, double bleuL, double rougeS, double vertS, double bleuS){
 
   //on dessine l'axe de l'oscillateur en utilisant sa direction principale a
-  dessineLigne(point_de_vue, false, longueur, osc.a(0), osc.a(1), osc.a(2));
+  dessineLigne(point_de_vue, true, longueur, osc.a(0), osc.a(1), osc.a(2), rougeL, vertL, bleuL);
 
   //on se déplace au bout de l'axe
   point_de_vue.translate(longueur*osc.a(0), longueur*osc.a(1), longueur*osc.a(2));
@@ -466,7 +446,7 @@ void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, d
   point_de_vue.scale(sqrt(coeff)/3);
 
   //on dessine la sphère
-  dessineSphere(point_de_vue);
+  dessineSphere(point_de_vue, rougeS, vertS, bleuS);
 }
 
 
@@ -489,4 +469,29 @@ void VueOpenGL::dessineAxesCamera()
  */
 double toDegree(double radian){
   return radian * 180 / M_PI;
+}
+
+/*!
+ * Fonction qui envoie des valeurs d'un ensemble sur un autre.
+ */
+double mapTo(double x, double a, double b, double c, double d)
+{
+  /* On veut envoyer un élément x de [a,b] sur [c,d], proportionnellement. Alors:
+   *
+   * f(x) = (x-a)/(b-a) * (d-c)+c
+   */
+
+   double valeur(0);
+
+   // f(x)
+   valeur = (x-a)/(b-a) * (d-c)+c;
+
+   // on règle les cas extrèmes
+   if (valeur < c) {
+     valeur = c;
+   } else if (valeur > d) {
+     valeur = d;
+   }
+
+  return valeur;
 }
