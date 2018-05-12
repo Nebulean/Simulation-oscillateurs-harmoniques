@@ -11,6 +11,7 @@ void GLWidget::initSys(){
    * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a.
    * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O, a.
    * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O, a.
+   * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
   _sys+=p;
@@ -24,6 +25,9 @@ void GLWidget::initSys(){
 
   Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0}, {1.0, 0.0, 0.0});
   _sys+=ch;
+
+  PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
+  _sys+=pdou;
 }
 
 

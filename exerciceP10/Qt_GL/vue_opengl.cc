@@ -168,6 +168,33 @@ void VueOpenGL::dessine(Chariot const& chariot)
   dessineOscill(chariot, matrice, chariot.L(), chariot.m2(), rP, vP, bP, rS, vS, bS);
 }
 
+void VueOpenGL::dessine(PenduleDouble const& pdouble)
+{
+  // on créé une matrice
+  QMatrix4x4 matrice;
+
+  // on déplace le point pour l'amener à l'origine
+  matrice.translate(pdouble.O(0), pdouble.O(1), pdouble.O(2));
+
+  // on applique la rotation actuelle du pendule 1
+  matrice.rotate(toDegree(pdouble.P(0)), 0.0, 0.0, 1.0);
+
+  // on fait une rotation à 90 degrés pour avoir le pendule à l'angle 0.
+  matrice.rotate(-90, 0.0, 0.0, 1.0);
+
+  // on dessine le premier pendule
+  dessineOscill(pdouble, matrice, pdouble.L1(), pdouble.m1());
+
+  // on se déplace au bout du premier pendule
+  matrice.translate(pdouble.L1()*pdouble.a(0), pdouble.L1()*pdouble.a(1), pdouble.L1()*pdouble.a(2));
+
+  // on retire la rotation du premier pendule et on applique la rotation actuelle du pendule 2
+  matrice.rotate(toDegree(pdouble.P(1)-pdouble.P(0)), 0.0, 0.0, 1.0);
+
+  // on dessine le deuxième pendule
+  dessineOscill(pdouble, matrice, pdouble.L2(), pdouble.m2());
+}
+
 void VueOpenGL::dessine(Systeme const& systeme)
 {
   // on dessine le système
@@ -443,7 +470,7 @@ void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, d
   point_de_vue.translate(longueur*osc.a(0), longueur*osc.a(1), longueur*osc.a(2));
 
   //on réduit la taille de la sphère proportionnellement à la racine de la masse de l'oscillateur
-  point_de_vue.scale(sqrt(coeff)/3);
+  point_de_vue.scale(sqrt(coeff)/5);
 
   //on dessine la sphère
   dessineSphere(point_de_vue, rougeS, vertS, bleuS);

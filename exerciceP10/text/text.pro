@@ -23,6 +23,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/vecteur/ \
                 ../general/chariot/ \
                 ../general/chute/ \
+                ../general/penduledouble/ \
 
 SOURCES += \
     main_text.cc \
@@ -39,6 +40,7 @@ SOURCES += \
     ../general/vecteur/vecteur.cc \
     ../general/chariot/chariot.cc \
     ../general/chute/chute.cc \
+    ../general/penduledouble/penduledouble.cc \
 
 HEADERS += \
     textviewer.h \
@@ -54,6 +56,7 @@ HEADERS += \
     ../general/vecteur/vecteur.h \
     ../general/chariot/chariot.h \
     ../general/chute/chute.h \
+    ../general/penduledouble/penduledouble.h \
 
 
 
