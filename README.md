@@ -1,3 +1,5 @@
+<!-- Ce document est en format Markdown, et utilise latex pour le rendu de quelques éléments. Pour le lire, veuillez vous procurer un bon lecteur, ou de lire le PDF associé. -->
+
 # Oscillateurs couplés
 Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL, en section physique.
 
