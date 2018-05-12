@@ -21,7 +21,7 @@ public:
    * ici, et on force la substitution dans les sous-classes. Donc cette méthode
    * est virtuelle pure.
    */
-  virtual Vecteur f(double temps) = 0;
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) = 0;
 
   //! Copie polymorphique.
   virtual std::unique_ptr<Oscillateur> copie() const = 0;
