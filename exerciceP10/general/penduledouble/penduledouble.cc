@@ -17,13 +17,17 @@ PenduleDouble::PenduleDouble(double m1, double m2, double L1, double L2, Support
  * Équation d'évolution du pendule double, définie comme dans le complément mathématique
  */
 Vecteur PenduleDouble::f(double t) {
+  return f(t, P(), Q());
+}
+
+Vecteur PenduleDouble::f(double temps, Vecteur const& p, Vecteur const& q){
   double M(_m1 + _m2);
-  double dP(P(0)-P(1));
+  double dP(p[0]-p[1]);
   double A(_m1 + _m2*sin(dP)*sin(dP));
   double B(cos(dP)*sin(dP));
   double g(9.81);
-  return 1/A * Vecteur({(_m2*g*cos(dP)*sin(P(1)) - M*g*sin(P(0)) - _m2*_L1*Q(0)*Q(0)*B - _m2*_L2*Q(1)*Q(1)*sin(dP))/_L1, (M*g*cos(dP)*sin(P(0))
-    - M*g*sin(P(1)) + _m2*_L2*Q(1)*Q(1)*B + M*_L1*Q(0)*Q(0)*sin(dP))/_L2});
+  return 1/A * Vecteur({(_m2*g*cos(dP)*sin(p[1]) - M*g*sin(p[0]) - _m2*_L1*q[0]*q[0]*B - _m2*_L2*q[1]*q[1]*sin(dP))/_L1, (M*g*cos(dP)*sin(p[0])
+    - M*g*sin(p[1]) + _m2*_L2*q[1]*q[1]*B + M*_L1*q[0]*q[0]*sin(dP))/_L2});
 }
 
 // affiche textuellement le pendule double courant.

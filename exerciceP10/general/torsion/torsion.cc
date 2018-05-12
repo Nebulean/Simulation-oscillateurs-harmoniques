@@ -17,7 +17,11 @@ Torsion::Torsion(double I, double C, double lambda, SupportADessin* support, Vec
     * f(t,P,Q) = -(C*P1 + lambda*Q1)/I
     */
 Vecteur Torsion::f(double t){
-  return {-(_C*P(0)+_lambda*Q(0))/_I};
+  return f(t, P(), Q());
+}
+
+Vecteur Torsion::f(double temps, Vecteur const& p, Vecteur const& q){
+  return {-(_C*p[0]+_lambda*q[0])/_I};
 }
 
 // affiche textuellement le pendule de torsion courant.
