@@ -15,7 +15,7 @@
 class Pendule : public Oscillateur {
 public:
   //! Constructeurs de pendule.
-  Pendule(double masse, double longueur, double viscosite, SupportADessin* support, Vecteur P = {M_PI/2}, Vecteur Q = {0.0}, Vecteur O = {0.0, 0.0, 0.0}, Vecteur a = {1.0, 0.0, 0.0});
+  Pendule(double masse, double longueur, double viscosite, SupportADessin* support, Vecteur P = {M_PI/2}, Vecteur Q = {0.0}, Vecteur O = {0.0, 0.0, 0.0});
 
   //! Destructeur de pendule.
   virtual ~Pendule() {}

@@ -76,7 +76,7 @@ void VueOpenGL::dessine(Ressort const& ressort)
   matrice.translate(ressort.O(0), ressort.O(1), ressort.O(2));
 
   // on fait une rotation à 90 degrés de la matrice.
-  matrice.rotate(90, 0.0, 0.0, 1.0);
+  matrice.rotate(-90, 1.0, 0.0, 0.0);
 
   // on se place le ressort dans la direction de a.
   //matrice.translate(ressort.a(0), ressort.a(1), ressort.a(2));

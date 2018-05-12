@@ -9,8 +9,8 @@
 
 using namespace std;
 
-Pendule::Pendule(double m, double L, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
- : Oscillateur(P, Q, O, a, support), _m(m), _L(L), _lambda(lambda)
+Pendule::Pendule(double m, double L, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
+ : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _m(m), _L(L), _lambda(lambda)
  {}
 
 /*!

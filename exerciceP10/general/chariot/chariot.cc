@@ -9,8 +9,8 @@
 
 using namespace std;
 
-Chariot::Chariot(double m1, double m2, double L, double k, double lambda, double mu, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
- : Oscillateur(P, Q, O, a, support), _m1(m1), _m2(m2), _L(L), _k(k), _lambda(lambda), _mu(mu)
+Chariot::Chariot(double m1, double m2, double L, double k, double lambda, double mu, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
+ : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _m1(m1), _m2(m2), _L(L), _k(k), _lambda(lambda), _mu(mu)
  {}
 
 /*!
