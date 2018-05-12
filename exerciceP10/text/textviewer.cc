@@ -2,6 +2,7 @@
 #include "pendule.h"
 #include "ressort.h"
 #include "systeme.h"
+#include "chariot.h"
 #include <iostream>
 using namespace std;
 
@@ -31,4 +32,8 @@ void TextViewer::dessine(Torsion const& torsion) {
 
 void TextViewer::dessine(Chute const& chute) {
   _flot << chute << endl;
+}
+
+void TextViewer::dessine(Chariot const& chariot) {
+  _flot << chariot << endl;
 }

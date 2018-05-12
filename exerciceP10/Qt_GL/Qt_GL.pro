@@ -34,6 +34,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/vecteur/ \
                 ../general/chute/ \
                 ../general/newmark/ \
+                ../general/chariot/ \
                 ../general/rungekutta/ \
 
 SOURCES += \
@@ -53,6 +54,7 @@ SOURCES += \
     ../general/vecteur/vecteur.cc \
     ../general/chute/chute.cc \
     ../general/newmark/newmark.cc \
+    ../general/chariot/chariot.cc \
     ../general/rungekutta/rungekutta.cc \
 
 HEADERS += \
@@ -72,6 +74,7 @@ HEADERS += \
     ../general/vecteur/vecteur.h \
     ../general/chute/chute.h \
     ../general/newmark/newmark.h \
+    ../general/chariot/chariot.h \
     ../general/rungekutta/rungekutta.h \
 
 RESOURCES += \
