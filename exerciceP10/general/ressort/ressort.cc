@@ -16,7 +16,7 @@ Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vec
  */
 Vecteur Ressort::f(double t) {
   Vecteur g({0.0, 0.0, -9.81});
-  return {-(_k/_m)*P().get_coord(0) - (_lambda/_m)*Q().get_coord(0) + g*a()};
+  return {-(_k/_m)*P(0) - (_lambda/_m)*Q(0) + g*a()};
 }
 
 // Affiche textuellement le ressort courant.

@@ -9,6 +9,7 @@
 #include "eulercromer.h"
 #include "newmark.h"
 #include "integrateur.h"
+#include "rungekutta.h"
 
 class GLWidget : public QGLWidget
 /* La fenêtre hérite de QGLWidget ;

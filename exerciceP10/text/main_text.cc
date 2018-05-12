@@ -3,6 +3,7 @@
 #include "pendule.h"
 #include "ressort.h"
 #include "systeme.h"
+#include "chariot.h"
 #include "eulercromer.h"
 using namespace std;
 
@@ -16,6 +17,7 @@ int main(){
   Pendule pendule(1, 1, 0, &ecran);
   Ressort ressort(0.25, 0.33, 0.15, &ecran);
   Torsion torsion(1, 0.33, 0, &ecran);
+  Chariot chariot(1, 1, 1, 0.33, 0.1, 0.1, &ecran);
 
   // syst1.ajoute(pendule);
   // syst1.ajoute(ressort);
@@ -23,6 +25,7 @@ int main(){
   syst1 += pendule;
   syst1 += ressort;
   syst1 += torsion;
+  syst1 += chariot;
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
   syst1.dessine();
@@ -41,6 +44,7 @@ int main(){
   syst2 += pendule;
   syst2 += ressort;
   syst2 += torsion;
+  syst2 += chariot;
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;

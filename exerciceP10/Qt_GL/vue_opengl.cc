@@ -164,6 +164,30 @@ void VueOpenGL::dessine(Torsion const& torsion)
   dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I());
 }
 
+void VueOpenGL::dessine(Chariot const& chariot)
+{
+  // on créé une matrice
+  QMatrix4x4 matrice;
+
+  // on déplace le point pour l'amener à l'origine du chariot
+  matrice.translate(chariot.O(0), chariot.O(1), chariot.O(2));
+
+  // on dessine le chariot d'abord
+  dessineOscill(chariot, matrice, chariot.P(0), chariot.m1());
+
+  // on se déplace au bout du chariot
+  matrice.translate(chariot.P(0)*chariot.a(0), chariot.P(0)*chariot.a(1), chariot.P(0)*chariot.a(2));
+
+  // on applique la rotation actuelle du pendule
+  matrice.rotate(toDegree(chariot.P(1)), 0.0, 0.0, 1.0);
+
+  // on fait une rotation de 90 degrés
+  matrice.rotate(-90, 0.0, 0.0, 1.0);
+
+  //on dessine le pendule
+  dessineOscill(chariot, matrice, chariot.L(), chariot.m2());
+}
+
 void VueOpenGL::dessine(Systeme const& systeme)
 {
   // on dessine le système
