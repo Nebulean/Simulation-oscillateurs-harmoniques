@@ -252,7 +252,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
   }
 }
 
-// pour changer d'intégrateur...
+//! pour changer d'intégrateur...
 void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
   if (_integrateurActuel != nbIntgr) {
     // copie du pointeur
@@ -273,37 +273,3 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
     delete intgr;
   }
 }
-// void GLWidget::change_integrateur(Eulercromer* IEC){
-//   Q_UNUSED(IEC);
-//   _integrateur = new Newmark; // par défaut, on l'initialise à une précision 1e-6.
-// }
-//
-// void GLWidget::change_integrateur(Newmark* INM){
-//   Q_UNUSED(INM);
-//   _integrateur = new RungeKutta;
-// }
-//
-// void GLWidget::change_integrateur(RungeKutta* IRK){
-//   Q_UNUSED(IRK);
-//   _integrateur = new Eulercromer;
-// }
-
-//! Choisi un nouvel intégrateur en fonction du précédent.
-// void GLWidget::choose_integrateur(){
-//   switch (_integrateurActuel) {
-//     case EC:
-//       // _integrateur = new Newmark; // par défaut, on l'initialise à une précision 1e-6.
-//       // _integrateurActuel = NM;
-//       break;
-//
-//     case NM:
-//       // _integrateur = new RungeKutta;
-//       // _integrateurActuel = RK4;
-//       break;
-//
-//     case RK4:
-//       // _integrateur = new Eulercromer;
-//       // _integrateurActuel = EC;
-//       break;
-//   }
-// }

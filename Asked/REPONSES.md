@@ -121,3 +121,15 @@ Au niveau des méthodes, nous avons défini en plus de la méthode dessine():
 * ajoute(Oscillateur) qui permet d'ajouter un oscillateur à la collection hétérogène; (À CHANGER si on surcharge operator+)
 * evolue() qui fait évoluer le système d'un pas de temps;
 * affiche(ostream&), une méthode d'affichage textuel polymorphique qui permet d'utiliser operator<<, défini pour toutes les classes Dessinable.
+
+# Question P13.1
+> Où cela s'intègre-t-il dans votre projet/conception ? Quels changements cela engendre ? 
+
+Pour implémenter ce changement d'intégrateur, nous avons procédé de la sorte. Les touches $1$, $2$ et $3$ du clavier agissent comme une sélection d'integrateur. Nous avons ajouté une variable d'état dans GLWidget qui garde en mémoire l'intégrateur actuel (ID) (il s'agit d'un int tout simplement). Lorsque l'on appuie sur une de ces touches, on suit cela:
+1. On copie le pointeur sur l'intégrateur actuellement utilisé dans une variable temporaire.
+2. On alloue dynamiquement le nouvel intégrateur voulu, et on l'applique dans le pointeur sur intégrateur de GLWidgets.
+3. On applique le changement d'intégrateur au système à l'aide d'une méthode celle-ci.
+4. On change l'ID de l'intégrateur actuel avec celui du nouveau.
+5. On désalloue la variable temporaire que l'on avait créé auparavant.
+
+Ainsi, de cette manière, nous pouvons avoir un changement d'intégrateur pendant l'execution, de manière transparente.
