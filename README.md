@@ -99,6 +99,7 @@ EST-CE QUE LA TOUCHE "HOME" MARCHE VRAIMENT ?
 Nous avons effectué quelques petites analyse de nos différentes implémentations.
 #### 4.1 Les intégrateurs
 Nous avons implémentés les trois intégrateurs proposés. L'intégrateur d'Euler-Cromer, de Newmark, et de Runge-Kutta à l'ordre 4. Nous avons donc testé une chute libre de conditions initiales $\vec{P} = (0, 1)$ et $\dot{\vec{P}} = (1, 2)$. ![graphique comparant les différents intégrateurs](annexes/integr_comp.png)
-Remarque:
-* l'intégrateur de Newmark a une précision de 1e-6 dans cet exemple.
-* DIRE QQCH SUR LES AXES
+
+Nous remarquons que, effectivement, l'intégrateur d'Euler-Cromer est moins bon que les autres. Il est certes plus simple à implémenter, mais il est bien moins précis.
+
+De plus, nous notons que l'intégrateur de Newmark et l'intégrateur de Runge-Kutta d'ordre 4 ont quasiment la même précision ! Sur le graph, ils sont confondus.
