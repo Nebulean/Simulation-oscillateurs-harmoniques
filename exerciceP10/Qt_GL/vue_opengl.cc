@@ -27,13 +27,13 @@ void VueOpenGL::dessine(Pendule const& pendule)
   // vert.
   double rL( 0.1 );
   double vL( 0.8 );
-  double bL( 0 );
+  double bL( 0.0 );
 
   // la boule est également indéformable, donc on lui donne une couleur fixe:
   // bleu turquoise.
   double rS( 0.1 );
   double vS( 0.8 );
-  double bS( 1 );
+  double bS( 1.0 );
 
   // et on dessine le pendule
   dessineOscill(pendule, matrice, pendule.L(), pendule.m(), rL, vL, bL, rS, vS, bS);
@@ -57,17 +57,17 @@ void VueOpenGL::dessine(Ressort const& ressort)
   // la tige est un solide déformable, alors on lui donne une couleur variable
   // en fonction de sa déformation: jaune à rouge.
   if (debugMode) {
-    cout << "Niveau de vert de l'élastique du Ressort -  " << abs(ressort.P(0)) <<  " in [ " << 0 << ", " << ressort.getMaxSize() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(ressort.P(0)), 0, ressort.getMaxSize(), 0, 1) << endl;
+    cout << "Niveau de vert de l'élastique du Ressort -  " << abs(ressort.P(0)) <<  " in [ " << 0.0 << ", " << ressort.getMaxSize() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(ressort.P(0)), 0.0, ressort.getMaxSize(), 0.0, 1.0) << endl;
   }
-  double rL( 1 );
-  double vL( 1 - mapTo(abs(ressort.P(0)), 0, ressort.getMaxSize(), 0, 1) ); // inversement proportionnel
+  double rL( 1.0 );
+  double vL( 1.0 - mapTo(abs(ressort.P(0)), 0.0, ressort.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
   double bL( 0.1 );
 
   // la boule est indéformable, donc on lui donne une couleur fixe:
   // bleu turquoise.
   double rS( 0.1 );
   double vS( 0.8 );
-  double bS( 1 );
+  double bS( 1.0 );
 
   // et on dessine le ressort
   dessineOscill(ressort, matrice, ressort.P(0), ressort.m(), rL, vL, bL, rS, vS, bS);
@@ -86,10 +86,10 @@ void VueOpenGL::dessine(Torsion const& torsion)
   // on choisi la couleur de l'axe central, en fonction de la torsion.
   // de jaune à rouge.
   if (debugMode) {
-    cout << "Niveau de vert de l'axe central du pendule de torsion -  " << abs(torsion.P(0)) <<  " in [ " << 0 << ", " << torsion.getMaxAngle() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(torsion.P(0)), 0, torsion.getMaxAngle(), 0, 1) << endl;
+    cout << "Niveau de vert de l'axe central du pendule de torsion -  " << abs(torsion.P(0)) <<  " in [ " << 0.0 << ", " << torsion.getMaxAngle() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(torsion.P(0)), 0.0, torsion.getMaxAngle(), 0.0, 1.0) << endl;
   }
-  double rA( 1 );
-  double vA( 1 - mapTo(abs(torsion.P(0)), 0, torsion.getMaxAngle(), 0, 1) );
+  double rA( 1.0 );
+  double vA( 1.0 - mapTo(abs(torsion.P(0)), 0.0, torsion.getMaxAngle(), 0.0, 1.0) );
   double bA( 0.1 );
 
   // on dessine l'axe central
@@ -136,15 +136,15 @@ void VueOpenGL::dessine(Chariot const& chariot)
   if (debugMode) {
     cout << "Niveau de vert du ressort du chariot -  " << abs(chariot.P(0)) <<  " in [ " << 0 << ", " << chariot.getMaxSize() << " ] -> [ " << 0 << ", " << 1 << " ] : " << 1 - mapTo(abs(chariot.P(0)), 0, chariot.getMaxSize(), 0, 1) << endl;
   }
-  double rC( 1 );
-  double vC( 1 - mapTo(abs(chariot.P(0)), 0, chariot.getMaxSize(), 0, 1) ); // inversement proportionnel
+  double rC( 1.0 );
+  double vC( 1.0 - mapTo(abs(chariot.P(0)), 0.0, chariot.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
   double bC( 0.1 );
 
   // les boules sont indéformables, donc on leur donne une couleur fixe:
   // bleu turquoise.
   double rS( 0.1 );
   double vS( 0.8 );
-  double bS( 1 );
+  double bS( 1.0 );
 
   // on dessine le chariot d'abord
   dessineOscill(chariot, matrice, chariot.P(0), chariot.m1(), rC, vC, bC, rS, vS, bS);
@@ -182,8 +182,16 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
   // on fait une rotation à 90 degrés pour avoir le pendule à l'angle 0.
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
+  // on initialise les couleurs.
+  double rL( 0.1 );
+  double vL( 0.8 );
+  double bL( 0.0 );
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1.0 );
+
   // on dessine le premier pendule
-  dessineOscill(pdouble, matrice, pdouble.L1(), pdouble.m1());
+  dessineOscill(pdouble, matrice, pdouble.L1(), pdouble.m1(), rL, vL, bL, rS, vS, bS);
 
   // on se déplace au bout du premier pendule
   matrice.translate(pdouble.L1()*pdouble.a(0), pdouble.L1()*pdouble.a(1), pdouble.L1()*pdouble.a(2));
@@ -192,7 +200,7 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
   matrice.rotate(toDegree(pdouble.P(1)-pdouble.P(0)), 0.0, 0.0, 1.0);
 
   // on dessine le deuxième pendule
-  dessineOscill(pdouble, matrice, pdouble.L2(), pdouble.m2());
+  dessineOscill(pdouble, matrice, pdouble.L2(), pdouble.m2(), rL, vL, bL, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
