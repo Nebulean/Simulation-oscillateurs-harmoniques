@@ -32,6 +32,7 @@ void Systeme::affiche(ostream& out) const {
   for (auto const& osc : _oscillateurs) {
     out << *osc << endl;
   };
+  out << "Temps: " << _t << endl;
 }
 
 // change l'intégrateur.
