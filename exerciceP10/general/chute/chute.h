@@ -5,12 +5,17 @@
 #include <memory>
 #include <iostream>
 
-// C'est un copier-coller modifié. ;)
+/*!
+ * Ce n'est pas à proprement parler un oscillateurs, mais c'est un bon exemple
+ * pour tester les intégrateurs. Comme on en a besoin fréquemment, on en a
+ * fait une classe à part entière.
+ */
 class Chute : public Oscillateur
 {
 public:
   //! Constructeur de Chute.
-  Chute(double const& m, SupportADessin* vue) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}, vue), _m(m) {};
+  Chute(double const& m, SupportADessin* vue, Vecteur const& position = {0, 1}, Vecteur const& vitesse = {1, 2}, Vecteur const& origine = {0, 1}, Vecteur const& direction_principale = {0, 1})
+   : Oscillateur(position, vitesse, origine, direction_principale, vue), _m(m) {};
 
   //! Méthode retournant simplement le vecteur g.
   virtual Vecteur f(double t) override;

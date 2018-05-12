@@ -4,9 +4,11 @@
 #include <QGLWidget>        // Classe pour faire une fenêtre OpenGL
 #include <QTime>            // Classe pour gérer le temps
 #include "vue_opengl.h"
-// #include "contenu.h"
 #include "systeme.h"
+#include "rungekutta.h"
 #include "eulercromer.h"
+#include "newmark.h"
+#include "integrateur.h"
 #include "rungekutta.h"
 
 class GLWidget : public QGLWidget
@@ -18,10 +20,11 @@ public:
   GLWidget(QWidget* parent = nullptr)
     : QGLWidget(parent)
     // , c(&vue)
-    , _integrateur(new RungeKutta) // Ne faut-il pas le delete ?
+    , _integrateur(new RungeKutta) // Par défaut, on utilise un intégrateur de RungeKutta
     , _sys(0.1, &vue, _integrateur)
+    , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
   {}
-  virtual ~GLWidget() {}
+  virtual ~GLWidget() { delete _integrateur; }
 
 private:
   // Les 3 méthodes clés de la classe QGLWidget à réimplémenter
@@ -42,14 +45,19 @@ private:
   //! gestion des mouvements de la souris
   virtual void mouseMoveEvent(QMouseEvent* event)  override;
 
+  // Surcharges de la méthode choose_integrateur(...) permetant de choisir le bon intégrateur.
+  // void change_integrateur(Eulercromer* IEC);
+  // void change_integrateur(Newmark* INM);
+  // void change_integrateur(RungeKutta* INM);
+  void change_integrateur(Integrateur* nouvel_integrateur, int nombre_integrateur_actuel);
 
-  // Méthodes de gestion interne
+  //! Méthodes de gestion interne
   void pause();
 
-  // Vue : ce qu'il faut donner au contenu pour qu'il puisse se dessiner sur la vue
+  //! Vue : ce qu'il faut donner au contenu pour qu'il puisse se dessiner sur la vue
   VueOpenGL vue;
 
-  // Timer
+  //! Timer
   int timerId;
   // pour faire évoluer les objets avec le bon "dt"
   QTime chronometre;
@@ -59,10 +67,23 @@ private:
 
   //! L'intégrateur utilisé dans ce projet
   /*!
-   * Il s'agit d'un pointeur pour se laisser la liberté de le changer lors de
-   * l'initialisation.
+   * Il s'agit d'un pointeur sur un intégrateur, ce qui nous donne la posibilité
+   * de changer d'intégrateur facilement.
    */
   Integrateur* _integrateur;
+
+  //! Variable conservant l'intégrateur actuellement utilisé.
+  /*!
+   * Les intégrateurs sont décrit par des ints.
+   *
+   * - (1) --> Euler-Cromer
+   * - (2) --> Newmark
+   * - (3) --> Runge-Kutta
+   */
+  int _integrateurActuel;
+
+  //! Variable gardant l'intégrateur actuel utilisé en mémoire.
+  // integr::EnsIntegr _integrateurActuel;
 
   // objets à dessiner, faire évoluer
   // Contenu c;
