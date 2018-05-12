@@ -7,6 +7,7 @@ class Systeme;
 class Torsion;
 class Chute;
 class Chariot;
+class PenduleDouble;
 
 /*!
  * Méthode de base des support à dessin.
@@ -36,7 +37,10 @@ public:
   virtual void dessine(Chute const& chute_a_dessiner) = 0;
 
   //! Méthode de dessin de Chariot.
-  virtual void dessine(Chariot const& chute_a_dessiner) = 0;
+  virtual void dessine(Chariot const& chariot_a_dessiner) = 0;
+
+  //! Méthode de dessin de PenduleDouble
+  virtual void dessine(PenduleDouble const& penduledouble_a_dessiner) = 0;
 };
 
 #endif // H_SUPPORTADESSIN

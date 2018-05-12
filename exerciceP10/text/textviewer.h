@@ -9,6 +9,7 @@
 #include "torsion.h"
 #include "chute.h"
 #include "chariot.h"
+#include "penduledouble.h"
 
 /*!
  * Visualisation en mode texte du simulateur.
@@ -39,6 +40,9 @@ public:
 
   //! Dessine en version texte un Chariot
   void dessine(Chariot const& chariot_a_dessiner) override;
+
+  //! Dessine en version texte un PenduleDouble
+  void dessine(PenduleDouble const& penduledouble_a_dessiner) override;
 
 private:
   //! flot de sortie, utilisé pour l'affichage dans TextViewer.
