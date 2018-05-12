@@ -122,8 +122,19 @@ Au niveau des méthodes, nous avons défini en plus de la méthode dessine():
 * evolue() qui fait évoluer le système d'un pas de temps;
 * affiche(ostream&), une méthode d'affichage textuel polymorphique qui permet d'utiliser operator<<, défini pour toutes les classes Dessinable.
 
-
 # Question P11.1
 > Comment représentez-vous ces nouveaux oscillateurs ? Où s'inscrivent-ils dans votre conception ?
 
 Comme les oscillateurs couplés sont des combinaisons d'oscillateurs existants, il y a une tentation de les faire hériter de plusieurs sous-classes d'oscillateurs. Cependant, un oscillateur couplé composé d'une partie ressort et d'une partie pendule par exemple, n'**est pas** un ressort **et** un pendule en même temps. C'est un composé des deux, avec ses propres attributs et propriétés. Nous avons donc décidé de les faire hériter d'Oscillateur uniquement. Ils ont donc le même statut que les oscillateurs simples.
+
+# Question P13.1
+> Où cela s'intègre-t-il dans votre projet/conception ? Quels changements cela engendre ?
+
+Pour implémenter ce changement d'intégrateur, nous avons procédé de la sorte. Les touches $1$, $2$ et $3$ du clavier agissent comme une sélection d'integrateur. Nous avons ajouté une variable d'état dans GLWidget qui garde en mémoire l'intégrateur actuel (ID) (il s'agit d'un int tout simplement). Lorsque l'on appuie sur une de ces touches, on suit cela:
+1. On copie le pointeur sur l'intégrateur actuellement utilisé dans une variable temporaire.
+2. On alloue dynamiquement le nouvel intégrateur voulu, et on l'applique dans le pointeur sur intégrateur de GLWidgets.
+3. On applique le changement d'intégrateur au système à l'aide d'une méthode celle-ci.
+4. On change l'ID de l'intégrateur actuel avec celui du nouveau.
+5. On désalloue la variable temporaire que l'on avait créé auparavant.
+
+Ainsi, de cette manière, nous pouvons avoir un changement d'intégrateur pendant l'execution, de manière transparente.

@@ -33,7 +33,7 @@ Vecteur PenduleDouble::f(double temps, Vecteur const& p, Vecteur const& q){
 // affiche textuellement le pendule double courant.
 void PenduleDouble::affiche(ostream& out) const {
   out << "*** Pendule double ***" << endl;
-  // on affiche simplement les informations du chariot.
+  // on affiche simplement les informations du penduledouble.
   out << P() << " # parametre" << endl;
   out << Q() << " # vitesse" << endl;
 }

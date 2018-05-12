@@ -8,9 +8,10 @@
  */
 class Integrateur{
 public:
-  /* Le constructeur et le destructeur par défaut sont suffisent, car il n'y a
+  /* Le constructeur par défaut est suffisent, car il n'y a
    * rien à initialiser dans cette classe.
    */
+   virtual ~Integrateur() {}
 
   //! Méthode qui fait évoluer l'oscillateur donné en argument.
   /*! Méthode qui fait évoluer l'oscillateur donné en argument.
@@ -19,5 +20,19 @@ public:
    */
   virtual void evolue(Oscillateur& oscillateur, double pas_de_temps, double temps) = 0;
 };
+
+
+
+
+// //! Namespace contenant un type enum qui liste l'ensemble des intégrateurs.
+// namespace integr
+// {
+//   //! Type qui contient la liste des tous les intégrateurs.
+//   /*!
+//    * Chaque element de ce type a une valeur par défaut. Cette valeur commence
+//    * à 0.
+//    */
+//   enum EnsIntegr { EC, NM, RK4 };
+// }
 
 #endif // H_INTEGRATEUR
