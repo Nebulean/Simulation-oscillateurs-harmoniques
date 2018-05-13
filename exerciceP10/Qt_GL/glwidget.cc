@@ -20,11 +20,10 @@ void GLWidget::initSys(){
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {-4.0, 3.0, -3.0}, {1.0, 0.0, 0.0});
   _sys+=p;
-  // 0.25 0.33 0.15
+
   Ressort r(0.25, 0.5, 0.02, &vue, {0.18}, {0.0}, {-3.0, -1.0, -3.0}, {0.8, 0.0, 0.6});
   _sys+=r;
 
-  // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
   Torsion t(1, 1, 0.05, &vue, {M_PI/4}, {0.0}, {3.0, 2.0, -3.0}, {1.0, 0.0, 0.0});
   _sys+=t;
 

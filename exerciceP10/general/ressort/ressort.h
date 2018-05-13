@@ -22,7 +22,10 @@ public:
   virtual ~Ressort() {}
 
   //! Méthode d'évolution propre à l'oscillateur.
-  Vecteur f(double temps) override;
+  virtual Vecteur f(double temps) override;
+
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
 
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override

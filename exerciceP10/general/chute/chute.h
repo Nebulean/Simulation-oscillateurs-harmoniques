@@ -20,6 +20,8 @@ public:
   //! Méthode retournant simplement le vecteur g.
   virtual Vecteur f(double t) override;
 
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
   //! copie polymorphique
   std::unique_ptr<Oscillateur> copie() const override;
   //! utilisé pour la copie polymorphique
