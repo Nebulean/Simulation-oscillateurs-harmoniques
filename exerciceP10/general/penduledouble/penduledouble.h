@@ -18,7 +18,10 @@ public:
   virtual ~PenduleDouble() {}
 
   //! Substitution de la méthode d'évolution
-  Vecteur f(double temps) override;
+  virtual Vecteur f(double temps) override;
+
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
 
   //! Méthode de dessin qui DOIT être implémentée.
   virtual void dessine() override

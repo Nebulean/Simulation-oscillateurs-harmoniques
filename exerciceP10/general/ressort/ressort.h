@@ -22,7 +22,10 @@ public:
   virtual ~Ressort() {}
 
   //! Méthode d'évolution propre à l'oscillateur.
-  Vecteur f(double temps) override;
+  virtual Vecteur f(double temps) override;
+
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
 
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override
@@ -35,6 +38,9 @@ public:
 
   //! Accesseur de la masse.
   double m() const {return _m; }
+
+  //! Retourne le maximum (je crois) de la longueur du ressort. Utilisé pour les couleurs de l'élastique.
+  double getMaxSize() const {return _m*9.81/_k;}
 
 private:
   double _m; //!< masse

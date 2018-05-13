@@ -20,12 +20,12 @@ void GLWidget::initSys(){
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
   _sys+=p;
-
-  Ressort r(0.25, 0.33, 0.15, &vue, {0.18}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
+  // 0.25 0.33 0.15
+  Ressort r(0.25, 0.5, 0.02, &vue, {0.18}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
   _sys+=r;
 
   // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
-  Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  Torsion t(1, 1, 0.05, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
   _sys+=t;
 
   Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0}, {1.0, 0.0, 0.0});
@@ -197,7 +197,9 @@ void GLWidget::timerEvent(QTimerEvent* event)
 {
   Q_UNUSED(event);
 
-  double dt = chronometre.restart() / 1000.0;
+  double dt = 0.02;
+  // double dt = chronometre.restart() / 1000.0;
+  // cout << "dt actuel = " << dt << endl;
 
   /* En gros, on aligne le pas de temps du Systeme avec le pas de temps de Qt,
    * puis on fait évoluer le système avec son propre dt.

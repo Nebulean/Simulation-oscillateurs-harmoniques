@@ -21,5 +21,10 @@ void Chute::affiche(std::ostream& out) const {
 
 
 Vecteur Chute::f(double t) {
+  return f(t, P(), Q());
+}
+
+
+Vecteur Chute::f(double temps, Vecteur const& p, Vecteur const& q){
   return Vecteur({0, -9.81});
 }
