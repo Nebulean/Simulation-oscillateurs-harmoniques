@@ -26,6 +26,12 @@ public:
    std::unique_ptr<PenduleRessort> clone() const;
    //! Copie polymorphique
    virtual std::unique_ptr<Oscillateur> copie() const override;
+
+   //! Retourne le maximum de longueur du ressort.
+   double getMaxSize() const {return _m*9.81/_k;}
+
+   //! getter de la masse
+   double m() const {return _m;}
 private:
   double _m; //<! Masse du pendule-ressort.
   double _L; //<! Longueur au repos du pendule-ressort.

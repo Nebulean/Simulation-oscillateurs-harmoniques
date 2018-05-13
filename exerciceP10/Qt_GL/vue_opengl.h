@@ -13,6 +13,7 @@
 #include "chariot.h"
 #include "penduledouble.h"
 #include "glsphere.h"
+#include "penduleressort.h"
 
 class VueOpenGL : public SupportADessin {
  public:
@@ -24,8 +25,9 @@ class VueOpenGL : public SupportADessin {
   virtual void dessine(Torsion const& torsion_a_dessiner) override;
   virtual void dessine(Chariot const& chariot_a_dessiner) override;
   virtual void dessine(PenduleDouble const& penduledouble_a_dessiner) override;
+  virtual void dessine(PenduleRessort const& penduleressort_a_dessiner) override;
   // est vide, mais est requis pour compiler.
-  virtual void dessine(Chute const& chute_a_dessiner) override {}
+  virtual void dessine(Chute const& chute_a_dessiner) override {Q_UNUSED(chute_a_dessiner);}
   //! méthode de (ré-)initialisation
   void init();
   //! méthode de (ré-)initialisation

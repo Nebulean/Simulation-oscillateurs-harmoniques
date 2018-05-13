@@ -203,6 +203,29 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
   dessineOscill(pdouble, matrice, pdouble.L2(), pdouble.m2(), rL, vL, bL, rS, vS, bS);
 }
 
+
+void VueOpenGL::dessine(PenduleRessort const& pr)
+{
+  QMatrix4x4 matrice;
+
+  matrice.translate(pr.O(0), pr.O(1), pr.O(2));
+
+  // matrice.rotate(toDegree(pr.P()))
+
+  // on choisi les couleurs
+  if (debugMode) {
+    cout << "Niveau de vert de l'élastique du Pendule-Ressort -  " << abs(pr.P(0)) <<  " in [ " << 0.0 << ", " << pr.getMaxSize() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) << endl;
+  }
+  double rL( 1.0 );
+  double vL( 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
+  double bL( 0.1 );
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1.0 );
+
+  dessineOscill(pr, matrice, pr.P(0), pr.m(), rL, vL, bL, rS, vS, bS);
+}
+
 void VueOpenGL::dessine(Systeme const& systeme)
 {
   // on dessine le système
