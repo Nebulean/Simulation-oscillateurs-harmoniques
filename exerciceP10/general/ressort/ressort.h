@@ -43,6 +43,9 @@ private:
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot) const override;
+
+  //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
+  virtual void settodefault() override;
 };
 
 #endif // RESSORT_H

@@ -5,12 +5,19 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include <vector>
 
 using namespace std;
 
 Torsion::Torsion(double I, double C, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
  : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _I(I), _C(C), _lambda(lambda)
- {}
+ {
+   if (I <= 0 or C < 0 or lambda < 0) {
+     cout << "Torsion: une ou plusieurs des valeurs entrées sont interdites." << endl;
+     settodefault();
+     cout << "Paramètres à valeurs interdites fixés à la valeur par défaut: 1.0." << endl;
+   }
+ }
 
    /*!
     * Équation d'évolution du pendule de torsion, définie de cette manière:
@@ -34,4 +41,13 @@ unique_ptr<Torsion> Torsion::clone() const {
 
 unique_ptr<Oscillateur> Torsion::copie() const {
   return clone();
+}
+
+//! Applique la valeur par défaut de 1.0 à tous les paramètres qui ont une valeur physiquement impossible.
+void Torsion::settodefault() {
+  if (_I <= 0) _I = 1.0;
+  vector<double*> param {&_C, &_lambda};
+  for (auto el : param) {
+    if (*el < 0) *el = 1.0;
+  }
 }

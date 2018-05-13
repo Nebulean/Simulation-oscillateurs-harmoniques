@@ -6,12 +6,19 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include <vector>
 
 using namespace std;
 
 Chariot::Chariot(double m1, double m2, double L, double k, double lambda, double mu, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
  : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _m1(m1), _m2(m2), _L(L), _k(k), _lambda(lambda), _mu(mu)
- {}
+ {
+   if (m1 <= 0 or m2 <= 0 or L <= 0 or k <= 0 or lambda < 0 or mu < 0) {
+     cout << "Chariot: une ou plusieurs des valeurs entrées sont interdites." << endl;
+     settodefault();
+     cout << "Paramètres à valeurs interdites fixés à la valeur par défaut: 1.0." << endl;
+   }
+ }
 
 /*!
  * Équation d'évolution du chariot avec pendule amorti par un ressort
@@ -24,7 +31,7 @@ Vecteur Chariot::f(double t) {
   double A(_m1 + _m2*sin(P(1))*sin(P(1)));
   double B(_k*P(0) + _lambda*Q(0) - _m2*_L*Q(1)*Q(1)*sin(P(1)));
   double C(9.81*sin(P(1)) + _mu*Q(1));
-  return 1/A * Vecteur({-B + _m2*C*cos(P(1)), (B*cos(P(1)) - M*C)/_L});
+  return 1.0/A * Vecteur({-B + _m2*C*cos(P(1)), (B*cos(P(1)) - M*C)/_L});
 }
 
 // affiche textuellement le chariot courant.
@@ -41,4 +48,16 @@ unique_ptr<Chariot> Chariot::clone() const {
 
 unique_ptr<Oscillateur> Chariot::copie() const {
   return clone();
+}
+
+//! Applique la valeur par défaut de 1.0 à tous les paramètres qui ont une valeur physiquement impossible.
+void Chariot::settodefault() {
+  vector<double*> param {&_m1, &_m2, &_L, &_k};
+  for (auto el : param) {
+    if (*el <= 0) *el = 1.0;
+  }
+  param = {&_lambda, &_mu};
+  for (auto el : param) {
+    if (*el < 0) *el = 1.0;
+  }
 }

@@ -31,6 +31,8 @@ private:
 
 
   virtual void affiche(std::ostream& flot_de_sortie) const  override;
+
+  virtual void settodefault() override { if (_m <= 0) _m = 1.0;}
 };
 
 #endif // H_CHUTE

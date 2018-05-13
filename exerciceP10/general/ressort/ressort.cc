@@ -4,12 +4,19 @@
 #include "oscillateur.h"
 #include "supportadessin.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
  : Oscillateur(P, Q, O, a, support), _m(m), _k(k), _lambda(lambda)
- {}
+ {
+   if (m <= 0 or k <= 0 or lambda < 0) {
+     cout << "Ressort: une ou plusieurs des valeurs entrées sont interdites." << endl;
+     settodefault();
+     cout << "Paramètres à valeurs interdites fixés à la valeur par défaut: 1.0." << endl;
+   }
+ }
 
 /*!
  * Méthode d'évolution substituée.
@@ -35,4 +42,13 @@ unique_ptr<Ressort> Ressort::clone() const {
 
 unique_ptr<Oscillateur> Ressort::copie() const {
   return clone();
+}
+
+//! Applique la valeur par défaut de 1.0 à tous les paramètres qui ont une valeur physiquement impossible.
+void Ressort::settodefault() {
+  vector<double*> param {&_m, &_k};
+  for (auto el : param) {
+    if (*el <= 0) *el = 1.0;
+  }
+  if (_lambda < 0) _m = 1.0;
 }
