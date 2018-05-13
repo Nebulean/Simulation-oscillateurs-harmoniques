@@ -28,7 +28,7 @@ public:
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Torsion (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Torsion> clone() const;
+  std::unique_ptr<Torsion> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 

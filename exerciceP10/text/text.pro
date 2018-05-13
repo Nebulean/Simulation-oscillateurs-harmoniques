@@ -26,6 +26,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/penduledouble/ \
                 ../general/newmark/ \
                 ../general/rungekutta/ \
+                ../general/penduleressort/ \
 
 SOURCES += \
     main_text.cc \
@@ -45,6 +46,7 @@ SOURCES += \
     ../general/penduledouble/penduledouble.cc \
     ../general/newmark/newmark.cc \
     ../general/rungekutta/rungekutta.cc \
+    ../general/penduleressort/penduleressort.cc \
 
 HEADERS += \
     textviewer.h \
@@ -63,6 +65,7 @@ HEADERS += \
     ../general/penduledouble/penduledouble.h \
     ../general/newmark/newmark.h \
     ../general/rungekutta/rungekutta.h \
+    ../general/penduleressort/penduleressort.h \
 
 
 

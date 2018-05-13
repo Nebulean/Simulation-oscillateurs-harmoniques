@@ -6,6 +6,7 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -24,6 +25,7 @@ Vecteur Chariot::f(double t) {
 }
 
 Vecteur Chariot::f(double temps, Vecteur const& p, Vecteur const& q) {
+  Q_UNUSED(temps);
   double M(_m1 + _m2);
   double A(_m1 + _m2*sin(p[1])*sin(p[1]));
   double B(_k*p[0] + _lambda*q[0] - _m2*_L*q[1]*q[1]*sin(p[1]));

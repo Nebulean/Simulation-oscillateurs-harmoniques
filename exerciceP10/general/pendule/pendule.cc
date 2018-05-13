@@ -6,6 +6,7 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -22,6 +23,7 @@ Vecteur Pendule::f(double t) {
 }
 
 Vecteur Pendule::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
   return {(-9.81/_L) * sin(p[0]) - _lambda/(_m*_L*_L) * q[0]};
 }
 

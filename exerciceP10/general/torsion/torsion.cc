@@ -5,6 +5,7 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -21,6 +22,7 @@ Vecteur Torsion::f(double t){
 }
 
 Vecteur Torsion::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
   return {-(_C*p[0]+_lambda*q[0])/_I};
 }
 

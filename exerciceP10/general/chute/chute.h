@@ -23,7 +23,7 @@ public:
   virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
 
   //! copie polymorphique
-  std::unique_ptr<Oscillateur> copie() const override;
+  virtual std::unique_ptr<Oscillateur> copie() const override;
   //! utilisé pour la copie polymorphique
   std::unique_ptr<Chute> clone() const;
 
