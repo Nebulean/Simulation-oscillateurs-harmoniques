@@ -11,11 +11,12 @@ Projet réalisé par **Delphine Martres** et **Damien Korber**.
 3. [Guide d'utilisation](#util)
 4. [Analyse](#analyse)
 
-
 ### 1. Introduction <a name="intro"/>
 Le but de ce projet est la réalisation d'un programme pouvant simuler des oscillateurs couplés. Nous avons réalisé quelques preset d'oscillateurs, mais le programme se veut suffisament souple pour ajouter de nouveaux oscillateurs.
 
 Nous offrons une simulation textuelle, ainsi qu'une simulation visuelle, utilisant Qt et OpenGL.
+
+\pagebreak
 
 ### 2. Guide de compilation <a name="compile"/>
 Pour compiler le programme dans sa version actuelle, rien de plus simple, suivez ce tutoriel et tout devrait bien se passer.
@@ -60,6 +61,8 @@ où `NOM_DE_EXECUTABLE` est le... nom de l'executable.
 #### 2.5 Compiler tous les sous-projet fonctionnels
 A REMPLIR, MAIS CE N'EST PAS ENCORE PRET DANS LE CODE.
 
+\pagebreak
+
 ### 3. Guide d'utilisation <a name="util"/>
 Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant la simulation textuelle, il n'y a rien à savoir, donc nous nous intéressons à la simulation visuelle.
 
@@ -95,6 +98,8 @@ EST-CE QUE LA TOUCHE "HOME" MARCHE VRAIMENT ?
 | Activation de l'intégrateur de Newmark | **2** |
 | Activation de l'intégrateur de Runge-Kutta d'ordre 4| **3** |
 
+\pagebreak
+
 ### 4. Analyse <a name="analyse"/>
 Nous avons effectué quelques petites analyse de nos différentes implémentations.
 #### 4.1 Les intégrateurs
@@ -103,3 +108,106 @@ Nous avons implémentés les trois intégrateurs proposés. L'intégrateur d'Eul
 Nous remarquons que, effectivement, l'intégrateur d'Euler-Cromer est moins bon que les autres. Il est certes plus simple à implémenter, mais il est bien moins précis.
 
 De plus, nous notons que l'intégrateur de Newmark et l'intégrateur de Runge-Kutta d'ordre 4 ont quasiment la même précision ! Sur le graph, ils sont confondus.
+
+#### 4.2 Les oscillateurs
+Nous avons implémenté un certaine nombre d'oscillateurs, et nous avons effectué quelques teste pour voir leur bon fonctionnement.
+
+Tous les tests ci-dessus sont effectué avec l'intégrateur de **Runge-Kutta d'ordre 4**.
+
+\pagebreak
+
+##### 4.2.1 Le pendule simple
+###### Conditions initiales
+* Masse = 1
+* Longueur = 2
+* Viscosité = 0.1
+* Position = {M_PI/2}
+* Vitesse = {0.0}
+* Origine = {0.0, 0.0, 0.0}
+* Direction principale = {1.0, 0.0, 0.0}
+
+###### Schéma
+![graphPendule](annexes/graphPendule.png)
+Nous remarquons que l'évolution du pendule se passe comme prévu. Il est amorti et tend vers un minimum.
+
+\pagebreak
+
+##### 4.2.2 Le ressort simple
+###### Conditions initiales
+* Masse = 0.25
+* Elasticité = 0.5
+* Viscosité = 0.02
+* Position = {0.18}
+* Vitesse = {0.0}
+* Origine = {0.0, 0.0, 0.0}
+* Direction principale = {0.8, 0.0, 0.6}
+
+###### Schéma
+<img>
+![Graphique d'évolution d'un ressort à ces conditions initiales](annexes/graphRessort.png)
+Nous remarquons que l'évolution du ressort se passe comme prévu. Il est amorti et tend vers un minimum.
+
+\pagebreak
+
+##### 4.2.3 La chute
+###### Conditions initiales
+* Masse = 1
+* Position = {0.0, 1.0}
+* Vitesse = {1.0, 2.0}
+* Origine = {0.0, 1.0}
+* Direction principale = {0.0, 1.0}
+
+###### Schéma
+![Graphique d'évolution d'une chute à ces conditions initiales](annexes/graphChute.png)
+Nous remarquons que l'évolution de la chute se passe comme prévu. Elle continue à chuter à accélération constante.
+
+\pagebreak
+
+##### 4.2.4 Le pendule de torsion
+###### Conditions initiales
+* Moment d'inertie = 1
+* Constante de torsion = 1
+* Friction = 0.05
+* Position = {M_PI/4}
+* Vitesse = {0.0}
+* Origine = {0.0, 0.0, 0.0}
+* Direction principale = {1.0, 0.0, 0.0}
+
+###### Schéma
+![Graphique d'évolution d'un pendule de torsion à ces conditions initiales](annexes/graphTorsion.png)
+Nous remarquons que l'évolution du pendule de torsion se passe comme prévu. Il est amorti et tend vers un minimum.
+
+\pagebreak
+
+##### 4.2.5 Le chariot
+###### Conditions initiales
+* Masse du chariot = 1
+* Masse du pendule = 1
+* Longeur du pendule = 1.5
+* Elasticité = 0.1
+* Viscosité du chariot = 0.1
+* Viscosité du pendule = 0.1
+* Position = {1.0, M_PI/3}
+* Vitesse = {0.0, 0.0}
+* Origine = {0.0, 0.0, 0.0}
+* Direction principale = {1.0, 0.0, 0.0}
+
+###### Schéma
+![Graphique d'évolution d'un chariot à ces conditions initiales](annexes/graphChariot.png)
+Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti et tend vers un minimum.
+
+\pagebreak
+
+##### 4.2.6 Le pendule double non amorti.
+###### Conditions initiales
+* Masse 1 = 1
+* Masse 2 = 1
+* Longeur 1 = 1.5
+* Longeur 2 = 0.1
+* Position = {M_PI/3, M_PI/3}
+* Vitesse = {0.0, 0.0}
+* Origine = {0.0, 0.0, 0.0}
+
+###### Schéma
+![Graphique d'évolution d'un pendule double non amorti à ces conditions initiales](annexes/graphPenduleDouble.png)
+Nous remarquons que l'évolution du pendule double non amorti se passe comme prévu. Comme il n'est pas ralenti, il continue à l'infinie et est plus ou moins périodique.
