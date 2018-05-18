@@ -11,7 +11,7 @@
  */
 class PenduleRessort : public Oscillateur {
 public:
-  PenduleRessort(double masse, double longueur, double raideur, SupportADessin* support, Vecteur position = {1.0, 0.0}, Vecteur vitesse = {0.0, 0.0}, Vecteur origine = {0.0, 0.0, 0.0}, Vecteur direction_principale = {1.0, 0.0, 0.0} );
+  PenduleRessort(double masse, double longueur, double raideur, SupportADessin* support, Vecteur position = {1.0, 0.0}, Vecteur vitesse = {0.0, 0.0}, Vecteur origine = {0.0, 0.0, 0.0} );
    //! Destructeur de PenduleRessort
    virtual ~PenduleRessort() {}
 

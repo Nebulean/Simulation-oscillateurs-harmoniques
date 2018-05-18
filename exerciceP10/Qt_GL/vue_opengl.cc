@@ -223,7 +223,27 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
   double vS( 0.8 );
   double bS( 1.0 );
 
-  dessineOscill(pr, matrice, pr.P(0), pr.m(), rL, vL, bL, rS, vS, bS);
+  //dessineOscill(pr, matrice, pr.P(0), pr.m(), rL, vL, bL, rS, vS, bS);
+
+  //on dessine l'axe de l'oscillateur
+  // dessineLigne(point_de_vue, true, longueur, osc.a(0), osc.a(1), osc.a(2), rougeL, vertL, bleuL);
+  prog.setUniformValue("vue_modele", matrice_vue * matrice);
+
+  glBegin(GL_LINES);
+  prog.setAttributeValue(CouleurId, rL, vL, bL);
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, pr.P(0), pr.P(1), 0.0);
+
+  glEnd();
+
+  //on se déplace au bout de l'axe
+  matrice.translate(pr.P(0), pr.P(1), 0.0);
+
+  //on réduit la taille de la sphère proportionnellement à la racine de la masse de l'oscillateur
+  matrice.scale(sqrt(pr.m())/5);
+
+  //on dessine la sphère
+  dessineSphere(matrice, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -506,7 +526,6 @@ void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, d
   //on dessine la sphère
   dessineSphere(point_de_vue, rougeS, vertS, bleuS);
 }
-
 
 /*!
  * Méthode de dessin des axes qui suivent le point de vue (caméra).

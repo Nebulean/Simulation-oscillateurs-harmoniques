@@ -35,7 +35,7 @@ void GLWidget::initSys(){
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
   _sys+=pdou;
 
-  PenduleRessort pr(1, 2, 0.5, &vue);
+  PenduleRessort pr(1, 2, 1, &vue);
   _sys+=pr;
 }
 

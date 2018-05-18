@@ -5,8 +5,8 @@
 
 using namespace std;
 
-PenduleRessort::PenduleRessort(double m, double l, double k, SupportADessin* s, Vecteur p, Vecteur v, Vecteur o, Vecteur a )
- : Oscillateur(p, v, o, a, s), _m(m), _L(l), _k(k)
+PenduleRessort::PenduleRessort(double m, double l, double k, SupportADessin* s, Vecteur p, Vecteur v, Vecteur o )
+ : Oscillateur(p, v, o, {1.0, 0.0, 0.0}, s), _m(m), _L(l), _k(k)
 {}
 
 
