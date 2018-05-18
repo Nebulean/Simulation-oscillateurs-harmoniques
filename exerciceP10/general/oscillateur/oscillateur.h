@@ -70,6 +70,12 @@ public:
   //! Méthode ajoutant le point actuel à l'espace des phases.
   void updatePhase();
 
+  //! Méthode appellée pour dessiner l'espace des phases de l'oscillateur.
+  void dessinePhase();
+
+  //! applique la phase à l'oscillateur
+  void setPhase(Phase* phase);
+
 
 private:
   Vecteur _P; //!< Vecteur des n paramètres du système.

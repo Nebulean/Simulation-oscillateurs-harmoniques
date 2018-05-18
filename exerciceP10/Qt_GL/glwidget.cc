@@ -20,22 +20,21 @@ void GLWidget::initSys(){
    * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0});
-  _sys+=p;
-
   Ressort r(0.5, 1, 0.01, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.6, 0.0, -0.8});
-  _sys+=r;
-
-  // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
   Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0});
-  _sys+=t;
-
   Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0});
-  _sys+=ch;
-
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
-  _sys+=pdou;
-
   PenduleRessort pr(1, 2, 1, &vue);
+
+  // on affecte l'espace de phase à un oscillateur
+  p.setPhase(&_phase);
+
+  // on affecte les oscillateurs au système
+  _sys+=p;
+  _sys+=r;
+  _sys+=t;
+  _sys+=ch;
+  _sys+=pdou;
   _sys+=pr;
 }
 
@@ -85,7 +84,11 @@ void GLWidget::paintGL()
   // c.dessine();
 
   // vue.dessineAxesCamera();
-  _sys.dessine();
+  if (_isPhase) {
+    _phase.dessine();
+  } else {
+    _sys.dessine();
+  }
 }
 
 
@@ -191,6 +194,11 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     cout << "Nouvel intégrateur: Runge-Kutta: " << _integrateur << endl;
     break;
 
+  case Qt::Key_P:
+    togglePhase();
+    cout << "Changement de l'état de l'espace des phases" << endl;
+    break;
+
   };
 
   updateGL(); // redessine
@@ -286,4 +294,10 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
   } else {
     delete intgr;
   }
+}
+
+//! Des/active l'espace des phases.
+void GLWidget::togglePhase()
+{
+  _isPhase = !_isPhase;
 }

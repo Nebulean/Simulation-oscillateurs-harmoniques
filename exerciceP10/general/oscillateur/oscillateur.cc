@@ -34,6 +34,19 @@ void Oscillateur::updatePhase()
   }
 }
 
+void Oscillateur::dessinePhase()
+{
+  if (_phase != nullptr) {
+    _phase->dessine();
+  }
+}
+
+
+void Oscillateur::setPhase(Phase* phase)
+{
+  _phase = phase;
+}
+
 // double P(size_t i) const {
 //   return _P.get_coord(i);
 // }
