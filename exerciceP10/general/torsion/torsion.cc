@@ -11,7 +11,7 @@
 using namespace std;
 
 Torsion::Torsion(double I, double C, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
- : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _I(I), _C(C), _lambda(lambda)
+ : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _I(I), _C(C), _lambda(lambda), _positionInitiale(P)
  {
    if (I <= 0 or C < 0 or lambda < 0) {
      cout << "Torsion: une ou plusieurs des valeurs entrées sont interdites." << endl;
