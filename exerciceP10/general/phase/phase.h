@@ -3,8 +3,9 @@
 
 #include "dessinable.h"
 #include <forward_list> // pour stocker les points.
-// #include <utility> // utilisé pour pair.
 #include "vecteur.h"
+#include <array>
+#include "oscillateur.h"
 
 /*!
  * Classe décrivant l'espace des phases
@@ -21,7 +22,7 @@ public:
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const override;
 
-  //! Permet d'ajouter le point actuel de l'oscilateur
+  //! Ajouter le point actuel de l'oscilateur à la collection de positions.
   void ajoute_point(Oscillateur const& osc);
 
 private:
@@ -29,7 +30,10 @@ private:
   /*! Liste chaînée sur une pair de vecteurs. Stocke tous les points de l'espace
    * de phase d'un oscillateur particulier.
    */
-  std::forward_list<std::vector<Vecteur>> _pts;
+  std::forward_list<std::array<double, 2>> _pts;
+  // NOTE POUR DELPHINE: c'est des double qu'il faut en fait ! Tout ce qu'on veut,
+  // c'est stocker la valeur de la de P(0) et Q(0) dans le tableau, pas les
+  // vecteurs eux-mêmes ! ^^
 };
 
 #endif // H_PHASE

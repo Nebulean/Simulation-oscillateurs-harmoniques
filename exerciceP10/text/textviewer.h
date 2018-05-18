@@ -11,6 +11,7 @@
 #include "chariot.h"
 #include "penduledouble.h"
 #include "penduleressort.h"
+#include "phase.h"
 
 /*!
  * Visualisation en mode texte du simulateur.
@@ -47,6 +48,9 @@ public:
 
   //! Dessine en version texte un PenduleRessort
   virtual void dessine(PenduleRessort const& penduleressort_a_dessiner) override;
+
+  //! Dessine en version texte un espace de phase
+  virtual void dessine(Phase const& espace_de_phase_a_dessiner) override;
 
 private:
   //! flot de sortie, utilisé pour l'affichage dans TextViewer.
