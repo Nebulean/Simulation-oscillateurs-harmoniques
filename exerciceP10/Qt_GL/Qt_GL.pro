@@ -33,9 +33,11 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/torsion/ \
                 ../general/vecteur/ \
                 ../general/chute/ \
+                ../general/newmark/ \
                 ../general/chariot/ \
                 ../general/rungekutta/ \
                 ../general/penduledouble/ \
+                ../general/penduleressort/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -53,9 +55,11 @@ SOURCES += \
     ../general/torsion/torsion.cc \
     ../general/vecteur/vecteur.cc \
     ../general/chute/chute.cc \
+    ../general/newmark/newmark.cc \
     ../general/chariot/chariot.cc \
     ../general/rungekutta/rungekutta.cc \
     ../general/penduledouble/penduledouble.cc \
+    ../general/penduleressort/penduleressort.cc \
 
 HEADERS += \
     glwidget.h \
@@ -73,9 +77,11 @@ HEADERS += \
     ../general/torsion/torsion.h \
     ../general/vecteur/vecteur.h \
     ../general/chute/chute.h \
+    ../general/newmark/newmark.h \
     ../general/chariot/chariot.h \
     ../general/rungekutta/rungekutta.h \
     ../general/penduledouble/penduledouble.h \
+    ../general/penduleressort/penduleressort.h \
 
 RESOURCES += \
     resource.qrc

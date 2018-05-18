@@ -7,6 +7,7 @@
 #include "dessinable.h"
 #include "supportadessin.h"
 #include <vector>
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -27,11 +28,16 @@ Chariot::Chariot(double m1, double m2, double L, double k, double lambda, double
  * avec M, A, B, C définis comme ci-dessous
  */
 Vecteur Chariot::f(double t) {
+  return f(t, P(), Q());
+}
+
+Vecteur Chariot::f(double temps, Vecteur const& p, Vecteur const& q) {
+  Q_UNUSED(temps);
   double M(_m1 + _m2);
-  double A(_m1 + _m2*sin(P(1))*sin(P(1)));
-  double B(_k*P(0) + _lambda*Q(0) - _m2*_L*Q(1)*Q(1)*sin(P(1)));
-  double C(9.81*sin(P(1)) + _mu*Q(1));
-  return 1.0/A * Vecteur({-B + _m2*C*cos(P(1)), (B*cos(P(1)) - M*C)/_L});
+  double A(_m1 + _m2*sin(p[1])*sin(p[1]));
+  double B(_k*p[0] + _lambda*q[0] - _m2*_L*q[1]*q[1]*sin(p[1]));
+  double C(9.81*sin(p[1]) + _mu*q[1]);
+  return 1.0/A * Vecteur({-B + _m2*C*cos(p[1]), (B*cos(p[1]) - M*C)/_L});
 }
 
 // affiche textuellement le chariot courant.

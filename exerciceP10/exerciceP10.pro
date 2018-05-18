@@ -5,6 +5,6 @@ SUBDIRS += \
    Qt_GL \
    text
 
-Qt_GL.depends = general
+# Qt_GL.depends = general
 
-text.depends  = general
+#text.depends  = general

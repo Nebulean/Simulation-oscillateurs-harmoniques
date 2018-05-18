@@ -21,13 +21,17 @@ exerciceP10/general/chariot/testchariot
 # des trucs de Qt.
 *.qmake.stash
 exerciceP10/Qt_GL/qrc_resource.cpp
+*.pro.user
+exerciceP10/text/testRessort.txt
 # tous les fichiers utiles à la compilation
 build/*
 
 # Tous les Makefiles générés par qmake doivent être générés sur une machine: Ca rempli le dépôt.
-*/Makefile
-exerciceP10/*/Makefile
+Makefile
 exerciceP10/general/systeme/Makefile
+exerciceP10/general/newmark/tests
+backup.py
+
 
 # Quelques documents non importants.
 exerciceP10/general/eulercromer/tests/test*

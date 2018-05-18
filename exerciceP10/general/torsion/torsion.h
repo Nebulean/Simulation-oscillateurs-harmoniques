@@ -18,24 +18,32 @@ public:
   virtual ~Torsion() {}
 
   //! Substitution de la méthode d'évolution.
-  Vecteur f(double temps) override;
+  virtual Vecteur f(double temps) override;
+
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
 
   //! Méthode de dessin qui DOIT être implémentée.
   virtual void dessine() override
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Torsion (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Torsion> clone() const;
+  std::unique_ptr<Torsion> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
   //! Accesseur du moment d'inertie.
   double I() const {return _I; }
 
+  //! Retourne la valeur maximal (ou une valeur haute) de la torsion du pendule.
+  double getMaxAngle() const {return _positionInitiale.get_coord(0);}
+
 private:
   double _I; //!< moment d'inertie
   double _C; //!< constante de torsion
   double _lambda; //!< coefficient de friction radiale
+
+  Vecteur _positionInitiale; //!< Position initiale du pendule. Utile pour les couleurs du pendule pour OpenGL.
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const override;

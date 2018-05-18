@@ -5,6 +5,7 @@
 #include "supportadessin.h"
 #include <iostream>
 #include <vector>
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -22,8 +23,13 @@ Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vec
  * Méthode d'évolution substituée.
  */
 Vecteur Ressort::f(double t) {
+  return f(t, P(), Q());
+}
+
+Vecteur Ressort::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
   Vecteur g({0.0, 0.0, -9.81});
-  return {-(_k/_m)*P(0) - (_lambda/_m)*Q(0) + g*a()};
+  return {-(_k/_m)*p[0] - (_lambda/_m)*q[0] + g*a()};
 }
 
 // Affiche textuellement le ressort courant.

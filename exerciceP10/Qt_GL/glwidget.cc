@@ -3,7 +3,12 @@
 #include <QMatrix4x4>
 #include <cmath>
 #include "glwidget.h"
-
+#include "integrateur.h"
+#include "eulercromer.h"
+#include "rungekutta.h"
+#include "newmark.h"
+using namespace std;
+// using namespace integr;
 
 void GLWidget::initSys(){
 
@@ -12,6 +17,7 @@ void GLWidget::initSys(){
    * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O.
    * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O.
    * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
+   * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
    */
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0});
   _sys+=p;
@@ -28,6 +34,9 @@ void GLWidget::initSys(){
 
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
   _sys+=pdou;
+
+  PenduleRessort pr(1, 2, 1, &vue);
+  _sys+=pr;
 }
 
 
@@ -163,6 +172,25 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   case Qt::Key_V:
     vue.toggleVue();
     break;
+
+  // lorsqu'on appuie, on choisi l'intégrateur d'Euler-Cromer.
+  case Qt::Key_1:
+    change_integrateur(new Eulercromer, 1);
+    cout << "Nouvel intégrateur: Euler-Cromer: " << _integrateur << endl;
+    break;
+
+  // lorsqu'on appuie, on choisi l'intégrateur de Newmark.
+  case Qt::Key_2:
+    change_integrateur(new Newmark, 2);
+    cout << "Nouvel intégrateur: Newmark: " << _integrateur << endl;
+    break;
+
+  // lorsqu'on appuie, on choisi l'intégrateur d'Runge-Kutta.
+  case Qt::Key_3:
+    change_integrateur(new RungeKutta, 3);
+    cout << "Nouvel intégrateur: Runge-Kutta: " << _integrateur << endl;
+    break;
+
   };
 
   updateGL(); // redessine
@@ -173,7 +201,9 @@ void GLWidget::timerEvent(QTimerEvent* event)
 {
   Q_UNUSED(event);
 
-  double dt = chronometre.restart() / 1000.0;
+  double dt = 0.02;
+  // double dt = chronometre.restart() / 1000.0;
+  // cout << "dt actuel = " << dt << endl;
 
   /* En gros, on aligne le pas de temps du Systeme avec le pas de temps de Qt,
    * puis on fait évoluer le système avec son propre dt.
@@ -233,5 +263,27 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
 	vue.rotate(petit_angle * d.manhattanLength(), d.y(), d.x(), 0);
 
 	update();
+  }
+}
+
+//! pour changer d'intégrateur...
+void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
+  if (_integrateurActuel != nbIntgr) {
+    // copie du pointeur
+    Integrateur* tmp(_integrateur);
+
+    // on applique le nouveau pointeur à GLWidget
+    _integrateur = intgr;
+
+    // on l'applique au système
+    _sys.changeIntegrateur(_integrateur);
+
+    // on change l'id de l'intégrateur
+    _integrateurActuel = nbIntgr;
+
+    // et on désalloue l'intégrateur précédent.
+    delete tmp;
+  } else {
+    delete intgr;
   }
 }

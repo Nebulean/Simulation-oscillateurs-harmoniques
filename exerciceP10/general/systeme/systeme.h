@@ -36,6 +36,9 @@ public:
   //! Manipulateur du pas de temps
   void setdt(double nouveau_pas_de_temps);
 
+  //! Manipulateur d'intégrateur, utilisé pour le changement d'intégrateur pendant l'execution.
+  void changeIntegrateur(Integrateur* integrateur_a_appliquer);
+
   //! Copie polymorphique
   //void ajoute(Oscillateur const& nouvel);
 

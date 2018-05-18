@@ -7,6 +7,7 @@
 #include "dessinable.h"
 #include "supportadessin.h"
 #include <vector>
+#include "qglobal.h" // pour Q_UNUSED
 
 using namespace std;
 
@@ -25,7 +26,12 @@ Pendule::Pendule(double m, double L, double lambda, SupportADessin* support, Vec
  * f(t,P,Q) = (-g/L)sin(P1)-(lambda/(m*L^2))Q1
  */
 Vecteur Pendule::f(double t) {
-  return {(-9.81/_L) * sin(P(0)) - _lambda/(_m*_L*_L) * Q(0)};
+  return f(t, P(), Q());
+}
+
+Vecteur Pendule::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
+  return {(-9.81/_L) * sin(p[0]) - _lambda/(_m*_L*_L) * q[0]};
 }
 
 

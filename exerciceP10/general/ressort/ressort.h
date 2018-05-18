@@ -22,19 +22,25 @@ public:
   virtual ~Ressort() {}
 
   //! Méthode d'évolution propre à l'oscillateur.
-  Vecteur f(double temps) override;
+  virtual Vecteur f(double temps) override;
+
+  virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
+
 
   //! Méthode de dessin qui DOIT être implémenté.
   virtual void dessine() override
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Ressort (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Ressort> clone() const;
+  std::unique_ptr<Ressort> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
   //! Accesseur de la masse.
   double m() const {return _m; }
+
+  //! Retourne le maximum (je crois) de la longueur du ressort. Utilisé pour les couleurs de l'élastique.
+  double getMaxSize() const {return _m*9.81/_k;}
 
 private:
   double _m; //!< masse
