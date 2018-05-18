@@ -201,8 +201,13 @@ void GLWidget::timerEvent(QTimerEvent* event)
 {
   Q_UNUSED(event);
 
-  double dt = 0.02;
-  // double dt = chronometre.restart() / 1000.0;
+  // double dt = 0.02;
+  double dt = chronometre.restart() / 1000.0;
+  // en cas de dt trop grand...
+  if (dt > 0.04) {
+    dt = 0.005; // on ralenti la simulation.
+  }
+
   // cout << "dt actuel = " << dt << endl;
 
   /* En gros, on aligne le pas de temps du Systeme avec le pas de temps de Qt,
