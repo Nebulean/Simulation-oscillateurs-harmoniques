@@ -36,6 +36,10 @@ Vecteur PenduleDouble::f(double temps, Vecteur const& p, Vecteur const& q){
   double A(_m1 + _m2*sin(dP)*sin(dP));
   double B(cos(dP)*sin(dP));
   double g(9.81);
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+  
   return 1/A * Vecteur({(_m2*g*cos(dP)*sin(p[1]) - M*g*sin(p[0]) - _m2*_L1*q[0]*q[0]*B - _m2*_L2*q[1]*q[1]*sin(dP))/_L1, (M*g*cos(dP)*sin(p[0])
     - M*g*sin(p[1]) + _m2*_L2*q[1]*q[1]*B + M*_L1*q[0]*q[0]*sin(dP))/_L2});
 }

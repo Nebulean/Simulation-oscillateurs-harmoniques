@@ -6,6 +6,9 @@
 #include "dessinable.h"
 #include "supportadessin.h"
 #include <memory>
+// #include "phase.h"
+
+class Phase;
 
 /*!
  * Classe de base des oscillateurs.
@@ -64,6 +67,9 @@ public:
    */
   virtual void dessine() = 0;
 
+  //! Méthode ajoutant le point actuel à l'espace des phases.
+  void updatePhase();
+
 
 private:
   Vecteur _P; //!< Vecteur des n paramètres du système.
@@ -76,6 +82,15 @@ private:
 
   //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
   virtual void settodefault() = 0;
+
+  //! Espace de phase de l'oscillateur.
+  /*!
+   * Chaque oscillateur contient un pointeur sur un espace de phase. Ainsi,
+   * on a la flexibilité de "coller" un espace de phase à un oscillateur sans
+   * pour autant avoir un espace de phase pour chaque oscillateur, ce qui
+   * pourrait s'avérer être très gros au niveau mémoire.
+   */
+   Phase* _phase;
 };
 
 #endif // OSCILLATEUR_H

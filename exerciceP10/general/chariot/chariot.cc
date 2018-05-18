@@ -37,6 +37,10 @@ Vecteur Chariot::f(double temps, Vecteur const& p, Vecteur const& q) {
   double A(_m1 + _m2*sin(p[1])*sin(p[1]));
   double B(_k*p[0] + _lambda*q[0] - _m2*_L*q[1]*q[1]*sin(p[1]));
   double C(9.81*sin(p[1]) + _mu*q[1]);
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+
   return 1.0/A * Vecteur({-B + _m2*C*cos(p[1]), (B*cos(p[1]) - M*C)/_L});
 }
 
