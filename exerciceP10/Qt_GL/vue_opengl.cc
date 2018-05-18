@@ -4,6 +4,13 @@
 using namespace std;
 
 
+void VueOpenGL::dessine(Phase const& phase)
+{
+  // vide pour le moment
+}
+
+
+
 void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
