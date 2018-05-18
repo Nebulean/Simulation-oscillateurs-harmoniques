@@ -7,7 +7,13 @@ using namespace std;
 
 PenduleRessort::PenduleRessort(double m, double l, double k, SupportADessin* s, Vecteur p, Vecteur v, Vecteur o )
  : Oscillateur(p, v, o, {1.0, 0.0, 0.0}, s), _m(m), _L(l), _k(k)
-{}
+{
+  if (m <= 0 or L <=0 or k <= 0) {
+     cout << "PenduleRessort: une ou plusieurs des valeurs entrées sont interdites." << endl;
+     settodefault();
+     cout << "Paramètres à valeurs interdites fixés à la valeur par défaut: 1.0." << endl;
+   }
+}
 
 
 Vecteur PenduleRessort::f(double t)
@@ -44,3 +50,11 @@ unique_ptr<PenduleRessort> PenduleRessort::clone() const
    out << P() << " # parametre" << endl;
    out << Q() << " # vitesse" << endl;
  }
+
+//! Applique la valeur par défaut de 1.0 à tous les paramètres qui ont une valeur physiquement impossible.
+void PenduleDouble::settodefault() {
+  vector<double*> param {&_m, &_L, &_k};
+  for (auto el : param) {
+    if (*el <= 0) *el = 1.0;
+  }
+}
