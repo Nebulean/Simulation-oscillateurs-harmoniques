@@ -97,6 +97,14 @@ private:
   //! Pointeur sur une Phase d'un oscillateur en particulier.
   Phase _phase;
 
+  //! Matrice conservant la bonne projection. Utilisé pour l'espace des phases.
+  /*!
+   * Cette matrice permet de régler le problème de dilatation lorsque l'on
+   * applique le zoom à "projection" dans le dessine de Phase. Elle garde en
+   * mémoire la bonne projection.
+   */
+  QMatrix4x4 matrice_projection;
+
 };
 
 #endif // GLWIDGET_H
