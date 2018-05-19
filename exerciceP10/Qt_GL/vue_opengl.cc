@@ -6,7 +6,56 @@ using namespace std;
 
 void VueOpenGL::dessine(Phase const& phase)
 {
-  // vide pour le moment
+  QMatrix4x4 matrice1;
+  // prog.setUniformValue("vue_modele", matrice);              // On met la matrice identité dans vue_modele
+
+  /* Dessine le cadre blanc */
+  matrice1.setToIdentity();
+  matrice1.ortho(-1.0, 1.0, -1.0, 1.0, -10.0, 10.0);         // matrice simple pour faire le cadre
+  prog.setUniformValue("vue_modele", matrice1);
+
+  prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0);
+  glBegin(GL_LINE_LOOP);                                    // la primitive LINE_LOOP referme le tracé avec une ligne (n lignes)
+  prog.setAttributeValue(SommetId, -1.0, -1.0, 2.0);        // le 2.0 dans la composante z permet de mettre le cadre par dessus tout
+  prog.setAttributeValue(SommetId, +1.0, -1.0, 2.0);        // ceci fonctionne grace à l'option GL_DEPTH_TEST
+  prog.setAttributeValue(SommetId, +1.0, +1.0, 2.0);
+  prog.setAttributeValue(SommetId, -1.0, +1.0, 2.0);
+  glEnd();
+
+  QMatrix4x4 matrice2;
+
+  /* Change de matrice de projection adpatée aux zoom du graph */
+  matrice2.setToIdentity();
+  double xmin(-2.0 * M_PI);
+  double xmax(+2.0 * M_PI);
+  double ymin(-1.2);
+  double ymax(+1.2);
+  matrice2.ortho(xmin, xmax, ymin, ymax, -10.0, 10.0);
+  prog.setUniformValue("vue_modele", matrice2);
+
+
+  dessineAxes(QMatrix4x4(), false);
+
+  /* Dessine les axes */
+  prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
+  glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
+  prog.setAttributeValue(SommetId, xmin, 0.0, -3.0);        // le -1.0 dans la composante z met les axes en arrière plan
+  prog.setAttributeValue(SommetId, xmax, 0.0, -3.0);
+  prog.setAttributeValue(SommetId, 0.0, ymin, -3.0);
+  prog.setAttributeValue(SommetId, 0.0, ymax, -3.0);
+  glEnd();
+
+  /* Dessine la fonction sinus */
+  prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
+  glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
+  double xpas((xmax - xmin) / 128.0);
+  for (double x(xmin); x <= xmax; x += xpas) {
+    double y = std::sin(x);
+    prog.setAttributeValue(SommetId, x, y, 0.0);
+  }
+  glEnd();
+
+  // prog.setUniformValue("projection", QMatrix4x4());
 }
 
 
@@ -255,6 +304,8 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // prog.setUniformValue("vue_modele", matrice_vue);
+
   // on dessine le système
   systeme.affiche();
 
