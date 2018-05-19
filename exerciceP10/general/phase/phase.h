@@ -7,6 +7,8 @@
 #include <array>
 #include "oscillateur.h"
 
+typedef std::forward_list<std::array<double, 2>> ListePoints;
+
 /*!
  * Classe décrivant l'espace des phases
  */
@@ -25,12 +27,15 @@ public:
   //! Ajouter le point actuel de l'oscilateur à la collection de positions.
   void ajoute_point(Oscillateur const& osc);
 
+  //! Accesseur pour la liste de points
+  ListePoints pts() const {return _pts;}
+
 private:
   //! Stocke les points de l'espace de phase.
   /*! Liste chaînée sur une pair de double. Stocke tous les points de l'espace
    * de phase d'un oscillateur particulier.
    */
-  std::forward_list<std::array<double, 2>> _pts;
+  ListePoints _pts;
 };
 
 #endif // H_PHASE

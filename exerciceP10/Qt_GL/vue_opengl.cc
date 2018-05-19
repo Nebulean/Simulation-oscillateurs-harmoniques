@@ -27,10 +27,10 @@ void VueOpenGL::dessine(Phase const& phase)
 
   /* Change de matrice de projection adpatée aux zoom du graph */
   matrice.setToIdentity();
-  double xmin(-2.0 * M_PI); // comme ça on a -2PI entre 0 et la gauche de l'écran.
-  double xmax(+2.0 * M_PI); // comme ça on a 2PI entre 0 et la droite de l'écran.
-  double ymin(-1.2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
-  double ymax(+1.2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
+  double xmin(-2); // comme ça on a -2PI entre 0 et la gauche de l'écran.
+  double xmax(+2); // comme ça on a 2PI entre 0 et la droite de l'écran.
+  double ymin(-2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
+  double ymax(+2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
 
   // choisi le niveau de zoom de la fenêtre
   /* Applique une projection orthographique, c-à-d
@@ -52,18 +52,25 @@ void VueOpenGL::dessine(Phase const& phase)
   prog.setAttributeValue(SommetId, 0.0, ymax, -1.0);
   glEnd();
 
-  /* Dessine la fonction sinus */
-  prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
-  glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
-  double xpas((xmax - xmin) / 128.0); // change l'échantillonage
+  // /* Dessine la fonction sinus */
+  // prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
+  // glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
+  // double xpas((xmax - xmin) / 128.0); // change l'échantillonage
+  //
+  // /* Pour x = xmin (gauche de la fenêtre) qui va jusqu'à xmax (droite de la fenêtre)
+  //  *  |   On choisi une valeur y = sin(x) et on pose
+  //  *
+  //  */
+  // for (double x(xmin); x <= xmax; x += xpas) {
+  //   double y = sin(x);
+  //   prog.setAttributeValue(SommetId, x, y, 0.0);
+  // }
+  // glEnd();
 
-  /* Pour x = xmin (gauche de la fenêtre) qui va jusqu'à xmax (droite de la fenêtre)
-   *  |   On choisi une valeur y = sin(x) et on pose
-   *
-   */
-  for (double x(xmin); x <= xmax; x += xpas) {
-    double y = sin(x);
-    prog.setAttributeValue(SommetId, x, y, 0.0);
+  prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
+  glBegin(GL_LINE_STRIP);
+  for (auto const& point : phase.pts()){
+    prog.setAttributeValue(SommetId, point[0], point[1], 0.0);
   }
   glEnd();
 
