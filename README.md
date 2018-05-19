@@ -129,7 +129,7 @@ Remarque: Ce programme est adapté pour un clavier Suisse, c'est à dire un clav
 | Tourner vers la gauche                              | $\leftarrow$ ou (click + souris)  |
 | Tourner vers le haut                                | $\uparrow$ ou (click + souris)    |
 | Tourner vers le bas                                 | $\downarrow$ ou (click + souris)  |
-| Réinitialiser à la position originale               | **home**                          |
+| Réinitialiser à la position originale               | **home** ou **h**                 |
 
 EST-CE QUE LA TOUCHE "HOME" MARCHE VRAIMENT ?
 
@@ -144,6 +144,7 @@ EST-CE QUE LA TOUCHE "HOME" MARCHE VRAIMENT ?
 | Activation de l'intégrateur d'Euler-Cromer            | **1**           |
 | Activation de l'intégrateur de Newmark                | **2**           |
 | Activation de l'intégrateur de Runge-Kutta d'ordre 4  | **3**           |
+| (Des)activation de l'espace de phase									| **p**						|
 
 \pagebreak
 ## Analyse
