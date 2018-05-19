@@ -6,56 +6,70 @@ using namespace std;
 
 void VueOpenGL::dessine(Phase const& phase)
 {
-  QMatrix4x4 matrice1;
-  // prog.setUniformValue("vue_modele", matrice);              // On met la matrice identité dans vue_modele
+  // on créé une matrice identité
+  QMatrix4x4 matrice;
+
+  // On met la matrice identité dans vue_modele
+  prog.setUniformValue("vue_modele", matrice);
 
   /* Dessine le cadre blanc */
-  matrice1.setToIdentity();
-  matrice1.ortho(-1.0, 1.0, -1.0, 1.0, -10.0, 10.0);         // matrice simple pour faire le cadre
-  prog.setUniformValue("vue_modele", matrice1);
-
-  prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0);
-  glBegin(GL_LINE_LOOP);                                    // la primitive LINE_LOOP referme le tracé avec une ligne (n lignes)
-  prog.setAttributeValue(SommetId, -1.0, -1.0, 2.0);        // le 2.0 dans la composante z permet de mettre le cadre par dessus tout
-  prog.setAttributeValue(SommetId, +1.0, -1.0, 2.0);        // ceci fonctionne grace à l'option GL_DEPTH_TEST
-  prog.setAttributeValue(SommetId, +1.0, +1.0, 2.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, 2.0);
-  glEnd();
-
-  QMatrix4x4 matrice2;
+  // matrice.setToIdentity();
+  // matrice.ortho(-1.0, 1.0, -1.0, 1.0, -10.0, 10.0);         // matrice simple pour faire le cadre
+  // prog.setUniformValue("projection", matrice);
+  //
+  // prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0);
+  // glBegin(GL_LINE_LOOP);                                    // la primitive LINE_LOOP referme le tracé avec une ligne (n lignes)
+  // prog.setAttributeValue(SommetId, -1.0, -1.0, 2.0);        // le 2.0 dans la composante z permet de mettre le cadre par dessus tout
+  // prog.setAttributeValue(SommetId, +1.0, -1.0, 2.0);        // ceci fonctionne grace à l'option GL_DEPTH_TEST
+  // prog.setAttributeValue(SommetId, +1.0, +1.0, 2.0);
+  // prog.setAttributeValue(SommetId, -1.0, +1.0, 2.0);
+  // glEnd();
 
   /* Change de matrice de projection adpatée aux zoom du graph */
-  matrice2.setToIdentity();
-  double xmin(-2.0 * M_PI);
-  double xmax(+2.0 * M_PI);
-  double ymin(-1.2);
-  double ymax(+1.2);
-  matrice2.ortho(xmin, xmax, ymin, ymax, -10.0, 10.0);
-  prog.setUniformValue("vue_modele", matrice2);
+  matrice.setToIdentity();
+  double xmin(-2.0 * M_PI); // comme ça on a -2PI entre 0 et la gauche de l'écran.
+  double xmax(+2.0 * M_PI); // comme ça on a 2PI entre 0 et la droite de l'écran.
+  double ymin(-1.2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
+  double ymax(+1.2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
 
-
-  dessineAxes(QMatrix4x4(), false);
+  // choisi le niveau de zoom de la fenêtre
+  /* Applique une projection orthographique, c-à-d
+   * transformer des objets 3D vers des objets 2D.
+   *
+   * Le -10.0 c'est le plan éloigné du clipping.
+   * Le 10.0 c'est le plan approché du clipping.
+   * Voir: https://upload.wikimedia.org/wikipedia/commons/0/02/ViewFrustum.svg
+   */
+  matrice.ortho(xmin, xmax, ymin, ymax, -10.0, 10.0);
+  prog.setUniformValue("projection", matrice);
 
   /* Dessine les axes */
   prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
   glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
-  prog.setAttributeValue(SommetId, xmin, 0.0, -3.0);        // le -1.0 dans la composante z met les axes en arrière plan
-  prog.setAttributeValue(SommetId, xmax, 0.0, -3.0);
-  prog.setAttributeValue(SommetId, 0.0, ymin, -3.0);
-  prog.setAttributeValue(SommetId, 0.0, ymax, -3.0);
+  prog.setAttributeValue(SommetId, xmin, 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
+  prog.setAttributeValue(SommetId, xmax, 0.0, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, ymin, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, ymax, -1.0);
   glEnd();
 
   /* Dessine la fonction sinus */
   prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
   glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
-  double xpas((xmax - xmin) / 128.0);
+  double xpas((xmax - xmin) / 128.0); // change l'échantillonage
+
+  /* Pour x = xmin (gauche de la fenêtre) qui va jusqu'à xmax (droite de la fenêtre)
+   *  |   On choisi une valeur y = sin(x) et on pose
+   *
+   */
   for (double x(xmin); x <= xmax; x += xpas) {
-    double y = std::sin(x);
+    double y = sin(x);
     prog.setAttributeValue(SommetId, x, y, 0.0);
   }
   glEnd();
 
-  // prog.setUniformValue("projection", QMatrix4x4());
+  // matrice.ortho(xmin, xmax, ymin, ymax, 10.0, -10.0);
+  // matrice.setToIdentity();
+  // prog.setUniformValue("matrice_vue", matrice);
 }
 
 

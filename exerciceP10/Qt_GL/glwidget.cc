@@ -72,6 +72,9 @@ void GLWidget::resizeGL(int width, int height)
   QMatrix4x4 matrice;
   matrice.perspective(70.0, qreal(width) / qreal(height ? height : 1.0), 1e-3, 1e5);
   vue.setProjection(matrice);
+
+  // on conserve la projection actuelle.
+  matrice_projection = matrice;
 }
 
 // ======================================================================
@@ -87,6 +90,10 @@ void GLWidget::paintGL()
   if (_isPhase) {
     _phase.dessine();
   } else {
+    // on remet la bonne projection, sinon l'écran est dilaté.
+    vue.setProjection(matrice_projection);
+
+    // on dessine le système.
     _sys.dessine();
   }
 }

@@ -55,13 +55,13 @@ class VueOpenGL : public SupportADessin {
   void dessineAxesCamera();
 
   //! Switch changeant la visibilité de la boussole.
-  void toggleBoussole() {boussoleVisible = !boussoleVisible; }
+  void toggleBoussole() { boussoleVisible = !boussoleVisible; }
 
   //! Switch changeant l'état du mode debug.
-  void toggleDebugMode() {debugMode = !debugMode; }
+  void toggleDebugMode() { debugMode = !debugMode; }
 
   //! Switch pour passer de la vue première personne à la vue troisième personne.
-  void toggleVue() {TPS = !TPS; }
+  void toggleVue() { TPS = !TPS; }
 
  private:
   // Un shader OpenGL encapsulé dans une classe Qt
@@ -88,7 +88,7 @@ class VueOpenGL : public SupportADessin {
   //! Variable d'état du mode debug. (text activé)
   bool debugMode;
 
-  //! Variable d'était de la vue première/troisième personne, TPS = troisième personne activée.
+  //! Variable d'état de la vue première/troisième personne, TPS = troisième personne activée.
   bool TPS;
 };
 
