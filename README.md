@@ -278,3 +278,20 @@ Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti
 
 ![Graphique d'évolution d'un pendule double non amorti à ces conditions initiales](annexes/graphPenduleDouble.png)
 Nous remarquons que l'évolution du pendule double non amorti se passe comme prévu. Comme il n'est pas ralenti, il continue à l'infinie et est plus ou moins périodique.
+
+\pagebreak
+#### Le Pendule-Ressort non amorti.
+
+**Conditions initiales**
+
+- Masse = 2
+- Longeur = 1
+- Raideur = 5
+- Position = {1.0, 0.0}
+- Vitesse = {0.0, 0.0}
+- Origine = {0.0, 0.0, 0.0}
+
+**Schéma**
+
+![Graphique d'évolution d'un pendule-ressort non-amorti à ces conditions initiales](annexes/graphPenduleRessort.png)
+Nous remarquons que l'évolution du pendule-ressort non-amorti semble se passer comme prévu.
