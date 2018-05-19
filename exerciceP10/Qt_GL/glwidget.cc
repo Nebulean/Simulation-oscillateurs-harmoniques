@@ -148,6 +148,7 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     break;
 
   case Qt::Key_Home:
+  case Qt::Key_H:
     vue.initializePosition();
     break;
 
