@@ -196,7 +196,12 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_P:
     togglePhase();
-    cout << "Changement de l'état de l'espace des phases" << endl;
+    cout << "Espace des phases ";
+    if (_isPhase) {
+      cout << "activé." << endl;
+    } else {
+      cout << "désactivé." << endl;
+    }
     break;
 
   };

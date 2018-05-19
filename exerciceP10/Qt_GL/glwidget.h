@@ -24,7 +24,7 @@ public:
     , _sys(0.1, &vue, _integrateur)
     , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
     , _isPhase(false)
-    , _phase(nullptr)
+    , _phase(&vue)
   {}
   virtual ~GLWidget() { delete _integrateur; }
 
