@@ -37,9 +37,11 @@ int main(){
   // sys += chariot;
   // PenduleDouble penduledouble(0.5, 0.5, 1, 1, &ecran);
   // sys += penduledouble;
+  // PenduleRessort penduleressort(2, 1, 5, &ecran);
+  // sys+=penduleressort;
   //
   // sys.dessine();
-  // for (size_t i = 0; i < 100; i++) {
+  // for (size_t i = 0; i < 300; i++) {
   //   sys.evolue();
   //   sys.dessine();
   // }
@@ -69,7 +71,7 @@ int main(){
     cout << "ÉTAPE " << i+1 << endl;
     syst1.evolue();
     syst1.dessine();
-  };
+  }
 
   Systeme syst2(0.01, &ecran, &IEC);
 
@@ -88,6 +90,7 @@ int main(){
     cout << "ÉTAPE " << i+1 << endl;
     syst2.evolue();
     syst2.dessine();
-  };
+  }
+
   return 0;
 }
