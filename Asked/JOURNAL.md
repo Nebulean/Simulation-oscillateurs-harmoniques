@@ -109,13 +109,30 @@ D'autre part notre version de l'intégrateur de Newmark ne donnait pas exactemen
 
 ## Semaine 12
 ### Travail accompli
+
+**(... BLABLABLA A REMPLIR ...)**
+
+Finalement, en fin de semaine, nous avons en pu régler le problème de l'intégrateur de Newmark. En effet, il était décalé et nous ne savions pas pourquoi. En fait, il s'agissait d'une division entière qui ne devait pas l'être. (`1/2` $\neq$ `1.0/2.0`...). Peu après, nous avons également découvert un problème majeur dans les intégrateurs de Newmark et RungeKutta. En effet, les tests avec l'oscillateur "Chute" semblaient correcte. Cependant, ces tests n'étaient pas suffisent, car Chute **ne dépend pas de P et Q** ! Du coup, en faisant le graphe d'évolution des différents oscillatuers, nous avons donc découvert un bug majeur dans ces deux intégrateurs qui a dû être corrigé en changant la façon dont `f()` fonctionne dans chaques oscillateurs. En effet, nous avions précédemment cette méthode qui dépendait du temps `f(t)` uniquement. Cependant, cela n'est pas assez général pour ces intégrateurs. C'est pourquoi nous avons du ajouter les paramètres `P` et `Q` à la méthode `f(t, P, Q)`.
+
+Pour ne pas tout casser, nous avons simplement surchargé cette méthode, et `f(t)` appelle `f(t,P,Q)` avec les `P` et `Q` de l'oscillateur. Ainsi, nous avons pu corriger les deux intégrateurs sans pour autant toucher au reste du code.
+
+Du coup, les intégrateurs sont désormais fonctionnels et utilisables.
+
 ### Problèmes rencontrés
 
+**( ... BLABLABLA A REMPLIR ... )**
 
 ## Semaine 13
 ### Travail accompli
-### Problèmes rencontrés
+Cette semaine, nous avons implémenté un nouvel oscillateur, le pendule-ressort, ainsi que l'espace des phases.
 
+**( ... BLABLABLA A REMPLIR ... )**
+### Problèmes rencontrés
+Concernant le pendule-ressort, rien à signaler, c'est comme tous les précédents.
+
+Concernant l'espace des phases, l'implémentation est une réussite. Néanmoins, nous avons tout-de-même eu quelques soucis. En effet, lors que nous activions le _mode espace de phase_, tout va bien, ça s'affiche. Cependant, lorsque l'on revenait sur la vue des oscillateurs, la perpective changeait. Les oscillateurs étaient applati, ce qui est un problème. Pour le corriger, nous avons remarqué que, lorsque les oscillateurs étaient applati, changer la taille de la fenêtre corrigeait le problème. Du coup, nous avons décidé d'enregistrer la matrice calculée dans paintGL, dans une variable de GLWidgets, et d'appliquer `setPerpective()` avec la matrice en paramètre, appliqué sur le Vue_OpenGL. C'est du bricolage, mais ça a corrigé le problème, et ne semble pas avoir d'effets de bords.
+
+Sinon, le reste s'est déroulé comme prévu, et l'espace des phases est très joli à voir. Coup de coeur pour le pendule-ressort, qui rend particulièrement bien à l'écran.
 
 ## Semaine 14
 ### Travail accompli
