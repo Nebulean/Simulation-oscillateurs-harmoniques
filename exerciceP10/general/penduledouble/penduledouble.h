@@ -28,7 +28,7 @@ public:
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Pendule (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<PenduleDouble> clone() const;
+  std::unique_ptr<PenduleDouble> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
@@ -46,6 +46,9 @@ private:
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const override;
+
+  //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
+  virtual void settodefault() override;
 };
 
 #endif // PENDULEDOUBLE_H

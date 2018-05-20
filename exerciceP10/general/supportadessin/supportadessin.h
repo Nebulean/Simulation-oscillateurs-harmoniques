@@ -8,6 +8,8 @@ class Torsion;
 class Chute;
 class Chariot;
 class PenduleDouble;
+class PenduleRessort;
+class DeuxRessorts;
 
 /*!
  * Méthode de base des support à dessin.
@@ -41,6 +43,12 @@ public:
 
   //! Méthode de dessin de PenduleDouble
   virtual void dessine(PenduleDouble const& penduledouble_a_dessiner) = 0;
+
+  //! Méthode de dessin de PenduleRessort
+  virtual void dessine(PenduleRessort const& penduleressort_a_dessiner) = 0;
+
+  //! Méthode de dessin de DeuxRessorts
+  virtual void dessine(DeuxRessorts const& deuxressorts_a_dessiner) = 0;
 };
 
 #endif // H_SUPPORTADESSIN

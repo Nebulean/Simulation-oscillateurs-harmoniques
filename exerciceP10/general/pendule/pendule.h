@@ -15,7 +15,7 @@
 class Pendule : public Oscillateur {
 public:
   //! Constructeurs de pendule.
-  Pendule(double masse, double longueur, double viscosite, SupportADessin* support, Vecteur P = {M_PI/2}, Vecteur Q = {0.0}, Vecteur O = {0.0, 0.0, 0.0}, Vecteur a = {1.0, 0.0, 0.0});
+  Pendule(double masse, double longueur, double viscosite, SupportADessin* support, Vecteur P = {M_PI/2}, Vecteur Q = {0.0}, Vecteur O = {0.0, 0.0, 0.0});
 
   //! Destructeur de pendule.
   virtual ~Pendule() {}
@@ -31,7 +31,7 @@ public:
 
 
   //! Requis pour la copie polymorphique de Pendule (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Pendule> clone() const;
+  std::unique_ptr<Pendule> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
@@ -49,6 +49,9 @@ private:
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const override;
+
+  //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
+  virtual void settodefault() override;
 };
 
 #endif // PENDULE_H
