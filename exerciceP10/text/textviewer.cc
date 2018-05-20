@@ -47,3 +47,7 @@ void TextViewer::dessine(PenduleDouble const& penduledouble) {
 void TextViewer::dessine(PenduleRessort const& penduleressort) {
   _flot << penduleressort << endl;
 }
+
+void TextViewer::dessine(DeuxRessorts const& deuxressorts) {
+  _flot << deuxressorts << endl;
+}

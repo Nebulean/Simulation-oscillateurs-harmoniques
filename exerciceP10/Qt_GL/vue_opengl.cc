@@ -4,6 +4,13 @@
 using namespace std;
 
 
+void VueOpenGL::dessine(DeuxRessorts const& deuxressorts_a_dessiner)
+{
+
+}
+
+
+
 void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
