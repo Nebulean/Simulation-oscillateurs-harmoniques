@@ -521,6 +521,7 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
  */
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère
