@@ -12,7 +12,7 @@
 class Chariot : public Oscillateur{
 public:
   //!Constructeur du chariot avec pendule amorti par un ressort
-  Chariot(double masse1, double masse2, double longueur_pendule, double elasticite, double friciton1, double friction2, SupportADessin* support, Vecteur P = {1.0, M_PI/3}, Vecteur Q = {0.0, 0.0}, Vecteur O = {0.0, 0.0, 0.0}, Vecteur a = {1.0, 0.0, 0.0});
+  Chariot(double masse1, double masse2, double longueur_pendule, double elasticite, double friciton1, double friction2, SupportADessin* support, Vecteur P = {1.0, M_PI/3}, Vecteur Q = {0.0, 0.0}, Vecteur O = {0.0, 0.0, 0.0});
 
   //!Destructeur de Chariot
   virtual ~Chariot() {}
@@ -27,7 +27,7 @@ public:
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Pendule (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Chariot> clone() const;
+  std::unique_ptr<Chariot> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
@@ -53,6 +53,9 @@ private:
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot_de_sortie) const override;
+
+  //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
+  virtual void settodefault() override;
 };
 
 #endif // CHARIOT_H

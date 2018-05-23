@@ -52,7 +52,7 @@ void VueOpenGL::dessine(Ressort const& ressort)
   matrice.translate(ressort.O(0), ressort.O(1), ressort.O(2));
 
   // on fait une rotation à 90 degrés de la matrice.
-  matrice.rotate(90, 0.0, 0.0, 1.0);
+  matrice.rotate(-90, 1.0, 0.0, 0.0);
 
   // la tige est un solide déformable, alors on lui donne une couleur variable
   // en fonction de sa déformation: jaune à rouge.
@@ -201,6 +201,49 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
 
   // on dessine le deuxième pendule
   dessineOscill(pdouble, matrice, pdouble.L2(), pdouble.m2(), rL, vL, bL, rS, vS, bS);
+}
+
+
+void VueOpenGL::dessine(PenduleRessort const& pr)
+{
+  QMatrix4x4 matrice;
+
+  matrice.translate(pr.O(0), pr.O(1), pr.O(2));
+
+  // matrice.rotate(toDegree(pr.P()))
+
+  // on choisi les couleurs
+  if (debugMode) {
+    cout << "Niveau de vert de l'élastique du Pendule-Ressort -  " << abs(pr.P(0)) <<  " in [ " << 0.0 << ", " << pr.getMaxSize() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) << endl;
+  }
+  double rL( 1.0 );
+  double vL( 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
+  double bL( 0.1 );
+  double rS( 0.1 );
+  double vS( 0.8 );
+  double bS( 1.0 );
+
+  //dessineOscill(pr, matrice, pr.P(0), pr.m(), rL, vL, bL, rS, vS, bS);
+
+  //on dessine l'axe de l'oscillateur
+  // dessineLigne(point_de_vue, true, longueur, osc.a(0), osc.a(1), osc.a(2), rougeL, vertL, bleuL);
+  prog.setUniformValue("vue_modele", matrice_vue * matrice);
+
+  glBegin(GL_LINES);
+  prog.setAttributeValue(CouleurId, rL, vL, bL);
+  prog.setAttributeValue(SommetId, 0.0, 0.0, 0.0);
+  prog.setAttributeValue(SommetId, pr.P(0), pr.P(1), 0.0);
+
+  glEnd();
+
+  //on se déplace au bout de l'axe
+  matrice.translate(pr.P(0), pr.P(1), 0.0);
+
+  //on réduit la taille de la sphère proportionnellement à la racine de la masse de l'oscillateur
+  matrice.scale(sqrt(pr.m())/5);
+
+  //on dessine la sphère
+  dessineSphere(matrice, rS, vS, bS);
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -483,7 +526,6 @@ void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, d
   //on dessine la sphère
   dessineSphere(point_de_vue, rougeS, vertS, bleuS);
 }
-
 
 /*!
  * Méthode de dessin des axes qui suivent le point de vue (caméra).
