@@ -40,6 +40,8 @@ void GLWidget::initSys(){
   _sys+=t;
   _sys+=ch;
   _sys+=pdou;
+
+  PenduleRessort pr(2, 1, 5, &vue);
   _sys+=pr;
 }
 
