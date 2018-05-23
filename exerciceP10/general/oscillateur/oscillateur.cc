@@ -45,6 +45,8 @@ void Oscillateur::dessinePhase()
 void Oscillateur::setPhase(Phase* phase)
 {
   _phase = phase;
+  // ajoute le point initial
+  updatePhase();
 }
 
 // double P(size_t i) const {

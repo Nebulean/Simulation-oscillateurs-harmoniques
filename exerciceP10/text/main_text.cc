@@ -12,6 +12,7 @@
 #include "torsion.h"
 #include "penduledouble.h"
 #include "penduleressort.h"
+#include "phase.h"
 using namespace std;
 
 /* Ce main est une reproduction de exerciceP9.
@@ -57,6 +58,10 @@ int main(){
   PenduleDouble pdouble(1, 1, 1, 1, &ecran);
   PenduleRessort pressort(1, 1, 0.33, &ecran);
 
+  Phase phase(&ecran);
+
+  pendule.setPhase(&phase);
+
   syst1 += pendule;
   syst1 += ressort;
   syst1 += torsion;
@@ -73,7 +78,14 @@ int main(){
     syst1.dessine();
   }
 
+  phase.dessine();
+
   Systeme syst2(0.01, &ecran, &IEC);
+
+  // on ajoute la nouvelle phase au pendule-ressort
+  Phase phase2(&ecran);
+  // on associe la phase à un oscillateur AVANT d'ajouter l'oscillateur au système
+  pendule.setPhase(&phase2);
 
   syst2 += pendule;
   syst2 += ressort;
@@ -91,6 +103,8 @@ int main(){
     syst2.evolue();
     syst2.dessine();
   }
+
+  phase.dessine();
 
   return 0;
 }

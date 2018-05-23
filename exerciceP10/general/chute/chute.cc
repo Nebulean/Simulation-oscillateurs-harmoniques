@@ -31,8 +31,5 @@ Vecteur Chute::f(double temps, Vecteur const& p, Vecteur const& q){
   Q_UNUSED(p);
   Q_UNUSED(q);
 
-  // met (potentiellement à jour l'espace des phases.)
-  updatePhase();
-  
   return Vecteur({0, -9.81});
 }
