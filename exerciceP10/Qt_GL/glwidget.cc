@@ -12,27 +12,31 @@ using namespace std;
 
 void GLWidget::initSys(){
 
-  /* Pendule: masse, longueur, viscosité, supportadessin, P, Q, O, a.
-   * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a.
-   * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O, a.
-   * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O, a.
+  /* Pendule: masse, longueur, viscosité, supportadessin, P, Q, O.
+   * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a, avec a de norme 1.
+   * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O.
+   * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O.
    * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
+   * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
    */
-  Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0});
   _sys+=p;
-  // 0.25 0.33 0.15
-  Ressort r(0.25, 0.5, 0.02, &vue, {0.18}, {0.0}, {-2.0, 0.0, 0.0}, {0.8, 0.0, 0.6});
+
+  Ressort r(0.5, 1, 0.01, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.6, 0.0, -0.8});
   _sys+=r;
 
   // double moment_inertie, double constante_torsion, double friction, SupportADessin* support, Vecteur P = {M_PI/4}, Vecteur Q = {0.0}, Vecteur O = {0.0}, Vecteur a = {1.0, 0.0}
-  Torsion t(1, 1, 0.05, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0}, {1.0, 0.0, 0.0});
+  Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0});
   _sys+=t;
 
-  Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0}, {1.0, 0.0, 0.0});
+  Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0});
   _sys+=ch;
 
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
   _sys+=pdou;
+
+  PenduleRessort pr(1, 2, 1, &vue);
+  _sys+=pr;
 }
 
 
@@ -198,8 +202,13 @@ void GLWidget::timerEvent(QTimerEvent* event)
 {
   Q_UNUSED(event);
 
-  double dt = 0.02;
-  // double dt = chronometre.restart() / 1000.0;
+  // double dt = 0.02;
+  double dt = chronometre.restart() / 1000.0;
+  // en cas de dt trop grand...
+  if (dt > 0.04) {
+    dt = 0.005; // on ralenti la simulation.
+  }
+
   // cout << "dt actuel = " << dt << endl;
 
   /* En gros, on aligne le pas de temps du Systeme avec le pas de temps de Qt,

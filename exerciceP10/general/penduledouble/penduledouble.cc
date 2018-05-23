@@ -6,12 +6,21 @@
 #include <iostream>
 #include "dessinable.h"
 #include "supportadessin.h"
+#include <vector>
+#include "qglobal.h" // pour Q_UNUSED
+
 
 using namespace std;
 
 PenduleDouble::PenduleDouble(double m1, double m2, double L1, double L2, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
  : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _m1(m1), _m2(m2), _L1(L1), _L2(L2)
- {}
+ {
+   if (m1 <= 0 or m2 <=0 or L1 <= 0 or L2 <= 0) {
+     cout << "PenduleDouble: une ou plusieurs des valeurs entrées sont interdites." << endl;
+     settodefault();
+     cout << "Paramètres à valeurs interdites fixés à la valeur par défaut: 1.0." << endl;
+   }
+ }
 
 /*!
  * Équation d'évolution du pendule double, définie comme dans le complément mathématique
@@ -21,6 +30,7 @@ Vecteur PenduleDouble::f(double t) {
 }
 
 Vecteur PenduleDouble::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
   double M(_m1 + _m2);
   double dP(p[0]-p[1]);
   double A(_m1 + _m2*sin(dP)*sin(dP));
@@ -44,4 +54,12 @@ unique_ptr<PenduleDouble> PenduleDouble::clone() const {
 
 unique_ptr<Oscillateur> PenduleDouble::copie() const {
   return clone();
+}
+
+//! Applique la valeur par défaut de 1.0 à tous les paramètres qui ont une valeur physiquement impossible.
+void PenduleDouble::settodefault() {
+  vector<double*> param {&_m1, &_m2, &_L1, &_L2};
+  for (auto el : param) {
+    if (*el <= 0) *el = 1.0;
+  }
 }

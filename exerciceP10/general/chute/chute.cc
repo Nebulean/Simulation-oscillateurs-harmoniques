@@ -1,6 +1,7 @@
 #include "chute.h"
 #include <memory>
 #include <iostream>
+#include "qglobal.h" // pour Q_UNUSED
 using namespace std;
 
 
@@ -26,5 +27,8 @@ Vecteur Chute::f(double t) {
 
 
 Vecteur Chute::f(double temps, Vecteur const& p, Vecteur const& q){
+  Q_UNUSED(temps);
+  Q_UNUSED(p);
+  Q_UNUSED(q);
   return Vecteur({0, -9.81});
 }

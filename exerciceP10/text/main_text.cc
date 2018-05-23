@@ -11,6 +11,7 @@
 #include "chute.h"
 #include "torsion.h"
 #include "penduledouble.h"
+#include "penduleressort.h"
 using namespace std;
 
 /* Ce main est une reproduction de exerciceP9.
@@ -52,12 +53,14 @@ int main(){
   Torsion torsion(1, 0.33, 0, &ecran);
   Chariot chariot(1, 1, 1, 0.33, 0.1, 0.1, &ecran);
   PenduleDouble pdouble(1, 1, 1, 1, &ecran);
+  PenduleRessort pressort(1, 1, 0.33, &ecran);
 
   syst1 += pendule;
   syst1 += ressort;
   syst1 += torsion;
   syst1 += chariot;
   syst1 += pdouble;
+  syst1 += pressort;
   cout << "Système 1:" << endl;
   cout << "ÉTAT INITIAL" << endl;
   syst1.dessine();
@@ -75,6 +78,7 @@ int main(){
   syst2 += torsion;
   syst2 += chariot;
   syst2 += pdouble;
+  syst2 += pressort;
   cout << "********" << endl;
   cout << "Système 2:" << endl;
   cout << "ÉTAT INITIAL" << endl;
