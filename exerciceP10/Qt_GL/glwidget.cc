@@ -27,7 +27,12 @@ void GLWidget::initSys(){
   PenduleRessort pr(1, 2, 1, &vue);
 
   // on affecte l'espace de phase à un oscillateur
-  p.setPhase(&_phase);
+  // p.setPhase(&_phase);
+  pr.setPhase(&_phase);
+  // ch.setPhase(&_phase);
+  // t.setPhase(&_phase);
+  // pdou.setPhase(&_phase);
+
 
   // on affecte les oscillateurs au système
   _sys+=p;
