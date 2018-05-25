@@ -38,6 +38,7 @@ INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/rungekutta/ \
                 ../general/penduledouble/ \
                 ../general/penduleressort/ \
+                ../general/phase/ \
 
 SOURCES += \
     main_qt_gl.cc \
@@ -60,6 +61,7 @@ SOURCES += \
     ../general/rungekutta/rungekutta.cc \
     ../general/penduledouble/penduledouble.cc \
     ../general/penduleressort/penduleressort.cc \
+    ../general/phase/phase.cc \
 
 HEADERS += \
     glwidget.h \
@@ -82,6 +84,7 @@ HEADERS += \
     ../general/rungekutta/rungekutta.h \
     ../general/penduledouble/penduledouble.h \
     ../general/penduleressort/penduleressort.h \
+    ../general/phase/phase.h \
 
 RESOURCES += \
     resource.qrc

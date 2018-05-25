@@ -30,6 +30,10 @@ Vecteur Torsion::f(double t){
 
 Vecteur Torsion::f(double temps, Vecteur const& p, Vecteur const& q){
   Q_UNUSED(temps);
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+  
   return {-(_C*p[0]+_lambda*q[0])/_I};
 }
 

@@ -4,6 +4,83 @@
 using namespace std;
 
 
+void VueOpenGL::dessine(Phase const& phase)
+{
+  // on créé une matrice identité
+  QMatrix4x4 matrice;
+
+  // On met la matrice identité dans vue_modele
+  prog.setUniformValue("vue_modele", matrice);
+
+  /* Dessine le cadre blanc */
+  // matrice.setToIdentity();
+  // matrice.ortho(-1.0, 1.0, -1.0, 1.0, -10.0, 10.0);         // matrice simple pour faire le cadre
+  // prog.setUniformValue("projection", matrice);
+  //
+  // prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0);
+  // glBegin(GL_LINE_LOOP);                                    // la primitive LINE_LOOP referme le tracé avec une ligne (n lignes)
+  // prog.setAttributeValue(SommetId, -1.0, -1.0, 2.0);        // le 2.0 dans la composante z permet de mettre le cadre par dessus tout
+  // prog.setAttributeValue(SommetId, +1.0, -1.0, 2.0);        // ceci fonctionne grace à l'option GL_DEPTH_TEST
+  // prog.setAttributeValue(SommetId, +1.0, +1.0, 2.0);
+  // prog.setAttributeValue(SommetId, -1.0, +1.0, 2.0);
+  // glEnd();
+
+  /* Change de matrice de projection adpatée aux zoom du graph */
+  matrice.setToIdentity();
+  double xmin(-2); // comme ça on a -2PI entre 0 et la gauche de l'écran.
+  double xmax(+2); // comme ça on a 2PI entre 0 et la droite de l'écran.
+  double ymin(-2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
+  double ymax(+2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
+
+  // choisi le niveau de zoom de la fenêtre
+  /* Applique une projection orthographique, c-à-d
+   * transformer des objets 3D vers des objets 2D.
+   *
+   * Le -10.0 c'est le plan éloigné du clipping.
+   * Le 10.0 c'est le plan approché du clipping.
+   * Voir: https://upload.wikimedia.org/wikipedia/commons/0/02/ViewFrustum.svg
+   */
+  matrice.ortho(xmin, xmax, ymin, ymax, -10.0, 10.0);
+  prog.setUniformValue("projection", matrice);
+
+  /* Dessine les axes */
+  prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
+  glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
+  prog.setAttributeValue(SommetId, xmin, 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
+  prog.setAttributeValue(SommetId, xmax, 0.0, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, ymin, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, ymax, -1.0);
+  glEnd();
+
+  // /* Dessine la fonction sinus */
+  // prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
+  // glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
+  // double xpas((xmax - xmin) / 128.0); // change l'échantillonage
+  //
+  // /* Pour x = xmin (gauche de la fenêtre) qui va jusqu'à xmax (droite de la fenêtre)
+  //  *  |   On choisi une valeur y = sin(x) et on pose
+  //  *
+  //  */
+  // for (double x(xmin); x <= xmax; x += xpas) {
+  //   double y = sin(x);
+  //   prog.setAttributeValue(SommetId, x, y, 0.0);
+  // }
+  // glEnd();
+
+  prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
+  glBegin(GL_LINE_STRIP);
+  for (auto const& point : phase.pts()){
+    prog.setAttributeValue(SommetId, point[0], point[1], 0.0);
+  }
+  glEnd();
+
+  // matrice.ortho(xmin, xmax, ymin, ymax, 10.0, -10.0);
+  // matrice.setToIdentity();
+  // prog.setUniformValue("matrice_vue", matrice);
+}
+
+
+
 void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
@@ -248,6 +325,8 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
+  // prog.setUniformValue("vue_modele", matrice_vue);
+
   // on dessine le système
   systeme.affiche();
 
@@ -442,6 +521,7 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
  */
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère

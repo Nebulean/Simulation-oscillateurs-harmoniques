@@ -27,6 +27,10 @@ Vecteur PenduleRessort::f(double t, Vecteur const& p, Vecteur const& q)
   Q_UNUSED(q);
   Q_UNUSED(t);
   Vecteur g({0, -9.81});
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+  
   return g - _k/_m * (1 - _L/p.norme()) * p;
 }
 

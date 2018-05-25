@@ -31,6 +31,10 @@ Vecteur Pendule::f(double t) {
 
 Vecteur Pendule::f(double temps, Vecteur const& p, Vecteur const& q){
   Q_UNUSED(temps);
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+
   return {(-9.81/_L) * sin(p[0]) - _lambda/(_m*_L*_L) * q[0]};
 }
 

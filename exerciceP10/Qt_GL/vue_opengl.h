@@ -14,6 +14,7 @@
 #include "penduledouble.h"
 #include "glsphere.h"
 #include "penduleressort.h"
+#include "phase.h"
 
 class VueOpenGL : public SupportADessin {
  public:
@@ -26,6 +27,7 @@ class VueOpenGL : public SupportADessin {
   virtual void dessine(Chariot const& chariot_a_dessiner) override;
   virtual void dessine(PenduleDouble const& penduledouble_a_dessiner) override;
   virtual void dessine(PenduleRessort const& penduleressort_a_dessiner) override;
+  virtual void dessine(Phase const& espace_de_phase_a_dessiner) override;
   // est vide, mais est requis pour compiler.
   virtual void dessine(Chute const& chute_a_dessiner) override {Q_UNUSED(chute_a_dessiner);}
   //! méthode de (ré-)initialisation
@@ -53,13 +55,13 @@ class VueOpenGL : public SupportADessin {
   void dessineAxesCamera();
 
   //! Switch changeant la visibilité de la boussole.
-  void toggleBoussole() {boussoleVisible = !boussoleVisible; }
+  void toggleBoussole() { boussoleVisible = !boussoleVisible; }
 
   //! Switch changeant l'état du mode debug.
-  void toggleDebugMode() {debugMode = !debugMode; }
+  void toggleDebugMode() { debugMode = !debugMode; }
 
   //! Switch pour passer de la vue première personne à la vue troisième personne.
-  void toggleVue() {TPS = !TPS; }
+  void toggleVue() { TPS = !TPS; }
 
  private:
   // Un shader OpenGL encapsulé dans une classe Qt
@@ -86,7 +88,7 @@ class VueOpenGL : public SupportADessin {
   //! Variable d'état du mode debug. (text activé)
   bool debugMode;
 
-  //! Variable d'était de la vue première/troisième personne, TPS = troisième personne activée.
+  //! Variable d'état de la vue première/troisième personne, TPS = troisième personne activée.
   bool TPS;
 };
 

@@ -28,22 +28,32 @@ void TextViewer::dessine(Systeme const& syst) {
   cout << "t = " << syst.temps() << endl << endl;
 }
 
+// dessine les torsions
 void TextViewer::dessine(Torsion const& torsion) {
   _flot << torsion << endl;
 }
 
+// dessine les chutes
 void TextViewer::dessine(Chute const& chute) {
   _flot << chute << endl;
 }
 
+// dessine les chariots
 void TextViewer::dessine(Chariot const& chariot) {
   _flot << chariot << endl;
 }
 
+// dessine les pendules doubles
 void TextViewer::dessine(PenduleDouble const& penduledouble) {
   _flot << penduledouble << endl;
 }
 
+// dessine les pendules-ressorts
 void TextViewer::dessine(PenduleRessort const& penduleressort) {
   _flot << penduleressort << endl;
+}
+
+// dessine les espaces de phases
+void TextViewer::dessine(Phase const& phase){
+  _flot << phase << endl;
 }

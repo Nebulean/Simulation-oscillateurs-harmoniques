@@ -29,6 +29,10 @@ Vecteur Ressort::f(double t) {
 Vecteur Ressort::f(double temps, Vecteur const& p, Vecteur const& q){
   Q_UNUSED(temps);
   Vecteur g({0.0, 0.0, -9.81});
+
+  // met (potentiellement à jour l'espace des phases.)
+  updatePhase();
+  
   return {-(_k/_m)*p[0] - (_lambda/_m)*q[0] + g*a()};
 }
 
