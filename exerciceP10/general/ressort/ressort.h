@@ -32,7 +32,7 @@ public:
   { _support->dessine(*this); }
 
   //! Requis pour la copie polymorphique de Ressort (pour les unique_ptr, voir cours).
-  virtual std::unique_ptr<Ressort> clone() const;
+  std::unique_ptr<Ressort> clone() const;
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
@@ -49,6 +49,9 @@ private:
 
   //! Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& flot) const override;
+
+  //! Méthode pour éviter les valeurs impossibles pour les paramètres des oscillateurs
+  virtual void settodefault() override;
 };
 
 #endif // RESSORT_H

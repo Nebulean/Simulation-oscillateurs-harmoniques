@@ -20,4 +20,7 @@ void Eulercromer::evolue(Oscillateur& osc, double dt, double t)
 {
   osc.setQ( osc.Q() + dt * osc.f(t) ); // Q(T(n)) = Q(T(n-1)) + dt*f(P(T(n-1)))
   osc.setP( osc.P() + dt * osc.Q() ); // P(T(n)) = P(T(n-1)) + dt*Q(T(n))
+
+  // met (potentiellement à jour l'espace des phases.)
+  osc.updatePhase();
 }

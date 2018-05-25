@@ -33,4 +33,7 @@ void RungeKutta::evolue(Oscillateur& osc, double dt, double t)
   osc.setP( osc.P() + dt/6 * (k1 + 2*k2 + 2*k3 + k4) );
   // on calcul le nouveau Q.
   osc.setQ( osc.Q() + dt/6 * (l1 + 2*l2 + 2*l3 + l4) );
+
+  // met, potentiellement, à jour l'espace des phases de l'oscillateur. 
+  osc.updatePhase();
 }

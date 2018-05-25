@@ -23,7 +23,7 @@ public:
   virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
 
   //! copie polymorphique
-  std::unique_ptr<Oscillateur> copie() const override;
+  virtual std::unique_ptr<Oscillateur> copie() const override;
   //! utilisé pour la copie polymorphique
   std::unique_ptr<Chute> clone() const;
 
@@ -38,6 +38,8 @@ private:
 
 
   virtual void affiche(std::ostream& flot_de_sortie) const  override;
+
+  virtual void settodefault() override { if (_m <= 0) _m = 1.0;}
 };
 
 #endif // H_CHUTE

@@ -23,8 +23,12 @@ public:
     , _integrateur(new RungeKutta) // Par défaut, on utilise un intégrateur de RungeKutta
     , _sys(0.1, &vue, _integrateur)
     , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
+    , _isPhase(false)
+    , _phase(&vue)
   {}
   virtual ~GLWidget() { delete _integrateur; }
+
+  void togglePhase();
 
 private:
   // Les 3 méthodes clés de la classe QGLWidget à réimplémenter
@@ -82,13 +86,24 @@ private:
    */
   int _integrateurActuel;
 
-  //! Variable gardant l'intégrateur actuel utilisé en mémoire.
-  // integr::EnsIntegr _integrateurActuel;
-
   // objets à dessiner, faire évoluer
   // Contenu c;
   //! Systeme contenant tous les Oscillateurs.
   Systeme _sys;
+
+  //! Bool activant ou desactivant l'affichage de l'espace des phases.
+  bool _isPhase;
+
+  //! Pointeur sur une Phase d'un oscillateur en particulier.
+  Phase _phase;
+
+  //! Matrice conservant la bonne projection. Utilisé pour l'espace des phases.
+  /*!
+   * Cette matrice permet de régler le problème de dilatation lorsque l'on
+   * applique le zoom à "projection" dans le dessine de Phase. Elle garde en
+   * mémoire la bonne projection.
+   */
+  QMatrix4x4 matrice_projection;
 
 };
 
