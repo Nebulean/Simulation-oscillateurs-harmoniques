@@ -22,4 +22,7 @@ void Newmark::evolue(Oscillateur& osc, double dt, double t)
 
     // cout << "précision: " << (osc.P() - q).norme() << endl;
   } while((osc.P() - q).norme() >= _precision); // on utilise la norme au carré car faire une multiplication est moins demandant en ressources que la racine.
+
+  // met (potentiellement à jour l'espace des phases.)
+  osc.updatePhase();
 }

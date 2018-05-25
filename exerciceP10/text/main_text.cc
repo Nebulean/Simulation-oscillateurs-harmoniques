@@ -12,6 +12,7 @@
 #include "torsion.h"
 #include "penduledouble.h"
 #include "penduleressort.h"
+#include "phase.h"
 using namespace std;
 
 /* Ce main est une reproduction de exerciceP9.
@@ -37,9 +38,11 @@ int main(){
   // sys += chariot;
   // PenduleDouble penduledouble(0.5, 0.5, 1, 1, &ecran);
   // sys += penduledouble;
+  // PenduleRessort penduleressort(2, 1, 5, &ecran);
+  // sys+=penduleressort;
   //
   // sys.dessine();
-  // for (size_t i = 0; i < 100; i++) {
+  // for (size_t i = 0; i < 300; i++) {
   //   sys.evolue();
   //   sys.dessine();
   // }
@@ -55,6 +58,10 @@ int main(){
   PenduleDouble pdouble(1, 1, 1, 1, &ecran);
   PenduleRessort pressort(1, 1, 0.33, &ecran);
 
+  Phase phase(&ecran);
+
+  pendule.setPhase(&phase);
+
   syst1 += pendule;
   syst1 += ressort;
   syst1 += torsion;
@@ -69,9 +76,16 @@ int main(){
     cout << "ÉTAPE " << i+1 << endl;
     syst1.evolue();
     syst1.dessine();
-  };
+  }
+
+  phase.dessine();
 
   Systeme syst2(0.01, &ecran, &IEC);
+
+  // on ajoute la nouvelle phase au pendule-ressort
+  Phase phase2(&ecran);
+  // on associe la phase à un oscillateur AVANT d'ajouter l'oscillateur au système
+  pendule.setPhase(&phase2);
 
   syst2 += pendule;
   syst2 += ressort;
@@ -88,6 +102,9 @@ int main(){
     cout << "ÉTAPE " << i+1 << endl;
     syst2.evolue();
     syst2.dessine();
-  };
+  }
+
+  phase.dessine();
+
   return 0;
 }

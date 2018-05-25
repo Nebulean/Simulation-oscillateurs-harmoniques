@@ -125,7 +125,12 @@ Au niveau des méthodes, nous avons défini en plus de la méthode dessine():
 # Question P11.1
 > Comment représentez-vous ces nouveaux oscillateurs ? Où s'inscrivent-ils dans votre conception ?
 
-Comme les oscillateurs couplés sont des combinaisons d'oscillateurs existants, il y a une tentation de les faire hériter de plusieurs sous-classes d'oscillateurs. Cependant, un oscillateur couplé composé d'une partie ressort et d'une partie pendule par exemple, n'**est pas** un ressort **et** un pendule en même temps. C'est un composé des deux, avec ses propres attributs et propriétés. Nous avons donc décidé de les faire hériter d'Oscillateur uniquement. Ils ont donc le même statut que les oscillateurs simples.
+Comme les oscillateurs couplés sont des combinaisons d'oscillateurs existants, la tentation est de les faire hériter de plusieurs sous-classes d'oscillateurs. Cependant, un oscillateur couplé composé d'une partie ressort et d'une partie pendule par exemple, n'**est pas** un ressort **et** un pendule en même temps. C'est un composé des deux, avec ses propres attributs et propriétés. Nous avons donc décidé de les faire hériter d'Oscillateur uniquement. Ils ont donc le même statut que les oscillateurs simples.
+
+# Question P12.1
+> Comment implémentez-vous la possibilité de tracer les trajectoires dans l'espace des phases ?
+
+Nous considérons ici l'espace des phases comme un objet dessinable. Nous avons donc créé une classe Phase héritant de Dessinable, afin de pouvoir l'afficher en mode texte ou graphique. Nous avons ajouté à chaque Oscillateur un attribut de type Phase* afin d'associer chaque espace des phases à un oscillateur spécifique.
 
 # Question P13.1
 > Où cela s'intègre-t-il dans votre projet/conception ? Quels changements cela engendre ?
@@ -137,4 +142,4 @@ Pour implémenter ce changement d'intégrateur, nous avons procédé de la sorte
 4. On change l'ID de l'intégrateur actuel avec celui du nouveau.
 5. On désalloue la variable temporaire que l'on avait créé auparavant.
 
-Ainsi, de cette manière, nous pouvons avoir un changement d'intégrateur pendant l'execution, de manière transparente.
+De cette manière nous pouvons avoir un changement d'intégrateur pendant l'execution, de manière transparente.
