@@ -1,49 +1,87 @@
 <!-- Ce document est en format Markdown, et utilise latex pour le rendu de quelques éléments. Pour le lire, veuillez vous procurer un bon lecteur markdown, ou de lire le PDF associé. -->
 
-
-# Oscillateurs couples
+# Oscillateurs couplés
 
 Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL, en section physique.
 
 Projet réalisé par **Delphine Martres** et **Damien Korber**.
 
-## Préambule - informations importantes demandées.
-> Jusqu'où avez-vous été ? qu'est-ce que vous avez fait/pas fait ?
+## Préambule
+### Informations concernant le projet.
 
-Nous avons été jusqu'au bout du projet. (Jusqu'à P13, compris)
-Nous avons réalisé l'ensemble des oscillateurs du complément mathématique, à l'exceptions:
+> _Jusqu'où avez-vous été ? qu'est-ce que vous avez fait/pas fait ?_
 
-* des pendules reliés par un ressort.
-* de l'oscillateur DeuxRessort.
+Nous avons été jusqu'au bout du projet, c'est-à-dire **jusqu'à P13 compris**.
 
-Concernant les intégrateurs, nous les avons tous réalisé.
+Nous avons réalisé l'**ensemble des oscillateurs** du complément mathématique, à l'exceptions des pendules reliés par un ressort et l'oscillateur DeuxRessort, dû à un manque de temps. Une analyse des oscillateurs implémentés est disponible plus bas.
 
-Pour l'espace des phase, l'affichage actuel permet d'affiche l'espace de tous les oscillateurs. Par contre, il faut changer maniellement d'oscillateur dans le code.
+Nous avons implémenté **tous les intégrateurs** énoncés dans le complément mathématique, c-à-d Euler-Cromer, Newmark et Runge-Kutta d'ordre 4. Un comparatif est disponible plus bas.
 
-> Avez-vous une version graphique ? Si oui, avec quelle bibliothèque graphique (Qt (quelle version ?), WxWidget, SDL, Glut, autre [précisez]) ?
+Nous avons également un **espace des phases fonctionnel**. Cependant, changer l'oscillateur doit se faire **manuellement**. Nous avons pas eu le temps d'implémenter une touche de changement d'oscillateur.
 
-Oui, nous avons une version graphique et nous avons utilisé Qt5. Pour plus de détails concernant les supports sur lesquels le projet à été testé, se référer à la section "Guide de compilation".
+> _Avez-vous une version graphique ? Si oui, avec quelle bibliothèque graphique (Qt (quelle version ?), WxWidget, SDL, Glut, autre [précisez]) ?_
 
-> combien d'heures en moyenne par personne estimez vous avoir passé par semaine sur le projet ? (essayez d'être objectif : n'oubliez pas qu'au début vous n'avez peut être pas fait grand chose, comptez sur 14 semaines, i.e. la première semaine incluse, ne comptez pas le cours ni les exercices hors projet, n'oubliez pas de diviser le total par 2 car je veux une estimation moyenne par personne.)
+Oui, nous avons une version graphique et nous avons utilisé Qt 5.10. Pour plus de détails concernant les supports sur lesquels le projet à été testé, se référer à la section "Guide de compilation".
 
-Nous estimons, en moyenne et par personne, une implication d'une dizaine d'heures par semaine. Cependant, nous avons fait attention à ne pas prendre trop de temps sur les autres branches. Ainsi, nous avons essentiellement travaillé sur nos temps libres (soirs du week-end nottament).
+> _Combien d'heures en moyenne par personne estimez vous avoir passé par semaine sur le projet ? (essayez d'être objectif : n'oubliez pas qu'au début vous n'avez peut être pas fait grand chose, comptez sur 14 semaines, i.e. la première semaine incluse, ne comptez pas le cours ni les exercices hors projet, n'oubliez pas de diviser le total par 2 car je veux une estimation moyenne par personne.)_
+
+Nous estimons, en moyenne et par personne, une implication d'une petite dizaine d'heures par semaine. Cependant, nous avons fait attention à ne pas prendre trop de temps sur les autres branches. Ainsi, nous avons essentiellement travaillé sur nos temps libres (soirs du week-end et vendredi dès midi essentiellement).
+
+### Les quelques points intéressants du projet.
+**La simulation visuelle**
+
+Le point central de ce projet est évidemment la simulation visuelle. Nous vous proposons de compiler et executer le programme dans Qt_GL. Quand vous y êtes, vous pouvez vous balader dans l'espace et admirer les oscillateurs.
+
+**L'espace des phases**
+
+Lors de l'execution de la version graphique du projet, l'espace des phases peut-être affiché en appuyant sur **P**. On peut donc y voir une représentation de la vitesse en fonction du temps de l'oscillateur sélectionné. Pour changer d'oscillateur à représenter dans l'espace des phases, il faut se rendre dans le fichier `exerciceP10/Qt_GL/glwidget.cc` et suivre les instructions se trouvant dans la méthode `initSys()`.
+
+**La boussole**
+
+Il est très facile de se perdre dans la simulation visuelle. Du coup, nous avons implémenté une boussole directement sur Qt. Nous en sommes fière, parce que c'était pas facile à faire. Par défaut, elle devrait être activée. Mais si ce n'est pas le cas, ou si vous voulez desactiver cette boussole, appuyez sur la touche **B**. Elle suivre vos mouvements dans l'espace.
+
+**Le changement de point de vue**
+
+Nous n'étions pas d'accord sur la façon de se déplacer dans l'espace. Nous avons donc implémenté un toggle permetant de switcher entre une vue à la première personne (on "est" la caméra) et une vue à la troisième personne (on fixe un point dans l'espace). Pour changer de point de vue, appuyez sur **V**.
+
+**Le changement d'intégrateur en cours d'execution**
+
+Dans la simulation graphique, il est possible de changer d'intégrateur en cours d'execution. Par défaut, l'intégrateur de Runge-Kutta d'ordre 4 est utilisé, mais vous pouvez switcher d'intégrateur en cours de route. Pour cela, appuyez sur:
+* **1** - pour utiliser Euler-Cromer;
+* **2** - pour utiliser Newmark;
+* **3** - pour utiliser Runge-Kutta d'ordre 4.
+Un message indiquant un changement d'intégrateur sera affiché dans le terminal.
+
+Remarque: le texte affiché après est l'adresse de l'intégrateur actuel.
+
+**La documentation**
+
+Pour ne pas se perdre dans le projet, nous avons utilisé Doxygen pour générér la documentation automatiquement. Pour plus d'informations à ce sujet, plus d'informations sont disponible dans la section "Générer la documentation".
+
+**Le mode debug**
+
+Pour vérifier le bon fonctionnement des oscillateurs executé durant la simulation visuelle, nous avons implémenter un mode debug. Lors de l'execution, appuyez sur **§** pour (des)activer le mode debug. Les informations s'afficheront dans le terminal.
 
 
 ## Table des matières
 <!-- TOC depthFrom:2 depthTo:6 withLinks:0 updateOnSave:0 orderedList:1 -->
 
-1. Préambule - informations importantes demandées.
+1. Préambule
+	1. Informations concernant le projet.
+	2. Les quelques points intéressants du projet.
 2. Table des matières
 3. Introduction
-4. Guide de compilation
+4. Ce qu'il faut regarder
+5. Guide de compilation
 	1. Preambule les informations importantes
 	2. Ce qui est compilable
 	3. Compiler sur MacOS
 	4. Compiler sur Kubuntu (et donc Linux)
 	5. Compiler tous les sous-projet fonctionnels
-5. Guide d'utilisation
+	6. Générer la documentation
+6. Guide d'utilisation
 	1. Les touches.
-6. Analyse
+7. Analyse
 	1. Les intégrateurs
 	2. Les oscillateurs
 		1. Le pendule simple
@@ -62,6 +100,10 @@ Nous estimons, en moyenne et par personne, une implication d'une dizaine d'heure
 Le but de ce projet est la réalisation d'un programme pouvant simuler des oscillateurs couplés. Nous avons réalisé quelques preset d'oscillateurs, mais le programme se veut suffisament souple pour ajouter de nouveaux oscillateurs.
 
 Nous offrons une simulation textuelle, ainsi qu'une simulation visuelle, utilisant Qt et OpenGL.
+
+## Ce qu'il faut regarder
+
+
 
 \pagebreak
 ## Guide de compilation
@@ -129,6 +171,20 @@ où `NOM_DE_EXECUTABLE` est le... nom de l'executable.
 
 A REMPLIR, MAIS CE N'EST PAS ENCORE PRET DANS LE CODE.
 
+### Générer la documentation
+
+La documentation est générée automatiquement par **Doxygen**.
+
+**Génération et lecture**
+
+Pour générer la documentation, allez à la racine du projet (là où se trouve le README), et executez cette commande:  `doxygen doxyfile`.
+
+La documentation ainsi générée se trouve dans `docs/`. Pour la documentation html, ouvrez `docs/html/index.html`. Pour la documentation en latex, executez `make` dans le dossier `docs/latex`.
+
+Remarque: la documentation en latex n'est ni maintenue, ni testée.
+
+
+
 \pagebreak
 ## Guide d'utilisation
 
@@ -155,8 +211,6 @@ Remarque: Ce programme est adapté pour un clavier Suisse, c'est à dire un clav
 | Tourner vers le haut                                | $\uparrow$ ou (click + souris)    |
 | Tourner vers le bas                                 | $\downarrow$ ou (click + souris)  |
 | Réinitialiser à la position originale               | **home** ou **h**                 |
-
-EST-CE QUE LA TOUCHE "HOME" MARCHE VRAIMENT ?
 
 **Autres commandes.**
 

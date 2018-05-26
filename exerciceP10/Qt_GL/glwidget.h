@@ -94,7 +94,7 @@ private:
   //! Bool activant ou desactivant l'affichage de l'espace des phases.
   // bool _isPhase;
 
-  //! Pointeur sur une Phase d'un oscillateur en particulier.
+  //! Phase d'un oscillateur en particulier.
   Phase _phase;
 
   //! Matrice conservant la bonne projection. Utilisé pour l'espace des phases.
