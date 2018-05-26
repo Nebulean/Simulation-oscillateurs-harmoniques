@@ -29,9 +29,9 @@ void GLWidget::initSys(){
   // on affecte l'espace de phase à un oscillateur
   // p.setPhase(&_phase);
   ch.setPhase(&_phase);
-  // ch.setPhase(&_phase);
   // t.setPhase(&_phase);
   // pdou.setPhase(&_phase);
+  // pr.setPhase(&_phase);
 
 
   // on affecte les oscillateurs au système
