@@ -40,16 +40,43 @@ void VueOpenGL::dessine(Phase const& phase)
    * Le 10.0 c'est le plan approché du clipping.
    * Voir: https://upload.wikimedia.org/wikipedia/commons/0/02/ViewFrustum.svg
    */
-  matrice.ortho(-phase.max(), phase.max(), -phase.max(), phase.max(), -10.0, 10.0);
+  matrice.ortho(-1.05 * phase.max(), 1.05 * phase.max(), -1.05 * phase.max(), 1.05 * phase.max(), -10.0, 10.0);
   prog.setUniformValue("projection", matrice);
+
+  QMatrix4x4 origine(matrice);
 
   /* Dessine les axes */
   prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
   glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
-  prog.setAttributeValue(SommetId, -phase.max(), 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
-  prog.setAttributeValue(SommetId, phase.max(), 0.0, -1.0);
-  prog.setAttributeValue(SommetId, 0.0, -phase.max(), -1.0);
-  prog.setAttributeValue(SommetId, 0.0, phase.max(), -1.0);
+  prog.setAttributeValue(SommetId, -1.05 * phase.max(), 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
+  prog.setAttributeValue(SommetId, 1.05 * phase.max(), 0.0, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, -1.05 * phase.max(), -1.0);
+  prog.setAttributeValue(SommetId, 0.0, 1.05 * phase.max(), -1.0);
+  glEnd();
+
+  // prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0);
+  glBegin(GL_LINES);
+  for (int i = 1; i <= phase.max(); ++i) {
+    // matrice.translate(-i, 0.0, 0.0);
+    prog.setAttributeValue(SommetId, -i, -0.1, -1.0);
+    prog.setAttributeValue(SommetId, -i, 0.1, -1.0);
+    // matrice = origine;
+
+    // matrice.translate(i, 0.0, 0.0);
+    prog.setAttributeValue(SommetId, i, -0.1, -1.0);
+    prog.setAttributeValue(SommetId, i, 0.1, -1.0);
+    // matrice = origine;
+
+    // matrice.translate(0.0, -i, 0.0);
+    prog.setAttributeValue(SommetId, -0.1, -i, -1.0);
+    prog.setAttributeValue(SommetId, 0.1, -i, -1.0);
+    // matrice = origine;
+
+    // matrice.translate(0.0, i, 0.0);
+    prog.setAttributeValue(SommetId, -0.1, i, -1.0);
+    prog.setAttributeValue(SommetId, 0.1, i, -1.0);
+    // matrice = origine;
+  }
   glEnd();
 
   // /* Dessine la fonction sinus */
