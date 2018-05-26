@@ -75,10 +75,7 @@ class VueOpenGL : public SupportADessin {
 
   //! Caméra
   QMatrix4x4 matrice_vue;
-  //! Matrice qui mémorise les translations de matrice_vue
-  // QMatrix4x4 translation;
-  //! Matrice qui mémorise les rotations en première personne
-  // QMatrix4x4 rotfps;
+
   //! Matrice qui mémorise les rotations en première personne et les translations de matrice_vue
   QMatrix4x4 memoire;
 

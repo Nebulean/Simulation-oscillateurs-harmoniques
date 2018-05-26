@@ -28,7 +28,7 @@ void GLWidget::initSys(){
 
   // on affecte l'espace de phase à un oscillateur
   // p.setPhase(&_phase);
-  pr.setPhase(&_phase);
+  ch.setPhase(&_phase);
   // ch.setPhase(&_phase);
   // t.setPhase(&_phase);
   // pdou.setPhase(&_phase);
@@ -111,7 +111,7 @@ void GLWidget::paintGL()
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
   constexpr double petit_angle(5.0); // en degrés
-  constexpr double petit_pas(1.0);
+  constexpr double petit_pas(0.2);
 
   switch (event->key()) {
 
@@ -233,7 +233,7 @@ void GLWidget::timerEvent(QTimerEvent* event)
   // double dt = 0.02;
   double dt = chronometre.restart() / 1000.0;
   // en cas de dt trop grand...
-  if (dt > 0.04) {
+  if (dt > 0.05) {
     dt = 0.005; // on ralenti la simulation.
   }
 
@@ -287,7 +287,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
    * par exemple dans le constructeur de cette classe.
    */
 
-  if (event->buttons() & Qt::LeftButton) {
+  if (event->buttons() & Qt::LeftButton && !vue.isPhase()) { // désactivé dans l'espace des phases pour éviter le lag
 	constexpr double petit_angle(.4); // en degrés
 
 	// Récupère le mouvement relatif par rapport à la dernière position de la souris

@@ -26,11 +26,11 @@ void VueOpenGL::dessine(Phase const& phase)
   // glEnd();
 
   /* Change de matrice de projection adpatée aux zoom du graph */
-  matrice.setToIdentity();
-  double xmin(-2); // comme ça on a -2PI entre 0 et la gauche de l'écran.
-  double xmax(+2); // comme ça on a 2PI entre 0 et la droite de l'écran.
-  double ymin(-2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
-  double ymax(+2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
+  // matrice.setToIdentity();
+  // double xmin(-2); // comme ça on a -2PI entre 0 et la gauche de l'écran.
+  // double xmax(+2); // comme ça on a 2PI entre 0 et la droite de l'écran.
+  // double ymin(-2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
+  // double ymax(+2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
 
   // choisi le niveau de zoom de la fenêtre
   /* Applique une projection orthographique, c-à-d
@@ -40,16 +40,16 @@ void VueOpenGL::dessine(Phase const& phase)
    * Le 10.0 c'est le plan approché du clipping.
    * Voir: https://upload.wikimedia.org/wikipedia/commons/0/02/ViewFrustum.svg
    */
-  matrice.ortho(xmin, xmax, ymin, ymax, -10.0, 10.0);
+  matrice.ortho(-phase.max(), phase.max(), -phase.max(), phase.max(), -10.0, 10.0);
   prog.setUniformValue("projection", matrice);
 
   /* Dessine les axes */
   prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
   glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
-  prog.setAttributeValue(SommetId, xmin, 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
-  prog.setAttributeValue(SommetId, xmax, 0.0, -1.0);
-  prog.setAttributeValue(SommetId, 0.0, ymin, -1.0);
-  prog.setAttributeValue(SommetId, 0.0, ymax, -1.0);
+  prog.setAttributeValue(SommetId, -phase.max(), 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
+  prog.setAttributeValue(SommetId, phase.max(), 0.0, -1.0);
+  prog.setAttributeValue(SommetId, 0.0, -phase.max(), -1.0);
+  prog.setAttributeValue(SommetId, 0.0, phase.max(), -1.0);
   glEnd();
 
   // /* Dessine la fonction sinus */
@@ -425,7 +425,6 @@ void VueOpenGL::initializePosition()
   position = boussole;
   // matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
   // matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
-  // rotfps.setToIdentity();
 }
 
 // ======================================================================
@@ -437,31 +436,34 @@ void VueOpenGL::translate(double x, double y, double z)
    */
   QMatrix4x4 translation_supplementaire;
   translation_supplementaire.translate(x, y, z);
-  matrice_vue = translation_supplementaire * matrice_vue;
-  // translation = translation_supplementaire * translation;
-  memoire = translation_supplementaire * memoire;
+  if (!_isPhase){
+    matrice_vue = translation_supplementaire * matrice_vue;
+    memoire = translation_supplementaire * memoire;
+  }
 }
 
 // ======================================================================
 void VueOpenGL::rotate(double angle, double dir_x, double dir_y, double dir_z)
 {
-  // Multiplie la matrice de vue par LA GAUCHE
-  QMatrix4x4 rotation_supplementaire;
-  rotation_supplementaire.rotate(angle, dir_x, dir_y, dir_z);
+  if (!_isPhase){
+    // Multiplie la matrice de vue par LA GAUCHE
+    QMatrix4x4 rotation_supplementaire;
+    rotation_supplementaire.rotate(angle, dir_x, dir_y, dir_z);
 
-  if (TPS) {
-  /* En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
-   * on fait en sorte que toutes les rotations se passent AVANT les translations
-   * comme ça l'objet tourne sur lui-même. :)
-   */
-    matrice_vue = memoire * rotation_supplementaire * memoire.inverted() * matrice_vue; // troisième personne
-  } else {
-    matrice_vue = rotation_supplementaire * matrice_vue; // première personne
-    // rotfps = rotation_supplementaire * rotfps;
-    memoire = rotation_supplementaire * memoire;
+    if (TPS) {
+    /* En multipliant d'abord par l'inverse des translations puis par la rotation puis par les translations
+     * on fait en sorte que toutes les rotations se passent AVANT les translations
+     * comme ça l'objet tourne sur lui-même. :)
+     */
+      matrice_vue = memoire * rotation_supplementaire * memoire.inverted() * matrice_vue; // troisième personne
+    } else {
+      matrice_vue = rotation_supplementaire * matrice_vue; // première personne
+      // rotfps = rotation_supplementaire * rotfps;
+      memoire = rotation_supplementaire * memoire;
+    }
+
+    boussole = position * rotation_supplementaire * position.inverted() * boussole;
   }
-
-  boussole = position * rotation_supplementaire * position.inverted() * boussole;
 }
 
 // ======================================================================
