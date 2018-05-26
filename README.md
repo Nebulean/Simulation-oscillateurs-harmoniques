@@ -7,20 +7,43 @@ Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL, en section phys
 
 Projet réalisé par **Delphine Martres** et **Damien Korber**.
 
+## Préambule - informations importantes demandées.
+> Jusqu'où avez-vous été ? qu'est-ce que vous avez fait/pas fait ?
+
+Nous avons été jusqu'au bout du projet. (Jusqu'à P13, compris)
+Nous avons réalisé l'ensemble des oscillateurs du complément mathématique, à l'exceptions:
+
+* des pendules reliés par un ressort.
+* de l'oscillateur DeuxRessort.
+
+Concernant les intégrateurs, nous les avons tous réalisé.
+
+Pour l'espace des phase, l'affichage actuel permet d'affiche l'espace de tous les oscillateurs. Par contre, il faut changer maniellement d'oscillateur dans le code.
+
+> Avez-vous une version graphique ? Si oui, avec quelle bibliothèque graphique (Qt (quelle version ?), WxWidget, SDL, Glut, autre [précisez]) ?
+
+Oui, nous avons une version graphique et nous avons utilisé Qt5. Pour plus de détails concernant les supports sur lesquels le projet à été testé, se référer à la section "Guide de compilation".
+
+> combien d'heures en moyenne par personne estimez vous avoir passé par semaine sur le projet ? (essayez d'être objectif : n'oubliez pas qu'au début vous n'avez peut être pas fait grand chose, comptez sur 14 semaines, i.e. la première semaine incluse, ne comptez pas le cours ni les exercices hors projet, n'oubliez pas de diviser le total par 2 car je veux une estimation moyenne par personne.)
+
+Nous estimons, en moyenne et par personne, une implication d'une dizaine d'heures par semaine. Cependant, nous avons fait attention à ne pas prendre trop de temps sur les autres branches. Ainsi, nous avons essentiellement travaillé sur nos temps libres (soirs du week-end nottament).
+
+
 ## Table des matières
 <!-- TOC depthFrom:2 depthTo:6 withLinks:0 updateOnSave:0 orderedList:1 -->
 
-1. Table des matières
-2. Introduction
-3. Guide de compilation
+1. Préambule - informations importantes demandées.
+2. Table des matières
+3. Introduction
+4. Guide de compilation
 	1. Preambule les informations importantes
 	2. Ce qui est compilable
 	3. Compiler sur MacOS
 	4. Compiler sur Kubuntu (et donc Linux)
 	5. Compiler tous les sous-projet fonctionnels
-4. Guide d'utilisation
+5. Guide d'utilisation
 	1. Les touches.
-5. Analyse
+6. Analyse
 	1. Les intégrateurs
 	2. Les oscillateurs
 		1. Le pendule simple
@@ -29,6 +52,7 @@ Projet réalisé par **Delphine Martres** et **Damien Korber**.
 		4. Le pendule de torsion
 		5. Le chariot
 		6. Le pendule double non amorti.
+		7. Le Pendule-Ressort non amorti.
 
 <!-- /TOC -->
 
@@ -51,6 +75,7 @@ De plus, nous avons testé le programme sur les OS suivants:
 
 - **MacOS 10.13.4**
 - **Kubuntu 16.04**
+- **Machine virtuelle de l'EPFL (25 mai)**
 
 ### Ce qui est compilable
 
