@@ -23,12 +23,12 @@ public:
     , _integrateur(new RungeKutta) // Par défaut, on utilise un intégrateur de RungeKutta
     , _sys(0.1, &vue, _integrateur)
     , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
-    , _isPhase(false)
+    // , _isPhase(false)
     , _phase(&vue)
   {}
   virtual ~GLWidget() { delete _integrateur; }
 
-  void togglePhase();
+  // void togglePhase();
 
 private:
   // Les 3 méthodes clés de la classe QGLWidget à réimplémenter
@@ -92,7 +92,7 @@ private:
   Systeme _sys;
 
   //! Bool activant ou desactivant l'affichage de l'espace des phases.
-  bool _isPhase;
+  // bool _isPhase;
 
   //! Pointeur sur une Phase d'un oscillateur en particulier.
   Phase _phase;

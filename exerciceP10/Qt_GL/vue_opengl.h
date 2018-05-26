@@ -63,6 +63,11 @@ class VueOpenGL : public SupportADessin {
   //! Switch pour passer de la vue première personne à la vue troisième personne.
   void toggleVue() { TPS = !TPS; }
 
+  //! Switch pour passer à l'espace des phases
+  void togglePhase();
+  //! Accesseur de l'état de l'espace des phases
+  bool isPhase() { return _isPhase; }
+
  private:
   // Un shader OpenGL encapsulé dans une classe Qt
   QGLShaderProgram prog;
@@ -70,10 +75,7 @@ class VueOpenGL : public SupportADessin {
 
   //! Caméra
   QMatrix4x4 matrice_vue;
-  //! Matrice qui mémorise les translations de matrice_vue
-  // QMatrix4x4 translation;
-  //! Matrice qui mémorise les rotations en première personne
-  // QMatrix4x4 rotfps;
+
   //! Matrice qui mémorise les rotations en première personne et les translations de matrice_vue
   QMatrix4x4 memoire;
 
@@ -90,6 +92,9 @@ class VueOpenGL : public SupportADessin {
 
   //! Variable d'état de la vue première/troisième personne, TPS = troisième personne activée.
   bool TPS;
+
+  //! Variable d'état de l'espace des phases
+  bool _isPhase;
 };
 
 //! Convertisseur Radian -> Degrés.

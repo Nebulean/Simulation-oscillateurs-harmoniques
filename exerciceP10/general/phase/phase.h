@@ -30,12 +30,18 @@ public:
   //! Accesseur pour la liste de points
   ListePoints pts() const {return _pts;}
 
+  //! Accesseur du max
+  double max() const {return _max;}
+
 private:
   //! Stocke les points de l'espace de phase.
   /*! Liste chaînée sur une pair de double. Stocke tous les points de l'espace
    * de phase d'un oscillateur particulier.
    */
   ListePoints _pts;
+
+  //! Variable qui stocke la coordonnée la plus éloignée de l'origine
+  double _max;
 };
 
 #endif // H_PHASE

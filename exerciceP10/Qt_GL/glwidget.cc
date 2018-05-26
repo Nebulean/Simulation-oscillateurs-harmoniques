@@ -28,10 +28,10 @@ void GLWidget::initSys(){
 
   // on affecte l'espace de phase à un oscillateur
   // p.setPhase(&_phase);
-  pr.setPhase(&_phase);
-  // ch.setPhase(&_phase);
+  ch.setPhase(&_phase);
   // t.setPhase(&_phase);
   // pdou.setPhase(&_phase);
+  // pr.setPhase(&_phase);
 
 
   // on affecte les oscillateurs au système
@@ -95,7 +95,7 @@ void GLWidget::paintGL()
   // c.dessine();
 
   // vue.dessineAxesCamera();
-  if (_isPhase) {
+  if (vue.isPhase()) {
     _phase.dessine();
   } else {
     // on remet la bonne projection, sinon l'écran est dilaté.
@@ -111,7 +111,7 @@ void GLWidget::paintGL()
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
   constexpr double petit_angle(5.0); // en degrés
-  constexpr double petit_pas(1.0);
+  constexpr double petit_pas(0.2);
 
   switch (event->key()) {
 
@@ -211,13 +211,13 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     break;
 
   case Qt::Key_P:
-    togglePhase();
-    cout << "Espace des phases ";
-    if (_isPhase) {
-      cout << "activé." << endl;
-    } else {
-      cout << "désactivé." << endl;
-    }
+    vue.togglePhase();
+    // cout << "Espace des phases ";
+    // if (_isPhase) {
+    //   cout << "activé." << endl;
+    // } else {
+    //   cout << "désactivé." << endl;
+    // }
     break;
 
   };
@@ -233,7 +233,7 @@ void GLWidget::timerEvent(QTimerEvent* event)
   // double dt = 0.02;
   double dt = chronometre.restart() / 1000.0;
   // en cas de dt trop grand...
-  if (dt > 0.04) {
+  if (dt > 0.05) {
     dt = 0.005; // on ralenti la simulation.
   }
 
@@ -287,7 +287,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
    * par exemple dans le constructeur de cette classe.
    */
 
-  if (event->buttons() & Qt::LeftButton) {
+  if (event->buttons() & Qt::LeftButton && !vue.isPhase()) { // désactivé dans l'espace des phases pour éviter le lag
 	constexpr double petit_angle(.4); // en degrés
 
 	// Récupère le mouvement relatif par rapport à la dernière position de la souris
@@ -323,7 +323,7 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
 }
 
 //! Des/active l'espace des phases.
-void GLWidget::togglePhase()
-{
-  _isPhase = !_isPhase;
-}
+// void GLWidget::togglePhase()
+// {
+//   _isPhase = !_isPhase;
+// }
