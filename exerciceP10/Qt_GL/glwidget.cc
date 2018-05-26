@@ -8,7 +8,6 @@
 #include "rungekutta.h"
 #include "newmark.h"
 using namespace std;
-// using namespace integr;
 
 void GLWidget::initSys(){
 

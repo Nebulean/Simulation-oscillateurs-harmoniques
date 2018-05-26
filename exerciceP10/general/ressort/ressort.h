@@ -24,6 +24,7 @@ public:
   //! Méthode d'évolution propre à l'oscillateur.
   virtual Vecteur f(double temps) override;
 
+  // Méthode d'évolution avancée.
   virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
 
 

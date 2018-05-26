@@ -9,6 +9,9 @@
 #include <memory>
 #include <cmath>
 
+/*!
+ * Implémentation du pendule de torsion.
+ */
 class Torsion : public Oscillateur {
 public:
   //! Constructeur de pendule de torsion
@@ -20,6 +23,7 @@ public:
   //! Substitution de la méthode d'évolution.
   virtual Vecteur f(double temps) override;
 
+  // Méthode d'évolution avancée.
   virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) override;
 
 

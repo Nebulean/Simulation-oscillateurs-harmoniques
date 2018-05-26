@@ -11,12 +11,16 @@
 #include "integrateur.h"
 #include "rungekutta.h"
 
+/*!
+ * Classe s'occupant de la gestion de la fenêtre.
+ */
 class GLWidget : public QGLWidget
 /* La fenêtre hérite de QGLWidget ;
  * les événements (clavier, souris, temps) sont des méthodes virtuelles à redéfinir.
  */
 {
 public:
+  //! Constructeur de GLWidget.
   GLWidget(QWidget* parent = nullptr)
     : QGLWidget(parent)
     // , c(&vue)
@@ -26,21 +30,28 @@ public:
     , _isPhase(false)
     , _phase(&vue)
   {}
+  //! Destructeur de GLWidget, qui désalloue l'intégrateur actuel.
   virtual ~GLWidget() { delete _integrateur; }
 
+  //! Toggle changant l'état d'affichage de l'espace de phase.
   void togglePhase();
 
 private:
   // Les 3 méthodes clés de la classe QGLWidget à réimplémenter
+  //! Méthode initialisant OpenGL.
   virtual void initializeGL()                  override;
+  //! Méthode gérant le redimensionnement de la fenêtre.
   virtual void resizeGL(int width, int height) override;
+  //! Méthode gérant le dessine du contenu.
   virtual void paintGL()                       override;
 
   //! Méthode d'initialisation du système.
   void initSys();
 
   // Méthodes de gestion d'évènements
+  //! Méthode de gestion des évènements liés aux touches.
   virtual void keyPressEvent(QKeyEvent* event) override;
+  //! Méthode de gestion du temps génèrant le bon dt.
   virtual void timerEvent(QTimerEvent* event)  override;
 
   //! gestion des clicks de souris
@@ -63,7 +74,8 @@ private:
 
   //! Timer
   int timerId;
-  // pour faire évoluer les objets avec le bon "dt"
+
+  //! Attribut utile pour faire évoluer les objets avec le bon "dt"
   QTime chronometre;
 
   //! Position de la souris.
