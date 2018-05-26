@@ -95,7 +95,7 @@ void GLWidget::paintGL()
   // c.dessine();
 
   // vue.dessineAxesCamera();
-  if (_isPhase) {
+  if (vue.isPhase()) {
     _phase.dessine();
   } else {
     // on remet la bonne projection, sinon l'écran est dilaté.
@@ -211,13 +211,13 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     break;
 
   case Qt::Key_P:
-    togglePhase();
-    cout << "Espace des phases ";
-    if (_isPhase) {
-      cout << "activé." << endl;
-    } else {
-      cout << "désactivé." << endl;
-    }
+    vue.togglePhase();
+    // cout << "Espace des phases ";
+    // if (_isPhase) {
+    //   cout << "activé." << endl;
+    // } else {
+    //   cout << "désactivé." << endl;
+    // }
     break;
 
   };
@@ -323,7 +323,7 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
 }
 
 //! Des/active l'espace des phases.
-void GLWidget::togglePhase()
-{
-  _isPhase = !_isPhase;
-}
+// void GLWidget::togglePhase()
+// {
+//   _isPhase = !_isPhase;
+// }

@@ -404,6 +404,9 @@ void VueOpenGL::init()
   // on active le mode troisième personne
   TPS = true;
 
+  // on désactive l'espace des phases
+  _isPhase = false;
+
   sphere.initialize();
   initializePosition();
 }
@@ -651,4 +654,14 @@ double mapTo(double x, double a, double b, double c, double d)
    }
 
   return valeur;
+}
+
+void VueOpenGL::togglePhase() {
+  _isPhase = !_isPhase;
+  cout << "Espace des phases ";
+  if (_isPhase) {
+    cout << "activé." << endl;
+  } else {
+    cout << "désactivé." << endl;
+  }
 }

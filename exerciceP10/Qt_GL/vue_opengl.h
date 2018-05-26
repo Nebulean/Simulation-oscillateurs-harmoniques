@@ -63,6 +63,11 @@ class VueOpenGL : public SupportADessin {
   //! Switch pour passer de la vue première personne à la vue troisième personne.
   void toggleVue() { TPS = !TPS; }
 
+  //! Switch pour passer à l'espace des phases
+  void togglePhase();
+  //! Accesseur de l'état de l'espace des phases
+  bool isPhase() { return _isPhase; }
+
  private:
   // Un shader OpenGL encapsulé dans une classe Qt
   QGLShaderProgram prog;
@@ -90,6 +95,9 @@ class VueOpenGL : public SupportADessin {
 
   //! Variable d'état de la vue première/troisième personne, TPS = troisième personne activée.
   bool TPS;
+
+  //! Variable d'état de l'espace des phases
+  bool _isPhase;
 };
 
 //! Convertisseur Radian -> Degrés.
