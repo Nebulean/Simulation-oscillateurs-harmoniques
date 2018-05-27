@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <initializer_list>
-
+/** @file */
 /*!
  * Classe appliquant les opérations classiques des vecteurs dans Rn.
  *
@@ -43,7 +43,7 @@ private:
 
 
 //===================SURCHARGES D'OPERATEUR EXTERNES
-std::ostream& operator<<(std::ostream& flot_de_sortie, Vecteur const& veceur_a_afficher); //!< Surcharge de l'affichage de Vecteur.
+std::ostream& operator<<(std::ostream& flot_de_sortie, Vecteur const& vecteur_a_afficher); //!< Surcharge de l'affichage de Vecteur.
 const Vecteur operator+(Vecteur operande1, Vecteur const& operande2); //!< Surcharge d'addition vectorielle.
 const Vecteur operator-(Vecteur operande1, Vecteur const& operande2); //!< Surcharge de soustraction vectorielle.
 const Vecteur operator-(Vecteur const& vecteur); //!< Surcharge de l'opérateur "opposé", qui inverse le Vecteur donné en paramètre.

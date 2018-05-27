@@ -14,13 +14,14 @@
  */
 class Newmark : public Integrateur{
 public:
+  //! Constructeur de l'intégrateur de Newmark.
   Newmark(double precision = 0.000001) // précision par défaut: 1e-6
    : _precision(precision) {}
 
   virtual void evolue(Oscillateur& oscillateur, double pas_de_temps, double temps)  override;
 
 private:
-  double _precision;
+  double _precision; //!< Double contant la précision voulue par l'intégrateur de Newmark.
 };
 
 #endif // H_NEWMARK

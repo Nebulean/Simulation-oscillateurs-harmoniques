@@ -9,6 +9,9 @@
 #include <memory>
 #include <cmath>
 
+/*!
+ * Implémentation du pendule double.
+ */
 class PenduleDouble : public Oscillateur {
 public:
   //!Constructeur du pendule double
@@ -32,11 +35,11 @@ public:
   //! Copie polymorphique
   virtual std::unique_ptr<Oscillateur> copie() const override;
 
-  //!Accesseurs
-  double m1() const {return _m1;}
-  double m2() const {return _m2;}
-  double L1() const {return _L1;}
-  double L2() const {return _L2;}
+  //Accesseurs
+  double m1() const {return _m1;} //!< Accesseur retournant la valeur de _m1.
+  double m2() const {return _m2;} //!< Accesseur retournant la valeur de _m2.
+  double L1() const {return _L1;} //!< Accesseur retournant la valeur de _L1.
+  double L2() const {return _L2;} //!< Accesseur retournant la valeur de _L2.
 
 private:
   double _m1; //!< masse du premier pendule

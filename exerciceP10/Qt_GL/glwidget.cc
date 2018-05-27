@@ -8,7 +8,6 @@
 #include "rungekutta.h"
 #include "newmark.h"
 using namespace std;
-// using namespace integr;
 
 /*!
  * Cette méthode initialise le système, et tous les éléments qui le compose.

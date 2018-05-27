@@ -16,10 +16,12 @@
 #include "penduleressort.h"
 #include "phase.h"
 
+/*!
+ * Classe implémentant le support à dessin en mode OpenGL.
+ */
 class VueOpenGL : public SupportADessin {
  public:
-  // méthode(s) de dessin (héritée(s) de SupportADessin)
-  // virtual void dessine(Contenu const& a_dessiner) override;
+  // méthodes de dessin (héritées de SupportADessin)
   virtual void dessine(Pendule const& pendule_a_dessiner) override;
   virtual void dessine(Ressort const& ressort_a_dessiner) override;
   virtual void dessine(Systeme const& systeme_a_dessiner) override;
@@ -35,19 +37,26 @@ class VueOpenGL : public SupportADessin {
   //! méthode de (ré-)initialisation
   void initializePosition();
 
-  // méthode set
+  //! méthode changent la projection actuelle, avec la matrice 4x4 donnée.
   void setProjection(QMatrix4x4 const& projection)
   { prog.setUniformValue("projection", projection); }
 
-  // Méthodes set
+  //! Méthodes translatant une matrice dans une certaine direction.
   void translate(double x, double y, double z);
+
+  //! Méthode appliquant une rotation d'un certain angle, dans un certain plan.
   void rotate(double angle, double dir_x, double dir_y, double dir_z);
 
   // méthode utilitaire offerte pour simplifier
+  //! Méthode dessinant un cube.
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
+  //! Méthode dessinant une sphère.
   void dessineSphere(QMatrix4x4 const& point_de_vue = QMatrix4x4(), double rouge = 1.0, double vert = 1.0, double bleu = 1.0);
+  //! Méthode dessinant des axes cartésiens.
   void dessineAxes(QMatrix4x4 const& point_de_vue = QMatrix4x4(), bool translatable = true, bool en_couleur = true);
+  //! Méthode dessinant une ligne.
   void dessineLigne(QMatrix4x4 const& point_de_vue = QMatrix4x4(), bool en_couleur = false, double longueur = 1, double x = 1.0, double y = 0.0, double z = 0.0, double rouge = 1.0, double vert = 1.0, double bleu = 1.0 );
+  //! Méthode dessinant une ligne avec une sphère au bout.
   void dessineOscill(Oscillateur const& a_dessiner, QMatrix4x4 point_de_vue, double longueur, double coeff_diametre, double rougeLigne = 1.0, double vertLigne = 1.0, double bleuLigne = 1.0, double rougeSphere = 1.0, double vertSphere = 1.0, double bleuSphere = 1.0);
   //void dessineOscill(Oscillateur const& a_dessiner, QMatrix4x4 point_de_vue, double coeff_diametre, double rougeLigne = 1.0, double vertLigne = 1.0, double bleuLigne = 1.0, double rougeSphere = 1.0, double vertSphere = 1.0, double bleuSphere = 1.0);
 
@@ -69,8 +78,10 @@ class VueOpenGL : public SupportADessin {
   bool isPhase() { return _isPhase; }
 
  private:
-  // Un shader OpenGL encapsulé dans une classe Qt
+  //! Un shader OpenGL encapsulé dans une classe Qt
   QGLShaderProgram prog;
+
+  //! Le caneva de sphère à dessiner.
   GLSphere sphere;
 
   //! Caméra

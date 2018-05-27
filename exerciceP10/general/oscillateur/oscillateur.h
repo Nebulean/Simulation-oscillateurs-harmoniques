@@ -26,6 +26,12 @@ public:
    */
   virtual Vecteur f(double temps) = 0;
 
+  //! Méthode d'évolution avancée, propre à chaque oscillateur.
+  /*!
+   * Méthode d'évolution prenant en argument le temps ainsi que deux vecteurs.
+   * Ainsi, il est possible d'implémenter facilement les intégrateurs de
+   * Newmark et Runge-Kutta.
+   */
   virtual Vecteur f(double temps, Vecteur const& position, Vecteur const& vitesse) = 0;
 
   //! Copie polymorphique.
