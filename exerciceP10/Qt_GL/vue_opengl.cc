@@ -220,7 +220,8 @@ void VueOpenGL::dessine(Torsion const& torsion)
   dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I(), rL, vL, bL, rS, vS, bS);
 
   // on inverse le sens
-  matrice.scale(-1);
+  // matrice.scale(-1);
+  matrice.rotate(180, 0.0, 1.0, 0.0);
 
   // on dessine l'autre partie
   dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I(), rL, vL, bL, rS, vS, bS);
