@@ -53,6 +53,7 @@ Nous n'étions pas d'accord sur la façon de se déplacer dans l'espace. Nous av
 **Le changement d'intégrateur en cours d'execution**
 
 Dans la simulation graphique, il est possible de changer d'intégrateur en cours d'execution. Par défaut, l'intégrateur de Runge-Kutta d'ordre 4 est utilisé, mais vous pouvez switcher d'intégrateur en cours de route. Pour cela, appuyez sur:
+
 * **1** - pour utiliser Euler-Cromer;
 
 * **2** - pour utiliser Newmark;
@@ -61,7 +62,7 @@ Dans la simulation graphique, il est possible de changer d'intégrateur en cours
 
 Un message indiquant un changement d'intégrateur sera affiché dans le terminal.
 
-Remarque: le texte affiché après est l'adresse de l'intégrateur actuel.
+**Remarque:** le texte affiché après est l'adresse de l'intégrateur actuel.
 
 **La documentation**
 
@@ -160,7 +161,7 @@ Pour générer la documentation, allez à la racine du projet (là où se trouve
 
 La documentation ainsi générée se trouve dans `docs/`. Pour la documentation html, ouvrez `docs/html/index.html`. Pour la documentation en latex, executez `make` dans le dossier `docs/latex`.
 
-Remarque: la documentation en latex n'est ni maintenue, ni testée.
+**Remarque:** la documentation en latex n'est ni maintenue, ni testée.
 
 
 
@@ -169,7 +170,7 @@ Remarque: la documentation en latex n'est ni maintenue, ni testée.
 
 Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant la simulation textuelle, il n'y a rien à savoir, donc nous nous intéressons à la simulation visuelle.
 
-Remarque: Ce programme est adapté pour un **clavier Suisse**, c'est à dire un clavier **QWERTZ**.
+**Remarque:** Ce programme est adapté pour un **clavier Suisse**, c'est à dire un clavier **QWERTZ**.
 
 ### Les touches.
 

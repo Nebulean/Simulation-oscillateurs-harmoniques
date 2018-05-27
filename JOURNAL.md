@@ -1,10 +1,7 @@
-A MODIFIER AVANT DE RENDRE:
-* Semaine 5, vérifier que Oscillateur est bien une classe abstraite et que la méthode d'évolution est une méthode virtuelle pure.
-
-
 ## Semaine 1
 ### Travail accompli
 Cette première semaine, nous avons surtout organisé le projet.
+
 * Nous avons choisi d'utiliser GIT pour la communication du projet, et la centralisation des données.
 * Nous avons également choisi d'utiliser doxygen pour créer automatiquement le graphique de CONCEPTION.
 * Nous avons aussi réfléchi à la question: "Quand travailler sur le projet".
@@ -18,6 +15,7 @@ Aucun, tout se passe bien pour le moment, et nous sommes enthousiastes.
 ### Travail accompli
 Nous avons réalisé la première version de la classe Vecteur, avec toutes les méthodes demandées.
 Au niveau des méthodes réalisées, nous avons donc:
+
 * Toutes les opérations mathématiques classiques.
 * Quelques méthodes-outil.
 En même temps, nous avons réalisé tous les tests demandés dans le cours.
@@ -60,15 +58,19 @@ Pendant le week-end l'un d'entre nous a rencontré un problème de compilation a
 
 ## Semaine 6
 Cette semaine de travail a été essentiellement composé de Jeudi soir. Le reste de la semaine, nous étions occupé à travailler sur les branches plus vitales.
+
 ### Travail accompli
 Nous avons essentiellement réalisé une première version de P8. Cette version n'était pas fonctionnelle, mais avait au moins l'avantage de poser les bases.
+
 ### Problèmes rencontrés
 L'essentiel des soucis sont apparu après coup. En effet, la version de P8 faite ici n'est pas terrible. Il y a quelques implémentation qui font défaut, et qui méritent d'être retravaillées.
 
 ## Semaine 7
 Semaine de vacances, donc on a été efficace.
+
 ### Travail accompli
 Nous avons réalisé l'entièreté de P8 et le début de P9. Ceux-ci sont désormais fonctionnels, car nous avons corrigé la plupart des problèmes d'implémentation de la semaine précédente.
+
 ### Problèmes rencontrés
 Malgré le travail fourni cette semaine, nous avons tout-de-même eut quelques *gros* problèmes d'implémentation, qui nous ont bloqué pendant deux jours.
 Premièrement, nous avons eu des problèmes avec Dessinable, SupportADessin et les oscillateurs. En effet, il y avait des dépendances cycliques qui posaient des problèmes lors de la compilation. (les classes n'étaient pas définies...)
@@ -80,6 +82,7 @@ Remarquons également que cette implémentation devrait être suffisamment gén�
 ## Semaine 8
 ### Travail accompli
 Nous avons terminé P9 et rendu le code plus clair en appliquant les conseils des assistants et du professeur, notamment en nommant tous les paramètres dans les fichiers .h.
+
 ### Problèmes rencontrés
 RAS.
 
@@ -88,6 +91,7 @@ RAS.
 ### Travail accompli
 Cette semaine, nous avons bien avancé. Premièrement, nous avons fini de rendre P9 présentable, ce qui a pris beaucoup de temps, mais c'est fait. Le code est donc commenté (et compatible doxygen) et semble présentable.
 Nous avons également pu enfin commencer P10. Nous avons bien réorganisé notre code pour que la version texte soit encore fonctionnelle, et nous avons pu débuter la partie graphique. Donc avons donc une fenêtre où nous pouvons nous déplacer. Nous avons implémenté les sphères, carrés et axes. De plus, nous avons réussi à réalisé une boussole qui nous permet de se repérer facilement dans l'espace (essentiellement une représentation des trois axes xyz qui reste dans un coin de l'écran et tourne en suivant les rotations effectuées) ! Nous avons également réalisé la classe Torsion pour modéliser les pendules de torsion.
+
 ### Problèmes rencontrés
 Le principal problème rencontré touche essentiellement à l'implémentation de cette boussole. Ce n'était pas aisé, mais c'est un franc succès !
 
@@ -95,6 +99,7 @@ Le principal problème rencontré touche essentiellement à l'implémentation de
 ## Semaine 10
 ### Travail accompli
 Nous avons réalisé une première version de l'implémentation graphique et ajouté des options d'affichage (mode debug, toggle pour la vue 3ème personne) et des déplacements contrôlés par la souris. Les oscillateurs implémentés jusqu'ici (Pendule, Ressort, Torsion) s'affichent maintenant à l'écran et évoluent selon leurs équations du mouvement respectives.
+
 ### Problèmes rencontrés
 Nous n'avons pas encore trouvé de moyen d'implémenter la direction principale a, paramètre de tous les oscillateurs.
 
@@ -102,6 +107,7 @@ Nous n'avons pas encore trouvé de moyen d'implémenter la direction principale 
 ## Semaine 11
 ### Travail accompli
 Nous avons implémenté la direction principale a en dessinant simplement l'axe du pendule dans cette direction dans un premier temps, puis en ajoutant une rotation si nécessaire. De plus nous avons rendu le code de l'implémentation graphique plus général pour le synthétiser et simplifier l'implémentation des futurs oscillateurs. Nous avons également réalisé une première version de l'intégrateur de Newmark.
+
 ### Problèmes rencontrés
 Le problème principal avec l'implémentation graphique était dû au fait que les axes xyz de Qt-OpenGL ne correspondent pas aux axes tels que nous les avons représentés dans les classes Oscillateur (notamment la constante gravitationnelle g = (0.0, 0.0, -9.81)), ce qui a surtout posé problème pour l'implémentation de la direction principale de Ressort, puisque celui-ci est affecté par la gravité. Nous avons d'abord pensé à faire une rotation de la matrice_vue pour mettre les axes dans le bon sens, mais cela nous aurait forcé à changer beaucoup de choses dans le code de l'implémentation graphique. Comme ce problème n'affectait vraiment que Ressort nous avons décidé d'appliquer une rotation seulement sur Ressort.
 D'autre part notre version de l'intégrateur de Newmark ne donnait pas exactement les mêmes résultats que l'exemple fourni, bien que l'algorithme nous parût correct. Nous avons donc demandé conseil à notre assistant, qui nous a dit que ce n'était pas un problème très grave. Nous avons tout de même posté un thread sur le forum pour demander de l'aide.
@@ -138,5 +144,6 @@ Sinon, le reste s'est déroulé comme prévu, et l'espace des phases est très j
 Nous avons pas implémenté de nouveaux gros contenus. On a corrigé quelques bugs, changer quelques petits implémentation (phase nottament), et le plus gros de notre travail a été de préparer le projet pour le rendu.
 
 Il n'y a donc rien de particulier à préciser ici. Tout se passe bien.
+
 ### Problèmes rencontrés
 Rendre du code beau n'est clairement pas intéressant, ce qui n'aide pas à travailler. À part cela, RAS.
