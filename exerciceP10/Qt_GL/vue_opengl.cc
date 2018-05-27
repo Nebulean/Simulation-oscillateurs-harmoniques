@@ -79,10 +79,10 @@ void VueOpenGL::dessine(Pendule const& pendule)
 
   // on choisi les couleurs du pendule.
   // la tige est un solide indéformable, alors on lui donne une couleur fixe:
-  // vert.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0.0 );
+  // blanc.
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
 
   // la boule est également indéformable, donc on lui donne une couleur fixe:
   // bleu turquoise.
@@ -150,10 +150,10 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
   // on choisi les couleurs de Torsion.
   // les tige est un solide indéformable, alors on lui donne une couleur fixe:
-  // vert.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0 );
+  // blanc.
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
 
   // les boules sont également indéformable, donc on leur donne une couleur fixe:
   // bleu turquoise.
@@ -208,10 +208,10 @@ void VueOpenGL::dessine(Chariot const& chariot)
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
   // on choisi une couleur pour les tiges solides du pendule.
-  // vert
-  double rP( 0.1 );
-  double vP( 0.8 );
-  double bP( 0.0 );
+  // blanc
+  double rP( 1.0 );
+  double vP( 1.0 );
+  double bP( 1.0 );
 
   //on dessine le pendule
   dessineOscill(chariot, matrice, chariot.L(), chariot.m2(), rP, vP, bP, rS, vS, bS);
@@ -232,9 +232,9 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
   // on initialise les couleurs.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0.0 );
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
   double rS( 0.1 );
   double vS( 0.8 );
   double bS( 1.0 );
@@ -266,7 +266,7 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
     cout << "Niveau de vert de l'élastique du Pendule-Ressort -  " << abs(pr.P(0)) <<  " in [ " << 0.0 << ", " << pr.getMaxSize() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) << endl;
   }
   double rL( 1.0 );
-  double vL( 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
+  double vL( mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
   double bL( 0.1 );
   double rS( 0.1 );
   double vS( 0.8 );

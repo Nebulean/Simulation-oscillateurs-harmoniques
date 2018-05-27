@@ -135,4 +135,8 @@ Sinon, le reste s'est déroulé comme prévu, et l'espace des phases est très j
 
 ## Semaine 14
 ### Travail accompli
+Nous avons pas implémenté de nouveaux gros contenus. On a corrigé quelques bugs, changer quelques petits implémentation (phase nottament), et le plus gros de notre travail a été de préparer le projet pour le rendu.
+
+Il n'y a donc rien de particulier à préciser ici. Tout se passe bien.
 ### Problèmes rencontrés
+Rendre du code beau n'est clairement pas intéressant, ce qui n'aide pas à travailler. À part cela, RAS.

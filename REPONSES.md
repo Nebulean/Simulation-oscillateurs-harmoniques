@@ -8,7 +8,7 @@ Corriger question 7s, question 8s.
 ### Représentation
 Les vecteurs de dimension n quelconque (finie) sont représentés par des tableaux dynamiques de réels (vector<double>) de manière à pouvoir changer librement la dimension n au cours du programme.
 
-### Attributs
+### Attributs
 * *_coord*: il s'agit d'un tableau dynamique contenant à chaque emplacement une coordonnée du vecteur.
 
 ### Méthodes
