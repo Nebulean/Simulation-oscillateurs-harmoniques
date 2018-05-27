@@ -16,7 +16,7 @@ Nous avons réalisé l'**ensemble des oscillateurs** du complément mathématiqu
 
 Nous avons implémenté **tous les intégrateurs** énoncés dans le complément mathématique, c-à-d Euler-Cromer, Newmark et Runge-Kutta d'ordre 4. Un comparatif est disponible plus bas.
 
-Nous avons également un **espace des phases fonctionnel**. Cependant, changer l'oscillateur doit se faire **manuellement**. Nous avons pas eu le temps d'implémenter une touche de changement d'oscillateur.
+Nous avons également un **espace des phases fonctionnel**. Nous avons également implémenté une touche pour changer l'oscillateur associé à l'espace des phases pendant la simulation graphique.
 
 > _Avez-vous une version graphique ? Si oui, avec quelle bibliothèque graphique (Qt (quelle version ?), WxWidget, SDL, Glut, autre [précisez]) ?_
 
@@ -36,23 +36,23 @@ Nous estimons, en moyenne et par personne, une implication d'une petite dizaine 
 ### Les quelques points intéressants du projet.
 **La simulation visuelle**
 
-Le point central de ce projet est évidemment la simulation visuelle. Nous vous proposons de compiler et executer le programme dans Qt_GL. Quand vous y êtes, vous pouvez vous balader dans l'espace et admirer les oscillateurs. Un petit point supplémentaire, un ressort est étiré ou le support du pendule de torsion est tendu, plus le fil devient rouge.
+Le point central de ce projet est évidemment la simulation visuelle. Nous vous proposons de compiler et exécuter le programme dans Qt_GL. Quand vous y êtes, vous pouvez vous balader dans l'espace et admirer les oscillateurs. Un petit point supplémentaire, plus un ressort est étiré ou le support du pendule de torsion est tendu, plus le fil devient rouge.
 
 **L'espace des phases**
 
-Lors de l'execution de la version graphique du projet, l'espace des phases peut-être affiché en appuyant sur **P**. On peut donc y voir une représentation de la vitesse en fonction du temps de l'oscillateur sélectionné. Pour changer d'oscillateur dessiné, rien de plus simple ! Il suffit d'appuyer sur **O**, et un nouvel oscillateur est dessiné. Remarquez qu'il commence à dessiner l'espace de phase là au moment ou vous avez cliqué. En effet, nous n'avons qu'un espace de phase à la fois. Lors d'un changement d'oscillateur, nous remettons à 0 les positions conservées dans la phase. Pour changer l'oscillateur dessiné par défaut, suivre les instructions se trouvant dans la fonction `GLWidget::initSys()`.
+Lors de l'execution de la version graphique du projet, l'espace des phases peut-être affiché en appuyant sur **P**. On peut donc y voir une représentation de la vitesse en fonction du temps de l'oscillateur sélectionné. Pour changer d'oscillateur dessiné, rien de plus simple ! Il suffit d'appuyer sur **O**, et un nouvel oscillateur est dessiné. Remarquez qu'il commence à dessiner l'espace de phase là au moment ou vous avez cliqué. En effet, nous n'avons qu'un espace de phase à la fois. Lors d'un changement d'oscillateur, nous effaçons les positions conservées dans la phase. Pour changer l'oscillateur dessiné par défaut, suivre les instructions se trouvant dans la fonction `GLWidget::initSys()`.
 
 **La boussole**
 
-Il est très facile de se perdre dans la simulation visuelle. Du coup, nous avons implémenté une boussole directement sur Qt. Nous en sommes fière, parce que c'était pas facile à faire. Par défaut, elle devrait être activée. Mais si ce n'est pas le cas, ou si vous voulez desactiver cette boussole, appuyez sur la touche **B**. Elle suivre vos mouvements dans l'espace.
+Il est très facile de se perdre dans la simulation visuelle. Du coup, nous avons implémenté une boussole directement sur Qt. (trois axes de l'espace affectés par les rotations mais pas les translations) Nous en sommes fiers, parce que ce n'était pas facile à faire. Par défaut, elle devrait être activée. Mais si ce n'est pas le cas, ou si vous voulez désactiver cette boussole, appuyez sur la touche **B**. Elle suit vos mouvements dans l'espace.
 
 **Le changement de point de vue**
 
-Nous n'étions pas d'accord sur la façon de se déplacer dans l'espace. Nous avons donc implémenté un toggle permetant de switcher entre une vue à la première personne (on "est" la caméra) et une vue à la troisième personne (on fixe un point dans l'espace). Pour changer de point de vue, appuyez sur **V**.
+Nous n'étions pas d'accord sur la façon de se déplacer dans l'espace. Nous avons donc implémenté un toggle permettant de switcher entre une vue à la première personne (on "est" la caméra) et une vue à la troisième personne (on fixe un point dans l'espace). Pour changer de point de vue, appuyez sur **V**.
 
 **Le changement d'intégrateur en cours d'execution**
 
-Dans la simulation graphique, il est possible de changer d'intégrateur en cours d'execution. Par défaut, l'intégrateur de Runge-Kutta d'ordre 4 est utilisé, mais vous pouvez switcher d'intégrateur en cours de route. Pour cela, appuyez sur:
+Dans la simulation graphique, il est possible de changer d'intégrateur en cours d'exécution. Par défaut, l'intégrateur de Runge-Kutta d'ordre 4 est utilisé, mais vous pouvez changer d'intégrateur en cours de route. Pour cela, appuyez sur:
 
 * **1** - pour utiliser Euler-Cromer;
 
@@ -70,7 +70,7 @@ Pour ne pas se perdre dans le projet, nous avons utilisé **Doxygen** pour gén�
 
 **Le mode debug**
 
-Pour vérifier le bon fonctionnement des oscillateurs executé durant la simulation visuelle, nous avons implémenter un mode debug. Lors de l'execution, appuyez sur **§** pour (dés)activer le mode debug. Les informations s'afficheront dans le terminal.
+Pour vérifier le bon fonctionnement des oscillateurs exécutés durant la simulation visuelle, nous avons implémenté un mode debug. Lors de l'exécution, appuyez sur **§** pour (dés)activer le mode debug. Les informations s'afficheront dans le terminal.
 
 
 ## Table des matières
@@ -104,7 +104,7 @@ Pour vérifier le bon fonctionnement des oscillateurs executé durant la simulat
 \pagebreak
 ## Introduction
 
-Le but de ce projet est la réalisation d'un programme pouvant simuler des oscillateurs couplés. Nous avons réalisé quelques preset d'oscillateurs, mais le programme se veut suffisament souple pour ajouter de nouveaux oscillateurs.
+Le but de ce projet est la réalisation d'un programme pouvant simuler des oscillateurs couplés. Nous avons réalisé quelques preset d'oscillateurs, mais le programme se veut suffisamment souple pour ajouter de nouveaux oscillateurs.
 
 Nous offrons une simulation textuelle, ainsi qu'une simulation visuelle, utilisant Qt et OpenGL.
 
@@ -140,15 +140,15 @@ make # Compile le projet en suivant les instructions du Makefile.
 
 Ainsi, on compile tout ce qui est fonctionnel dans ce projet.
 
-**Remarque**: Il est possible de se rendre dans chaque dossiers fonctionnels, et d'y executer ces commandes. Ainsi, on peut compiler les projets séparéments.
+**Remarque**: Il est possible de se rendre dans chaque dossier fonctionnel, et d'y exécuter ces commandes. Ainsi, on peut compiler les projets séparément.
 
 Pour exécuter ce qu'on vient de compiler, il suffit de se rendre dans le dossier de ce qu'on veut tester (c.f. Voir "Ce qui est compilable") et lancer la commande:
 
 ```bash
-./$NOM_DE_EXECUTABLE # Lance l'executable demandé.
+./$NOM_DE_EXECUTABLE # Lance l'exécutable demandé.
 ```
 
-où `$NOM_DE_EXECUTABLE` est le... nom de l'executable.
+où `$NOM_DE_EXECUTABLE` est le... nom de l'exécutable.
 
 
 ### Générer la documentation
@@ -157,9 +157,9 @@ La documentation est générée automatiquement par **Doxygen**.
 
 **Génération et lecture**
 
-Pour générer la documentation, allez à la racine du projet (là où se trouve le README), et executez cette commande:  `doxygen doxyfile`.
+Pour générer la documentation, allez à la racine du projet (là où se trouve le README), et exécutez cette commande:  `doxygen doxyfile`.
 
-La documentation ainsi générée se trouve dans `docs/`. Pour la documentation html, ouvrez `docs/html/index.html`. Pour la documentation en latex, executez `make` dans le dossier `docs/latex`.
+La documentation ainsi générée se trouve dans `docs/`. Pour la documentation html, ouvrez `docs/html/index.html`. Pour la documentation en latex, exécutez `make` dans le dossier `docs/latex`.
 
 **Remarque:** la documentation en latex n'est ni maintenue, ni testée.
 
@@ -196,14 +196,14 @@ Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant 
 
 | Action                                                | Touche associée |
 |:-----------------------------------------------------:|:---------------:|
-| (Des)activation de la boussole                        | **b**           |
-| (Des)activation du mode debug dans le terminal        | **§**           |
-| (Des)activation de la mise en pause de la simulation  | **space**       |
+| (Dés)activation de la boussole                        | **b**           |
+| (Dés)activation du mode debug dans le terminal        | **§**           |
+| (Dés)activation de la mise en pause de la simulation  | **space**       |
 | Changement de la vue (première ou troisième personne) | **v**           |
 | Activation de l'intégrateur d'Euler-Cromer            | **1**           |
 | Activation de l'intégrateur de Newmark                | **2**           |
 | Activation de l'intégrateur de Runge-Kutta d'ordre 4  | **3**           |
-| (Des)activation de l'espace de phase									| **p**						|
+| (Dés)activation de l'espace de phase									| **p**						|
 | Dessine l'oscillateur suivant dans l'espace des phases| **o**						|
 
 \pagebreak
@@ -215,15 +215,15 @@ Nous avons effectué quelques petites analyse de nos différentes implémentatio
 
 Nous avons implémentés les trois intégrateurs proposés. L'intégrateur d'Euler-Cromer, de Newmark, et de Runge-Kutta à l'ordre 4. Nous avons donc testé une chute libre de conditions initiales $\vec{P} = (0, 1)$ et $\dot{\vec{P}} = (1, 2)$. ![graphique comparant les différents intégrateurs](annexes/integr_comp.png)
 
-Nous remarquons que, effectivement, l'intégrateur d'Euler-Cromer est moins bon que les autres. Il est certes plus simple à implémenter, mais il est bien moins précis.
+Nous remarquons que, effectivement, l'intégrateur d'Euler-Cromer est moins bon que les autres. Il est certes plus simple à implémenter et moins coûteux en ressources, mais il est bien moins précis.
 
-De plus, nous notons que l'intégrateur de Newmark et l'intégrateur de Runge-Kutta d'ordre 4 ont quasiment la même précision ! Sur le graph, ils sont confondus.
+De plus, nous notons que l'intégrateur de Newmark et l'intégrateur de Runge-Kutta d'ordre 4 ont quasiment la même précision ! Sur le graphe, ils sont confondus.
 
 ### Les oscillateurs
 
-Nous avons implémenté un certaine nombre d'oscillateurs, et nous avons effectué quelques teste pour voir leur bon fonctionnement.
+Nous avons implémenté un certaine nombre d'oscillateurs, et nous avons effectué quelques tests pour voir leur bon fonctionnement.
 
-Tous les tests ci-dessus sont effectué avec l'intégrateur de **Runge-Kutta d'ordre 4**.
+Tous les tests ci-dessous sont effectué avec l'intégrateur de **Runge-Kutta d'ordre 4**.
 
 \pagebreak
 #### Le pendule simple
@@ -250,7 +250,7 @@ Nous remarquons que l'évolution du pendule se passe comme prévu. Il est amorti
 **Conditions initiales**
 
 - Masse = 0.25
-- Elasticité = 0.5
+- Élasticité = 0.5
 - Viscosité = 0.02
 - Position = {0.18}
 - Vitesse = {0.0}
@@ -307,8 +307,8 @@ Nous remarquons que l'évolution du pendule de torsion se passe comme prévu. Il
 
 - Masse du chariot = 1
 - Masse du pendule = 1
-- Longeur du pendule = 1.5
-- Elasticité = 0.1
+- Longueur du pendule = 1.5
+- Élasticité = 0.1
 - Viscosité du chariot = 0.1
 - Viscosité du pendule = 0.1
 - Position = {1.0, M_PI/3}
@@ -329,8 +329,8 @@ Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti
 
 - Masse 1 = 1
 - Masse 2 = 1
-- Longeur 1 = 1.5
-- Longeur 2 = 0.1
+- Longueur 1 = 1.5
+- Longueur 2 = 0.1
 - Position = {M_PI/3, M_PI/3}
 - Vitesse = {0.0, 0.0}
 - Origine = {0.0, 0.0, 0.0}
@@ -338,7 +338,7 @@ Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti
 **Schéma**
 
 ![Graphique d'évolution d'un pendule double non amorti à ces conditions initiales](annexes/graphPenduleDouble.png)
-Nous remarquons que l'évolution du pendule double non amorti se passe comme prévu. Comme il n'est pas ralenti, il continue à l'infinie et est plus ou moins périodique.
+Nous remarquons que l'évolution du pendule double non amorti se passe comme prévu. Comme il n'est pas ralenti, il continue à l'infini et est plus ou moins périodique.
 
 \pagebreak
 #### Le Pendule-Ressort non amorti.
@@ -346,7 +346,7 @@ Nous remarquons que l'évolution du pendule double non amorti se passe comme pr�
 **Conditions initiales**
 
 - Masse = 2
-- Longeur = 1
+- Longueur = 1
 - Raideur = 5
 - Position = {1.0, 0.0}
 - Vitesse = {0.0, 0.0}
