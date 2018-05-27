@@ -28,12 +28,12 @@ using namespace std;
 */
 void GLWidget::initSys(){
   // on initialise tous les oscillateurs que l'on souhaite afficher.
-  Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0});
-  Ressort r(0.5, 1, 0.01, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.6, 0.0, -0.8});
-  Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0});
-  Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {0.0, 0.0, -2.0});
-  PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
-  PenduleRessort pr(1, 2, 1, &vue);
+  Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {-2.0, -0.3, 0.0});
+  Ressort r(0.5, 2.5, 0.01, &vue, {0.0}, {0.0}, {-2.5, 2.0, -1.0}, {0.6, 0.0, -0.8});
+  Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, -1.0, 0.0});
+  Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {2.0, 2.0, -2.0});
+  PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/2, 3*M_PI/4}, {0.0, 0.0}, {0.0, 2.0, 0.0});
+  PenduleRessort pr(1, 1, 10, &vue, {0.5, -0.5}, {0.0, 0.0}, {0.0, 0.5, -0.5});
 
   /* BEGIN - Choix de l'oscillateur dessiné dans l'espace des phases*/
 
