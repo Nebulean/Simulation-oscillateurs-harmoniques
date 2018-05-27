@@ -15,39 +15,13 @@
 #include "phase.h"
 using namespace std;
 
-/* Ce main est une reproduction de exerciceP9.
+/*
+ * Ce main est une reproduction de exerciceP9, avec des modification ajoutées
+ * pendant la suite du projet.
  */
 
 int main(){
-
-  // main utilisé pour la création des graphiques
-  // TextViewer ecran(cout);
-  // Eulercromer IEC;
-  // Newmark IEC;
-  // RungeKutta IEC; // -->  celui utilisé
-  // Systeme sys(0.1, &ecran, &IEC);
-  // Pendule pendule(1, 2, 0.1, &ecran); // Fonctionnel: EC, NM, RK
-  // sys += pendule;
-  // Chute chute(1, &ecran); // Fonctionnel: EC, NM, RK
-  // sys += chute;
-  // Torsion torsion(1,1,0.05, &ecran);
-  // sys += torsion;
-  // Ressort ressort(0.25, 0.5, 0.02, &ecran);
-  // sys += ressort;
-  // Chariot chariot(1, 1, 1.5, 0.1, 0.1, 0.1, &ecran);
-  // sys += chariot;
-  // PenduleDouble penduledouble(0.5, 0.5, 1, 1, &ecran);
-  // sys += penduledouble;
-  // PenduleRessort penduleressort(2, 1, 5, &ecran);
-  // sys+=penduleressort;
-  //
-  // sys.dessine();
-  // for (size_t i = 0; i < 300; i++) {
-  //   sys.evolue();
-  //   sys.dessine();
-  // }
-
-
+  // Main de "demonstration".
   TextViewer ecran(cout);
   Eulercromer IEC;
   Systeme syst1(0.1, &ecran, &IEC);
@@ -105,6 +79,36 @@ int main(){
   }
 
   phase.dessine();
+
+
+  // main utilisé pour la création des graphiques
+  /*
+    TextViewer ecran(cout);
+    // Eulercromer IEC;
+    // Newmark IEC;
+    RungeKutta IEC; // -->  celui utilisé
+    Systeme sys(0.1, &ecran, &IEC);
+    Pendule pendule(1, 2, 0.1, &ecran); // Fonctionnel: EC, NM, RK
+    sys += pendule;
+    Chute chute(1, &ecran); // Fonctionnel: EC, NM, RK
+    sys += chute;
+    Torsion torsion(1,1,0.05, &ecran);
+    sys += torsion;
+    Ressort ressort(0.25, 0.5, 0.02, &ecran);
+    sys += ressort;
+    Chariot chariot(1, 1, 1.5, 0.1, 0.1, 0.1, &ecran);
+    sys += chariot;
+    PenduleDouble penduledouble(0.5, 0.5, 1, 1, &ecran);
+    sys += penduledouble;
+    PenduleRessort penduleressort(2, 1, 5, &ecran);
+    sys+=penduleressort;
+
+    sys.dessine();
+    for (size_t i = 0; i < 300; i++) {
+      sys.evolue();
+      sys.dessine();
+    }
+  */
 
   return 0;
 }

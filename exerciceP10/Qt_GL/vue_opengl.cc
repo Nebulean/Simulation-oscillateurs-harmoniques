@@ -12,26 +12,6 @@ void VueOpenGL::dessine(Phase const& phase)
   // On met la matrice identité dans vue_modele
   prog.setUniformValue("vue_modele", matrice);
 
-  /* Dessine le cadre blanc */
-  // matrice.setToIdentity();
-  // matrice.ortho(-1.0, 1.0, -1.0, 1.0, -10.0, 10.0);         // matrice simple pour faire le cadre
-  // prog.setUniformValue("projection", matrice);
-  //
-  // prog.setAttributeValue(CouleurId, 1.0, 1.0, 1.0);
-  // glBegin(GL_LINE_LOOP);                                    // la primitive LINE_LOOP referme le tracé avec une ligne (n lignes)
-  // prog.setAttributeValue(SommetId, -1.0, -1.0, 2.0);        // le 2.0 dans la composante z permet de mettre le cadre par dessus tout
-  // prog.setAttributeValue(SommetId, +1.0, -1.0, 2.0);        // ceci fonctionne grace à l'option GL_DEPTH_TEST
-  // prog.setAttributeValue(SommetId, +1.0, +1.0, 2.0);
-  // prog.setAttributeValue(SommetId, -1.0, +1.0, 2.0);
-  // glEnd();
-
-  /* Change de matrice de projection adpatée aux zoom du graph */
-  // matrice.setToIdentity();
-  // double xmin(-2); // comme ça on a -2PI entre 0 et la gauche de l'écran.
-  // double xmax(+2); // comme ça on a 2PI entre 0 et la droite de l'écran.
-  // double ymin(-2); // comme ça on a -1.2 entre 0 et le bas de l'écran.
-  // double ymax(+2); // comme ça on a 1.2 entre 0 et la le haut de l'écran.
-
   // choisi le niveau de zoom de la fenêtre
   /* Applique une projection orthographique, c-à-d
    * transformer des objets 3D vers des objets 2D.
@@ -45,7 +25,7 @@ void VueOpenGL::dessine(Phase const& phase)
 
   QMatrix4x4 origine(matrice);
 
-  /* Dessine les axes */
+  // Dessine les axes
   prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0);
   glBegin(GL_LINES);                                        // la primitive LINES dessine une ligne par paire de points (n/2 lignes)
   prog.setAttributeValue(SommetId, -1.05 * phase.max(), 0.0, -1.0);        // le -1.0 dans la composante z met les axes en arrière plan
@@ -54,56 +34,30 @@ void VueOpenGL::dessine(Phase const& phase)
   prog.setAttributeValue(SommetId, 0.0, 1.05 * phase.max(), -1.0);
   glEnd();
 
-  // prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0);
+  // ajoute la graduation aux axes
   glBegin(GL_LINES);
   for (int i = 1; i <= phase.max(); ++i) {
-    // matrice.translate(-i, 0.0, 0.0);
     prog.setAttributeValue(SommetId, -i, -0.1, -1.0);
     prog.setAttributeValue(SommetId, -i, 0.1, -1.0);
-    // matrice = origine;
 
-    // matrice.translate(i, 0.0, 0.0);
     prog.setAttributeValue(SommetId, i, -0.1, -1.0);
     prog.setAttributeValue(SommetId, i, 0.1, -1.0);
-    // matrice = origine;
 
-    // matrice.translate(0.0, -i, 0.0);
     prog.setAttributeValue(SommetId, -0.1, -i, -1.0);
     prog.setAttributeValue(SommetId, 0.1, -i, -1.0);
-    // matrice = origine;
 
-    // matrice.translate(0.0, i, 0.0);
     prog.setAttributeValue(SommetId, -0.1, i, -1.0);
     prog.setAttributeValue(SommetId, 0.1, i, -1.0);
-    // matrice = origine;
   }
   glEnd();
 
-  // /* Dessine la fonction sinus */
-  // prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
-  // glBegin(GL_LINE_STRIP);                                   // la primitive LINE_STRIP ne referme par le tracé (n-1 lignes)
-  // double xpas((xmax - xmin) / 128.0); // change l'échantillonage
-  //
-  // /* Pour x = xmin (gauche de la fenêtre) qui va jusqu'à xmax (droite de la fenêtre)
-  //  *  |   On choisi une valeur y = sin(x) et on pose
-  //  *
-  //  */
-  // for (double x(xmin); x <= xmax; x += xpas) {
-  //   double y = sin(x);
-  //   prog.setAttributeValue(SommetId, x, y, 0.0);
-  // }
-  // glEnd();
-
+  // on dessine ces points et on les relie
   prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0);
   glBegin(GL_LINE_STRIP);
   for (auto const& point : phase.pts()){
     prog.setAttributeValue(SommetId, point[0], point[1], 0.0);
   }
   glEnd();
-
-  // matrice.ortho(xmin, xmax, ymin, ymax, 10.0, -10.0);
-  // matrice.setToIdentity();
-  // prog.setUniformValue("matrice_vue", matrice);
 }
 
 
@@ -112,9 +66,6 @@ void VueOpenGL::dessine(Pendule const& pendule)
 {
   // on créé une matrice.
   QMatrix4x4 matrice;
-
-  // on déplace le point devant nous, centré.
-  //matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le point pour l'amener à l'origine du pendule.
   matrice.translate(pendule.O(0), pendule.O(1), pendule.O(2));
@@ -128,10 +79,10 @@ void VueOpenGL::dessine(Pendule const& pendule)
 
   // on choisi les couleurs du pendule.
   // la tige est un solide indéformable, alors on lui donne une couleur fixe:
-  // vert.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0.0 );
+  // blanc.
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
 
   // la boule est également indéformable, donc on lui donne une couleur fixe:
   // bleu turquoise.
@@ -148,9 +99,6 @@ void VueOpenGL::dessine(Ressort const& ressort)
 {
   // on créé une matrice 4x4.
   QMatrix4x4 matrice;
-
-  // on place le point dans le centre de l'écran.
-  //matrice.translate(0.0, 0.0, -2.0);
 
   // on déplace le ressort à l'origine
   matrice.translate(ressort.O(0), ressort.O(1), ressort.O(2));
@@ -181,9 +129,6 @@ void VueOpenGL::dessine(Torsion const& torsion)
 {
   QMatrix4x4 matrice;
 
-  // on place le point dans le centre de l'écran.
-  //matrice.translate(0.0, 0.0, -2.0);
-
   // on déplace le pendule de Torsion à l'origine.
   matrice.translate(torsion.O(0), torsion.O(1), torsion.O(2));
 
@@ -205,10 +150,10 @@ void VueOpenGL::dessine(Torsion const& torsion)
 
   // on choisi les couleurs de Torsion.
   // les tige est un solide indéformable, alors on lui donne une couleur fixe:
-  // vert.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0 );
+  // blanc.
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
 
   // les boules sont également indéformable, donc on leur donne une couleur fixe:
   // bleu turquoise.
@@ -220,7 +165,6 @@ void VueOpenGL::dessine(Torsion const& torsion)
   dessineOscill(torsion, matrice, sqrt(torsion.I()), torsion.I(), rL, vL, bL, rS, vS, bS);
 
   // on inverse le sens
-  // matrice.scale(-1);
   matrice.rotate(180, 0.0, 1.0, 0.0);
 
   // on dessine l'autre partie
@@ -264,10 +208,10 @@ void VueOpenGL::dessine(Chariot const& chariot)
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
   // on choisi une couleur pour les tiges solides du pendule.
-  // vert
-  double rP( 0.1 );
-  double vP( 0.8 );
-  double bP( 0.0 );
+  // blanc
+  double rP( 1.0 );
+  double vP( 1.0 );
+  double bP( 1.0 );
 
   //on dessine le pendule
   dessineOscill(chariot, matrice, chariot.L(), chariot.m2(), rP, vP, bP, rS, vS, bS);
@@ -288,9 +232,9 @@ void VueOpenGL::dessine(PenduleDouble const& pdouble)
   matrice.rotate(-90, 0.0, 0.0, 1.0);
 
   // on initialise les couleurs.
-  double rL( 0.1 );
-  double vL( 0.8 );
-  double bL( 0.0 );
+  double rL( 1.0 );
+  double vL( 1.0 );
+  double bL( 1.0 );
   double rS( 0.1 );
   double vS( 0.8 );
   double bS( 1.0 );
@@ -328,10 +272,7 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
   double vS( 0.8 );
   double bS( 1.0 );
 
-  //dessineOscill(pr, matrice, pr.P(0), pr.m(), rL, vL, bL, rS, vS, bS);
-
   //on dessine l'axe de l'oscillateur
-  // dessineLigne(point_de_vue, true, longueur, osc.a(0), osc.a(1), osc.a(2), rougeL, vertL, bleuL);
   prog.setUniformValue("vue_modele", matrice_vue * matrice);
 
   glBegin(GL_LINES);
@@ -353,8 +294,6 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
 
 void VueOpenGL::dessine(Systeme const& systeme)
 {
-  // prog.setUniformValue("vue_modele", matrice_vue);
-
   // on dessine le système
   systeme.affiche();
 
@@ -445,14 +384,10 @@ void VueOpenGL::initializePosition()
   // position initiale
   matrice_vue.setToIdentity();
   matrice_vue.translate(0.0, 0.0, -4.0);
-  // translation = matrice_vue;
   memoire = matrice_vue;
   boussole.setToIdentity();
   boussole.translate(-2.0, -1.0, -3.0);
-  //boussole.rotate(-90.0, 1.0, 0.0, 0.0);
   position = boussole;
-  // matrice_vue.rotate(60.0, 0.0, 1.0, 0.0);
-  // matrice_vue.rotate(45.0, 0.0, 0.0, 1.0);
 }
 
 // ======================================================================
@@ -552,7 +487,7 @@ void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
 /*!
  * Méthode générique de dessin de sphère.
  */
-void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
+void VueOpenGL::dessineSphere(QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
@@ -645,13 +580,8 @@ void VueOpenGL::dessineOscill(Oscillateur const& osc, QMatrix4x4 point_de_vue, d
  */
 void VueOpenGL::dessineAxesCamera()
 {
-  // on dessine le repère, qui bouge avec la caméra.
-  // on commence par créer une matrice 4x4 du point de vue des Axes.
-  // QMatrix4x4 pdvAxes;
-  // pdvAxes.translate(-2.0, -1.0, -3.0);
-  //
-  // positionAxes.translate(0, -2, 0);
-  dessineAxes(QMatrix4x4(), false); // Laisser une matrice par défaut ici, sinon ça fuck up tout
+  // Laisser une matrice par défaut ici, sinon ça fuck up tout
+  dessineAxes(QMatrix4x4(), false);
 }
 
 /*!

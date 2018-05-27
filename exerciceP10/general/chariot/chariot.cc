@@ -14,6 +14,7 @@ using namespace std;
 Chariot::Chariot(double m1, double m2, double L, double k, double lambda, double mu, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O)
  : Oscillateur(P, Q, O, {1.0, 0.0, 0.0}, support), _m1(m1), _m2(m2), _L(L), _k(k), _lambda(lambda), _mu(mu)
  {
+   // traitement des cas interdits
    if (m1 <= 0 or m2 <= 0 or L <= 0 or k <= 0 or lambda < 0 or mu < 0) {
      cout << "Chariot: une ou plusieurs des valeurs entrées sont interdites." << endl;
      settodefault();

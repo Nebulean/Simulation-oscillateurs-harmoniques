@@ -20,10 +20,10 @@ Torsion::Torsion(double I, double C, double lambda, SupportADessin* support, Vec
    }
  }
 
-   /*!
-    * Équation d'évolution du pendule de torsion, définie de cette manière:
-    * f(t,P,Q) = -(C*P1 + lambda*Q1)/I
-    */
+/*!
+ * Équation d'évolution du pendule de torsion, définie de cette manière:
+ * f(t,P,Q) = -(C*P1 + lambda*Q1)/I
+ */
 Vecteur Torsion::f(double t){
   return f(t, P(), Q());
 }

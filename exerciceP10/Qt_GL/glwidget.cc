@@ -31,7 +31,7 @@ void GLWidget::initSys(){
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {-2.0, -0.3, 0.0});
   Ressort r(0.5, 2.5, 0.01, &vue, {0.0}, {0.0}, {-2.5, 2.0, -1.0}, {0.6, 0.0, -0.8});
   Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, -1.0, 0.0});
-  Chariot ch(1, 1, 1.5, 0.1, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {2.0, 2.0, -2.0});
+  Chariot ch(1, 1, 1.5, 0.7, 0.1, 0.1, &vue, {1.5, M_PI/3}, {0.0, 0.0}, {2.0, 2.0, -2.0});
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/2, 3*M_PI/4}, {0.0, 0.0}, {0.0, 2.0, 0.0});
   PenduleRessort pr(1, 1, 10, &vue, {0.5, -0.5}, {0.0, 0.0}, {0.0, 0.5, -0.5});
 
@@ -123,9 +123,7 @@ void GLWidget::paintGL()
    * Elle est appellée lorsqu'on utilise updateGL().
    */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  // c.dessine();
 
-  // vue.dessineAxesCamera();
   if (vue.isPhase()) {
     _phase.dessine();
   } else {
@@ -148,12 +146,10 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_Left:
     vue.rotate(petit_angle, 0.0, -1.0, 0.0);
-    //vue.rotate(petit_angle, 0.0, 0.0, -1.0);
     break;
 
   case Qt::Key_Right:
     vue.rotate(petit_angle, 0.0, +1.0, 0.0);
-    //vue.rotate(petit_angle, 0.0, 0.0, +1.0);
     break;
 
   case Qt::Key_Up:
@@ -192,12 +188,10 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   case Qt::Key_Q:
     vue.rotate(petit_angle, 0.0, 0.0, -1.0);
-    //vue.rotate(petit_angle, 0.0, -1.0, 0.0);
     break;
 
   case Qt::Key_E:
     vue.rotate(petit_angle, 0.0, 0.0, +1.0);
-    //vue.rotate(petit_angle, 0.0, +1.0, 0.0);
     break;
 
   case Qt::Key_Home:
@@ -219,6 +213,7 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     vue.toggleDebugMode();
     break;
 
+  // lorsqu'on appuie sur V, la vue est modifiée.
   case Qt::Key_V:
     vue.toggleVue();
     break;
@@ -241,14 +236,9 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     cout << "Nouvel intégrateur: Runge-Kutta: " << _integrateur << endl;
     break;
 
+  // lorsqu'on appuie sur P, switch à l'espace des phases ou on retourne aux oscillateurs.
   case Qt::Key_P:
     vue.togglePhase();
-    // cout << "Espace des phases ";
-    // if (_isPhase) {
-    //   cout << "activé." << endl;
-    // } else {
-    //   cout << "désactivé." << endl;
-    // }
     break;
 
   // change l'oscillateur traité par l'espace des phases.
@@ -265,22 +255,22 @@ void GLWidget::timerEvent(QTimerEvent* event)
 {
   Q_UNUSED(event);
 
-  // double dt = 0.02;
+  // on génère le "bon" dt
   double dt = chronometre.restart() / 1000.0;
   // en cas de dt trop grand...
   if (dt > 0.05) {
-    dt = 0.005; // on ralenti la simulation.
+    dt = 0.005; // ...on ralenti la simulation.
   }
-
+  // À activer si on veut checker le dt utilisé à chaque frame.
   // cout << "dt actuel = " << dt << endl;
 
-  /* En gros, on aligne le pas de temps du Systeme avec le pas de temps de Qt,
-   * puis on fait évoluer le système avec son propre dt.
-   */
+  // on alligne le dt calculé avec celui du systeme.
   _sys.setdt(dt);
 
-  // c.evolue(dt);
+  // on fait évoluer le système.
   _sys.evolue();
+
+  // on met à jour la fenêtre.
   updateGL();
 }
 
@@ -301,7 +291,7 @@ void GLWidget::pause()
 
 
 /*!
- * Enregistre la dernière position
+ * Enregistre la dernière position de la souris.
  */
 void GLWidget::mousePressEvent(QMouseEvent* event)
 {
@@ -335,7 +325,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
   }
 }
 
-//! pour changer d'intégrateur...
+//! Permet de changer d'intégrateur.
 void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
   if (_integrateurActuel != nbIntgr) {
     // copie du pointeur
@@ -381,9 +371,3 @@ void GLWidget::change_phase(){
   // et finalement on lie la Phase au nouvel oscillateur.
   _sys.setPhase(&_phase, _oscPhase);
 }
-
-//! Des/active l'espace des phases.
-// void GLWidget::togglePhase()
-// {
-//   _isPhase = !_isPhase;
-// }

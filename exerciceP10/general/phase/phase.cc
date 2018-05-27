@@ -12,10 +12,6 @@ Phase::Phase(SupportADessin* support)
 
 void Phase::ajoute_point(Oscillateur const& osc)
 {
-  // array<double, 2> tmp;
-  // tmp[0] = osc.P(0);
-  // tmp[1] = osc.Q(0);
-  // _pts.push_front(tmp);
   _pts.push_front({osc.P(0), osc.Q(0)});
   if (abs(osc.P(0)) > _max) _max = abs(osc.P(0));
   if (abs(osc.Q(0)) > _max) _max = abs(osc.Q(0));
