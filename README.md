@@ -40,7 +40,7 @@ Le point central de ce projet est évidemment la simulation visuelle. Nous vous 
 
 **L'espace des phases**
 
-Lors de l'execution de la version graphique du projet, l'espace des phases peut-être affiché en appuyant sur **P**. On peut donc y voir une représentation de la vitesse en fonction du temps de l'oscillateur sélectionné. Pour changer d'oscillateur à représenter dans l'espace des phases, il faut se rendre dans le fichier `exerciceP10/Qt_GL/glwidget.cc` et suivre les instructions se trouvant dans la méthode `initSys()`.
+Lors de l'execution de la version graphique du projet, l'espace des phases peut-être affiché en appuyant sur **P**. On peut donc y voir une représentation de la vitesse en fonction du temps de l'oscillateur sélectionné. Pour changer d'oscillateur dessiné, rien de plus simple ! Il suffit d'appuyer sur **O**, et un nouvel oscillateur est dessiné. Remarquez qu'il commence à dessiner l'espace de phase là au moment ou vous avez cliqué. En effet, nous n'avons qu'un espace de phase à la fois. Lors d'un changement d'oscillateur, nous remettons à 0 les positions conservées dans la phase. Pour changer l'oscillateur dessiné par défaut, suivre les instructions se trouvant dans la fonction `GLWidget::initSys()`.
 
 **La boussole**
 
@@ -202,6 +202,7 @@ Remarque: Ce programme est adapté pour un **clavier Suisse**, c'est à dire un 
 | Activation de l'intégrateur de Newmark                | **2**           |
 | Activation de l'intégrateur de Runge-Kutta d'ordre 4  | **3**           |
 | (Des)activation de l'espace de phase									| **p**						|
+| Dessine l'oscillateur suivant dans l'espace des phases| **o**						|
 
 \pagebreak
 ## Analyse

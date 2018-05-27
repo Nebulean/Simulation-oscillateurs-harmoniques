@@ -37,23 +37,34 @@ void GLWidget::initSys(){
 
   /* BEGIN - Choix de l'oscillateur dessiné dans l'espace des phases*/
 
-  /* Pour selectionner un oscillateur à dessiner, suivez la syntaxe suivante.
+  /* Pour selectionner un oscillateur à dessiner PAR DEFAUT, suivez la syntaxe suivante.
    *
-   * nom_variable.setPhase(&_phase)
+   * nom_oscillateur.setPhase(&_phase);
+   * _oscPhase = place_de_l'oscillateur_dans_la_collection_de_systeme;
+   *
+   * La première ligne permet de lier la phase à un oscillateur à l'espace de
+   * phase. La deuxième ligne permet de savoir à quel oscillateur on se trouve
+   * dans le vector contenant tous les oscillateurs. Il est utilisé pour le
+   * changement d'oscillateur dessiné dans l'espace de phase en cours d'execution.
    *
    * Dans le cas où vous ajoutez la phase à deux oscillateurs en même temps,
    * le resultat va vous surprendre.
    *
    * Plus sérieusement, il n'y a pas de protection contre les "inclusions multiples",
-   * donc le résultat est plus ou moins aléatoire.
+   * donc le résultat est plutot aléatoire si ça arrive (Néanmoins, très joli !).
    */
   p.setPhase(&_phase);
   _oscPhase = 0;
   // r.setPhase(&_phase);
+  // _oscPhase = 1;
   // t.setPhase(&_phase);
+  // _oscPhase = 2;
   // ch.setPhase(&_phase);
+  // _oscPhase = 3;
   // pdou.setPhase(&_phase);
+  // _oscPhase = 4;
   // pr.setPhase(&_phase);
+  // _oscPhase = 5;
 
   /* END */
 
