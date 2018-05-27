@@ -23,7 +23,7 @@ using namespace std;
  * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O.
  * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O.
  * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
- * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
+ * PenduleRessort: masse, longueur, raideur, support, P, Q, O.
  *
 */
 void GLWidget::initSys(){
