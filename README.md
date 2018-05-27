@@ -115,19 +115,19 @@ Pour compiler le programme dans sa version actuelle, rien de plus simple, suivez
 
 ### Ce qui est compilable
 
-Comme dit précédemment, nous avons implémenté deux simulations, qui sont séparée dans deux dossiers.
-
-**La simulation textuelle**
-
-Elle se trouve dans `exerciceP10/text/`.
+Nous avons plusieurs parties du projet qui compilent.
 
 **La simulation visuelle**
 
-Elle se trouve dans `exerciceP10/Qt_GL/`.
+Elle se trouve dans `exerciceP10/Qt_GL/` et est fonctionnelle.
 
-**Les sous-projets**
+**La simulation textuelle**
 
-Concernant le reste des sous-projets (les tests, ...) vous pouvez tester des les compiler, mais **la plupart ne sont plus fonctionnel** dans l'état actuel du projet. Cependant, ils étaient bel et bien fonctionnels lorsqu'ils nous étaient utile.
+Elle se trouve dans `exerciceP10/text/` et est fonctionnelle.
+
+**Les fichiers tests**
+
+La plupart des fichiers tests ne fonctionnent plus, car ils sont trop vieux, et que nous les avons pas actualisés. Néanmoins, il reste deux tests qui compilent encore. Il s'agit de **phase** (`exerciceP10/general/phase/`) et de **vecteur** (`exerciceP10/general/vecteur/`).
 
 ### Compiler sur MacOS et Linux
 
@@ -138,17 +138,18 @@ qmake # Génère un Makefile permetant de compiler le projet.
 make # Compile le projet en suivant les instructions du Makefile.
 ```
 
-Pour executer, il suffit de se rendre dans le dossier qui tout simplement d'executer
+Ainsi, on compile tout ce qui est fonctionnel dans ce projet.
+
+**Remarque**: Il est possible de se rendre dans chaque dossiers fonctionnels, et d'y executer ces commandes. Ainsi, on peut compiler les projets séparéments.
+
+Pour exécuter ce qu'on vient de compiler, il suffit de se rendre dans le dossier de ce qu'on veut tester (c.f. Voir "Ce qui est compilable") et lancer la commande:
 
 ```bash
-./$NOM_DE_EXECUTABLE # Execute la simulation.
+./$NOM_DE_EXECUTABLE # Lance l'executable demandé.
 ```
 
-où `NOM_DE_EXECUTABLE` est le... nom de l'executable.
+où `$NOM_DE_EXECUTABLE` est le... nom de l'executable.
 
-### Compiler tous les sous-projet fonctionnels
-
-A REMPLIR, MAIS CE N'EST PAS ENCORE PRET DANS LE CODE.
 
 ### Générer la documentation
 
