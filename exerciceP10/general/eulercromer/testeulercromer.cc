@@ -6,7 +6,12 @@ using namespace std;
 /* Correctif du 29.03.18
  * La classe Chute ne fonctionne PLUS depuis que Oscillateur est un
  * dessinable. Donc ce test n'est plus fonctionnel.
- **/
+ *
+ * Correctif du 27.05.18
+ * La classe chute a été commentée pour ne pas interférer avec la nouvelle
+ * classe chute. En effet, nous avons créé une classe à part entière, vu que
+ * l'on l'utilise pour plusieurs intégrateurs.
+ */
 
 
 /*!
@@ -16,21 +21,21 @@ using namespace std;
  *    - Elle n'a rien à voir avec le projet, donc nous la définissons que ici
  *      pour ne pas avoir plein de code "inutile" éparpillé dans le projet.
  */
-class Chute : public Oscillateur
-{
-public:
-  //! Constructeur de Chute.
-  Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}), _m(m) {};
-
-  //! Méthode retournant simplement le vecteur g.
-  Vecteur f(double t) override{
-    return Vecteur({0, -9.81});
-  }
-
-private:
-  //! Masse de l'objet en chute. Inutilisé.
-  double _m;
-};
+// class Chute : public Oscillateur
+// {
+// public:
+//   //! Constructeur de Chute.
+//   Chute(double const& m) : Oscillateur({0,1}, {1,2}, {0,1}, {0,1}), _m(m) {};
+//
+//   //! Méthode retournant simplement le vecteur g.
+//   Vecteur f(double t) override{
+//     return Vecteur({0, -9.81});
+//   }
+//
+// private:
+//   //! Masse de l'objet en chute. Inutilisé.
+//   double _m;
+// };
 
 int main(){
   // on initialise le temps et le pas de temps.

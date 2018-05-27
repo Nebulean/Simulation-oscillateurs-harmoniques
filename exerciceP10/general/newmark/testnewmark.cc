@@ -4,6 +4,10 @@
 #include "textviewer.h"
 // #include "eulercromer.h" // pour des tests.
 
+/* Correctif du 27.05.18
+ * Ce test n'est plus compilable. Il lui manque des dépendances.
+ */
+
 using namespace std;
 
 int main(){

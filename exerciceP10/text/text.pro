@@ -10,6 +10,8 @@ QMAKE_CXXFLAGS += -std=c++11
 # LIBS += -L../general -lgeneral
 # PRE_TARGETDEPS += ../general/libgeneral.a
 
+# le nom de l'executable.
+TARGET = simulationText
 
 INCLUDEPATH +=  ../general/dessinable/ \
                 ../general/eulercromer/ \
@@ -75,6 +77,3 @@ HEADERS += \
 # le dossier de sortie pour tous les fichiers .o de la compilation.
 # Ca permet de ne pas avoir trop de bordel dans le dossier courant.
 OBJECTS_DIR = ../../build/
-
-# le nom de l'executable.
-TARGET = simulationText

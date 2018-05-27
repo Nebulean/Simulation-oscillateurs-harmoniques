@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/* Correctif du 27.05.18
+ * Ce test n'est plus fonctionnel, pour des questions de dépendances et/ou de
+ * changements de conception.
+ */
+
 int main() {
 
   TextViewer ecran(cout);
