@@ -5,6 +5,10 @@
 #include "../systeme/systeme.h"
 using namespace std;
 
+/* Correctif du 27.05.18
+ * Ce test n'est plus fonctionnel, pour des questions de dépendances et/ou de
+ * changements de conception.
+ */
 
 int main(){
   // création d'un TextViewer.
@@ -23,6 +27,6 @@ int main(){
   syst.ajoute(new Pendule(p1));
   syst.ajoute(new Ressort(r1));
   ecran.dessine(syst);
-  
+
   return 0;
 }

@@ -7,6 +7,11 @@ using namespace std;
 
 int main() {
 
+  /* Correctif du 27.05.18
+   * Ce fichier test n'est plus compilable, il lui manque des dépendances et
+   * il faudrait lui apporter quelques corrections.
+   */
+
   TextViewer ecran(cout);
   Eulercromer IEC;
   Chariot chariot(1, 1, 1, 0.33, 0.1, 0.1, &ecran);
