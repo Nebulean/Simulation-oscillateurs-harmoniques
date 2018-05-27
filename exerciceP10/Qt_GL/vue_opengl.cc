@@ -322,7 +322,7 @@ void VueOpenGL::dessine(PenduleRessort const& pr)
     cout << "Niveau de vert de l'élastique du Pendule-Ressort -  " << abs(pr.P(0)) <<  " in [ " << 0.0 << ", " << pr.getMaxSize() << " ] -> [ " << 0.0 << ", " << 1.0 << " ] : " << 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) << endl;
   }
   double rL( 1.0 );
-  double vL( 1.0 - mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
+  double vL( mapTo(abs(pr.P(0)), 0.0, pr.getMaxSize(), 0.0, 1.0) ); // inversement proportionnel
   double bL( 0.1 );
   double rS( 0.1 );
   double vS( 0.8 );
