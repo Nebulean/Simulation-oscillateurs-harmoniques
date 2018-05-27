@@ -48,19 +48,3 @@ void Oscillateur::setPhase(Phase* phase)
   // ajoute le point initial
   updatePhase();
 }
-
-// double P(size_t i) const {
-//   return _P.get_coord(i);
-// }
-//
-// double Q(size_t i) const {
-//   return _Q.get_coord(i);
-// }
-//
-// double O(size_t i) const {
-//   return _O.get_coord(i);
-// }
-//
-// double a(size_t i) const {
-//   return _a.get_coord(i);
-// }

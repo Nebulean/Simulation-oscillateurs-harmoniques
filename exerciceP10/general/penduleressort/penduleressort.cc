@@ -8,6 +8,7 @@ using namespace std;
 PenduleRessort::PenduleRessort(double m, double l, double k, SupportADessin* s, Vecteur p, Vecteur v, Vecteur o )
  : Oscillateur(p, v, o, {1.0, 0.0, 0.0}, s), _m(m), _L(l), _k(k)
 {
+  // vérification des cas interdits.
   if (m <= 0 or l <=0 or k <= 0) {
      cout << "PenduleRessort: une ou plusieurs des valeurs entrées sont interdites." << endl;
      settodefault();

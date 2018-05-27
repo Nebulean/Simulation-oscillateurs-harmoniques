@@ -12,6 +12,7 @@ using namespace std;
 Ressort::Ressort(double m, double k, double lambda, SupportADessin* support, Vecteur P, Vecteur Q, Vecteur O, Vecteur a)
  : Oscillateur(P, Q, O, a, support), _m(m), _k(k), _lambda(lambda)
  {
+   // vérification des cas interdits.
    if (m <= 0 or k <= 0 or lambda < 0) {
      cout << "Ressort: une ou plusieurs des valeurs entrées sont interdites." << endl;
      settodefault();
