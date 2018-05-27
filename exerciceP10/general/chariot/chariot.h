@@ -9,6 +9,9 @@
 #include <memory>
 #include <cmath>
 
+/*!
+ * Implémentation du Chariot.
+ */
 class Chariot : public Oscillateur{
 public:
   //!Constructeur du chariot avec pendule amorti par un ressort

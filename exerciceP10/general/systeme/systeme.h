@@ -71,15 +71,16 @@ private:
   double _dt;
 
   //! Temps courant.
-  /* Utilisé par les oscillateurs, il est utilisé comme le temps
-   * courant du système.
+  /*!
+   * Utilisé par les oscillateurs, il est utilisé comme le temps courant du
+   * système.
    */
   double _t;
 
   //! Integrateur servant à faire évoluer le système d'un pas de temps.
   Integrateur* _integr;
 
-  //! Utilisation du polymorphisme pour l'opérateur d'affichage.
+  // Utilisation du polymorphisme pour l'opérateur d'affichage.
   virtual void affiche(std::ostream& out) const override;
 };
 
