@@ -21,7 +21,14 @@ Nous avons également un **espace des phases fonctionnel**. Cependant, changer l
 
 > _Avez-vous une version graphique ? Si oui, avec quelle bibliothèque graphique (Qt (quelle version ?), WxWidget, SDL, Glut, autre [précisez]) ?_
 
-Oui, nous avons une version graphique et nous avons utilisé Qt 5.10. Pour plus de détails concernant les supports sur lesquels le projet à été testé, se référer à la section "Guide de compilation".
+Oui, nous avons une version graphique.
+
+Nous utilisons **qmake 3.1** et **Qt 5.10** pour ce projet. Le programme fonctionne peut-être avec d'autres version, mais nous n'avons pas testé.
+De plus, nous avons testé le programme sur les OS suivants:
+
+- **MacOS 10.13.4**
+- **Kubuntu 16.04**
+- **Machine virtuelle de l'EPFL (25 mai)**
 
 > _Combien d'heures en moyenne par personne estimez vous avoir passé par semaine sur le projet ? (essayez d'être objectif : n'oubliez pas qu'au début vous n'avez peut être pas fait grand chose, comptez sur 14 semaines, i.e. la première semaine incluse, ne comptez pas le cours ni les exercices hors projet, n'oubliez pas de diviser le total par 2 car je veux une estimation moyenne par personne.)_
 
@@ -48,40 +55,40 @@ Nous n'étions pas d'accord sur la façon de se déplacer dans l'espace. Nous av
 
 Dans la simulation graphique, il est possible de changer d'intégrateur en cours d'execution. Par défaut, l'intégrateur de Runge-Kutta d'ordre 4 est utilisé, mais vous pouvez switcher d'intégrateur en cours de route. Pour cela, appuyez sur:
 * **1** - pour utiliser Euler-Cromer;
+
 * **2** - pour utiliser Newmark;
+
 * **3** - pour utiliser Runge-Kutta d'ordre 4.
+
 Un message indiquant un changement d'intégrateur sera affiché dans le terminal.
 
 Remarque: le texte affiché après est l'adresse de l'intégrateur actuel.
 
 **La documentation**
 
-Pour ne pas se perdre dans le projet, nous avons utilisé Doxygen pour générér la documentation automatiquement. Pour plus d'informations à ce sujet, plus d'informations sont disponible dans la section "Générer la documentation".
+Pour ne pas se perdre dans le projet, nous avons utilisé **Doxygen** pour générér la documentation automatiquement. Pour plus d'informations à ce sujet, se référer à la section "Générer la documentation".
 
 **Le mode debug**
 
-Pour vérifier le bon fonctionnement des oscillateurs executé durant la simulation visuelle, nous avons implémenter un mode debug. Lors de l'execution, appuyez sur **§** pour (des)activer le mode debug. Les informations s'afficheront dans le terminal.
+Pour vérifier le bon fonctionnement des oscillateurs executé durant la simulation visuelle, nous avons implémenter un mode debug. Lors de l'execution, appuyez sur **§** pour (dés)activer le mode debug. Les informations s'afficheront dans le terminal.
 
 
 ## Table des matières
-<!-- TOC depthFrom:2 depthTo:6 withLinks:0 updateOnSave:0 orderedList:1 -->
+<!-- TOC depthFrom:2 depthTo:6 withLinks:0 updateOnSave:1 orderedList:1 -->
 
 1. Préambule
 	1. Informations concernant le projet.
 	2. Les quelques points intéressants du projet.
 2. Table des matières
 3. Introduction
-4. Ce qu'il faut regarder
-5. Guide de compilation
-	1. Preambule les informations importantes
-	2. Ce qui est compilable
-	3. Compiler sur MacOS
-	4. Compiler sur Kubuntu (et donc Linux)
-	5. Compiler tous les sous-projet fonctionnels
-	6. Générer la documentation
-6. Guide d'utilisation
+4. Guide de compilation
+	1. Ce qui est compilable
+	2. Compiler sur MacOS et Linux
+	3. Compiler tous les sous-projet fonctionnels
+	4. Générer la documentation
+5. Guide d'utilisation
 	1. Les touches.
-7. Analyse
+6. Analyse
 	1. Les intégrateurs
 	2. Les oscillateurs
 		1. Le pendule simple
@@ -101,23 +108,10 @@ Le but de ce projet est la réalisation d'un programme pouvant simuler des oscil
 
 Nous offrons une simulation textuelle, ainsi qu'une simulation visuelle, utilisant Qt et OpenGL.
 
-## Ce qu'il faut regarder
-
-
-
 \pagebreak
 ## Guide de compilation
 
 Pour compiler le programme dans sa version actuelle, rien de plus simple, suivez ce tutoriel et tout devrait bien se passer.
-
-### Preambule les informations importantes
-
-Nous utilisons **qmake 3.1** et **Qt 5.10** pour ce projet. Le programme fonctionne peut-être avec d'autres version, mais nous n'avons pas testé.
-De plus, nous avons testé le programme sur les OS suivants:
-
-- **MacOS 10.13.4**
-- **Kubuntu 16.04**
-- **Machine virtuelle de l'EPFL (25 mai)**
 
 ### Ce qui est compilable
 
@@ -131,38 +125,23 @@ Elle se trouve dans `exerciceP10/text/`.
 
 Elle se trouve dans `exerciceP10/Qt_GL/`.
 
-Concernant le reste des sous-projets (les tests, ...) vous pouvez tester des les compiler, mais la plus part ne sont plus fonctionnel dans l'état actuel du projet. Cependant, ils étaient bel et bien fonctionnels lorsqu'ils nous étaient utile.
+**Les sous-projets**
 
-### Compiler sur MacOS
+Concernant le reste des sous-projets (les tests, ...) vous pouvez tester des les compiler, mais **la plupart ne sont plus fonctionnel** dans l'état actuel du projet. Cependant, ils étaient bel et bien fonctionnels lorsqu'ils nous étaient utile.
 
-Pour compiler sur MacOS, il suffit de se rendre dans le projet que l'on veut compiler, et de faire ces commandes.
+### Compiler sur MacOS et Linux
+
+Pour compiler sur MacOS et Linux, il suffit de se rendre dans le projet que l'on veut compiler, et de faire ces commandes.
 
 ```bash
-qmake # permet de générer un Makefile
-make # compile le projet demandé
+qmake # Génère un Makefile permetant de compiler le projet.
+make # Compile le projet en suivant les instructions du Makefile.
 ```
 
 Pour executer, il suffit tout simplement d'executer
 
 ```bash
-./$NOM_DE_EXECUTABLE # execute la simulation
-```
-
-où NOM_DE_EXECUTABLE est le... nom de l'executable.
-
-### Compiler sur Kubuntu (et donc Linux)
-
-Pour compiler sur linux, il suffit de se rendre dans le projet que l'on veut compiler, et de faire ces commandes.
-
-```bash
-qmake # permet de générer un Makefile
-make # compile le projet demandé
-```
-
-Pour executer, il suffit tout simplement d'executer
-
-```bash
-./$NOM_DE_EXECUTABLE # execute la simulation
+./$NOM_DE_EXECUTABLE # Execute la simulation.
 ```
 
 où `NOM_DE_EXECUTABLE` est le... nom de l'executable.
@@ -190,7 +169,7 @@ Remarque: la documentation en latex n'est ni maintenue, ni testée.
 
 Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant la simulation textuelle, il n'y a rien à savoir, donc nous nous intéressons à la simulation visuelle.
 
-Remarque: Ce programme est adapté pour un clavier Suisse, c'est à dire un clavier QWERTZ.
+Remarque: Ce programme est adapté pour un **clavier Suisse**, c'est à dire un clavier **QWERTZ**.
 
 ### Les touches.
 
