@@ -26,7 +26,7 @@ _*coord* car c'est un attribut.
 Toutes les méthodes définies jusqu'à présent car elles sont toutes utilisées directement par l'utilisateur-programmeur.
 
 ### Remarques
-Nous n'avons pas définit d'assesseur *getVec()*, car nous pouvions nous en passer, **sans compromettre l'encapsulation**. En effet, dans la méthode compare, nous avons besoin d'accéder au membre *_coord* du deuxième vecteur. Mais comme *compare()* est une méthode de la classe *Vecteur*, alors on se trouve encore dans la portée de celle-ci. Ainsi, on a une une variable *privée* accessible dans sa portée.
+Nous n'avons pas définit d'assesseur *getVec()*, car nous pouvions nous en passer, **sans compromettre l'encapsulation**. En effet, dans la méthode compare, nous avons besoin d'accéder au membre _*coord* du deuxième vecteur. Mais comme *compare()* est une méthode de la classe *Vecteur*, alors on se trouve encore dans la portée de celle-ci. Ainsi, on a une une variable *privée* accessible dans sa portée.
 
 
 # Question P1.2
