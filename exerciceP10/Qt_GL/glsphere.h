@@ -25,7 +25,7 @@ public:
   void release(); //!< Méthode donné dans le tuto que nous ne comprenons pas en détail.
 
 private:
-  QGLBuffer vbo //!< Attribut donné dans le tuto que nous ne comprenons pas en détail.
+  QGLBuffer vbo; //!< Attribut donné dans le tuto que nous ne comprenons pas en détail.
   QGLBuffer ibo; //!< Attribut donné dans le tuto que nous ne comprenons pas en détail.
   GLuint vbo_sz; //!< Attribut donné dans le tuto que nous ne comprenons pas en détail.
   GLuint ibo_sz[3]; //!< Attribut donné dans le tuto que nous ne comprenons pas en détail.
