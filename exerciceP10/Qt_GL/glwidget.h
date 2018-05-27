@@ -23,18 +23,13 @@ public:
   //! Constructeur de GLWidget.
   GLWidget(QWidget* parent = nullptr)
     : QGLWidget(parent)
-    // , c(&vue)
     , _integrateur(new RungeKutta) // Par défaut, on utilise un intégrateur de RungeKutta
-    , _sys(0.1, &vue, _integrateur)
+    , _sys(0.1, &vue, _integrateur) // on initialise le système, vide.
     , _integrateurActuel(3) // par défaut, on utilise un intégrateur de Runge-Kutta (3).
-    // , _isPhase(false)
-    , _phase(&vue)
+    , _phase(&vue) // on initialise la phase, vide.
   {}
   //! Destructeur de GLWidget, qui désalloue l'intégrateur actuel.
   virtual ~GLWidget() { delete _integrateur; }
-
-  // void togglePhase();
-
 
 private:
   // Les 3 méthodes clés de la classe QGLWidget à réimplémenter
@@ -60,10 +55,7 @@ private:
   //! gestion des mouvements de la souris
   virtual void mouseMoveEvent(QMouseEvent* event)  override;
 
-  // Surcharges de la méthode choose_integrateur(...) permetant de choisir le bon intégrateur.
-  // void change_integrateur(Eulercromer* IEC);
-  // void change_integrateur(Newmark* INM);
-  // void change_integrateur(RungeKutta* INM);
+  //! Change l'intégrateur actuel avec un nouveau.
   void change_integrateur(Integrateur* nouvel_integrateur, int nombre_integrateur_actuel);
 
   //! Méthodes de gestion interne
@@ -98,13 +90,8 @@ private:
    */
   int _integrateurActuel;
 
-  // objets à dessiner, faire évoluer
-  // Contenu c;
   //! Systeme contenant tous les Oscillateurs.
   Systeme _sys;
-
-  //! Bool activant ou desactivant l'affichage de l'espace des phases.
-  // bool _isPhase;
 
   //! Phase d'un oscillateur en particulier.
   Phase _phase;
@@ -116,7 +103,6 @@ private:
    * mémoire la bonne projection.
    */
   QMatrix4x4 matrice_projection;
-
 };
 
 #endif // GLWIDGET_H

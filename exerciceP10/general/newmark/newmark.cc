@@ -20,9 +20,8 @@ void Newmark::evolue(Oscillateur& osc, double dt, double t)
 
     osc.setP( oldP +  dt * oldQ + ((dt*dt)/3.0)*(1.0/2.0 * r + s) ); // P(n) = P(n-1) + dt * Q(n-1) + (dt^2)/3 * (1/2*r + s)
 
-    // cout << "précision: " << (osc.P() - q).norme() << endl;
   } while((osc.P() - q).norme() >= _precision); // on utilise la norme au carré car faire une multiplication est moins demandant en ressources que la racine.
 
-  // met (potentiellement à jour l'espace des phases.)
+  // met (potentiellement) à jour l'espace des phases.
   osc.updatePhase();
 }

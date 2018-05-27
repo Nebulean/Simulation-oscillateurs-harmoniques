@@ -42,16 +42,6 @@ void Systeme::changeIntegrateur(Integrateur* intgr){
 
 
 /*!
- * Si l'adresse pointée par le pointeur donné en paramètre existe, alors ce
- * pointeur est ajouté à la collection hétérogène d'Oscillateur.
- */
-// void Systeme::ajoute(Oscillateur* osc) {
-//   if (osc != nullptr){ // on vérifie que le pointeur pointe vers quelque chose
-//     _oscillateurs.push_back(unique_ptr<Oscillateur>(osc));
-//   };
-// }
-
-/*!
  * Fait évoluer tous les Oscillateur de la collection hétérogène d'un pas de
  * temps dt.
  */
@@ -61,16 +51,6 @@ void Systeme::evolue() {
   };
   _t += _dt;
 }
-
-
-
-/*!
- *
- */
-// void Systeme::ajoute(Oscillateur const& o){
-//   _oscillateurs.push_back(o.copie());
-// }
-
 
 
 /*!
@@ -87,32 +67,3 @@ Systeme& Systeme::operator+=(Oscillateur const& o){
   _oscillateurs.push_back(o.copie());
   return *this;
 }
-
-// Systeme& Systeme::operator+=(initializer_list<Oscillateur> const& liste){
-//   for (auto const& osc : liste){
-//     _oscillateurs.push_back(osc.copie());
-//   }
-//   return *this;
-// }
-
-// Systeme& Systeme::operator+=(Systeme const& s){
-//   for (auto const& osc : s._oscillateurs){
-//     _oscillateurs.push_back(osc.copie());
-//   }
-//   return *this;
-// }
-
-// const Systeme operator+(Systeme const& s, Oscillateur const& o){
-//   return s+=o;
-// }
-
-// const Systeme operator+(Oscillateur const& o1, Oscillateur const& o2){ // viable mais inutilisable, je pense
-//   Systeme s;
-//   s+=o1;
-//   s+=o2;
-//   return s;
-// }
-
-// const Systeme operator+(Systeme s1, Systeme const& s2){
-//   return s1+=s2;
-// }

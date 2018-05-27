@@ -7,6 +7,7 @@
 #include <array>
 #include "oscillateur.h"
 
+//! Définition d'un type plus simple à écrire que l'original.
 typedef std::forward_list<std::array<double, 2>> ListePoints;
 
 /*!

@@ -92,6 +92,7 @@ class VueOpenGL : public SupportADessin {
 
   //! Matrice affectée par les rotations mais pas les translations
   QMatrix4x4 boussole;
+  
   //! Matrice qui mémorise la position des axes de la boussole
   QMatrix4x4 position;
 

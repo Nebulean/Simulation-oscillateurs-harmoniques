@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <initializer_list>
-/** @file */
+
 /*!
  * Classe appliquant les opérations classiques des vecteurs dans Rn.
  *
