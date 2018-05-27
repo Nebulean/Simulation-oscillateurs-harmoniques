@@ -47,11 +47,12 @@ void GLWidget::initSys(){
    * Plus sérieusement, il n'y a pas de protection contre les "inclusions multiples",
    * donc le résultat est plus ou moins aléatoire.
    */
-  // p.setPhase(&_phase);
+  p.setPhase(&_phase);
+  _oscPhase = 0;
   // r.setPhase(&_phase);
   // t.setPhase(&_phase);
   // ch.setPhase(&_phase);
-  pdou.setPhase(&_phase);
+  // pdou.setPhase(&_phase);
   // pr.setPhase(&_phase);
 
   /* END */
@@ -239,6 +240,10 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     // }
     break;
 
+  // change l'oscillateur traité par l'espace des phases.
+  case Qt::Key_O:
+    change_phase();
+    break;
   };
 
   updateGL(); // redessine
@@ -339,6 +344,31 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
   } else {
     delete intgr;
   }
+}
+
+/*!
+ * Passe à l'oscillateur suivant dans le tableau dynamique. Si on arrive au bout,
+ * on retourne au début.
+ */
+void GLWidget::change_phase(){
+  // on commence par délier la phase à l'oscillateur actuel.
+  _sys.setPhase(nullptr, _oscPhase);
+
+  // ensuite on efface les valeurs actuellement enregistrées dans la Phase.
+  _phase.empty();
+
+  // on choisi le nouvel oscillateur à dessiner dans l'espace des phases.
+  if (_oscPhase < _sys.sizeOsc() - 1) {
+    // si on est pas au bout du vector, on avance d'un
+    ++_oscPhase;
+  } else {
+    // si on est au bout, on recommence.
+    _oscPhase = 0;
+  }
+  cout << "Oscillateur nouvellement dessiné dans l'espace de phase: " << _oscPhase << endl;
+
+  // et finalement on lie la Phase au nouvel oscillateur.
+  _sys.setPhase(&_phase, _oscPhase);
 }
 
 //! Des/active l'espace des phases.

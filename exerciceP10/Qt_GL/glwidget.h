@@ -48,6 +48,9 @@ private:
   //! Méthode d'initialisation du système.
   void initSys();
 
+  //! Change l'oscillateur actuellement traité par l'espace des phases.
+  void change_phase();
+
   // Méthodes de gestion d'évènements
   //! Méthode de gestion des évènements liés aux touches.
   virtual void keyPressEvent(QKeyEvent* event) override;
@@ -108,6 +111,14 @@ private:
 
   //! Phase d'un oscillateur en particulier.
   Phase _phase;
+
+  //! Garde en mémoire l'oscillateur actuellement traité par l'espace de phase.
+  /*!
+   * En fait, cette variable garde en mémoire la position dans la collection
+   * hétérogène où se situe l'oscillateur actuellement traité par l'espace de
+   * phase.
+   */
+  size_t _oscPhase;
 
   //! Matrice conservant la bonne projection. Utilisé pour l'espace des phases.
   /*!

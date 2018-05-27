@@ -9,6 +9,17 @@
 
 using namespace std;
 
+void Systeme::setPhase(Phase* phase, size_t osc)
+{
+  if (osc < _oscillateurs.size()) {
+    _oscillateurs[osc]->setPhase(phase);
+  } else {
+    cout << "L'oscillateur entré n'existe pas." << endl;
+  }
+
+}
+
+
 Systeme::~Systeme()
 {}
 
