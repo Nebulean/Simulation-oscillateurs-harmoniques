@@ -29,5 +29,10 @@ void Phase::affiche(ostream& out) const
 
 void Phase::empty()
 {
+  // on vide la liste chaînée
   _pts.clear();
+
+  // on remet _max à 2.
+  _max = 2.0;
+
 }
