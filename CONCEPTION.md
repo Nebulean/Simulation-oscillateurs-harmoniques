@@ -1,5 +1,5 @@
 # Conception
-![Hiérarchie des classes](../annexes/classes.png)
+![Hiérarchie des classes](annexes/classes.png)
 
 ## Justifications
 * **Dessinable**: Super-classe abstraite fournissant les méthodes utilisés pour le dessin. Est héritée par toutes les classes que l'on veut dessiner.

@@ -1,10 +1,7 @@
-A MODIFIER AVANT DE RENDRE:
-* Semaine 5, vérifier que Oscillateur est bien une classe abstraite et que la méthode d'évolution est une méthode virtuelle pure.
-
-
 ## Semaine 1
 ### Travail accompli
 Cette première semaine, nous avons surtout organisé le projet.
+
 * Nous avons choisi d'utiliser GIT pour la communication du projet, et la centralisation des données.
 * Nous avons également choisi d'utiliser doxygen pour créer automatiquement le graphique de CONCEPTION.
 * Nous avons aussi réfléchi à la question: "Quand travailler sur le projet".
@@ -18,6 +15,7 @@ Aucun, tout se passe bien pour le moment, et nous sommes enthousiastes.
 ### Travail accompli
 Nous avons réalisé la première version de la classe Vecteur, avec toutes les méthodes demandées.
 Au niveau des méthodes réalisées, nous avons donc:
+
 * Toutes les opérations mathématiques classiques.
 * Quelques méthodes-outil.
 En même temps, nous avons réalisé tous les tests demandés dans le cours.
@@ -60,6 +58,7 @@ Pendant le week-end l'un d'entre nous a rencontré un problème de compilation a
 
 ## Semaine 6
 Cette semaine de travail a été essentiellement composé de Jeudi soir. Le reste de la semaine, nous étions occupé à travailler sur les branches plus vitales.
+
 ### Travail accompli
 Nous avons essentiellement réalisé une première version de P8. Cette version n'était pas fonctionnelle, mais avait au moins l'avantage de poser les bases.
 
@@ -68,6 +67,7 @@ L'essentiel des soucis sont apparu après coup. En effet, la version de P8 faite
 
 ## Semaine 7
 Semaine de vacances, donc on a été efficace.
+
 ### Travail accompli
 Nous avons réalisé l'entièreté de P8 et le début de P9. Ceux-ci sont désormais fonctionnels, car nous avons corrigé la plupart des problèmes d'implémentation de la semaine précédente.
 
@@ -142,6 +142,7 @@ Sinon, le reste s'est déroulé comme prévu, et l'espace des phases est très j
 Nous n'avons pas implémenté de nouveau gros contenu. On a corrigé quelques bugs, changé quelques petites implémentations (phase notamment), et le plus gros de notre travail a été de préparer le projet pour le rendu.
 
 Il n'y a donc rien de particulier à préciser ici. Tout se passe bien.
+
 ### Problèmes rencontrés
 Rendre du code beau n'est clairement pas intéressant, ce qui n'aide pas à travailler.
 Nous avons également essayé de rajouter une fonctionnalité permettant de changer la coordonnée de P et Q prise par l'espace des phases (actuellement il ne s'applique qu'à la première coordonnée), mais nous nous sommes vite rendus compte que c'était plus compliqué que ça en avait l'air au premier abord, et avons laissé tomber pour l'instant.
