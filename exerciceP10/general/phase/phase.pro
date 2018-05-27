@@ -11,6 +11,9 @@ QMAKE_CXXFLAGS += -std=c++11
 # Ca permet de ne pas avoir trop de bordel dans le dossier courant.
 OBJECTS_DIR = ../../../build/
 
+# On choisi le nom de sortie
+TARGET = testphase
+
 INCLUDEPATH +=  ../integrateur/ \
                 ../oscillateur/ \
                 ../vecteur/ \
