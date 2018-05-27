@@ -39,11 +39,17 @@ public:
   //! Manipulateur d'intégrateur, utilisé pour le changement d'intégrateur pendant l'execution.
   void changeIntegrateur(Integrateur* integrateur_a_appliquer);
 
+  //! Change la liaison à un espace des phases d'un oscillateur.
+  void setPhase(Phase* phase_a_lier, size_t oscillateur_a_appliquer);
+
   //! Utilise l'intégrateur pour faire évoluer le système d'un pas de temps dt
   void evolue();
 
   //! Affichage graphique du Systeme.
   void affiche() const;
+
+  //! Accesseur retournant le nombre d'oscillateurs actuellement dans le système.
+  size_t sizeOsc() const { return _oscillateurs.size(); }
 
   //! Surchage de l'opérateur d'auto-affectation pour l'addition, qui permet d'ajouter un oscillateur au système.
   Systeme& operator+=(Oscillateur const& nouvel);

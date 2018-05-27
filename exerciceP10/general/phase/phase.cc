@@ -25,3 +25,9 @@ void Phase::affiche(ostream& out) const
     out << point[0] << " " << point[1] << endl;
   }
 }
+
+
+void Phase::empty()
+{
+  _pts.clear();
+}

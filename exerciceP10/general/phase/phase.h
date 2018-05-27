@@ -34,6 +34,9 @@ public:
   //! Accesseur du max
   double max() const {return _max;}
 
+  //! Vide les points.
+  void empty();
+
 private:
   //! Stocke les points de l'espace de phase.
   /*! Liste chaînée sur une pair de double. Stocke tous les points de l'espace
