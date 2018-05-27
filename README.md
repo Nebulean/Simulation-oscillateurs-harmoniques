@@ -36,7 +36,7 @@ Nous estimons, en moyenne et par personne, une implication d'une petite dizaine 
 ### Les quelques points intéressants du projet.
 **La simulation visuelle**
 
-Le point central de ce projet est évidemment la simulation visuelle. Nous vous proposons de compiler et executer le programme dans Qt_GL. Quand vous y êtes, vous pouvez vous balader dans l'espace et admirer les oscillateurs.
+Le point central de ce projet est évidemment la simulation visuelle. Nous vous proposons de compiler et executer le programme dans Qt_GL. Quand vous y êtes, vous pouvez vous balader dans l'espace et admirer les oscillateurs. Un petit point supplémentaire, un ressort est étiré ou le support du pendule de torsion est tendu, plus le fil devient rouge.
 
 **L'espace des phases**
 
