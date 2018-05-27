@@ -9,15 +9,25 @@
 #include "newmark.h"
 using namespace std;
 
+/*!
+ * Cette méthode initialise le système, et tous les éléments qui le compose.
+ *
+ * C'est ici que l'on peut sélectionner les oscillateurs à dessiner, les
+ * valeurs initiales qui leur sont attribué, et la sélection de l'oscillateur à
+ * dessiner dans l'espace des phases.
+ *
+ * Voici les oscillateurs qui peuvent être construit, et les paramètres servant
+ * à leur initialisation.
+ * Pendule: masse, longueur, viscosité, supportadessin, P, Q, O.
+ * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a, avec a de norme 1.
+ * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O.
+ * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O.
+ * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
+ * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
+ *
+*/
 void GLWidget::initSys(){
-
-  /* Pendule: masse, longueur, viscosité, supportadessin, P, Q, O.
-   * Ressort: masse, elasticité, viscosité, supportadessin, P, Q, O, a, avec a de norme 1.
-   * Torsion: moment d'inertie, cte de torsion, friction, support, P, Q, O.
-   * Chariot: masse du chariot, masse du pendule, longueur du pendule, elasticité, viscosité du chariot, viscosité du pendule, support, P, Q, O.
-   * PenduleDouble: masse1, masse1, longueur1, longueur2, support, P, Q, O.
-   * PenduleRessort: masse, longueur, raideur, P, Q, O, a.
-   */
+  // on initialise tous les oscillateurs que l'on souhaite afficher.
   Pendule p(2, 2, 0.5, &vue, {M_PI/3}, {0.0}, {0.0, 0.0, 0.0});
   Ressort r(0.5, 1, 0.01, &vue, {0.0}, {0.0}, {-2.0, 0.0, 0.0}, {0.6, 0.0, -0.8});
   Torsion t(1, 1, 0, &vue, {M_PI/4}, {0.0}, {2.0, 0.0, 0.0});
@@ -25,24 +35,34 @@ void GLWidget::initSys(){
   PenduleDouble pdou(0.5, 0.5, 1, 1, &vue, {M_PI/3, M_PI/3}, {0.0, 0.0}, {0.0, 2.0, 0.0});
   PenduleRessort pr(1, 2, 1, &vue);
 
-  // on affecte l'espace de phase à un oscillateur
+  /* BEGIN - Choix de l'oscillateur dessiné dans l'espace des phases*/
+
+  /* Pour selectionner un oscillateur à dessiner, suivez la syntaxe suivante.
+   *
+   * nom_variable.setPhase(&_phase)
+   *
+   * Dans le cas où vous ajoutez la phase à deux oscillateurs en même temps,
+   * le resultat va vous surprendre.
+   *
+   * Plus sérieusement, il n'y a pas de protection contre les "inclusions multiples",
+   * donc le résultat est plus ou moins aléatoire.
+   */
   // p.setPhase(&_phase);
-  pr.setPhase(&_phase);
-  // ch.setPhase(&_phase);
+  // r.setPhase(&_phase);
   // t.setPhase(&_phase);
-  // pdou.setPhase(&_phase);
+  // ch.setPhase(&_phase);
+  pdou.setPhase(&_phase);
+  // pr.setPhase(&_phase);
 
+  /* END */
 
-  // on affecte les oscillateurs au système
+  // On ajoute les pendules au système.
   _sys+=p;
   _sys+=r;
   _sys+=t;
   _sys+=ch;
   _sys+=pdou;
   _sys+=pr;
-
-  // PenduleRessort pr(2, 1, 5, &vue);
-  // _sys+=pr;
 }
 
 
@@ -94,7 +114,7 @@ void GLWidget::paintGL()
   // c.dessine();
 
   // vue.dessineAxesCamera();
-  if (_isPhase) {
+  if (vue.isPhase()) {
     _phase.dessine();
   } else {
     // on remet la bonne projection, sinon l'écran est dilaté.
@@ -110,7 +130,7 @@ void GLWidget::paintGL()
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
   constexpr double petit_angle(5.0); // en degrés
-  constexpr double petit_pas(1.0);
+  constexpr double petit_pas(0.2);
 
   switch (event->key()) {
 
@@ -210,13 +230,13 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     break;
 
   case Qt::Key_P:
-    togglePhase();
-    cout << "Espace des phases ";
-    if (_isPhase) {
-      cout << "activé." << endl;
-    } else {
-      cout << "désactivé." << endl;
-    }
+    vue.togglePhase();
+    // cout << "Espace des phases ";
+    // if (_isPhase) {
+    //   cout << "activé." << endl;
+    // } else {
+    //   cout << "désactivé." << endl;
+    // }
     break;
 
   };
@@ -232,7 +252,7 @@ void GLWidget::timerEvent(QTimerEvent* event)
   // double dt = 0.02;
   double dt = chronometre.restart() / 1000.0;
   // en cas de dt trop grand...
-  if (dt > 0.04) {
+  if (dt > 0.05) {
     dt = 0.005; // on ralenti la simulation.
   }
 
@@ -286,7 +306,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent* event)
    * par exemple dans le constructeur de cette classe.
    */
 
-  if (event->buttons() & Qt::LeftButton) {
+  if (event->buttons() & Qt::LeftButton && !vue.isPhase()) { // désactivé dans l'espace des phases pour éviter le lag
 	constexpr double petit_angle(.4); // en degrés
 
 	// Récupère le mouvement relatif par rapport à la dernière position de la souris
@@ -322,7 +342,7 @@ void GLWidget::change_integrateur(Integrateur* intgr, int nbIntgr){
 }
 
 //! Des/active l'espace des phases.
-void GLWidget::togglePhase()
-{
-  _isPhase = !_isPhase;
-}
+// void GLWidget::togglePhase()
+// {
+//   _isPhase = !_isPhase;
+// }

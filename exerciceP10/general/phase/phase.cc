@@ -5,7 +5,7 @@
 using namespace std;
 
 Phase::Phase(SupportADessin* support)
- : Dessinable(support)
+ : Dessinable(support), _max(2.0)
 {}
 
 
@@ -16,6 +16,8 @@ void Phase::ajoute_point(Oscillateur const& osc)
   // tmp[1] = osc.Q(0);
   // _pts.push_front(tmp);
   _pts.push_front({osc.P(0), osc.Q(0)});
+  if (osc.P(0) > _max) _max = osc.P(0);
+  if (osc.Q(0) > _max) _max = osc.Q(0);
 }
 
 
