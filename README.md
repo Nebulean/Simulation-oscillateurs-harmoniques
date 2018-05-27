@@ -7,8 +7,7 @@ Bienvenue dans ce projet d'informatique du Bachelor 2 à l'EPFL, en section phys
 Projet réalisé par **Delphine Martres** et **Damien Korber**.
 
 ## Préambule
-### Informations concernant le projet.
-
+### Informations concernant le projet.
 > _Jusqu'où avez-vous été ? qu'est-ce que vous avez fait/pas fait ?_
 
 Nous avons été jusqu'au bout du projet, c'est-à-dire **jusqu'à P13 compris**.
