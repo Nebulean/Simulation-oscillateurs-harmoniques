@@ -1,46 +1,33 @@
-QMAKE_CXXFLAGS += -std=c++11
+TEMPLATE = subdirs
 
-# les compilateurs utilisés
-QMAKE_CC = g++
-QMAKE_CXX = g++
+SUBDIRS +=  \
+            # chariot \ # n'est plus fonctionnel
+            # eulercromer \ # n'est plus fonctionnel
+            # newmark \ # n'est plus fonctionnel
+            # oscillateur \ # n'est plus fonctionnel
+            # pendule \ # n'est plus fonctionnel
+            phase \
+            # ressort \ # n'est plus fonctionnel
+            # rungekutta \ # n'est plus fonctionnel
+            # systeme \ # n'est plus fonctionnel
+            # torsion \ # n'est plus fonctionnel
+            vecteur \
+            # ../text/testtextviewer.pro \ # n'est plus fonctionnel
 
-TEMPLATE = lib
-
-CONFIG = staticlib
-
-OBJECTS_DIR = ../../build/
-
-
-SOURCES += \
-  chariot/chariot.cc \
-  chute/chute.cc \
-  dessinable/dessinable.cc \
-  eulercromer/eulercromer.cc \
-  integrateur/integrateur.cc \
-  newmark/newmark.cc \
-  oscillateur/oscillateur.cc \
-  pendule/pendule.cc \
-  penduledouble/penduledouble.cc \
-  ressort/ressort.cc \
-  rungekutta/rungekutta.cc \
-  supportadessin/supportadessin.cc \
-  systeme/systeme.cc \
-  torsion/torsion.cc \
-  vecteur/vecteur.cc \
-
-HEADERS += \
-  chariot/chariot.h \
-  chute/chute.h \
-  dessinable/dessinable.h \
-  eulercromer/eulercromer.h \
-  integrateur/integrateur.h \
-  newmark/newmark.h \
-  oscillateur/oscillateur.h \
-  pendule/pendule.h \
-  penduledouble/penduledouble.h \
-  ressort/ressort.h \
-  rungekutta/rungekutta.h \
-  supportadessin/supportadessin.h \
-  systeme/systeme.h \
-  torsion/torsion.h \
-  vecteur/vecteur.h \
+# on écrit un message pour préciser ce qui est fonctionnel.
+message(" ")
+message(" ")
+message(" ")
+message(" ")
+message(" ")
+message(" ")
+message(" ===================================== ")
+message(" Fichiers de test qui sont fonctionnels: ")
+message("    "$$SUBDIRS)
+message(" ===================================== ")
+message(" ")
+message(" ")
+message(" ")
+message(" ")
+message(" ")
+message(" ")

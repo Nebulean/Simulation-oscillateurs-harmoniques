@@ -1,10 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-   general \
    Qt_GL \
-   text
+   text \
+   general \
 
-# Qt_GL.depends = general
-
-#text.depends  = general
+SUBDIRS -= text/testtextviewer.pro

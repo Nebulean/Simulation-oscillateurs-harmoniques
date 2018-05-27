@@ -131,14 +131,14 @@ Concernant le reste des sous-projets (les tests, ...) vous pouvez tester des les
 
 ### Compiler sur MacOS et Linux
 
-Pour compiler sur MacOS et Linux, il suffit de se rendre dans le projet que l'on veut compiler, et de faire ces commandes.
+Pour compiler sur MacOS et Linux, il suffit de se rendre à la racine du projet, et de faire ces commandes.
 
 ```bash
 qmake # Génère un Makefile permetant de compiler le projet.
 make # Compile le projet en suivant les instructions du Makefile.
 ```
 
-Pour executer, il suffit tout simplement d'executer
+Pour executer, il suffit de se rendre dans le dossier qui tout simplement d'executer
 
 ```bash
 ./$NOM_DE_EXECUTABLE # Execute la simulation.
