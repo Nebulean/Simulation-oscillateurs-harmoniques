@@ -10,7 +10,7 @@ SOURCES = testvecteur.cc vecteur.cc
 HEADERS = vecteur.h
 
 # le dossier de sortie pour tous les fichiers .o de la compilation.
-OBJECTS_DIR = ../build/
+OBJECTS_DIR = ../../../build/
 
 # le nom de l'executable.
 TARGET = testvecteur
