@@ -1,6 +1,7 @@
 #include "phase.h"
 #include "oscillateur.h"
 #include <array>
+#include <cmath> // pour abs
 
 using namespace std;
 
@@ -16,8 +17,8 @@ void Phase::ajoute_point(Oscillateur const& osc)
   // tmp[1] = osc.Q(0);
   // _pts.push_front(tmp);
   _pts.push_front({osc.P(0), osc.Q(0)});
-  if (osc.P(0) > _max) _max = osc.P(0);
-  if (osc.Q(0) > _max) _max = osc.Q(0);
+  if (abs(osc.P(0)) > _max) _max = abs(osc.P(0));
+  if (abs(osc.Q(0)) > _max) _max = abs(osc.Q(0));
 }
 
 
