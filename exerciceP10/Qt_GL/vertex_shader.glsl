@@ -1,3 +1,6 @@
+// Ce fichier provient (pouvant être modifié) du cours d'informatique pour physiciens et mathématiciens de l'EPFL.
+// Lien: https://progmaph.epfl.ch/
+
 attribute vec3 sommet;
 attribute vec3 couleur;
 

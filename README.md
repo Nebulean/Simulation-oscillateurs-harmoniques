@@ -101,14 +101,14 @@ Pour vérifier le bon fonctionnement des oscillateurs exécutés durant la simul
 
 <!-- /TOC -->
 
-\pagebreak
+
 ## Introduction
 
 Le but de ce projet est la réalisation d'un programme pouvant simuler des oscillateurs couplés. Nous avons réalisé quelques preset d'oscillateurs, mais le programme se veut suffisamment souple pour ajouter de nouveaux oscillateurs.
 
 Nous offrons une simulation textuelle, ainsi qu'une simulation visuelle, utilisant Qt et OpenGL.
 
-\pagebreak
+
 ## Guide de compilation
 
 Pour compiler le programme dans sa version actuelle, rien de plus simple, suivez ce tutoriel et tout devrait bien se passer.
@@ -165,7 +165,7 @@ La documentation ainsi générée se trouve dans `docs/`. Pour la documentation 
 
 
 
-\pagebreak
+
 ## Guide d'utilisation
 
 Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant la simulation textuelle, il n'y a rien à savoir, donc nous nous intéressons à la simulation visuelle.
@@ -206,7 +206,7 @@ Dans cette section, nous vous expliquons comment utiliser ce projet. Concernant 
 | (Dés)activation de l'espace de phase									| **p**						|
 | Dessine l'oscillateur suivant dans l'espace des phases| **o**						|
 
-\pagebreak
+
 ## Analyse
 
 Nous avons effectué quelques petites analyse de nos différentes implémentations.
@@ -225,7 +225,7 @@ Nous avons implémenté un certaine nombre d'oscillateurs, et nous avons effectu
 
 Tous les tests ci-dessous sont effectué avec l'intégrateur de **Runge-Kutta d'ordre 4**.
 
-\pagebreak
+
 #### Le pendule simple
 
 **Conditions initiales**
@@ -243,7 +243,7 @@ Tous les tests ci-dessous sont effectué avec l'intégrateur de **Runge-Kutta d'
 ![graphPendule](annexes/graphPendule.png)
 Nous remarquons que l'évolution du pendule se passe comme prévu. Il est amorti et tend vers un minimum.
 
-\pagebreak
+
 
 #### Le ressort simple
 
@@ -263,7 +263,7 @@ Nous remarquons que l'évolution du pendule se passe comme prévu. Il est amorti
 ![Graphique d'évolution d'un ressort à ces conditions initiales](annexes/graphRessort.png)
 Nous remarquons que l'évolution du ressort se passe comme prévu. Il est amorti et tend vers un minimum.
 
-\pagebreak
+
 
 #### La chute
 
@@ -280,7 +280,7 @@ Nous remarquons que l'évolution du ressort se passe comme prévu. Il est amorti
 ![Graphique d'évolution d'une chute à ces conditions initiales](annexes/graphChute.png)
 Nous remarquons que l'évolution de la chute se passe comme prévu. Elle continue à chuter à accélération constante.
 
-\pagebreak
+
 
 #### Le pendule de torsion
 
@@ -299,7 +299,7 @@ Nous remarquons que l'évolution de la chute se passe comme prévu. Elle continu
 ![Graphique d'évolution d'un pendule de torsion à ces conditions initiales](annexes/graphTorsion.png)
 Nous remarquons que l'évolution du pendule de torsion se passe comme prévu. Il est amorti et tend vers un minimum.
 
-\pagebreak
+
 
 #### Le chariot
 
@@ -321,7 +321,7 @@ Nous remarquons que l'évolution du pendule de torsion se passe comme prévu. Il
 ![Graphique d'évolution d'un chariot à ces conditions initiales](annexes/graphChariot.png)
 Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti et tend vers un minimum.
 
-\pagebreak
+
 
 #### Le pendule double non amorti.
 
@@ -340,7 +340,7 @@ Nous remarquons que l'évolution du chariot se passe comme prévu. Il est amorti
 ![Graphique d'évolution d'un pendule double non amorti à ces conditions initiales](annexes/graphPenduleDouble.png)
 Nous remarquons que l'évolution du pendule double non amorti se passe comme prévu. Comme il n'est pas ralenti, il continue à l'infini et est plus ou moins périodique.
 
-\pagebreak
+
 #### Le Pendule-Ressort non amorti.
 
 **Conditions initiales**
