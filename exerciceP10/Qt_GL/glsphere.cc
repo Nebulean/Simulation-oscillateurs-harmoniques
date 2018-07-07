@@ -1,3 +1,6 @@
+// Ce fichier provient (pouvant être modifié) du cours d'informatique pour physiciens et mathématiciens de l'EPFL.
+// Lien: https://progmaph.epfl.ch/
+
 #define  _USE_MATH_DEFINES
 #include <cmath>
 #include "glsphere.h"
